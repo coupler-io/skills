@@ -1,0 +1,61 @@
+{
+  "skill_name": "marketing-analytics",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I just connected my Google Ads and Mailchimp data to Coupler.io last week. Can you pull up a weekly performance report for me? I want to know how things are going across both channels.",
+      "expected_output": "A structured weekly report covering both Google Ads and Mailchimp metrics, with key numbers, week-over-week changes, highlights, and actionable recommendations. Should use list-dataflows to find the data, get-schema to understand columns, and get-data to query both dataflows.",
+      "files": [],
+      "expectations": [
+        "Uses list-dataflows MCP tool to discover available dataflows",
+        "Uses get-schema to understand column structure before querying",
+        "Uses get-data with SQL to pull metrics from both Google Ads and Mailchimp dataflows",
+        "Presents key metrics with period-over-period comparison",
+        "Includes actionable recommendations based on the data",
+        "Output is structured with clear sections (metrics, highlights, recommendations)"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Something weird is happening with our conversions — they dropped a lot this week compared to last week. Can you check my Coupler.io data and figure out what's going on?",
+      "expected_output": "An anomaly investigation that quantifies the conversion drop, checks multiple channels to isolate where the drop occurred, compares against historical baselines, and suggests possible root causes with next steps to investigate.",
+      "files": [],
+      "expectations": [
+        "Retrieves data from Coupler.io using the MCP tool chain (list-dataflows, get-schema, get-data)",
+        "Quantifies the conversion drop with specific numbers and percentages",
+        "Investigates across available channels to isolate where the drop occurred",
+        "Compares against a baseline (prior period or rolling average)",
+        "Suggests possible root causes for the anomaly",
+        "Recommends specific next steps to investigate or remediate"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "I'm trying to figure out where to put my budget next quarter. Can you compare how all my marketing channels are performing and tell me which ones are giving me the best return? My data is all in Coupler.io.",
+      "expected_output": "A cross-channel comparison pulling data from all available Coupler.io dataflows, showing spend, results, and efficiency per channel, with a clear recommendation on budget allocation for next quarter.",
+      "files": [],
+      "expectations": [
+        "Queries multiple Coupler.io dataflows to cover all available channels",
+        "Compares channels on efficiency metrics (CPA, ROAS) not just volume",
+        "Presents a channel comparison matrix or table",
+        "Provides specific budget allocation recommendations with rationale",
+        "Uses plain, non-technical language appropriate for a marketing manager",
+        "Acknowledges limitations of the analysis (e.g., channel interactions, attribution)"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Can you check if there's anything unusual in my recent marketing data from Coupler.io? I haven't looked at it in a couple of weeks and want to know if anything needs my attention.",
+      "expected_output": "A proactive anomaly scan across all available dataflows, flagging any metrics with significant deviations from recent trends, categorized by severity, with plain-language explanations of what each anomaly means and what to do about it.",
+      "files": [],
+      "expectations": [
+        "Scans all available Coupler.io dataflows, not just one channel",
+        "Compares recent metrics against a baseline or trend",
+        "Classifies anomalies by severity (informational, warning, critical)",
+        "Explains each finding in plain language with 'so what' context",
+        "Provides actionable next steps for any issues found",
+        "If nothing unusual is found, says so clearly rather than fabricating issues"
+      ]
+    }
+  ]
+}
