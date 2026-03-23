@@ -11,25 +11,46 @@ description: >
 
 Analyze marketing performance across channels using data from Coupler.io dataflows. This skill guides you through retrieving data, computing key metrics, detecting anomalies, and presenting actionable insights — all in language a marketing manager can act on.
 
-## Coupler.io Data Access Workflow
+## Step 1: Discover and Select Data Sources
 
-Every analysis starts by connecting to the user's data through Coupler.io MCP tools. Follow this sequence:
+Every analysis starts by connecting to the user's data through Coupler.io MCP tools.
 
-### Step 1: Discover available data
+### 1a. Discover available dataflows
 
 Call `list-dataflows` to see what marketing data the user has connected. Each dataflow represents a data pipeline (e.g., "Google Ads → Claude", "Mailchimp Campaigns", "GA4 Traffic").
 
-Look at the dataflow names and source types to understand what channels are available. If the user asks about a specific channel, find the matching dataflow. If they want a cross-channel view, identify all relevant dataflows or the one that contains all of them.
+### 1b. Select relevant dataflows with the user
 
-### Step 2: Get dataflow details
+The number of available dataflows determines how you present the selection:
 
-For each relevant dataflow, call `get-dataflow` with the dataflow's ID. This returns:
+**Fewer than 5 dataflows:** List them all by name and source type. Ask the user to confirm which ones to include in the analysis.
 
-- `last_successful_execution_id` — you need this for querying data
-- `schedule` — how often the data refreshes (helps set expectations about data freshness)
+**5–20 dataflows:** Group them by apparent channel or source (the dataflow names usually encode this — "google_ads_campaigns", "mailchimp_weekly", etc.). Present the groups with counts. Let the user select entire groups or individual flows.
+
+**More than 20 dataflows:** Do not list them all. Instead, infer which are relevant from the user's request (e.g., "budget allocation" → look for flows with spend/cost columns). Present only the candidates — up to 5–7 — with a one-line rationale for each:
+
+```
+I found 3 dataflows likely relevant to your budget question (out of 24 total):
+  1. google_ads_campaigns — has spend and conversion columns
+  2. meta_ads_weekly — has spend, impressions, and ROAS columns
+  3. linkedin_sponsored — has cost and lead columns
+
+Should I include all three, or add/remove any?
+```
+
+The key: present your *reasoning* for the selection, not just the options. "I picked these because your question is about conversions and these are the only flows with conversion-related columns" gives the user something to correct. A raw list of 20 dataflow names gives them homework.
+
+**This is a hard gate: do not proceed to Step 1c until the user has confirmed which dataflows to include.** The reason this matters: if you pick the wrong dataflows, the entire analysis is wasted work — and the user won't realize until the end that you analyzed the wrong data. A 10-second confirmation here prevents a 5-minute redo later. Even if you're confident you know which dataflows are right, present your selection and ask. The only exception is if there's exactly 1 dataflow and the user's request unambiguously refers to it.
+
+### 1c. Get dataflow details
+
+For each selected dataflow, call `get-dataflow` with its ID. This returns:
+
+- `last_successful_execution_id` — needed for querying data
+- `schedule` — how often the data refreshes (mention this to the user so they know how fresh the data is)
 - `sources` — details about what's connected and whether it's healthy
 
-### Step 3: Understand the data structure
+### 1d. Understand the data structure
 
 Call `get-schema` with the `executionId` (from `last_successful_execution_id`). This returns column definitions. Pay attention to:
 
@@ -38,17 +59,15 @@ Call `get-schema` with the `executionId` (from `last_successful_execution_id`). 
 
 Build a mental mapping between labels and columnNames. You'll use columnNames in SQL but labels when communicating with the user.
 
-### Step 4: Query the data
+### 1e. Sample the data
 
-Call `get-data` with the `executionId` and an SQL query. The data lives in a SQLite table called `data`.
-
-**Always start with a sample query:**
+Always start with a sample query per dataflow:
 
 ```sql
 SELECT * FROM data LIMIT 5
 ```
 
-This helps you verify column contents match expectations before running complex queries.
+This verifies column contents match expectations before running complex queries. If anything looks off (empty columns, unexpected formats), flag it to the user before proceeding.
 
 **Key SQL rules:**
 
@@ -58,218 +77,85 @@ This helps you verify column contents match expectations before running complex 
 - Date functions: `date()`, `strftime()`, `julianday()` for date arithmetic
 - Use `CAST(col_X AS REAL)` when aggregating numeric columns that may be stored as text
 
-### Handling multiple dataflows
+For error handling guidance (empty results, stale executions, schema mismatches), read `references/error-handling.md`.
 
-When the user needs data from multiple channels, query each dataflow separately and synthesize the results. Explain what you're pulling from each source so the user understands the data lineage.
+## Step 2: Compute Metrics via SQL
 
-## Performance Reporting
+Always compute metrics via SQL in `get-data` rather than doing arithmetic in-context. The reason: floating-point aggregations over thousands of rows in-context are unreliable and slow. The Coupler.io SQL engine handles this correctly and efficiently.
 
-When the user asks for a marketing performance report, follow this structure:
+For each channel present in the data, compute the relevant metrics. Read `references/channel-metrics.md` for the full catalog of metrics by channel, including definitions, formulas, and benchmark ranges.
 
-### Identify the reporting period
+When querying multiple dataflows, query each separately and synthesize the results. Explain what you're pulling from each source so the user understands the data lineage.
 
-Ask the user what time period they want (or infer from context — "last week", "this month", "Q1"). Use the date columns in the data to filter appropriately.
+## Step 3: Draft Findings and Get User Feedback
 
-### Pull and compute KPIs
+Before generating a full report, present a brief summary of what you found — the 3–5 most important numbers, any anomalies, and which direction the data points. This gives the user a chance to steer you before you invest in formatting and recommendations.
 
-For each channel present in the data, compute the relevant metrics. See `references/channel-metrics.md` for the full catalog of metrics by channel, including definitions, formulas, and benchmark ranges.
+Present it as: "Here's what I'm seeing in the data. Before I write up the full analysis, does this match your expectations? Anything you want me to dig deeper on?"
 
-### Structure the report output
+**Wait for the user's response before proceeding to the full report.**
 
-**Key Metrics** — the 3-5 most important numbers with period-over-period change:
+## Step 4: Build the Analysis
 
-- Show the metric value, the change (absolute and percentage), and a directional indicator
-- Example: "Conversions: 1,247 (+18% WoW) — strongest week this month"
+Based on what the user asked for, follow the appropriate analysis path:
 
-**Trends** — what's moving and in what direction:
+### Performance Reporting
 
-- Identify metrics with consistent upward or downward movement over 4+ periods
-- Flag any inflection points (where direction changed)
+Identify the reporting period (ask the user or infer from context — "last week", "this month", "Q1"). Use date columns to filter appropriately.
 
-**Channel Breakdown** — performance by marketing channel:
+Structure the report as:
 
-- Compare channels on efficiency (CPA, ROAS) not just volume
-- Highlight the best and worst performing channels
+- **Key Metrics** — the 3–5 most important numbers with period-over-period change. Show the metric value, the change (absolute and percentage), and a directional indicator.
+- **Trends** — metrics with consistent movement over 4+ periods. Flag inflection points.
+- **Channel Breakdown** — compare channels on efficiency (CPA, ROAS) not just volume. Highlight best and worst performers.
+- **Recommendations** — 2–3 specific actions citing the supporting data, prioritized by expected impact.
 
-**Recommendations** — 2-3 specific actions based on the data:
+Read `references/report-templates.md` for weekly, monthly, and quarterly report structures.
 
-- Each recommendation should cite the supporting data
-- Prioritize by expected impact
+### Campaign Analysis
 
-After recommendations, ask one follow-up question to engage user about the most important thing such as further anomaly discovery, inflection points, or more detailed analysis.
+For campaign deep-dives, compute spend efficiency (CPA, ROAS, CPM), trace the funnel (impressions → clicks → conversions → revenue), identify the biggest drop-off, and compare creatives/variants side by side. Flag statistical concerns if sample sizes differ significantly.
 
-See `references/report-templates.md` for weekly, monthly, and quarterly report structures.
+For historical benchmarking, compare against the same period last month/year, the trailing 3-month average, and any targets the user mentions.
 
-## Campaign Analysis
+### Cross-Channel Overview
 
-When the user wants to deep-dive into a specific campaign or channel:
+Query each relevant dataflow for the same time period. Normalize metrics to a common basis where possible (same currency, same date format). Build a channel comparison matrix showing investment, results, efficiency, and trend for each channel.
 
-### Spend efficiency
+For budget allocation insights: identify channels with the best efficiency that could absorb more spend, flag declining-efficiency channels, and note channels with limited data. Be explicit about limitations — correlation isn't causation, and channel interactions (e.g., display awareness driving search conversions) mean isolated channel metrics can be misleading.
 
-Calculate and present:
+### Anomaly Detection and Metric Drops
 
-- **CPA** (Cost per Acquisition): total spend / conversions
-- **ROAS** (Return on Ad Spend): revenue / ad spend
-- **CPM** (Cost per Mille): (spend / impressions) * 1000
-- Compare these against the user's historical averages or industry benchmarks from `references/channel-metrics.md`
+Any time the analysis involves investigating a change, drop, spike, or anomaly in metrics — whether the user explicitly asks "what's going on?" or you're doing a conversion drop investigation, a performance decline analysis, or noticing unusual patterns during a routine report — read `references/anomaly-detection.md` before presenting findings. It contains the severity classification framework (informational / warning / critical), baseline comparison methods, and root cause investigation steps. Every deviation you report should be tagged with a severity level so the user knows how urgently to act. This applies to all analysis types, not just dedicated anomaly scans.
 
-IMPORTANT: never calculate yourself, send SQL queries to Coupler.io instead using the `get-data` tool.
+## Step 5: Present Results
 
-### Funnel analysis
+Read `references/output-guidelines.md` for presentation principles: lead with the headline, use plain language, ensure every finding has a "So what?" and "Now what?", and structure for scannability.
 
-If the data supports it, trace the full funnel:
+For visualization guidance (tables vs. charts, chart type selection, executive summary cards), also consult `references/output-guidelines.md`.
 
-1. **Impressions** — how many people saw the message
-2. **Clicks** — how many engaged (CTR = clicks / impressions)
-3. **Conversions** — how many took the desired action (CVR = conversions / clicks)
-4. **Revenue** — what the conversions were worth (if available)
+**Before finalizing your output, do a quick pass for abbreviation expansion.** The first time you use any abbreviation (CPA, ROAS, CTR, CAC, CPM, MQL, SQL, LTV, etc.), expand it with a brief definition: "cost per acquisition (CPA) — total spend divided by conversions." After the first use, the abbreviation alone is fine. This is easy to forget when you're deep in analysis — that's why it's called out here at the output step, not just in Rules & Edge Cases. Marketing managers reading your output may not share your abbreviation vocabulary.
 
-Identify where the biggest drop-off occurs. That's usually where optimization effort should focus.
+## Step 6: Archive Approved Output
 
-Remember to not calculate anything and use `get-data` tool with SQL queries instead.
+If the user confirms the output is good (explicitly, or by not requesting changes), save a copy to `references/examples/` with a descriptive filename like `weekly-report-2024-03-15.md`. Future runs should read 1–2 recent examples from this directory as quality anchors — they show "what good looks like" for this user's preferences.
 
-### Creative and variant comparison
+## Step 7: Post-Run Learning
 
-When the data contains multiple ad creatives, variants, or campaigns within a channel:
+If the user flags a recurring problem or states a new constraint:
 
-- Compare them on the same metrics side by side
-- Flag statistical concerns if sample sizes are very different
-- Identify the top performer and suggest scaling it
+1. Add it to the `## Rules & Edge Cases` section below.
+2. If it relates to a reference file (e.g., channel metrics, report templates), update that file too.
+3. Confirm the update with the user.
 
-### Historical benchmarking
+This ensures the skill improves with use rather than repeating the same mistakes.
 
-Compare current performance against:
+## Rules & Edge Cases
 
-- The same period last month or last year (for seasonality)
-- The trailing 3-month average (for trend)
-- Any targets the user mentions
-
-## Cross-Channel Overview
-
-When the user wants to understand performance across all their marketing:
-
-### Multi-dataflow synthesis
-
-1. Query each relevant dataflow for the same time period
-2. Normalize metrics to a common basis where possible (e.g., all spend in the same currency, all dates in the same format)
-3. Present a unified view
-
-### Channel comparison matrix
-
-Build a comparison showing each channel's:
-
-- **Investment**: how much was spent
-- **Results**: conversions, leads, or the primary outcome metric
-- **Efficiency**: CPA or ROAS
-- **Trend**: improving or declining vs. prior period
-
-### Budget allocation insights
-
-Based on relative channel efficiency:
-
-- Identify channels with the best efficiency that could absorb more spend
-- Flag channels with declining efficiency that may need optimization or budget reduction
-- Note channels with limited data (too early to make allocation decisions)
-
-Be honest about limitations — correlation isn't causation, and channel interactions (e.g., display awareness driving search conversions) mean isolated channel metrics can be misleading.
-
-## Anomaly Detection
-
-When the user asks "what's going on?" or you notice unusual patterns during analysis:
-
-### Baseline comparison
-
-Compare current period metrics against:
-
-- **Prior period**: last week or last month (for sudden changes)
-- **Same period last year**: if the data goes back that far (for seasonality-adjusted view)
-- **Trailing average**: 4-week or 3-month rolling average (for trend-adjusted view)
-
-If no data is available to compare, say so.
-
-### Flag deviations
-
-Use these severity levels:
-
-| Deviation | Severity | Action |
-|-----------|----------|--------|
-| 10-20% from baseline | Informational | Mention it, monitor |
-| 20-50% from baseline | Warning | Investigate likely causes |
-| >50% from baseline | Critical | Prioritize investigation, recommend immediate review |
-
-### Root cause investigation
-
-When you detect an anomaly, walk through these diagnostic questions:
-
-1. **Is it data quality?** Check if the dataflow ran successfully, if there are gaps, or if the data looks incomplete
-2. **Is it isolated?** Does the anomaly affect one metric/channel or many? An isolated spike suggests a specific cause; a broad shift suggests something systemic
-3. **What changed?** Ask the user about recent campaign launches, pauses, budget changes, seasonal events, or external factors
-4. **Is it a lag?** Some metrics (especially SEO, content) have delayed effects — a change today might reflect actions from weeks ago
-
-Present your findings as: "Here's what I see → Here's what might be causing it → Here's what I'd investigate next."
-
-## Visualization and Presentation
-
-Choose the right format for the data at hand:
-
-### When to use tables vs. charts
-
-- **Tables**: for exact values, small datasets (<5 rows), or when the user needs to reference specific numbers
-- **Charts**: for trends over time, comparisons across categories, or distributions
-
-### Chart type selection
-
-| Data story | Chart type | When to use |
-|-----------|-----------|-------------|
-| Trend over time | Line chart | Showing how a metric changes across periods |
-| Channel comparison | Bar chart | Comparing values across categories |
-| Budget allocation | Pie/donut chart | Only for ≤5 categories that sum to 100% |
-| Funnel stages | Horizontal bar | Showing drop-off from stage to stage |
-| Correlation | Scatter plot | Exploring relationships between two metrics |
-
-### Executive summary cards
-
-For high-level snapshots, present key metrics as summary cards:
-
-```text
-[Metric Name]
-  Value: 1,247
-  Change: +18% vs. last week
-  Status: On track / Needs attention / Off track
-```
-
-For detailed visualization implementation (color palettes, responsive layouts, interactive dashboards), consult the data visualization skills (if any).
-
-## Output Guidelines
-
-Every analysis you produce should follow these principles:
-
-### Lead with the headline
-
-Start with the most important finding, not background or methodology. The first sentence should be something the user can act on or react to.
-
-**Instead of**: "I analyzed your Google Ads data from March 1-7 across 12 campaigns..."
-**Say**: "Your Google Ads CPA dropped 23% last week — your new landing page is working."
-
-### Plain language
-
-- Say "cost per new customer" not "CAC"
-- Say "return on ad spend" not "ROAS" (define abbreviations on first use if you use them)
-- Avoid statistical jargon unless the user demonstrates familiarity
-
-### Every finding needs "So what?" and "Now what?"
-
-- **So what?** — Why does this number matter? What does it mean for the business?
-- **Now what?** — What should the user do about it? Be specific.
-
-**Example:**
-> Email open rates dropped from 28% to 19% this month. **So what?** This is below the 20% industry benchmark and suggests your subject lines aren't resonating or you're hitting send fatigue. **Now what?** Try segmenting your next send by engagement level — send to your most engaged subscribers first, and test a new subject line angle for the rest.
-
-### Structure for scanability
-
-Marketing managers are busy. Structure your output so they can scan quickly:
-
-- Bold the key numbers and findings
-- Use bullet points for lists of insights
-- Put recommendations in a separate, clearly labeled section
-- Keep individual sections to 3-5 bullet points — if you have more, prioritize
+- Always mention data freshness (when the dataflow last ran) before presenting metrics. A report built on 5-day-old data needs that context.
+- Never present a metric without defining it on first use. Say "cost per acquisition (CPA) — total spend divided by conversions" the first time, then "CPA" is fine.
+- Never fabricate data when a query returns empty results. Say what you looked for and that it wasn't available.
+- When comparing periods, verify both periods have complete data. Don't compare a full week to a partial week without flagging it.
+- If the user provides targets or goals, compare actuals against them — don't just show period-over-period.
+- Round numbers appropriately: percentages to 1 decimal, currency to whole numbers for large values.
+- If a dataflow's last execution failed or is stale (>7 days old for a daily-refresh flow), warn the user before proceeding.
