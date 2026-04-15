@@ -1,8 +1,9 @@
-# Include only marketing/marketing-analytics and plugins/
+# Include only marketing/marketing-analytics, the marketplace manifest, and plugin folders
 /*
 !/.gitignore
 !/README.md
+!/.claude-plugin/
+!/humanizer/
 !/marketing/
 /marketing/*
 !/marketing/marketing-analytics/
-!/plugins/
