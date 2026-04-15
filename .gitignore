@@ -1,7 +1,8 @@
-# Include only marketing/marketing-analytics
+# Include only marketing/marketing-analytics and plugins/
 /*
 !/.gitignore
 !/README.md
 !/marketing/
 /marketing/*
 !/marketing/marketing-analytics/
+!/plugins/
