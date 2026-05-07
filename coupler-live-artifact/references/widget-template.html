@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>__DATAFLOW_NAME__ — Daily</title>
+<style>
+:root { color-scheme: light; }
+* { box-sizing: border-box; }
+body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif; background: #f7f8fa; color: #111; font-size: 13px; }
+.wrap { padding: 16px 20px 32px; max-width: 1200px; margin: 0 auto; }
+h1 { font-size: 18px; margin: 0 0 4px; font-weight: 600; }
+.sub { color: #6b7280; font-size: 12px; margin-bottom: 16px; }
+.controls { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-bottom: 16px; padding: 12px; background: #fff; border: 1px solid #e5e7eb; border-radius: 8px; }
+.controls label { font-size: 12px; color: #374151; display: flex; align-items: center; gap: 6px; }
+.controls select { font-size: 12px; padding: 4px 8px; border: 1px solid #d1d5db; border-radius: 6px; background: #fff; min-width: 140px; }
+.section-title { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: #6b7280; margin: 18px 0 8px; }
+.kpis { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
+.kpi { background: #fff; border: 1px solid #e5e7eb; border-radius: 8px; padding: 12px; }
+.kpi .label { font-size: 11px; color: #6b7280; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 6px; }
+.kpi .val { font-size: 20px; font-weight: 600; line-height: 1.1; }
+.kpi .delta { font-size: 11px; margin-top: 4px; }
+.kpi .prev { font-size: 11px; color: #9ca3af; margin-top: 2px; }
+.delta.up { color: #047857; }
+.delta.down { color: #b91c1c; }
+.delta.flat { color: #6b7280; }
+.card { background: #fff; border: 1px solid #e5e7eb; border-radius: 8px; padding: 14px; }
+.card h3 { margin: 0 0 10px; font-size: 13px; font-weight: 600; }
+.card .note { font-size: 11px; color: #6b7280; margin-bottom: 8px; }
+.loading, .error, .empty { padding: 14px; color: #6b7280; font-size: 12px; }
+.error { color: #b91c1c; }
+.empty { text-align: center; color: #9ca3af; }
+button { font-size: 12px; padding: 5px 10px; border: 1px solid #d1d5db; border-radius: 6px; background: #fff; cursor: pointer; }
+button:disabled { opacity: 0.5; cursor: wait; }
+@media (max-width: 900px) { .kpis { grid-template-columns: repeat(2, 1fr); } }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0/dist/chart.umd.js" integrity="sha384-iU8HYtnGQ8Cy4zl7gbNMOhsDTTKX02BTXptVP/vqAWIaTfM7isw76iyZCsjL2eVi" crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="wrap">
+  <h1>__DATAFLOW_NAME__ — Daily</h1>
+  <div class="sub" id="sub">Loading…</div>
+
+  <div class="controls">
+    <button id="btnRefresh">Refresh data</button>
+    <span style="margin-left:auto;font-size:11px;color:#9ca3af" id="status"></span>
+  </div>
+
+  <div class="section-title">KPIs — current month vs previous month</div>
+  <div class="kpis" id="kpis"><div class="loading">Loading KPIs…</div></div>
+
+  <div class="section-title">Chart</div>
+  <div class="card">
+    <h3>__CHART_TITLE__</h3>
+    <div style="position:relative;height:260px;width:100%">
+      <canvas id="mainChart"></canvas>
+    </div>
+  </div>
+</div>
+
+<script>
+// ========== CONFIG ==========
+const DATAFLOW_ID = "__DATAFLOW_ID__"; // from search-datasets / list-datasets
+const STATE_KEY = "__SLUG___state_v1";
+
+// ========== HELPERS (from references/snippets.js) ==========
+// Paste tryJsonFromText, parseToolResult, stripQuotes, monthFirst, prevMonthFirst,
+// monthLabel, fetchSnapshotInfo, runQuery, forceRefresh, fmtNum, fmtAgo, pct,
+// deltaPct, loadState, saveState here. Or inline only the helpers you actually use.
+//
+// (Snippets file deliberately kept separate so it can be updated centrally.
+// Copy-paste into this <script> block at build time.)
+
+// ========== STATE ==========
+const state = loadState(STATE_KEY, { /* dropdown filters, sort, etc. */ });
+let snapshotId = null;
+let lastRunAt = null;
+
+const today = new Date();
+const CUR = monthFirst(today);
+const PREV = prevMonthFirst(today);
+
+// ========== UI HELPERS ==========
+function setStatus(s) { document.getElementById("status").textContent = s; }
+function showError(msg) {
+  document.getElementById("kpis").innerHTML =
+    `<div class="error" style="grid-column:1/-1">Error: ${msg}</div>`;
+}
+
+// ========== LOAD ==========
+async function loadAll() {
+  setStatus("Fetching snapshot…");
+  if (!snapshotId) {
+    try {
+      const info = await fetchSnapshotInfo(DATAFLOW_ID);
+      snapshotId = info.id;
+      lastRunAt = info.runAt;
+    } catch (e) { showError(e.message); setStatus(""); return; }
+  }
+
+  setStatus("Querying data…");
+  // Replace with your actual SQL. Remember:
+  //   - Coupler stores strings with embedded double quotes: WHERE col_X = '"value"'
+  //   - Wrap nullable metrics in COALESCE(col_X, 0)
+  //   - Verify grain with GROUP BY ... HAVING COUNT(*) > 1 before writing the query
+  const aggSQL = `SELECT col_<time> as month,
+    SUM(COALESCE(col_<metric1>,0)) as m1,
+    SUM(COALESCE(col_<metric2>,0)) as m2
+    FROM data
+    WHERE col_<time> IN ('"${CUR}"','"${PREV}"')
+    GROUP BY col_<time>`;
+
+  try {
+    const rows = await runQuery(snapshotId, aggSQL);
+    renderKpis(rows);
+    document.getElementById("sub").textContent =
+      `Current: ${monthLabel(CUR)} (MTD) · Previous: ${monthLabel(PREV)} · ` +
+      `Last run: ${fmtAgo(lastRunAt)} · Snapshot ${snapshotId.slice(0,8)}…`;
+    setStatus("");
+  } catch (e) { showError(e.message); setStatus(""); }
+}
+
+function renderKpis(rows) {
+  const cur  = rows.find(r => stripQuotes(r.month) === CUR)  || {};
+  const prev = rows.find(r => stripQuotes(r.month) === PREV) || {};
+  const steps = [
+    { key: "m1", label: "Metric 1" },
+    { key: "m2", label: "Metric 2" },
+  ];
+  const host = document.getElementById("kpis");
+  host.innerHTML = "";
+  steps.forEach(s => {
+    const c = +cur[s.key] || 0, p = +prev[s.key] || 0;
+    const d = deltaPct(c, p);
+    let cls = "flat", txt = "—";
+    if (d != null) {
+      cls = d > 0.5 ? "up" : d < -0.5 ? "down" : "flat";
+      txt = (d > 0 ? "+" : "") + d.toFixed(1) + "%";
+    }
+    host.insertAdjacentHTML("beforeend",
+      `<div class="kpi"><div class="label">${s.label}</div>
+       <div class="val">${fmtNum(c)}</div>
+       <div class="delta ${cls}">${txt} vs prev</div>
+       <div class="prev">Prev: ${fmtNum(p)}</div></div>`);
+  });
+}
+
+// ========== REFRESH BUTTON ==========
+async function onRefresh() {
+  const btn = document.getElementById("btnRefresh");
+  btn.disabled = true;
+  setStatus("Triggering dataflow run…");
+  try {
+    const info = await forceRefresh(DATAFLOW_ID, snapshotId);
+    snapshotId = info.id;
+    lastRunAt = info.runAt;
+  } catch (e) { setStatus("Refresh failed: " + e.message); btn.disabled = false; return; }
+  btn.disabled = false;
+  await loadAll();
+}
+
+document.getElementById("btnRefresh").addEventListener("click", onRefresh);
+loadAll();
+</script>
+</body>
+</html>
