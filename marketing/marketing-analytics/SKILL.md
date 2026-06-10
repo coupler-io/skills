@@ -29,7 +29,7 @@ The number of available dataflows determines how you present the selection:
 
 **More than 20 dataflows:** Do not list them all. Instead, infer which are relevant from the user's request (e.g., "budget allocation" → look for flows with spend/cost columns). Present only the candidates — up to 5–7 — with a one-line rationale for each:
 
-```
+```bash
 I found 3 dataflows likely relevant to your budget question (out of 24 total):
   1. google_ads_campaigns — has spend and conversion columns
   2. meta_ads_weekly — has spend, impressions, and ROAS columns
@@ -76,6 +76,8 @@ This verifies column contents match expectations before running complex queries.
 - SQLite syntax applies (e.g., `||` for string concatenation, no `ILIKE`)
 - Date functions: `date()`, `strftime()`, `julianday()` for date arithmetic
 - Use `CAST(col_X AS REAL)` when aggregating numeric columns that may be stored as text
+- Quoted strings: all string values are stored with embedded double quotes.
+- Nullable strings: most columns can be NULL.
 
 For error handling guidance (empty results, stale executions, schema mismatches), read `references/error-handling.md`.
 

@@ -68,10 +68,19 @@ function stripQuotes(v) {
   return s;
 }
 
-// Build a SQL equality predicate that respects Coupler's quote convention.
+// Build a SQL equality predicate that matches BOTH Coupler quote conventions.
+// The same dataflow has been observed storing strings as 'value' in one snapshot
+// and '"value"' in the next. Matching both costs nothing and survives flips.
 function couplerEq(colExpr, value) {
   const escaped = String(value).replace(/'/g, "''");
-  return `${colExpr} = '"${escaped}"'`;
+  return `${colExpr} IN ('${escaped}', '"${escaped}"')`;
+}
+
+// Inspect the convention from a sample row. Returns "quoted", "plain",
+// or "mixed". Use this when you'd rather branch than match both forms.
+function detectQuoteConvention(sampleStringValue) {
+  if (typeof sampleStringValue !== "string" || sampleStringValue.length < 2) return "plain";
+  return sampleStringValue.startsWith('"') && sampleStringValue.endsWith('"') ? "quoted" : "plain";
 }
 
 // =============================================================================

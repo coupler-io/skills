@@ -8,9 +8,27 @@ Coupler exposes columns as `col_0`, `col_1`, ..., `col_N` regardless of source. 
 
 When writing SQL: refer to columns as `col_N`. When displaying results: map back to the labels from `get-schema`.
 
-## String columns store with embedded double quotes
+## String columns: quoting convention varies — probe every snapshot
 
-A column whose label says it contains "Looker Studio" actually stores the value as the literal seven-character string `"Looker Studio"` — opening quote, content, closing quote.
+**The single biggest trap.** Coupler's storage layer sometimes wraps string values in embedded double quotes and sometimes does not. The convention can change between snapshots of the same dataflow with no schema change. Observed in the wild: the Templates Funnel dataflow stored `col_1 = '"Looker Studio"'` (quoted) for months, then a refresh later returned `col_1 = 'Looker Studio'` (unquoted). Every SQL filter built against the old convention silently matched zero rows.
+
+**Always probe** before writing SQL against a new snapshot:
+
+```sql
+SELECT * FROM data LIMIT 1
+```
+
+Look at the actual string values. If they begin and end with `"`, the convention is quoted — build filters as `col_X = '"value"'`. If not, build filters as `col_X = 'value'`. Don't trust prior runs or the `ai_context` description on this point.
+
+**Defense-in-depth**: write filters that match **either** convention:
+
+```sql
+WHERE col_1 IN ('Looker Studio', '"Looker Studio"')
+```
+
+This costs nothing and survives convention flips. Apply the same idea to date columns and category `LIKE` patterns.
+
+**Original (legacy) note for context:** When values do have embedded quotes, a column whose label says "Looker Studio" stores as the literal seven-character string `"Looker Studio"`.
 
 Implications:
 
@@ -53,7 +71,7 @@ Always wrap metrics in `COALESCE(col_N, 0)` when summing or comparing. The schem
 
 ## Verify the stated grain — don't trust it
 
-The `ai_context` block usually claims a grain like "one row per template × month". This claim is sometimes wrong.
+The `ai_context` block usually claims a grain like "one row per template × month". This claim is sometimes wrong. The Templates Funnel dataflow at Coupler.io advertises template × month grain but actually has template × short_link × month — same `template_id` appears multiple times per month when a template has multiple short links.
 
 Before writing any leaderboard or per-entity query, run:
 
@@ -69,7 +87,7 @@ If this returns rows, the real grain is finer than the advertised grain. Your ag
 
 If you select raw rows when grain is finer than expected, the user sees duplicates with split metrics. The fix is to group-and-sum.
 
-## `ai_context` is gold — read it carefully (when present)
+## `ai_context` is gold — read it carefully
 
 The `ai_context` field on `get-schema` is a markdown blob written by the dataflow author. It typically contains:
 
@@ -81,7 +99,7 @@ The `ai_context` field on `get-schema` is a markdown blob written by the dataflo
 
 Always read it end-to-end before writing SQL. It saves a lot of guessing. When something seems weird in the data, re-read `ai_context` — the answer is usually documented.
 
-## MCP tool quirks (Coupler.io client)
+## MCP tool quirks (Coupler client)
 
 These are real validator/behavior quirks observed in the Cowork widget runtime, not in tool descriptions:
 
@@ -100,6 +118,10 @@ Same tool, different response shapes depending on the runtime:
 - **Some Coupler tools prefix prose to the JSON.** `list-datasets` returns content text like `"Total datasets: 1\n\n[...]"`. A naïve `JSON.parse(content[0].text)` fails.
 
 Solution: use the tolerant parser in `references/snippets.js`. It tries direct JSON, content-block extraction, prose-prefixed extraction (find the first `[` or `{` and parse everything from there to the end).
+
+## Funnel ordering is dataflow-specific
+
+The Templates Funnel funnel order is `views → clicks → setup_started → activated → purchased`. Don't assume this for other dataflows. Confirm with the user or read the `ai_context` carefully — the column names are not always self-explanatory (e.g. `col_paid` may exist as a separate dimension and not be part of the linear funnel at all).
 
 ## Filter values: enumerate at build time
 

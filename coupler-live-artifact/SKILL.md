@@ -18,16 +18,14 @@ The user wants a re-openable view over Coupler.io data: KPIs, funnel, leaderboar
 Before writing a single line of HTML, run these chat-side calls and read the output:
 
 1. `search-datasets({query: "<dataflow name>"})` to find the `dataflow_id`, `last_dataset_snapshot_id`, and the dataset `id`.
-2. `get-schema({datasetSnapshotId})` and **read `ai_context` carefully** (if present). It documents column meanings, the funnel order, the SQL conventions, and known caveats. Most pitfalls are flagged here.
+2. `get-schema({datasetSnapshotId})` and **read `ai_context` carefully**. It documents column meanings, the funnel order, the SQL conventions, and known caveats. Most pitfalls are flagged here.
 3. `get-data({datasetSnapshotId, query: "SELECT * FROM data LIMIT 3"})` to see the actual row shape. Confirm what the schema claims.
 4. `get-data({datasetSnapshotId, query: "SELECT DISTINCT col_X FROM data ORDER BY col_X"})` for any column you intend to expose as a filter dropdown — pre-compute the full enum.
 5. **Verify the stated grain.** The schema's `ai_context` often claims one row per `(entity × time)`, but real data sometimes has finer grain. Run:
-
    ```sql
    SELECT col_<id>, col_<time>, COUNT(*) cnt FROM data GROUP BY col_<id>, col_<time> HAVING cnt > 1 LIMIT 5
    ```
-
-If this returns rows, the grain is finer than advertised — the leaderboard query must `GROUP BY <id>` and `SUM(...)` everything, otherwise duplicates show up.
+   If this returns rows, the grain is finer than advertised — the leaderboard query must `GROUP BY <id>` and `SUM(...)` everything, otherwise duplicates show up.
 
 Read `references/coupler-conventions.md` once before writing SQL. It encodes Coupler's column/value conventions you will hit immediately.
 
@@ -51,7 +49,6 @@ Only list MCP tools you actually call from the widget in the `mcp_tools` paramet
 - `mcp__b2221b32-...__run-dataflow` — only if a refresh button exists.
 
 Do **not** use:
-
 - `search-datasets` with only `dataflowId` — its validator rejects this and returns "At least one of query, source, or name must be provided".
 - `get-dataflow` for snapshot lookup — it returns config (sources/destinations) only, no snapshot ID.
 
@@ -80,7 +77,7 @@ After registering the artifact, verify the rendered widget shows non-zero values
 
 ### Step 6 — Register the artifact
 
-```bash
+```
 mcp__cowork__create_artifact({
   id: "<kebab-slug>",
   html_path: "<absolute path to the .html in outputs>",
@@ -97,7 +94,7 @@ For updates: `mcp__cowork__update_artifact({id, html_path, update_summary})`. In
 - **Verify dataset grain with a `GROUP BY ... HAVING COUNT(*) > 1` probe.** Don't trust the schema's stated grain. If the real grain is finer than advertised, your leaderboard will show duplicates.
 - **Never hardcode `datasetSnapshotId`.** It rotates on every dataflow run. Always resolve via `list-datasets({dataflowId})` at load time.
 - **Default to live-snapshot loads, gate `run-dataflow` behind an explicit button.** Triggering a fresh run on every artifact open turns a 1-second load into a 1-minute load. Users will hate it.
-- **Coupler stores strings with embedded double quotes.** Match in SQL with `col_X = '"${value}"'`. Strip with `stripQuotes` for display.
+- **Coupler's string-quoting convention is not stable.** Some dataflows/snapshots store strings with embedded double quotes (`col_X = '"Looker Studio"'`), others do not (`col_X = 'Looker Studio'`). The convention can flip between snapshots of the same dataflow. Always probe `SELECT * FROM data LIMIT 1` and look at the actual values before writing SQL filters. Defense in depth: write filters that match both conventions, e.g. `col_X IN ('value', '"value"')`. Keep `stripQuotes` on the display layer as a no-op safety net.
 - **Build YYYY-MM-01 strings manually.** Never via `toISOString()`. Use `${y}-${String(m+1).padStart(2,"0")}-01`. The timezone bug is silent — it produces zero-row queries, not errors.
 - **Chart.js canvases need a fixed-height parent.** Wrap every `<canvas>` in `<div style="position:relative;height:Npx;width:100%">`. Otherwise canvases collapse to 0 and you get a broken-image fallback.
 - **Only the CDN libs listed in the `create_artifact` tool description load.** Chart.js, Grid.js, Mermaid. Use the exact `<script>` tags including `integrity` and `crossorigin`. Other CDNs are blocked.
