@@ -117,12 +117,13 @@ function monthLabel(iso) {
 // hardcode it. For forced refresh (button), call run-dataflow and poll
 // list-datasets until the snapshot ID changes.
 
-const LIST_TOOL = "mcp__b2221b32-5723-40e6-b17d-a36abcd4c057__list-datasets";
-const RUN_TOOL  = "mcp__b2221b32-5723-40e6-b17d-a36abcd4c057__run-dataflow";
-const GET_TOOL  = "mcp__b2221b32-5723-40e6-b17d-a36abcd4c057__get-data";
+// All Coupler.io operations go through the single dispatcher tool.
+// Operations are invoked as {verb:"call", name:"<operation>", args:{...}}
+// with snake_case args (dataflow_id, dataset_snapshot_id).
+const COUPLER_TOOL = "mcp__b2221b32-5723-40e6-b17d-a36abcd4c057__coupler";
 
-async function callMcp(tool, args) {
-  return await window.cowork.callMcpTool(tool, args);
+async function callCoupler(name, args) {
+  return await window.cowork.callMcpTool(COUPLER_TOOL, { verb: "call", name, args });
 }
 
 function extractDatasets(parsed) {
@@ -136,7 +137,7 @@ function extractDatasets(parsed) {
 
 // Returns { id: snapshotId, runAt: ISO } or throws.
 async function fetchSnapshotInfo(dataflowId) {
-  const raw = await callMcp(LIST_TOOL, { dataflowId });
+  const raw = await callCoupler("list-datasets", { dataflow_id: dataflowId });
   const ds = extractDatasets(parseToolResult(raw));
   if (!ds.length) {
     throw new Error("Dataflow not visible. Raw: " + JSON.stringify(raw).slice(0, 200));
@@ -147,7 +148,7 @@ async function fetchSnapshotInfo(dataflowId) {
 // Run a SQL query against the given snapshot. Returns the row array.
 async function runQuery(snapshotId, query) {
   if (!snapshotId) throw new Error("No snapshotId");
-  const raw = await callMcp(GET_TOOL, { datasetSnapshotId: snapshotId, query });
+  const raw = await callCoupler("get-data", { dataset_snapshot_id: snapshotId, query });
   const parsed = parseToolResult(raw);
   if (Array.isArray(parsed)) return parsed;
   if (parsed && Array.isArray(parsed.rows)) return parsed.rows;
@@ -160,7 +161,7 @@ async function runQuery(snapshotId, query) {
 async function forceRefresh(dataflowId, oldSnapshotId, opts = {}) {
   const intervalMs = opts.intervalMs ?? 5000;
   const maxMs = opts.maxMs ?? 5 * 60 * 1000;
-  await callMcp(RUN_TOOL, { dataflowId });
+  await callCoupler("run-dataflow", { dataflow_id: dataflowId });
   const start = Date.now();
   while (Date.now() - start < maxMs) {
     await new Promise(r => setTimeout(r, intervalMs));

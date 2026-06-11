@@ -103,8 +103,9 @@ Always read it end-to-end before writing SQL. It saves a lot of guessing. When s
 
 These are real validator/behavior quirks observed in the Cowork widget runtime, not in tool descriptions:
 
-- **`search-datasets`** requires at least one of `query`, `source`, or `name`. Passing only `dataflowId` returns: `"Invalid parameters for search-datasets tool. Validation error: At least one of query, source, or name must be provided"`.
-- **`list-datasets`** accepts `dataflowId` alone. This is the right tool for snapshot lookup.
+- **All operations are invoked through the single `coupler` dispatcher tool** (`{verb: "call", name: "<operation>", args: {...}}`); args are snake_case (`dataflow_id`, `dataset_snapshot_id`). Discover the current operation set via `{verb: "tools"}`.
+- **`search-datasets`** requires at least one of `query`, `source`, or `name`. Passing only `dataflow_id` returns: `"Invalid parameters for search-datasets tool. Validation error: At least one of query, source, or name must be provided"`.
+- **`list-datasets`** accepts `dataflow_id` alone. This is the right operation for snapshot lookup.
 - **`get-dataflow`** does **not** include `last_dataset_snapshot_id`. It returns `id`, `name`, `sources`, `destinations` only. Do not use it to resolve snapshots.
 - **`run-dataflow`** triggers asynchronously. It returns when the run is queued, not when it's complete. To know when fresh data is available, poll `list-datasets` and watch for `last_dataset_snapshot_id` to change.
 - **Snapshot IDs rotate.** Each successful run produces a new `last_dataset_snapshot_id`. Hardcoding a snapshot is always wrong.
