@@ -1,0 +1,80 @@
+_framework/acquisition-readiness-checklist.md
+  s_9be3a033912088::t_7605762dea7872 1-25
+_framework/_fixtures/good-flat/some-flat-skill.md
+  s_9be3a033912088::t_fe7749891f5820 1-19
+_framework/conventions.md
+  s_9be3a033912088::t_de3f829ebaf580 1-129,138-140,162-212
+  s_9be3a033912088::t_5f12fdcd0cb400 143-146
+  s_9be3a033912088::t_cad7a586fd5cf3 141-142,147-161
+  s_9be3a033912088::t_35f2262b93e243 130-137
+_framework/_fixtures/bundle-skill/references/foo.md
+  s_9be3a033912088::t_6ef00545a79bc8 1-8
+bin/build-skill.sh
+  s_9be3a033912088::t_becd52751c6322 1-65,101-133
+  s_9be3a033912088::t_fb84b74b18e32c 71,73-75,77,80
+  s_9be3a033912088::t_dec75a77975f40 66-70,72,76,78-79,81-100
+_framework/README.template.md
+  s_9be3a033912088::t_ebfa4b4026921c 1-50
+marketing/ppc-analytics/SKILL.md
+  s_9be3a033912088::t_eff4c30d735813 35-40,42-74,88
+  s_9be3a033912088::t_0d9802780b33d1 92-113
+  s_9be3a033912088::t_cd2bfb984290f7 125-142
+  s_9be3a033912088::t_893246a88b35eb 148-152
+  s_9be3a033912088::t_cd276676bb75b8 75-84
+  s_9be3a033912088::t_a0dd3153d6c96c 2-31,41,115-121,143-146
+  s_9be3a033912088::t_6a0c949312c7da 1
+  s_9be3a033912088::t_1c7adc489c6983 32-34
+  s_9be3a033912088::t_5456641e3f6c23 85-87
+  s_9be3a033912088::t_ef7a03829096e4 89-91
+  s_9be3a033912088::t_e146f37dedc455 114
+  s_9be3a033912088::t_e06717ea5f4dde 122-124
+  s_9be3a033912088::t_3254ea04d732ed 147
+_framework/_fixtures/bad-skill/SKILL.md
+  s_9be3a033912088::t_78d5956fba64f4 1-16
+_framework/_fixtures/bundle-skill/SKILL.md
+  s_9be3a033912088::t_68cca46e2f67dc 1-19
+marketing/ppc-analytics/evals/evals.json
+  s_9be3a033912088::t_2995be256c0ef7 1-151
+marketing/ppc-analytics/PR-NOTES.md
+  s_9be3a033912088::t_22fa47a7e43748 1-37
+  s_9be3a033912088::t_bc05ae246f373a 38
+bin/validate-skills.sh
+  s_9be3a033912088::t_b03e24da6c2c0a 1-105,116,174-188
+  s_9be3a033912088::t_d87dcb1bf5c7b6 141-173
+  s_9be3a033912088::t_344fb9f1d10674 130-140
+  s_9be3a033912088::t_0ba129dca60ed0 106-115
+  s_9be3a033912088::t_bc47a28e4860f9 117-129
+_framework/_fixtures/good-bundle/SKILL.md
+  s_9be3a033912088::t_270ebc9dd71f14 1-11
+marketing/ppc-analytics/README.md
+  s_9be3a033912088::t_6918e141a61d33 1-49
+_framework/SKILL.template.md
+  s_9be3a033912088::t_b1170d9bfabbb7 94-95
+  s_9be3a033912088::t_ce3f38f0c2f834 61
+  s_9be3a033912088::t_aeafb4a9cc77d2 1-33,35,41-42,46-50,52,54-60,62-78,81-93,96-99
+  s_9be3a033912088::t_a9e0bcf9b124d1 34,36-40,43-45,51,53
+  s_9be3a033912088::t_eff005f8767636 79-80
+.gitignore
+  s_9be3a033912088::t_f1ecf595ba5059 10
+  s_9be3a033912088::t_e3bc29221557f8 15
+  s_9be3a033912088::t_e40fa05299b2cf 17-19
+  s_9be3a033912088::t_b953a641881fcf 16
+bin/README
+  s_9be3a033912088::t_ae380f3869e290 1-11
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "2526972fe008b4c53781873791dd097a100e6b6f",
+  "prompts": {},
+  "sessions": {
+    "s_9be3a033912088": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "efb7bfb5-bccf-4db1-b95e-07665d9925a4",
+        "model": "claude-fable-5"
+      },
+      "human_author": "Aurelien <125982516+a1artaud@users.noreply.github.com>"
+    }
+  }
+}
