@@ -1,0 +1,11 @@
+# bin/ — framework scripts (T-3a0)
+
+Invocation convention (fixed per implementation-plan Prerequisites, challenge finding #2a):
+scripts are run FROM THE REPO ROOT and take a repo-root-relative path.
+
+    bin/validate-skills.sh <repo-root-relative-path>   # e.g. bin/validate-skills.sh reporting/report-generation.md
+    bin/build-skill.sh     <repo-root-relative-path>   # (Phase 3)
+
+Never prefix paths with `coupler-io-skills/`. Paths are bare, repo-root-relative
+(`_framework/...`, `analytics/...`, `marketing/...`).
+Requires: bash + POSIX grep/wc/awk/sed (macOS default). No other dependencies.

@@ -1,0 +1,38 @@
+# PR notes — ppc-analytics (Phase 4 Part B, framework validation build)
+
+Branch: `framework-build-phase1`. Authored against `_framework/SKILL.template.md` + `_framework/conventions.md` + `_framework/README.template.md`. Content source of truth: CPL-25712.
+
+## T-B0a — authoring wall-clock (labeled datapoint, NOT validation)
+
+- **Start:** 2026-07-07 19:21 -03 (context load: framework artifacts + live patterns + brief)
+- **End:** 2026-07-07 19:27 -03 (SKILL.md + evals.json + README.md authored, linter PASS)
+- **Elapsed:** ~6 minutes wall-clock for T-B0–T-B3, T-B5, T-B6 authoring (excludes T-B4 composition runs and T-B7 review, deferred).
+- **Label (verbatim, per plan finding #5):** "best-case: author == template-author, single instance, NOT generalizable — does NOT validate the 'fast to author' Heart sub-value". Real validation is deferred to the meta-skill + a non-author run (Tabled). No downstream doc may cite this number as speed validation.
+
+## Deferred — NOT done in this pass (do not read as passed)
+
+- **T-B4 (AC-B.4)** — empirical composition runs (does the model reliably load `report-generation` + `create-dataflow`?): **DEFERRED to tomorrow.** No reliability observation exists yet; hardening decision pending measurement. Eval EXECUTION (T-B5 "run them") is deferred with it — evals are authored, not yet run.
+- **T-B7 (AC-B.3)** — named senior-PPC-analyst blind review: **DEFERRED to tomorrow.** Reviewer name still `[SET — Aurelien to name]` per the plan's Open Dependencies. AC-B.3 cannot pass until then; no self-certification.
+- **Acquisition checklist item (iv), flat surface:** linter PASS; **flat-for-`get-skill` surface PROVISIONAL pending the T-4 gate** (get-skill size cap / references bundling / `{{ }}`-escaping still open with Peter). Not fabricated as passed.
+- **Track-A PR + site page (AC-B.6 full surfaces):** the Track-A block variant and site slug/title/GTM-label guidance are authored (README); the actual `marketingskills` PR and the coupler.io page publication are launch steps outside this authoring pass.
+
+## Acquisition-readiness checklist (run 2026-07-07, per item)
+
+- (i) SEO/human-discovery README per template, four elements, no brackets left — **PASS**
+- (ii) Trigger-rich `description` per formula (what + triggers + boundary), 981/1024 chars — **PASS**
+- (iii) Per-track block correct: Track-B variant in SKILL.md Step 0 (target track = Coupler repo); Track-A variant only in the clearly-marked README section, not in the skill — **PASS**
+- (iv) Spec-conformant: `bin/validate-skills.sh marketing/ppc-analytics` → PASS. **Linter PASS; flat surface PROVISIONAL pending T-4 gate** — item INCOMPLETE until T-4 clears, per finding #1. — **FLAGGED**
+- (v) GEO/SEO-ready: JTBD-query-shaped description, ICP-keyworded slug/title guidance, comparison/switch angle (README § Site page guidance) — **PASS**
+- (vi) GTM attribution label proposed: `ppc-analytics-download-skill-hero` (page-action-block; page segment == skill name) — **PASS (proposed; wiring is a site-page step)**
+
+## Framework-drift observations (T-B8 input — noted, NOT silently patched)
+
+1. **README.template.md has no slot for checklist items (v) and (vi).** The acquisition-readiness checklist requires site slug/title guidance, a comparison/switch angle, and the GTM label, but the README template's four elements don't cover them — this skill adds an ad-hoc "Site page guidance" section. Part A should either add a fifth template element or state where (v)/(vi) evidence lives.
+2. **Template section-title AC references leak into authored skills.** The template's step headings carry framework citations ("AC-1.2", "AC-1.7") that mean nothing to an end reader; dropped here (kept the structure + MANDATORY/REQUIRED markers). Part A may want reader-facing heading variants.
+3. Minor: the template instructs "Delete the guidance comments before publishing" but the checklist has no item verifying no template comments/brackets remain in SKILL.md (only the README is bracket-checked in item (i)). Cheap linter or checklist addition.
+
+## Open escalations carried
+
+- Final path/name `marketing/ppc-analytics` — confirm with repo owner (per T-B0 note).
+- Senior PPC analyst reviewer name — blocks T-B7/AC-B.3.
+- T-4 gate (Peter): size cap, references bundling, double-brace escaping → unblocks flat surface + checklist (iv).

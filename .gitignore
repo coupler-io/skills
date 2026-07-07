@@ -7,7 +7,13 @@
 !/marketing/
 /marketing/*
 !/marketing/marketing-analytics/
+!/marketing/ppc-analytics/
 !/analytics/
 !/reporting/
 !/coupler-live-artifact/
 !/capability/
+!/_framework/
+!/bin/
+
+# build artifacts (bin/build-skill.sh flat output) — IGNORE, never committed
+build/
