@@ -1,0 +1,55 @@
+marketing/ppc-analytics/SKILL.md
+  s_9be3a033912088::t_d4d8d27d6ee102 33
+  s_9be3a033912088::t_d0bee0b4fa9b4d 37
+bin/validate-skills.sh
+  s_9be3a033912088::t_735b20f38b985d 17-19,21-22,25-26,30-31
+  s_9be3a033912088::t_89f25f7fe24ce2 99,102-109
+  s_9be3a033912088::t_74dfa3ea5be914 39
+  s_9be3a033912088::t_fcb62f61137a87 57-58
+  s_9be3a033912088::t_2c949ef4c5a4b5 157-159,161
+  s_9be3a033912088::t_90665e660865d4 178-187,189,192,195-231
+  s_9be3a033912088::t_b563fb0a3730ee 232
+_framework/acquisition-readiness-checklist.md
+  s_9be3a033912088::t_a19360bd60416a 10-11
+  s_9be3a033912088::t_3164bc37edaa54 22,24
+bin/build-skill.sh
+  s_9be3a033912088::t_58fec40eb893ef 53-55,57-58,61-69,78-80
+  s_9be3a033912088::t_70502f886a9f8e 42-44,46-47
+  s_9be3a033912088::t_691f6545eaafb9 95-101,108
+  s_9be3a033912088::t_b0913974d8ba90 4-8,17,20-21
+  s_9be3a033912088::t_a5b602f7eda670 149
+  s_9be3a033912088::t_050b54907dc902 160-163
+  s_9be3a033912088::t_fe03931511983d 81
+marketing/marketing-analytics/SKILL.md
+  s_9be3a033912088::t_1e155c50be94bb 143
+_framework/SKILL.template.md
+  s_9be3a033912088::t_e0889a31936dbf 55,57
+README.md
+  s_9be3a033912088::t_bf683fd3bc1e5d 26
+_framework/conventions.md
+  s_9be3a033912088::t_23ba44eaf01e31 145-147
+  s_9be3a033912088::t_b0e1f8982ec697 203-218
+  s_9be3a033912088::t_b277cc9007b675 158-160
+  s_9be3a033912088::t_e979a93f7678e0 130-138
+  s_9be3a033912088::t_dfd5b6fb75b81e 121-122
+_framework/README.template.md
+  s_9be3a033912088::t_70039d01fcecb5 51-68
+_framework/_fixtures/good-crlf/SKILL.md
+  s_9be3a033912088::t_cb75418ce43746 1-13
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.14",
+  "base_commit_sha": "ab8f20a2feb24e4e7d707210c71eefd2c3f9ddce",
+  "prompts": {},
+  "sessions": {
+    "s_9be3a033912088": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "efb7bfb5-bccf-4db1-b95e-07665d9925a4",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "Aurelien <125982516+a1artaud@users.noreply.github.com>"
+    }
+  }
+}
