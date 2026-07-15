@@ -140,7 +140,7 @@ For visualization guidance (tables vs. charts, chart type selection, executive s
 
 ## Step 6: Archive Approved Output
 
-If the user confirms the output is good (explicitly, or by not requesting changes), save a copy to `references/examples/` with a descriptive filename like `weekly-report-2024-03-15.md`. Future runs should read 1–2 recent examples from this directory as quality anchors — they show "what good looks like" for this user's preferences.
+If the user confirms the output is good (explicitly, or by not requesting changes), offer to preserve it as a reusable quality anchor: surface the approved report back to the user as a copyable artifact (with a descriptive title like "weekly-report-2024-03-15"), and use `update-dataset` to record on the relevant dataset what "good" looked like for this user (structure, tone, which metrics led). Future runs can then reuse that saved dataset context as a quality anchor — showing "what good looks like" for this user's preferences — without depending on any local file path.
 
 ## Step 7: Post-Run Learning
 

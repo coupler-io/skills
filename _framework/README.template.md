@@ -48,3 +48,21 @@ Google Ads via `get-data`, `get-schema`, `list-dataflows`.]
   `list-skills` and loaded via `get-skill`.
 - **Claude Code plugin / marketplace:** [install command / marketplace link if listed.]
 - **Community track (Track A):** [link to the `marketingskills` PR / listing if applicable.]
+
+## Site page guidance (GEO/SEO — for the coupler.io skills page)
+
+<!-- ELEMENT 5 · SITE PAGE GUIDANCE
+     Fills acquisition-readiness checklist items (v) GEO/SEO-ready and (vi) GTM attribution label,
+     so they have a template home instead of being hand-rolled per skill. Readiness by construction —
+     states NO reach/traffic metric. -->
+- **Suggested slug:** [ICP-keyworded page slug — e.g. `coupler.io/skills/ppc-analytics`
+  (alt: `/skills/facebook-google-ads-analysis`)]
+- **Suggested title:** [ICP-keyworded page title — lead with the job-to-be-done + the ICP keywords,
+  e.g. "PPC Analytics AI Skill — Facebook & Google Ads performance, ROAS and CPA analysis for
+  marketing agencies and eCommerce"]
+- **Comparison / switch angle:** [a "vs …" / "switching from …" angle a not-yet-user searches on —
+  e.g. vs. native Ads Manager reports and manual spreadsheet reporting; switching from Supermetrics-style
+  manual exports.]
+- **GTM attribution label (page-action-block):** [`<page>-<action>-<block>` where `<page>` matches this
+  skill's `name` — e.g. `ppc-analytics-download-skill-hero` — so the skill-page/button → app click is
+  GA4-trackable.]

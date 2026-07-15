@@ -52,9 +52,9 @@ The context check has TWO paths; route to whichever core skill applies. **Both a
 
 Do not duplicate credential/connection logic in this skill — always cross-reference `create-dataflow` (connect) or `generate-data-set-context` (enrich) as runtime MCP pointers (AC-1.5b). **The template *instructs* these compositions; it does not *guarantee* the model loads them — reliability is measured empirically (see AC-B.4), never asserted.**
 
-## Step 1 — Discover & Select Sources (HARD GATE)
+## Step 1 — Discover & Select Sources (gate: confirm only when ambiguous)
 
-[Use `search-datasets` with job-relevant keywords first; fall back to `list-datasets` when browsing. State your selection + one-line reasoning per dataset. Confirm before proceeding when the match is ambiguous (5+ candidates). Note data freshness (`get-dataflow` last run) — some sources update retroactively.]
+[Use `search-datasets` with job-relevant keywords first; fall back to `list-datasets` when browsing. State your selection + one-line reasoning per dataset. **Hard gate only when ambiguous:** confirm before proceeding when the match is unclear (5+ candidates); if you're confident and have stated your reasoning, proceed — the user can redirect you (don't stall an unambiguous request). Note data freshness (`get-dataflow` last run) — some sources update retroactively.]
 
 ## Step 2 — Compute Metrics via SQL (AC-1.3 · trust mechanism)
 

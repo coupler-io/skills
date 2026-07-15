@@ -23,6 +23,7 @@ Curated skill collection for business data analysis powered by the [Coupler.io](
 | Skill | Location | What it does |
 | --- | --- | --- |
 | **marketing-analytics** | `marketing/marketing-analytics/` | Marketing performance — campaign analysis, cross-channel comparison, anomaly detection. Covers paid, organic, email, and social. |
+| **ppc-analytics** | `marketing/ppc-analytics/` | Paid-ads (PPC) performance — per-platform funnel traces, efficiency-first comparison (ranked on CPA/ROAS), budget pacing, ad-fatigue checks, and honest attribution (never blends Facebook + Google conversions; offers GA4 compare and blended CAC). Facebook + Google Ads first-class. |
 
 ### Utilities
 

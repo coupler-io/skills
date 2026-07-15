@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 # build-skill.sh — bundle -> flat-for-get-skill inliner (AC-2.2, T-4a/T-4b/T-4c)
 #
-# *** PROVISIONAL — pending Peter's runtime confirmation ***
-# (references-bundling / size cap / {{ }} escaping — the AC-2.3 open items).
-# NO flat output is handed to the product/MCP team until the T-4 gate clears.
-# PM decision 2026-07-07 (Aurelien): build now, label PROVISIONAL, adjust when answers land.
+# Reference-inlining is LOAD-BEARING and CONFIRMED (Peter, 2026-07-08):
+# `get-skill` does NOT bundle a skill's references/ files — they cannot be loaded
+# via tool calls at runtime. Inlining reference content at build time is therefore
+# the ONLY way that content reaches the runtime. This script produces the flat
+# variant that the product/MCP team loads onto the Coupler MCP (manual Langfuse sync).
 #
 # Invoke FROM REPO ROOT: bin/build-skill.sh <repo-root-relative-bundle-dir>
 #   e.g. bin/build-skill.sh marketing/marketing-analytics
@@ -13,9 +14,11 @@
 # Behaviour:
 #   - strips frontmatter (get-skill strips it anyway — live-probe fact 1, conventions.md)
 #   - inlines each references/<file>.md link / read directive AT ITS LINK SITE
+#   - rejects references/ paths containing '..' (path-traversal guard, fail-closed)
 #   - FAILS CLOSED (exit 1, no artifact) if any references/*.md link cannot be resolved
 #   - WARNS on residual non-.md 'references/' mentions (e.g. runtime dirs) in the flat output
-#   - WARNS if the flat output contains unescaped {{ }} (Langfuse interpolates {{token}} -> empty)
+#   - WARNS if the flat output contains unescaped {{ }} (serve-time Langfuse interpolates
+#     {{token}} -> empty; this is a Langfuse concern, not our tooling, but we flag it)
 set -uo pipefail
 
 if [ "$#" -ne 1 ]; then
@@ -36,18 +39,34 @@ fi
 
 # --- frontmatter strip: ONLY the first two '---' lines delimit frontmatter
 # (same rule as validate-skills.sh); files without leading '---' pass through whole.
+# Strip a trailing '\r' first so CRLF-authored skills build the same as LF ones
+# (otherwise '---\r' never matches '^---$' and the whole body is treated as frontmatter,
+#  and a matched 'references/x.md\r' would splice a bad path).
 strip_frontmatter() { # $1=file -> stdout
-  awk 'NR==1 && $0 !~ /^---[[:space:]]*$/ { nofm=1 }
+  awk '{ sub(/\r$/, "") }
+       NR==1 && $0 !~ /^---[[:space:]]*$/ { nofm=1 }
        nofm { print; next }
        /^---[[:space:]]*$/ && c<2 { c++; next }
        c>=2 { print }' "$1"
 }
 
-# --- fail-closed: every references/*.md link in the body must resolve to a real file
+# --- fail-closed: every references/*.md link in the body must resolve to a real file.
+# CRLF-safe: strip any trailing '\r' from the SKILL.md before grepping (a matched
+# 'references/x.md\r' would otherwise carry a CR into the resolve/inline path).
 MISSING=0
-REFS="$(grep -o 'references/[[:alnum:]._/-]*\.md' "$SKILL" | sort -u || true)"
+TRAVERSAL=0
+REFS="$(tr -d '\r' < "$SKILL" | grep -o 'references/[[:alnum:]._/-]*\.md' | sort -u || true)"
 if [ -n "$REFS" ]; then
   while IFS= read -r ref; do
+    # --- path-traversal guard: reject any references/ path with a '..' segment
+    # BEFORE resolving/inlining. 'references/../../X.md' would otherwise inline a
+    # file outside the bundle. Guarded here (resolve-check) AND in the awk inliner.
+    case "$ref" in
+      *..*)
+        echo "ERROR: path traversal rejected in reference link: $ref ('..' escapes the bundle)" >&2
+        TRAVERSAL=1
+        continue ;;
+    esac
     if [ ! -f "$BUNDLE/$ref" ]; then
       echo "ERROR: unresolved reference link: $ref (no file $BUNDLE/$ref)" >&2
       MISSING=1
@@ -55,6 +74,10 @@ if [ -n "$REFS" ]; then
   done <<EOF
 $REFS
 EOF
+fi
+if [ "$TRAVERSAL" -ne 0 ]; then
+  echo "FAIL-CLOSED: references/ path traversal ('..') detected; no flat output produced." >&2
+  exit 1
 fi
 if [ "$MISSING" -ne 0 ]; then
   echo "FAIL-CLOSED: unresolved references/*.md link(s); no flat output produced." >&2
@@ -69,13 +92,20 @@ mkdir -p "$OUTDIR"
 # Inlined content is delimited by HTML comments so the splice points stay auditable.
 strip_frontmatter "$SKILL" | awk -v bundle="$BUNDLE" '
   function inline_file(path,   full, base, l) {
+    # --- path-traversal guard (defense in depth): never open a path with a ".."
+    # segment, even if one somehow reaches the inliner. This is the second of two
+    # guards; the first is the resolve-check above.
+    if (path ~ /\.\./) {
+      print "ERROR: path traversal rejected in inliner: " path > "/dev/stderr"
+      exit 1
+    }
     full = bundle "/" path
     # delimiter must NOT contain the literal "references/" — the flat output is
     # verified with grep -c "references/" == 0 (T-4b/T-4c)
     base = path; sub(/^references\//, "", base)
     print ""
     print "<!-- inlined reference: " base " (by build-skill.sh) -->"
-    while ((getline l < full) > 0) print l
+    while ((getline l < full) > 0) { sub(/\r$/, "", l); print l }
     close(full)
     print "<!-- end of inlined reference: " base " -->"
     print ""
@@ -116,7 +146,7 @@ if [ -n "$RESIDUAL_OTHER" ]; then
 fi
 
 if grep -n '{{' "$OUT" >/dev/null 2>&1; then
-  echo "WARN: flat output contains unescaped '{{ }}' — Langfuse interpolates {{token}} -> EMPTY on the MCP path (AC-2.3 open item):" >&2
+  echo "WARN: flat output contains unescaped '{{ }}' — serve-time Langfuse interpolates {{token}} -> EMPTY on the MCP path (Langfuse concern, not this tooling); remove/rephrase before sync:" >&2
   grep -n '{{' "$OUT" >&2
 fi
 
@@ -127,7 +157,7 @@ if [ "$STATUS" -ne 0 ]; then
   exit "$STATUS"
 fi
 
-echo "BUILT (PROVISIONAL): $OUT"
-echo "size: $BYTES bytes — get-skill hard cap UNKNOWN, pending Peter (record only, no cap claim)"
-echo "PROVISIONAL — pending Peter's runtime confirmation (references-bundling / size cap / {{ }} escaping)."
-echo "Do NOT hand this flat output to the product/MCP team until the T-4 gate clears."
+echo "BUILT: $OUT"
+echo "size: $BYTES bytes — no hard size cap (context-window bound; Peter, 2026-07-08)."
+echo "Note: get-skill does NOT bundle references/ — build-time inlining (done above) is the only way reference content reaches the runtime."
+echo "Hand-off: share this flat variant with the product/MCP team for the manual Langfuse sync (namespace ai-agents/skills/<name>)."

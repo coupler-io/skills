@@ -7,8 +7,8 @@
 > │ or conversions — reach as an outcome is out of scope.                         │
 > └──────────────────────────────────────────────────────────────────────────────┘
 
-**How to use:** run the six items below on the shipped skill. Every item is **binary pass/fail** —
-a skill missing ANY one of the six **fails review**. Manual in v1 (CI enforcement is the deferred
+**How to use:** run the seven items below on the shipped skill. Every item is **binary pass/fail** —
+a skill missing ANY one of the seven **fails review**. Manual in v1 (CI enforcement is the deferred
 fast-follow). Budget: **under 10 minutes** per skill.
 
 | # | Item | How to check (one line) | P/F |
@@ -19,7 +19,8 @@ fast-follow). Budget: **under 10 minutes** per skill.
 | (iv) | **Spec-conformant + marketplace-listable** — passes the linter (name==identifier, valid frontmatter, ≤1024-char description, ≤500 lines, no unescaped `{{ }}`), shaped for marketplace listing (skills.sh / mcpmarket / `marketingskills`). | Run `bin/validate-skills.sh <skill-path>` from repo root → the skill's own line reads PASS. | ☐ |
 | (v) | **GEO/SEO-ready** — a **JTBD-query-shaped `description`** (reads like the queries a not-yet-user actually asks), **ICP-keyworded slug/title guidance** for the coupler.io site page, and a **comparison / switch angle**. | Check the `description`/README phrasings are JTBD-query-shaped, a site slug/title suggestion with ICP keywords exists, and a comparison/switch angle ("vs …" / "switching from …") is present. | ☐ |
 | (vi) | **Correct per-skill GTM attribution label** — page-action-block format `<page>-<action>-<block>`, e.g. `marketing-analytics-download-skill-hero`, so the skill-page/button → app click is GA4-trackable. | Confirm the label exists, follows `<page>-<action>-<block>`, and its page segment matches this skill's `name`. | ☐ |
+| (vii) | **Off-site / citation readiness** — a **citable canonical URL** for the skill (the coupler.io site page from item (v), stated as a canonical link) **and** a **comparison artifact** that could earn an off-site mention (a "vs …" / "switching from …" comparison a G2/Reddit/community post could cite). Readiness-by-construction only — the artifact exists and is citable; no reach/traffic claim. | Confirm the README/site-page guidance names a canonical URL and carries a comparison/switch artifact citable off-site (G2, Reddit, community). Do NOT check any traffic, mention count, or install metric. | ☐ |
 
-**Verdict:** PASS only if all six items pass. Any single fail → the skill fails review; fix and
+**Verdict:** PASS only if all seven items pass. Any single fail → the skill fails review; fix and
 re-run. Record the verdict with the skill's PR — the checklist verifies **readiness by
 construction**, nothing downstream of it.

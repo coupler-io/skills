@@ -14,15 +14,21 @@ AGGREGATE=0
 
 # --- frontmatter/body split: ONLY the first two '---' lines delimit frontmatter.
 # Body horizontal rules ('---' further down) are legitimate markdown, never delimiters.
+# Every awk parser strips a trailing '\r' first (CRLF-authored files must lint the
+# same as LF files — else '---\r' never matches '^---$' and the split silently breaks).
+# exit 1 => no leading '---' (no frontmatter); exit 3 => opening '---' but no closing '---'.
 extract_frontmatter() { # $1=file -> stdout
-  awk 'NR==1 && $0 !~ /^---[[:space:]]*$/ { exit 1 }
+  awk '{ sub(/\r$/, "") }
+       NR==1 && $0 !~ /^---[[:space:]]*$/ { exit 1 }
        /^---[[:space:]]*$/ && n<2 { n++; next }
        n==1 { print }
-       n>=2 { exit }' "$1"
+       n>=2 { done=1; exit }
+       END { if (!done && n<2) exit 3 }' "$1"
 }
 
 extract_body() { # $1=file -> stdout (everything AFTER the second '---')
-  awk 'f { print; next }
+  awk '{ sub(/\r$/, "") }
+       f { print; next }
        /^---[[:space:]]*$/ && !f { c++; if (c==2) f=1 }' "$1"
 }
 
@@ -30,6 +36,7 @@ extract_body() { # $1=file -> stdout (everything AFTER the second '---')
 # with indented continuation lines, joined with single spaces.
 extract_description() { # $1=frontmatter-file -> stdout
   awk '
+    { sub(/\r$/, "") }
     /^description:/ {
       d = $0; sub(/^description:[[:space:]]*/, "", d)
       if (d == ">" || d == "|" || d == ">-" || d == "|-") { d = "" }
@@ -47,7 +54,8 @@ extract_description() { # $1=frontmatter-file -> stdout
 }
 
 extract_name() { # $1=frontmatter-file -> stdout
-  awk '/^name:/ { n = $0; sub(/^name:[[:space:]]*/, "", n)
+  awk '{ sub(/\r$/, "") }
+       /^name:/ { n = $0; sub(/^name:[[:space:]]*/, "", n)
                   sub(/^"/, "", n); sub(/"$/, "", n); print n; exit }' "$1"
 }
 
@@ -88,10 +96,17 @@ validate_one() { # $1=path
     identifier="${base%.md}"
   fi
 
-  local fm body name desc
+  local fm body name desc fm_rc
   fm=$(mktemp) || return 1
   body=$(mktemp) || { rm -f "$fm"; return 1; }
-  if ! extract_frontmatter "$file" > "$fm"; then
+  extract_frontmatter "$file" > "$fm"
+  fm_rc=$?
+  if [ "$fm_rc" -eq 3 ]; then
+    echo "== $file [$shape] — FAIL: unterminated frontmatter (opening '---' at line 1 but no closing '---')"
+    rm -f "$fm" "$body"
+    AGGREGATE=1
+    return 1
+  elif [ "$fm_rc" -ne 0 ]; then
     echo "== $file [$shape] — FAIL: no frontmatter block at line 1"
     rm -f "$fm" "$body"
     AGGREGATE=1
@@ -139,8 +154,11 @@ validate_one() { # $1=path
   fi
 
   # --- T-3d: file <= 500 lines ---
+  # awk NR counts the final line even with no trailing newline; `wc -l` counts
+  # newline chars, so a 501-line file whose last line lacks '\n' reports 500 and
+  # wrongly passes. awk 'END{print NR}' is the correct line count.
   local lines
-  lines=$(wc -l < "$file" | tr -d '[:space:]')
+  lines=$(awk 'END{print NR}' "$file")
   if [ "$lines" -gt 500 ]; then
     echo "   FAIL file length: $lines lines > 500"
     violations=$((violations + 1))
@@ -157,19 +175,60 @@ validate_one() { # $1=path
     violations=$((violations + 1))
   fi
 
-  # --- NEW rule (in-product finding b): unescaped '{{ ... }}' in BODY ---
-  # Langfuse interpolates {{token}} -> empty on the MCP path; unescaped macros
-  # silently vanish in-product. No escape syntax is defined yet (open Peter item),
-  # so v1 flags EVERY '{{' in the body.
-  local brace_hits
-  brace_hits=$(grep -c '{{' "$body" || true)
-  if [ "$brace_hits" -gt 0 ]; then
-    echo "   FAIL unescaped '{{ }}' in body ($brace_hits line(s) — Langfuse interpolates {{token}} to empty):"
+  # --- NEW rule (in-product finding b): unescaped '{{ ... }}' in BODY *and* frontmatter ---
+  # Langfuse (serve-time) interpolates {{token}} -> empty on the MCP path; unescaped
+  # macros silently vanish in-product. This affects the served body AND the
+  # description/frontmatter (which is Langfuse-fed too), so v1 flags EVERY '{{' in
+  # either. No repo-side escape syntax is defined; the fix is to remove/rephrase.
+  local body_brace_hits fm_brace_hits
+  body_brace_hits=$(grep -c '{{' "$body" || true)
+  fm_brace_hits=$(grep -c '{{' "$fm" || true)
+  if [ "$body_brace_hits" -gt 0 ] || [ "$fm_brace_hits" -gt 0 ]; then
+    echo "   FAIL unescaped '{{ }}' ($body_brace_hits body + $fm_brace_hits frontmatter line(s) — Langfuse interpolates {{token}} to empty):"
     grep -n '{{' "$body" | head -5 | sed 's/^/        body-line /'
+    grep -n '{{' "$fm"   | head -5 | sed 's/^/        frontmatter-line /'
     violations=$((violations + 1))
   else
-    echo "   PASS no unescaped '{{ }}' in body"
+    echo "   PASS no unescaped '{{ }}' in body or frontmatter"
   fi
+
+  # --- NEW rule: leftover template scaffolding in the served BODY ---
+  # An authored skill must not ship the template's fill-in scaffolding: '[BRACKET]'
+  # placeholders, '<!-- ... -->' guidance comments, or 'AC-<number>' PRD citations.
+  # These are authoring artifacts that leak into the served get-skill body.
+  # Scope: authored skills only. '_framework/*.template.md' is exempt (it IS the
+  # scaffolding) and is excluded from lint targets by callers, but guard here too.
+  case "$file" in
+    _framework/*.template.md|*/[A-Z]*.template.md) : ;;  # template file — do not lint body scaffolding
+    *)
+      local leak_bracket leak_comment leak_ac leak=0
+      # bracketed placeholder starting with an uppercase letter, NOT a markdown link
+      # (a real link is '[text](url)'; a placeholder is '[Skill Title …]' with no '(' after ']').
+      leak_bracket=$(grep -nE '\[[A-Z][^]]*\]([^(]|$)' "$body" || true)
+      leak_comment=$(grep -nF '<!--' "$body" || true)
+      leak_ac=$(grep -nE 'AC-[0-9]' "$body" || true)
+      if [ -n "$leak_bracket" ]; then
+        echo "   FAIL leftover template scaffolding: '[BRACKET]'-style placeholder in body:"
+        printf '%s\n' "$leak_bracket" | head -5 | sed 's/^/        body-line /'
+        leak=1
+      fi
+      if [ -n "$leak_comment" ]; then
+        echo "   FAIL leftover template scaffolding: guidance comment '<!-- ... -->' in body:"
+        printf '%s\n' "$leak_comment" | head -5 | sed 's/^/        body-line /'
+        leak=1
+      fi
+      if [ -n "$leak_ac" ]; then
+        echo "   FAIL leftover template scaffolding: 'AC-<number>' PRD citation in body:"
+        printf '%s\n' "$leak_ac" | head -5 | sed 's/^/        body-line /'
+        leak=1
+      fi
+      if [ "$leak" -eq 0 ]; then
+        echo "   PASS no leftover template scaffolding in body"
+      else
+        violations=$((violations + 1))
+      fi
+      ;;
+  esac
 
   rm -f "$fm" "$body"
   if [ "$violations" -gt 0 ]; then

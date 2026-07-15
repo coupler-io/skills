@@ -118,7 +118,8 @@ asserts the skill is discoverable by construction; it never claims or measures r
 ## build & surfaces
 
 > **This section records the T-2b live-probe results (2026-07-03, re-confirmed 2026-07-07) and the
-> name==identifier rule. Some `get-skill` runtime constraints remain OPEN — see the placeholder below.**
+> name==identifier rule. The three formerly-open `get-skill` runtime constraints are now RESOLVED
+> (2026-07-08, Peter) — see § AC-2.3 resolved probe facts below.**
 
 ### The four output surfaces (one source → four surfaces)
 
@@ -126,24 +127,24 @@ An authored skill (bundle `SKILL.md` + optional `references/`) produces four sur
 
 1. **Repo bundle** — the authored `SKILL.md` + `README.md` + `references/*.md` + `evals/`.
 2. **Flat-for-`get-skill`** — a single self-contained `.md` with `references/` inlined and frontmatter
-   dropped (produced by `build-skill.sh`; see the constraints placeholder).
+   dropped (produced by `build-skill.sh`).
 
-   > **PROVISIONAL — pending Peter's runtime confirmation (references-bundling / size cap /
-   > `{{ }}` escaping).** `bin/build-skill.sh` is BUILT and working locally (T-4a–T-4c; PM decision
-   > 2026-07-07: build now, label PROVISIONAL, adjust when answers land), and writes to the
-   > git-ignored `build/` directory. But the three AC-2.3 OPEN items below are still unconfirmed,
-   > so every flat output it produces is **PROVISIONAL** — **NO flat output is handed to the
-   > product/MCP team until the T-4 gate clears.** Recorded datapoint, no cap claim:
-   > `build/marketing-analytics.flat.md` = 38,478 bytes (get-skill cap unknown, pending Peter).
+   > **Build note (T-4 gate cleared, 2026-07-08, Peter).** `bin/build-skill.sh` is BUILT, working, and
+   > handoff-ready; it writes to the git-ignored `build/` directory. Inlining `references/` at build
+   > time is **load-bearing and confirmed**: `get-skill` does **not** bundle a skill's `references/`
+   > files (they cannot be loaded via tool calls), so build-time inlining is the ONLY way reference
+   > content reaches the runtime. There is **no hard size cap** — output is bound only by the context
+   > window. Recorded datapoint: `build/marketing-analytics.flat.md` ≈ 38,478 bytes (well within the
+   > context window). Flat outputs are handed to the product/MCP team via the manual Langfuse sync.
 3. **SEO README** — the human-discovery surface (`README.template.md`, four elements above).
 4. **Track-A `marketingskills` shape** — the community-PR variant (neutral pre-req block).
 
 ### AC-2.4 manual hand-off (v1 — NO automation)
 
 **v1: all four surfaces are produced by hand** (or trivially by `build-skill.sh` for the flat one —
-the script is built but its output is **PROVISIONAL** until the T-4 hard gate clears, so the flat
-variant is NOT handed off yet; see the PROVISIONAL note above). There is **no automated generator
-and no automated repo→MCP sync in v1.**
+the script is built, its output is handoff-ready as of the 2026-07-08 gate clearance, and the flat
+variant IS handed off; see the build note above). There is **no automated generator, and the
+repo→MCP feed is a manual Langfuse sync in v1** (Peter, 2026-07-08).
 
 The per-skill hand-off:
 
@@ -154,9 +155,9 @@ The per-skill hand-off:
    live-probe fact 3).
 3. The repo→Langfuse sync **MUST carry the `description`** — in-product discovery is Langfuse-sourced
    at serve time (live-probe fact 5); a sync that drops it serves stale text on `list-skills`.
-4. The sync **MUST escape `{{ }}`** in the skill body — Langfuse interpolates `{{token}}`→empty
-   (interpolation hazard; see the OPEN escaping item below), so unescaped macros silently vanish
-   in-product.
+4. The sync **MUST escape `{{ }}`** in the skill body and description — serve-time Langfuse
+   interpolates `{{token}}`→empty (see § RESOLVED constraints below), so unescaped macros silently
+   vanish in-product. The linter flags them so they are removed/rephrased before sync.
 
 Automation of this path waits on the MCP-feed decision (PRD §A.8) — **do not build it in v1.**
 
@@ -199,14 +200,19 @@ Five facts CONFIRMED live:
 - *Narrow exception:* the repo-as-Claude-Code-plugin **marketplace** reads the repo `description` — an
   acquisition-**adjacent** channel for CC users only.
 
-### OPEN — `get-skill` constraints to be confirmed by Peter (T-2b → T-4 hard gate)
+### RESOLVED — `get-skill` runtime constraints (2026-07-08, Peter)
 
-*This section is completed by the T-2b probe; the three items below remain UNRESOLVED and are escalated:*
+*The three formerly-open T-2b items are now confirmed. The T-4 hard gate is CLEARED:*
 
-- **`references/` bundling** — does `get-skill` bundle a skill's `references/`, or must they be
-  inlined at build time? (Drives `build-skill.sh`.)
-- **Hard size cap** — the maximum byte/line size `get-skill` will serve.
-- **`{{ }}` escaping mechanism** — Langfuse **interpolates `{{token}}`→empty** on the MCP path (live
-  probe: `create-dataflow`'s date macros `{{today}}` / `{{30daysago}}` served as empty backticks). The
-  framework must escape `{{ }}` on the repo→Langfuse sync; `validate-skills.sh` must FLAG unescaped
-  `{{ }}` in skill bodies.
+- **`references/` bundling — RESOLVED: `get-skill` does NOT bundle a skill's `references/`.** They
+  cannot be loaded via tool calls at runtime. Therefore build-time inlining is required, and the
+  `build-skill.sh` reference-inliner is **load-bearing** (the only way reference content reaches the
+  runtime).
+- **Hard size cap — RESOLVED: there is NO hard size cap.** Output is bound only by the context window.
+  `build-skill.sh` records the byte size for information; it makes no cap claim.
+- **`{{ }}` interpolation — RESOLVED as a serve-time Langfuse behavior (not this tooling).** Langfuse
+  **interpolates `{{token}}`→empty** on the MCP path (live probe: `create-dataflow`'s date macros
+  `{{today}}` / `{{30daysago}}` served as empty backticks). This is a serve-time Langfuse concern, not
+  a repo-tooling one; the guard stays: `validate-skills.sh` FLAGS unescaped `{{ }}` in a skill's body
+  **and** frontmatter/description, and `build-skill.sh` WARNs on it in the flat output.
+- **repo→MCP feed — RESOLVED: manual Langfuse sync in v1** (no automated repo→MCP sync).

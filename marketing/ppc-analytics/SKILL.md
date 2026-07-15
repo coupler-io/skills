@@ -30,11 +30,11 @@ The context check has TWO paths; route to whichever core skill applies. Both are
 
 Do not duplicate credential/connection logic in this skill — always cross-reference `create-dataflow` (connect) or `generate-data-set-context` (enrich) as runtime MCP pointers. The skill *instructs* these compositions; it does not *guarantee* the model loads them — reliability is measured empirically, never asserted.
 
-## Step 1 — Discover & Select Sources (HARD GATE)
+## Step 1 — Discover & Select Sources (gate: confirm only when ambiguous)
 
 Use `search-datasets` with job-relevant keywords first — try platform names ("facebook ads", "google ads", "meta"), then job terms ("campaign", "ad spend", "ads performance") — and fall back to `list-datasets` when browsing. Facebook Ads and Google Ads are the first-class platforms for this skill; include any other connected ad platform the user names (TikTok, LinkedIn, Microsoft Advertising, Amazon Ads, Pinterest, X, Quora, Snapchat, Reddit) on a best-effort basis.
 
-State your selection with a one-line reason per dataset ("google_ads_campaigns — has spend and conversion columns"). When the match is ambiguous (5+ candidates), present the candidates and **confirm with the user before proceeding** — analyzing the wrong dataset wastes the whole run. Note data freshness (`get-dataflow` last successful run) — ad platforms restate recent days retroactively (conversion lag), so flag any window ending within the last 72 hours.
+State your selection with a one-line reason per dataset ("google_ads_campaigns — has spend and conversion columns"). **Hard gate only when ambiguous:** when the match is unclear (5+ candidates), present them and **confirm before proceeding** — analyzing the wrong dataset wastes the whole run; but if the user named their platforms and the match is unambiguous, state your selection and proceed (don't stall for confirmation the user already gave). Note data freshness (`get-dataflow` last successful run) — ad platforms restate recent days retroactively (conversion lag), so flag any window ending within the last 72 hours.
 
 Before querying, read `get-schema` (including `ai_context`) per dataset and run `SELECT * FROM data LIMIT 5` to confirm the shape. Use `columnName` values in SQL, the human-readable labels when talking to the user.
 
