@@ -36,3 +36,16 @@ Branch: `framework-build-phase1`. Authored against `_framework/SKILL.template.md
 - Final path/name `marketing/ppc-analytics` — confirm with repo owner (per T-B0 note).
 - Senior PPC analyst reviewer name — blocks T-B7/AC-B.3.
 - T-4 gate (Peter): size cap, references bundling, double-brace escaping → unblocks flat surface + checklist (iv).
+
+## Update — 2026-07-15 (framework finish + independent eval)
+
+Supersedes the "Deferred" and checklist-(iv) items above where noted.
+
+- **T-4 gate CLEARED (Peter, 2026-07-08):** no skill body-size limit; `get-skill` does not bundle `references/` (build-time inlining is the required path). PROVISIONAL embargo lifted; **checklist item (iv) now PASS** — flat surface no longer stubbed.
+- **Eval EXECUTED (T-B4 / T-B5) — 2026-07-15, against live ad data in the Coupler *Templates* workspace** (multi-channel ROAS dataset carrying Facebook / Google / Instagram sources). Run through an **independent runner→grader pipeline — author ≠ runner ≠ grader** (no creator/validator bias): the runner had only the served skill + the user prompt + the live MCP; the grader had only the assertions + the transcript; graders re-ran every query to confirm no fabrication.
+  - **Result: 4/4 evals pass · 19/19 assertions.** The attribution caveat fired correctly in evals 2 & 3 (refused to sum FB + Google conversions; gave per-platform + GA4/blended-CAC alternative). Efficiency-not-volume ranking held (declared Google the winner despite Meta's higher raw spend). Data-artifact caveats (partial period, conversion-lag restatement) were raised before behavioral causes. Zero fabricated numbers.
+  - **One fix applied (a1-5):** eval 1 was initially partial — the skill didn't expand metric abbreviations on first use. Fixed in the **template** (Present step) + this skill; re-ran eval 1 → **PASS (5/5)**.
+- **Composition reliability (AC-B.4):** observed across the 4 real runs — the skill consistently kept spend-summing separate from conversion-summing and applied the report structure; no composition flakiness surfaced. (Still an LLM-behavior observation, not a hard guarantee.)
+
+### Still open
+- **T-B7 / AC-B.3 — named senior-PPC-analyst blind review:** STILL PENDING. The independent LLM grader is a strong *behavioral* check, not the human *domain* sign-off. Outreach to Artem Sahaidak / Yulianna Dobosh is out for a specialist reviewer (and a real production ad workspace beyond the demo data).

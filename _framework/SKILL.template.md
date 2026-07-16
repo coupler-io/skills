@@ -78,6 +78,8 @@ Do not duplicate credential/connection logic in this skill — always cross-refe
 
 > **Note:** `report-generation` is a standalone flat skill at `reporting/report-generation.md`, **NOT a `references/` file of this skill** — so `build-skill.sh` cannot inline it and `get-skill` serves it separately. The template *instructs* this composition; it does not *guarantee* the model loads it. Reliability is **measured empirically** at build/run time (see AC-B.4), not asserted.
 
+**Readability (applies to the Phase-1 report):** expand every metric abbreviation/acronym on its **first use** in user-facing text (e.g. `CPA (cost per acquisition)`), then the short form is fine; state the currency on the first money figure; never leak raw column identifiers (`col_0`) into the output.
+
 ## Step 6 — Archive
 
 [Persist any reusable context (e.g. `update-dataset` to save a dataset description future runs inherit). Optional but recommended.]

@@ -120,6 +120,8 @@ If a block's underlying columns don't exist in the connected datasets, say so ex
 
 > **Note:** `report-generation` is a standalone flat skill at `reporting/report-generation.md`, NOT a `references/` file of this skill — `get-skill` serves it separately. The skill *instructs* this composition; reliability is measured empirically, not asserted.
 
+**Readability (applies to the Phase-1 report):** expand every metric abbreviation on its **first use** in user-facing text — CPA (cost per acquisition), ROAS (return on ad spend), CTR (click-through rate), CPC (cost per click), CPM (cost per 1,000 impressions), CAC (blended customer acquisition cost) — then the short form alone is fine. State the currency on the first money figure, and use plain platform/campaign labels — never raw column identifiers.
+
 ## Step 6 — Archive
 
 Persist reusable context so future runs start smarter: use `update-dataset` to save what was learned about each dataset (canonical platform name, which column is spend vs cost-micros, the attribution window in use, the user's target CPA/ROAS and budget if shared). Optional but recommended.
