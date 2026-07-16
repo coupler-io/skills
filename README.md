@@ -36,6 +36,7 @@ Cross-ICP building blocks — compose these with a domain skill above.
 
 | Skill | File | What it does |
 | --- | --- | --- |
+| **get-started** | `capability/get-started/SKILL.md` | Onboard a brand-new or empty workspace from zero to the user's own data in the chat — anchor on stated intent, route template-or-scratch, script the guided credential round-trip, build + run the first dataflow, then offer a refresh schedule. |
 | **create-dataflow** | `capability/create-dataflow/SKILL.md` | Configure a Coupler.io dataflow end to end — pick an integration, attach a credential, wire source → destination, and trigger a run. |
 | **generate-data-set-context** | `capability/generate-data-set-context/SKILL.md` | Produce an AI-readable description for a dataset so future sessions inherit its schema context. |
 | **refine-prompt** | `capability/refine-prompt/SKILL.md` | Sharpen a vague or underspecified analytics request into a detailed, actionable prompt — filling in time period, metrics, data sources, and output format — before analysis. |
@@ -120,7 +121,7 @@ Each ICP is its own plugin, so you install only what you need. Available plugins
 | `coupler-sales` | sales-analytics |
 | `coupler-ecommerce` | ecom-analytics |
 | `coupler-marketing-ads` | marketing-analytics |
-| `coupler-capability` | create-dataflow, generate-data-set-context, refine-prompt, report-generation |
+| `coupler-capability` | get-started, create-dataflow, generate-data-set-context, refine-prompt, report-generation |
 | `coupler-utilities` | coupler-live-artifact |
 | `humanizer` | humanizer (+ `/humanize` command) |
 
