@@ -1,0 +1,25 @@
+README.md
+  s_9be3a033912088::t_4bb6b799031b59 7-15,19,21,25,27,31-40,42,48
+  s_9be3a033912088::t_d377b35cc994bf 49
+  s_9be3a033912088::t_7581f58cdb5de8 41
+.gitignore
+  s_9be3a033912088::t_9f2b71d7b7e966 1,6-9,11
+.claude-plugin/marketplace.json
+  s_9be3a033912088::t_c9806f5955679c 14
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.14",
+  "base_commit_sha": "cb4d599e215c30ae07dfd777ae91350193f26ff0",
+  "prompts": {},
+  "sessions": {
+    "s_9be3a033912088": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "efb7bfb5-bccf-4db1-b95e-07665d9925a4",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "Aurelien <125982516+a1artaud@users.noreply.github.com>"
+    }
+  }
+}
