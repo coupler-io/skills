@@ -10,19 +10,19 @@ Skills are organized by ICP (ideal customer profile) first — Finance, Sales, E
 
 | Skill | File | What it does |
 | --- | --- | --- |
-| **finance-analytics** | `finance/finance-analytics.md` | Financial performance — P&L review, MRR/ARR bridge, cash runway, cost-center investigation. Works with QuickBooks, Xero, NetSuite, Stripe, Sage, and more. |
+| **finance-analytics** | `finance/finance-analytics/SKILL.md` | Financial performance — P&L review, MRR/ARR bridge, cash runway, cost-center investigation. Works with QuickBooks, Xero, NetSuite, Stripe, Sage, and more. |
 
 ### Sales
 
 | Skill | File | What it does |
 | --- | --- | --- |
-| **sales-analytics** | `sales/sales-analytics.md` | Sales pipeline — win rates, velocity, cycle length, rep performance, stage conversion. Works with Salesforce, HubSpot, Pipedrive, Close, Zoho, and more. |
+| **sales-analytics** | `sales/sales-analytics/SKILL.md` | Sales pipeline — win rates, velocity, cycle length, rep performance, stage conversion. Works with Salesforce, HubSpot, Pipedrive, Close, Zoho, and more. |
 
 ### E-commerce
 
 | Skill | File | What it does |
 | --- | --- | --- |
-| **ecom-analytics** | `ecommerce/ecom-analytics.md` | E-commerce performance — funnel conversion, AOV, cohort retention, repeat purchase, anomaly detection. Works with Shopify, WooCommerce, GA4, Klaviyo, Stripe, and more. |
+| **ecom-analytics** | `ecommerce/ecom-analytics/SKILL.md` | E-commerce performance — funnel conversion, AOV, cohort retention, repeat purchase, anomaly detection. Works with Shopify, WooCommerce, GA4, Klaviyo, Stripe, and more. |
 
 ### Marketing & Ads
 
@@ -36,10 +36,10 @@ Cross-ICP building blocks — compose these with a domain skill above.
 
 | Skill | File | What it does |
 | --- | --- | --- |
-| **create-dataflow** | `capability/create-dataflow.md` | Configure a Coupler.io dataflow end to end — pick an integration, attach a credential, wire source → destination, and trigger a run. |
-| **generate-data-set-context** | `capability/generate-data-set-context.md` | Produce an AI-readable description for a dataset so future sessions inherit its schema context. |
-| **refine-prompt** | `capability/refine-prompt.md` | Sharpen a vague or underspecified analytics request into a detailed, actionable prompt — filling in time period, metrics, data sources, and output format — before analysis. |
-| **report-generation** | `capability/report-generation.md` | Industry-agnostic report formatter and validator. Turns analysis output into a structured TL;DR → Metrics → Context → Recommendations → Next Questions report, then runs a Phase 2 validation pass (arithmetic, units, claim-vs-data, logical gates). Compose with a domain skill for domain-flavored reports. |
+| **create-dataflow** | `capability/create-dataflow/SKILL.md` | Configure a Coupler.io dataflow end to end — pick an integration, attach a credential, wire source → destination, and trigger a run. |
+| **generate-data-set-context** | `capability/generate-data-set-context/SKILL.md` | Produce an AI-readable description for a dataset so future sessions inherit its schema context. |
+| **refine-prompt** | `capability/refine-prompt/SKILL.md` | Sharpen a vague or underspecified analytics request into a detailed, actionable prompt — filling in time period, metrics, data sources, and output format — before analysis. |
+| **report-generation** | `capability/report-generation/SKILL.md` | Industry-agnostic report formatter and validator. Turns analysis output into a structured TL;DR → Metrics → Context → Recommendations → Next Questions report, then runs a Phase 2 validation pass (arithmetic, units, claim-vs-data, logical gates). Compose with a domain skill for domain-flavored reports. |
 
 ### Utilities
 
@@ -105,7 +105,26 @@ These are the tools the Coupler.io MCP server exposes. Skills use them automatic
 
 ## Installation
 
-**As a Claude Code plugin** — add to your `.claude/settings.json`:
+**From the marketplace** — add this repo as a plugin marketplace, then install the per-cluster plugin(s) you want:
+
+```
+/plugin marketplace add coupler-io/skills
+/plugin install coupler-finance@coupler-io-skills
+```
+
+Each ICP is its own plugin, so you install only what you need. Available plugins:
+
+| Plugin | Skills it installs |
+| --- | --- |
+| `coupler-finance` | finance-analytics |
+| `coupler-sales` | sales-analytics |
+| `coupler-ecommerce` | ecom-analytics |
+| `coupler-marketing-ads` | marketing-analytics |
+| `coupler-capability` | create-dataflow, generate-data-set-context, refine-prompt, report-generation |
+| `coupler-utilities` | coupler-live-artifact |
+| `humanizer` | humanizer (+ `/humanize` command) |
+
+**As a Claude Code plugin (repo-wide)** — add to your `.claude/settings.json`:
 
 ```json
 {
@@ -115,4 +134,4 @@ These are the tools the Coupler.io MCP server exposes. Skills use them automatic
 }
 ```
 
-**Manual** — copy any skill folder (or flat `.md` file) into your project's `.claude/skills/` directory. The skill activates automatically when its trigger phrases are matched.
+**Manual** — copy any skill folder (each contains a `SKILL.md`) into your project's `.claude/skills/` directory. The skill activates automatically when its trigger phrases are matched.
