@@ -1,13 +1,11 @@
-# Include only marketing/marketing-analytics, the marketplace manifest, and plugin folders
+# Allowlist: ICP-first structure — finance/sales/ecommerce/marketing-and-ads + capability + utilities, the manifest, and repo docs
 /*
 !/.gitignore
 !/README.md
 !/.claude-plugin/
-!/humanizer/
-!/marketing/
-/marketing/*
-!/marketing/marketing-analytics/
-!/analytics/
-!/reporting/
-!/coupler-live-artifact/
+!/finance/
+!/sales/
+!/ecommerce/
+!/marketing-and-ads/
 !/capability/
+!/utilities/

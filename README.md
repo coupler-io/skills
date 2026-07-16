@@ -4,31 +4,49 @@ Curated skill collection for business data analysis powered by the [Coupler.io](
 
 ## Skills
 
-### Analytics
+Skills are organized by ICP (ideal customer profile) first — Finance, Sales, E-commerce, Marketing & Ads — then by shared **Capability** and general **Utilities**.
+
+### Finance
 
 | Skill | File | What it does |
 | --- | --- | --- |
-| **ecom-analytics** | `analytics/ecom-analytics.md` | E-commerce performance — funnel conversion, AOV, cohort retention, repeat purchase, anomaly detection. Works with Shopify, WooCommerce, GA4, Klaviyo, Stripe, and more. |
-| **finance-analytics** | `analytics/finance-analytics.md` | Financial performance — P&L review, MRR/ARR bridge, cash runway, cost-center investigation. Works with QuickBooks, Xero, NetSuite, Stripe, Sage, and more. |
-| **sales-analytics** | `analytics/sales-analytics.md` | Sales pipeline — win rates, velocity, cycle length, rep performance, stage conversion. Works with Salesforce, HubSpot, Pipedrive, Close, Zoho, and more. |
+| **finance-analytics** | `finance/finance-analytics.md` | Financial performance — P&L review, MRR/ARR bridge, cash runway, cost-center investigation. Works with QuickBooks, Xero, NetSuite, Stripe, Sage, and more. |
 
-### Reporting
+### Sales
 
 | Skill | File | What it does |
 | --- | --- | --- |
-| **report-generation** | `reporting/report-generation.md` | Industry-agnostic report formatter and validator. Turns analysis output into a structured TL;DR → Metrics → Context → Recommendations → Next Questions report, then runs a Phase 2 validation pass (arithmetic, units, claim-vs-data, logical gates). Compose with a domain skill for domain-flavored reports. |
+| **sales-analytics** | `sales/sales-analytics.md` | Sales pipeline — win rates, velocity, cycle length, rep performance, stage conversion. Works with Salesforce, HubSpot, Pipedrive, Close, Zoho, and more. |
 
-### Marketing
+### E-commerce
+
+| Skill | File | What it does |
+| --- | --- | --- |
+| **ecom-analytics** | `ecommerce/ecom-analytics.md` | E-commerce performance — funnel conversion, AOV, cohort retention, repeat purchase, anomaly detection. Works with Shopify, WooCommerce, GA4, Klaviyo, Stripe, and more. |
+
+### Marketing & Ads
 
 | Skill | Location | What it does |
 | --- | --- | --- |
-| **marketing-analytics** | `marketing/marketing-analytics/` | Marketing performance — campaign analysis, cross-channel comparison, anomaly detection. Covers paid, organic, email, and social. |
+| **marketing-analytics** | `marketing-and-ads/marketing-analytics/` | Marketing performance — campaign analysis, cross-channel comparison, anomaly detection. Covers paid, organic, email, and social. |
+
+### Capability
+
+Cross-ICP building blocks — compose these with a domain skill above.
+
+| Skill | File | What it does |
+| --- | --- | --- |
+| **create-dataflow** | `capability/create-dataflow.md` | Configure a Coupler.io dataflow end to end — pick an integration, attach a credential, wire source → destination, and trigger a run. |
+| **generate-data-set-context** | `capability/generate-data-set-context.md` | Produce an AI-readable description for a dataset so future sessions inherit its schema context. |
+| **refine-prompt** | `capability/refine-prompt.md` | Sharpen a vague or underspecified analytics request into a detailed, actionable prompt — filling in time period, metrics, data sources, and output format — before analysis. |
+| **report-generation** | `capability/report-generation.md` | Industry-agnostic report formatter and validator. Turns analysis output into a structured TL;DR → Metrics → Context → Recommendations → Next Questions report, then runs a Phase 2 validation pass (arithmetic, units, claim-vs-data, logical gates). Compose with a domain skill for domain-flavored reports. |
 
 ### Utilities
 
 | Skill | Location | What it does |
 | --- | --- | --- |
-| **humanizer** | `humanizer/` | Rewrites AI-generated text to remove detectable patterns and add human voice. Also available as the `/humanize` slash command. |
+| **humanizer** | `utilities/humanizer/` | Rewrites AI-generated text to remove detectable patterns and add human voice. Also available as the `/humanize` slash command. |
+| **coupler-live-artifact** | `utilities/coupler-live-artifact/` | Builds a live Cowork artifact — a persistent, re-openable HTML widget backed by a Coupler.io dataflow that auto-refreshes (live dashboards, daily-check pages, data explorers). |
 
 ---
 
