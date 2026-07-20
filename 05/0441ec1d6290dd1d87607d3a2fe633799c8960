@@ -1,0 +1,39 @@
+bin/validate-skills.sh
+  s_9be3a033912088::t_7d00d42c525319 228-232
+  s_9be3a033912088::t_a80e36e4b036fc 210-212
+  s_9be3a033912088::t_ed57b97ab2445c 179,181,187,204
+_framework/SKILL.template.md
+  s_9be3a033912088::t_285385d9658b51 36-39,41-42
+  s_9be3a033912088::t_ac6c70ecd73435 94,96-99,101-104
+  s_9be3a033912088::t_e7f482f2c14140 112-114,116
+  s_9be3a033912088::t_015b83357058ab 69,71
+  s_9be3a033912088::t_f0d9169d279b27 56-60
+  s_9be3a033912088::t_d86f41a635313e 84-86,88-90
+  s_9be3a033912088::t_4d5144c84d1cd0 46,66-67,81-82,117,119
+_framework/_fixtures/bad-meta/SKILL.md
+  s_9be3a033912088::t_1cd26c75ae3632 1-10
+_framework/_fixtures/bundle-skill/SKILL.md
+  s_9be3a033912088::t_a3f10a18cf2bbb 3,10-11
+_framework/_fixtures/bundle-skill/references/foo.md
+  s_9be3a033912088::t_a4801e9f2f2143 6-7
+_framework/conventions.md
+  s_9be3a033912088::t_5457a8595b55bf 91-92,103-122,158,167,174,176,178,204,208-209,215,233,235,238
+bin/build-skill.sh
+  s_9be3a033912088::t_41db83ae3af072 8,20-21,149,163
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.14",
+  "base_commit_sha": "050441ec1d6290dd1d87607d3a2fe633799c8960",
+  "prompts": {},
+  "sessions": {
+    "s_9be3a033912088": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "efb7bfb5-bccf-4db1-b95e-07665d9925a4",
+        "model": "claude-fable-5"
+      },
+      "human_author": "Aurelien <125982516+a1artaud@users.noreply.github.com>"
+    }
+  }
+}
