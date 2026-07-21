@@ -1,0 +1,22 @@
+_framework/conventions.md
+  s_9be3a033912088::t_e518d4aef04689 119-120
+_framework/SKILL.template.md
+  s_9be3a033912088::t_c6d77f7a99c6f6 101-103
+  s_9be3a033912088::t_f0afe86ec7f398 69
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.15",
+  "base_commit_sha": "633cae053da292f13b59f171be6cac762cda01bd",
+  "prompts": {},
+  "sessions": {
+    "s_9be3a033912088": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "efb7bfb5-bccf-4db1-b95e-07665d9925a4",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "Aurelien <125982516+a1artaud@users.noreply.github.com>"
+    }
+  }
+}
