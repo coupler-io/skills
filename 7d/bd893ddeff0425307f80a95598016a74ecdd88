@@ -1,0 +1,20 @@
+marketing/ppc-analytics/SKILL.md
+  s_9be3a033912088::t_9a015c6db05289 42
+  s_9be3a033912088::t_cc2a0b98737644 120,122-123
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.15",
+  "base_commit_sha": "7dbd893ddeff0425307f80a95598016a74ecdd88",
+  "prompts": {},
+  "sessions": {
+    "s_9be3a033912088": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "efb7bfb5-bccf-4db1-b95e-07665d9925a4",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "Aurelien <125982516+a1artaud@users.noreply.github.com>"
+    }
+  }
+}
