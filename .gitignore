@@ -7,6 +7,7 @@
 !/marketing/
 /marketing/*
 !/marketing/marketing-analytics/
+!/marketing/ppc-analytics/
 !/analytics/
 !/reporting/
 !/coupler-live-artifact/

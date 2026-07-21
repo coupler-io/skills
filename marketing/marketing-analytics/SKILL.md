@@ -4,7 +4,11 @@ description: >
   Analyze marketing performance data using Coupler.io MCP tools (list-dataflows, get-schema, get-data). Use when the user asks to pull or analyze data from Coupler.io dataflows/data sets, generate marketing performance reports, understand campaign ROI, or investigate changes in business metrics. Make sure to use this skill whenever the user mentions Coupler.io data, marketing dashboards, channel comparisons, campaign analysis, or asks questions like "why did conversions drop",
   "which channel has best ROI", "where should I spend more", "what's working",
   "show me my marketing numbers", "pull my latest data", even if they don't
-  explicitly say "marketing analytics".
+  explicitly say "marketing analytics". For deep paid-ads-only analysis (per-platform
+  ad efficiency, budget pacing, brand vs non-brand, ad fatigue), use the ppc-analytics
+  skill instead — this skill owns the cross-channel view.
+metadata:
+  version: 0.1.1
 ---
 
 # Marketing Analytics
