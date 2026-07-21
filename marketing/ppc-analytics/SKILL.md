@@ -39,7 +39,7 @@ Before querying, read `get-schema` per dataset: use each column's `columnName` i
 
 ## Step 2 — Compute the Metrics
 
-**Compute every reported number with `get-data`; never sum or derive figures in-context.** Have the query do the aggregation (it executes on Coupler's backend) and return only the computed result — never pull bulk rows into the conversation.
+**Compute every reported number with `get-data`; never sum or derive figures in-context.** Have the query do the aggregation (it executes on Coupler.io's backend) and return only the computed result — never pull bulk rows into the conversation.
 
 ### Map the user's platform terms to the data
 
@@ -117,10 +117,10 @@ If a block's underlying columns don't exist in the connected datasets, say so ex
 
 ## Step 6 — Archive & Learn
 
-Persist what was learned so future runs inherit it — the dataset layer is the only place that persists:
+Persist what was learned so future runs inherit it — the dataset layer is the only place that persists. Split it by scope:
 
-- `update-dataset` — extend the dataset's `ai_context` with what this run established: the canonical source values, which conversion column matters, the user's budget and target CPA/ROAS if shared, the attribution window in use.
-- `update-dataset-schema` — fix column labels or descriptions that proved wrong or missing.
+- `update-dataset` — **business context** into the dataset's `ai_context`: the canonical source values, which conversion column matters, the user's budget and target CPA/ROAS if shared, the attribution window in use.
+- `update-dataset-schema` — **column-specific findings** into the schema's column descriptions: a column's real meaning, its unit, or a label that proved wrong or missing.
 
 Confirm with the user before writing. This skill cannot modify itself — for learnings about the skill (a missing step, a wrong assumption), tell the user to pass the feedback to the skill's maintainer.
 
