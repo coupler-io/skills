@@ -46,7 +46,8 @@
       "description": "Marketing & paid-ads (PPC) analytics over your Coupler.io data.",
       "category": "marketing",
       "skills": [
-        "./marketing-and-ads/marketing-analytics"
+        "./marketing-and-ads/marketing-analytics",
+        "./marketing-and-ads/ppc-analytics"
       ]
     },
     {

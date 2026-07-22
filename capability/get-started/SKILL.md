@@ -11,6 +11,8 @@ description: >-
   datasets or dataflows (work with their data directly), for platform questions ("what
   sources do you support?"), or for adding a source to an existing setup (use the
   create-dataflow skill instead).
+metadata:
+  version: 0.1.0
 ---
 
 # Get Started
@@ -83,7 +85,7 @@ Proceed when list-credentials confirms a credential for their source.
    data. When the split is unclear, ask. Never create one dataflow per entity of a single client.
    Name the dataflow for the client.
 2. Confirm before creating, as a prepared default:
-   > "I'm ready to create **[dataflow name]**: [N] source(s) ([entities]), refreshing to answer
+   > "I'm ready to create **[dataflow name]**: N source(s) ([entities]), refreshing to answer
    > *[their job]*. Create it?"
 3. After creating and attaching sources, verify against their stated intent — right accounts,
    right entities, right date range, right workspace — and say in one line what you checked. If
@@ -102,7 +104,7 @@ Proceed when the dataflow is created and verified.
 3. When it's ready: get-schema, then get-data. **Lead with a short overview, not a data dump** —
    say what landed (which dataset(s), roughly how many rows) and one thing you notice, then hand
    them the wheel:
-   > "Your [source] data is in — about [N] rows across [dataset(s)]. What would you like to know?
+   > "Your [source] data is in — about N rows across [dataset(s)]. What would you like to know?
    > (for example: [one concrete question in their own words])"
    Answer whatever they ask from there with real queries. Never paste the whole table — they came
    for answers, not rows.

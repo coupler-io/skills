@@ -29,6 +29,7 @@ Skills are organized by ICP (ideal customer profile) first — Finance, Sales, E
 | Skill | Location | What it does |
 | --- | --- | --- |
 | **marketing-analytics** | `marketing-and-ads/marketing-analytics/` | Marketing performance — campaign analysis, cross-channel comparison, anomaly detection. Covers paid, organic, email, and social. |
+| **ppc-analytics** | `marketing-and-ads/ppc-analytics/` | Paid-ads (PPC) performance — per-platform funnel traces, efficiency-first comparison (ranked on CPA/ROAS), budget pacing, ad-fatigue checks, and honest attribution (never blends conversions across platforms; offers an independent-source cross-check and blended CAC). Facebook + Google Ads first-class. |
 
 ### Capability
 
