@@ -1,0 +1,32 @@
+.claude-plugin/marketplace.json
+  s_9be3a033912088::t_8cfab2a1b26114 49-50
+capability/get-started/SKILL.md
+  s_9be3a033912088::t_9ca7e28ece7658 14-15
+  s_9be3a033912088::t_eb48e8adf867f4 88,107
+README.md
+  s_9be3a033912088::t_7528d19e68b675 32
+marketing-and-ads/marketing-analytics/SKILL.md
+  s_9be3a033912088::t_3095c487273ad5 7-11
+marketing-and-ads/ppc-analytics/README.md
+  s_9be3a033912088::t_f188d6c7d50d0c 1-32
+marketing-and-ads/ppc-analytics/SKILL.md
+  s_9be3a033912088::t_e6795a9deb7788 1-148
+marketing-and-ads/ppc-analytics/evals/evals.json
+  s_9be3a033912088::t_b37101d66a836e 1-151
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.15",
+  "base_commit_sha": "3bde31cf9c65dadce4156459889ba162e2c42448",
+  "prompts": {},
+  "sessions": {
+    "s_9be3a033912088": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "efb7bfb5-bccf-4db1-b95e-07665d9925a4",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "Aurelien <125982516+a1artaud@users.noreply.github.com>"
+    }
+  }
+}
