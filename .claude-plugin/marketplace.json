@@ -5,14 +5,79 @@
     "name": "Coupler.io"
   },
   "metadata": {
-    "description": "Coupler.io-authored Claude Code skills and plugins",
-    "version": "1.0.0"
+    "description": "Coupler.io-authored Claude Code skills and plugins — ICP analytics (finance, sales, e-commerce, marketing & ads) plus cross-ICP capability skills and utilities",
+    "version": "1.1.0"
   },
   "plugins": [
     {
+      "name": "coupler-finance",
+      "source": "./",
+      "strict": false,
+      "description": "Finance analytics over your Coupler.io data.",
+      "category": "finance",
+      "skills": [
+        "./finance/finance-analytics"
+      ]
+    },
+    {
+      "name": "coupler-sales",
+      "source": "./",
+      "strict": false,
+      "description": "Sales / CRM pipeline analytics over your Coupler.io data.",
+      "category": "sales",
+      "skills": [
+        "./sales/sales-analytics"
+      ]
+    },
+    {
+      "name": "coupler-ecommerce",
+      "source": "./",
+      "strict": false,
+      "description": "E-commerce analytics over your Coupler.io data.",
+      "category": "ecommerce",
+      "skills": [
+        "./ecommerce/ecom-analytics"
+      ]
+    },
+    {
+      "name": "coupler-marketing-ads",
+      "source": "./",
+      "strict": false,
+      "description": "Marketing & paid-ads (PPC) analytics over your Coupler.io data.",
+      "category": "marketing",
+      "skills": [
+        "./marketing-and-ads/marketing-analytics",
+        "./marketing-and-ads/ppc-analytics"
+      ]
+    },
+    {
+      "name": "coupler-capability",
+      "source": "./",
+      "strict": false,
+      "description": "Core Coupler.io MCP capabilities — create dataflows, generate dataset context, refine prompts, generate reports.",
+      "category": "productivity",
+      "skills": [
+        "./capability/get-started",
+        "./capability/create-dataflow",
+        "./capability/generate-data-set-context",
+        "./capability/refine-prompt",
+        "./capability/report-generation"
+      ]
+    },
+    {
+      "name": "coupler-utilities",
+      "source": "./",
+      "strict": false,
+      "description": "Utility skills for Coupler.io workflows.",
+      "category": "productivity",
+      "skills": [
+        "./utilities/coupler-live-artifact"
+      ]
+    },
+    {
       "name": "humanizer",
-      "source": "./humanizer",
-      "description": "Identify and remove AI writing patterns to make text sound natural and human. Catches em-dashes, clichés (delve/foster/landscape), rule-of-three, chatbot artifacts — 23 patterns total. Adds a /humanize command + auto-triggering skill.",
+      "source": "./utilities/humanizer",
+      "description": "Identify and remove AI writing patterns to make text sound natural and human. Adds a /humanize command + auto-triggering skill.",
       "version": "0.1.0",
       "author": {
         "name": "Nika"
