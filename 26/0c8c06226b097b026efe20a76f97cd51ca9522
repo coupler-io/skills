@@ -1,0 +1,46 @@
+sales/sales-analytics/SKILL.md
+  s_11c0732bdbdb4b::t_121bee231e2e61 4-11
+marketing-and-ads/ppc-analytics/SKILL.md
+  s_11c0732bdbdb4b::t_7b10cbae4f171d 16-19
+finance/finance-analytics/SKILL.md
+  s_11c0732bdbdb4b::t_7317cf3ebf8e87 4-11
+utilities/humanizer/skills/humanizer/SKILL.md
+  s_11c0732bdbdb4b::t_cef14ca193f552 11-13
+capability/report-generation/SKILL.md
+  s_11c0732bdbdb4b::t_ebe4bc2a0dbd0d 4-6
+capability/refine-prompt/SKILL.md
+  s_11c0732bdbdb4b::t_5db4f1a0690530 4-6
+capability/generate-data-set-context/SKILL.md
+  s_11c0732bdbdb4b::t_93b8490041af20 4-6
+marketing-and-ads/marketing-analytics/SKILL.md
+  s_11c0732bdbdb4b::t_5d32a6f9568ae5 12-17
+utilities/coupler-live-artifact/SKILL.md
+  s_11c0732bdbdb4b::t_b5703c434be175 4-6
+capability/get-started/SKILL.md
+  s_11c0732bdbdb4b::t_87550ebcb4a5d4 16-17
+ecommerce/ecom-analytics/SKILL.md
+  s_11c0732bdbdb4b::t_a781429c1a7d94 4-13
+capability/create-dataflow/SKILL.md
+  s_11c0732bdbdb4b::t_688eb29ff20641 4-6
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.24",
+  "base_commit_sha": "260c8c06226b097b026efe20a76f97cd51ca9522",
+  "prompts": {},
+  "humans": {
+    "h_5a7459c565b0c6": {
+      "author": "Yuriy Stefanyuk <yuriy.stefanyuk@gmail.com>"
+    }
+  },
+  "sessions": {
+    "s_11c0732bdbdb4b": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "3d1bb9af-71b9-40f9-add5-c08d6255dbe2",
+        "model": "auto-smart"
+      },
+      "human_author": "Yuriy Stefanyuk <yuriy.stefanyuk@gmail.com>"
+    }
+  }
+}
