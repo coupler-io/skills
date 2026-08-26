@@ -1,0 +1,46 @@
+name: Generate skill index
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: generate-skill-index
+  cancel-in-progress: false
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install pyyaml
+
+      - name: Generate skill index
+        run: python .github/scripts/generate_skill_index.py
+
+      - name: Commit skill index
+        if: github.event_name != 'pull_request'
+        run: |
+          # see: https://github.com/actions/checkout/issues/13#issuecomment-724415212
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add skills-index.json
+          if git diff --cached --quiet; then
+            echo "Skill index is up to date."
+          else
+            git commit -m "Update skill index"
+            git push
+          fi
