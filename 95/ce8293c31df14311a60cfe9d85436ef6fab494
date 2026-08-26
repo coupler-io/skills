@@ -1,0 +1,39 @@
+.gitignore
+  s_11c0732bdbdb4b::t_cf51331739b522 4
+  s_11c0732bdbdb4b::t_e0a9e925de11f5 7-9
+.gitattributes
+  s_11c0732bdbdb4b::t_63aed94b4ee2f5 1
+.github/scripts/generate_skill_index.py
+  s_11c0732bdbdb4b::t_5f16cbaf74c6d1 85-91,93-103
+  s_11c0732bdbdb4b::t_22f3e807a1151b 1-84,92,104-125
+.github/workflows/generate-skill-index.yml
+  s_11c0732bdbdb4b::t_eb6cafc2117589 32
+  s_11c0732bdbdb4b::t_9b95acade27f8a 1-31,33-36,39-46
+  h_5a7459c565b0c6 37
+  s_11c0732bdbdb4b::t_d396398e3b6968 38
+README.md
+  s_11c0732bdbdb4b::t_b24c579df833bd 9-10
+skills-index.json
+  s_11c0732bdbdb4b::t_035dcaaffb8e13 1-117
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.24",
+  "base_commit_sha": "95ce8293c31df14311a60cfe9d85436ef6fab494",
+  "prompts": {},
+  "humans": {
+    "h_5a7459c565b0c6": {
+      "author": "Yuriy Stefanyuk <yuriy.stefanyuk@gmail.com>"
+    }
+  },
+  "sessions": {
+    "s_11c0732bdbdb4b": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "3d1bb9af-71b9-40f9-add5-c08d6255dbe2",
+        "model": "auto-smart"
+      },
+      "human_author": "Yuriy Stefanyuk <yuriy.stefanyuk@gmail.com>"
+    }
+  }
+}
