@@ -8,6 +8,9 @@ description: >
   AI-sounding language. Also activate after generating any written content when
   the user has asked for natural or human-sounding output.
 version: 0.1.0
+metadata:
+  category: utilities
+  sources: []
 ---
 
 # Humanizer

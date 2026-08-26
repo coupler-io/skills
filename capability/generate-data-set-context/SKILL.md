@@ -1,6 +1,9 @@
 ---
 name: generate-data-set-context
 description: "Use this skill when the user wants to explore a dataset's context, or write or update documentation for the data it holds. Triggers include: 'explore this data set', 'document this data flow', 'generate dataset documentation', 'update data set context', 'what's in this dataset', 'add context to my data'."
+metadata:
+  category: capability
+  sources: []
 ---
 
 # Generate Data Set Context

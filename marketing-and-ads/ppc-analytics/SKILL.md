@@ -13,6 +13,10 @@ description: >
   report-generation.
 metadata:
   version: 0.2.0
+  category: marketing-and-ads
+  sources:
+    - Facebook Ads
+    - Google Ads
 ---
 
 # Paid Ads Performance Analysis (PPC)

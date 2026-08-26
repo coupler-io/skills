@@ -9,6 +9,12 @@ description: >
   skill instead — this skill owns the cross-channel view.
 metadata:
   version: 0.1.1
+  category: marketing-and-ads
+  sources:
+    - Google Ads
+    - Facebook Ads
+    - LinkedIn Ads
+    - GA4
 ---
 
 # Marketing Analytics
