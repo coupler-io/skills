@@ -1,0 +1,32 @@
+marketing-and-ads/ppc-analytics/SKILL.md
+  s_0d5b940a26dc33::t_7e035258f3afac 18
+marketing-and-ads/marketing-analytics/SKILL.md
+  s_0d5b940a26dc33::t_85a1cdcda74064 15,17
+sales/sales-analytics/SKILL.md
+  s_0d5b940a26dc33::t_86b5c23e6457fe 10-11
+finance/finance-analytics/SKILL.md
+  s_0d5b940a26dc33::t_26f7cecc58aa36 9
+ecommerce/ecom-analytics/SKILL.md
+  s_0d5b940a26dc33::t_ab6e50dba139cb 9-10
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.0",
+  "base_commit_sha": "ea5b9df7f24c9393aa09838db041c69f24859855",
+  "prompts": {},
+  "humans": {
+    "h_5a7459c565b0c6": {
+      "author": "Yuriy Stefanyuk <yuriy.stefanyuk@gmail.com>"
+    }
+  },
+  "sessions": {
+    "s_0d5b940a26dc33": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "72e81d31-5abf-453a-a79f-c2c85672225a",
+        "model": "grok-4.6"
+      },
+      "human_author": "Yuriy Stefanyuk <yuriy.stefanyuk@gmail.com>"
+    }
+  }
+}
