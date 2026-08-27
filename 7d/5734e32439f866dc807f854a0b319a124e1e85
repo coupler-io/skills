@@ -1,0 +1,28 @@
+skills-index.json
+  h_5a7459c565b0c6 69,81,91
+  s_0d5b940a26dc33::t_5d379e7943cf9d 6,13,20,27,34,41,56,104,111
+.github/scripts/generate_skill_index.py
+  s_0d5b940a26dc33::t_7a639e4525cf66 61,66
+  s_0d5b940a26dc33::t_ab1535e671faf4 81
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.0",
+  "base_commit_sha": "7d5734e32439f866dc807f854a0b319a124e1e85",
+  "prompts": {},
+  "humans": {
+    "h_5a7459c565b0c6": {
+      "author": "Yuriy Stefanyuk <yuriy.stefanyuk@gmail.com>"
+    }
+  },
+  "sessions": {
+    "s_0d5b940a26dc33": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "72e81d31-5abf-453a-a79f-c2c85672225a",
+        "model": "grok-4.6"
+      },
+      "human_author": "Yuriy Stefanyuk <yuriy.stefanyuk@gmail.com>"
+    }
+  }
+}
