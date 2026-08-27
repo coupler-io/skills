@@ -58,12 +58,12 @@ def skill_entry(path: Path, repo_root: Path) -> dict[str, Any]:
     if not name:
         raise ValueError(f"{path} is missing name")
 
-    slug = path.parent.relative_to(repo_root).as_posix()
+    relative_path = path.parent.relative_to(repo_root).as_posix()
     category = metadata.get("category") or data.get("category")
 
     return {
         "name": str(name),
-        "slug": slug,
+        "path": relative_path,
         "category": category,
         "sources": normalize_sources(
             metadata.get("sources", data.get("sources")), path
@@ -78,7 +78,7 @@ def collect_skills(repo_root: Path) -> list[dict[str, Any]]:
         if any(part in SKIP_DIR_NAMES for part in path.parts):
             continue
         skills.append(skill_entry(path, repo_root))
-    skills.sort(key=lambda skill: skill["slug"])
+    skills.sort(key=lambda skill: skill["path"])
     return skills
 
 

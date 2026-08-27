@@ -3,42 +3,42 @@
   "skills": [
     {
       "name": "create-dataflow",
-      "slug": "capability/create-dataflow",
+      "path": "capability/create-dataflow",
       "category": "capability",
       "sources": [],
       "description": "Use this skill when the user wants to create a new dataflow, set up a new data import, connect a new data source to a destination, pull data from an integration into Google Sheets or BigQuery or another destination, or configure a source-to-destination data pipeline. Triggers include: 'import my HubSpot data', 'set up a Stripe export', 'create a pipeline from X to Y', 'I want to pull data from [source]', 'create a new dataflow', 'connect [source] to [destination]', 'set up a data flow for [source]'."
     },
     {
       "name": "generate-data-set-context",
-      "slug": "capability/generate-data-set-context",
+      "path": "capability/generate-data-set-context",
       "category": "capability",
       "sources": [],
       "description": "Use this skill when the user wants to explore a dataset's context, or write or update documentation for the data it holds. Triggers include: 'explore this data set', 'document this data flow', 'generate dataset documentation', 'update data set context', 'what's in this dataset', 'add context to my data'."
     },
     {
       "name": "get-started",
-      "slug": "capability/get-started",
+      "path": "capability/get-started",
       "category": "capability",
       "sources": [],
       "description": "Use this skill when the user's Coupler.io workspace is NEW or EMPTY — no datasets, no credentials — and they want their data flowing, or when any data request arrives from an account with nothing set up yet. Triggers include: \"get started\", \"set up Coupler\", \"connect my data\", \"I just signed up\", \"pull my QuickBooks/Shopify/HubSpot/ads data\", an empty list-datasets result, or a missing credential. Goal: take the user from an empty workspace to their own data rendered in this chat, in one guided pass — including the one-time browser step to authorize their source. Do NOT use for accounts that already have datasets or dataflows (work with their data directly), for platform questions (\"what sources do you support?\"), or for adding a source to an existing setup (use the create-dataflow skill instead)."
     },
     {
       "name": "refine-prompt",
-      "slug": "capability/refine-prompt",
+      "path": "capability/refine-prompt",
       "category": "capability",
       "sources": [],
       "description": "Use this skill when the user's request is vague, incomplete, or poorly structured and needs to be sharpened into a detailed, actionable analytics prompt before analysis. Triggers include underspecified asks like 'how's my marketing doing', 'show me sales data', 'what campaigns performed best' — requests missing a time period, explicit metrics, data sources, comparison criteria, or output format."
     },
     {
       "name": "report-generation",
-      "slug": "capability/report-generation",
+      "path": "capability/report-generation",
       "category": "capability",
       "sources": [],
       "description": "Use this skill to produce a structured business report from analysis output and validate it before delivery — turning metrics, findings, and recommendations into a scannable, decision-ready document, then sanity-checking arithmetic, units, claims, and consistency. Industry-agnostic; works for marketing, ecom, finance, sales, or any analytics output. Compose with a domain bundle (e.g., ecom-analytics + report-generation) for domain-flavored reports. Triggers include 'write a report', 'summarize this analysis', 'put this in a report format', 'create a TL;DR', 'monthly business review', 'weekly performance report', 'executive summary', 'structured update on …', 'turn this into a report', 'sanity-check these numbers', 'validate this analysis', 'does this add up', 'review this for accuracy'."
     },
     {
       "name": "ecom-analytics",
-      "slug": "ecommerce/ecom-analytics",
+      "path": "ecommerce/ecom-analytics",
       "category": "ecommerce",
       "sources": [
         "Shopify",
@@ -53,7 +53,7 @@
     },
     {
       "name": "finance-analytics",
-      "slug": "finance/finance-analytics",
+      "path": "finance/finance-analytics",
       "category": "finance",
       "sources": [
         "QuickBooks",
@@ -66,7 +66,7 @@
     },
     {
       "name": "marketing-analytics",
-      "slug": "marketing-and-ads/marketing-analytics",
+      "path": "marketing-and-ads/marketing-analytics",
       "category": "marketing-and-ads",
       "sources": [
         "Google Ads",
@@ -78,7 +78,7 @@
     },
     {
       "name": "ppc-analytics",
-      "slug": "marketing-and-ads/ppc-analytics",
+      "path": "marketing-and-ads/ppc-analytics",
       "category": "marketing-and-ads",
       "sources": [
         "Facebook Ads",
@@ -88,7 +88,7 @@
     },
     {
       "name": "sales-analytics",
-      "slug": "sales/sales-analytics",
+      "path": "sales/sales-analytics",
       "category": "sales",
       "sources": [
         "Salesforce",
@@ -101,14 +101,14 @@
     },
     {
       "name": "coupler-live-artifact",
-      "slug": "utilities/coupler-live-artifact",
+      "path": "utilities/coupler-live-artifact",
       "category": "utilities",
       "sources": [],
       "description": "Build a live Cowork artifact (persistent HTML widget) backed by a Coupler.io dataflow. Use this skill whenever the user wants a live dashboard, persistent widget, daily-check page, or interactive explorer over Coupler.io data — including phrases like \"live artifact for Coupler\", \"Coupler dashboard widget\", \"build a widget over a Coupler dataset\", \"Coupler.io live dashboard\", \"build a daily dashboard from a Coupler dataflow\", or any time they ask to render Coupler data in a re-openable view that auto-refreshes. Triggers even when the user does not say \"skill\" or \"artifact\" but describes the same outcome (e.g. \"I want a page I can check every morning that pulls my Coupler data\")."
     },
     {
       "name": "humanizer",
-      "slug": "utilities/humanizer/skills/humanizer",
+      "path": "utilities/humanizer/skills/humanizer",
       "category": "utilities",
       "sources": [],
       "description": "Remove AI writing patterns and add human voice to any text. Use when the user says \"humanize this\", \"make it sound human\", \"remove AI patterns\", \"this sounds like AI\", \"make it natural\", \"de-slop this\", \"edit for voice\", or when reviewing any drafted text (blog posts, emails, Slack messages, social posts, docs) for AI-sounding language. Also activate after generating any written content when the user has asked for natural or human-sounding output."
