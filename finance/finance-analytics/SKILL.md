@@ -6,7 +6,7 @@ metadata:
   sources:
     - QuickBooks
     - Xero
-    - NetSuite
+    - Oracle NetSuite
     - Stripe
     - Sage
 ---

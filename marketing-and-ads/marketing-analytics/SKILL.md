@@ -12,9 +12,9 @@ metadata:
   category: marketing-and-ads
   sources:
     - Google Ads
-    - Facebook Ads
+    - Facebook Ads (Meta Ads)
     - LinkedIn Ads
-    - GA4
+    - Google Analytics 4 (GA4)
 ---
 
 # Marketing Analytics

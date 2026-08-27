@@ -7,8 +7,8 @@ metadata:
     - Salesforce
     - HubSpot
     - Pipedrive
-    - Close
-    - Zoho
+    - Close.com
+    - Zoho CRM
 ---
 
 # Sales Analytics

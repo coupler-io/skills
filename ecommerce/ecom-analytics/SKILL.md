@@ -6,9 +6,8 @@ metadata:
   sources:
     - Shopify
     - WooCommerce
-    - BigCommerce
-    - Magento
-    - GA4
+    - Adobe Commerce (Magento)
+    - Google Analytics 4 (GA4)
     - Stripe
     - Klaviyo
 ---
