@@ -1,0 +1,64 @@
+name: Generate skill index
+
+# We're committing back to `GITHUB_REF`, therefore it must be a branch.
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: generate-skill-index
+  cancel-in-progress: false
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      # App config: https://github.com/organizations/coupler-io/settings/apps/coupler-io-skills-automator
+      # CLIENT_ID is not sensitive (repo variable); PRIVATE_KEY is a secret.
+      # The action resolves the installation id from the app's installation on this repo.
+      - name: Generate app token
+        id: app-token
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ vars.SKILLS_AUTOMATOR_APP_CLIENT_ID }}
+          private-key: ${{ secrets.SKILLS_AUTOMATOR_APP_PRIVATE_KEY }}
+
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ steps.app-token.outputs.token }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install pyyaml
+
+      - name: Generate skills index
+        run: python .github/scripts/generate_skill_index.py
+
+      - name: Resolve app bot identity
+        id: app-user
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+        run: |
+          name="${{ steps.app-token.outputs.app-slug }}[bot]"
+          id="$(gh api "/users/${name}" --jq .id)"
+          echo "name=${name}" >> "$GITHUB_OUTPUT"
+          echo "email=${id}+${name}@users.noreply.github.com" >> "$GITHUB_OUTPUT"
+
+      - name: Commit and push skills index
+        run: |
+          git config user.name "${{ steps.app-user.outputs.name }}"
+          git config user.email "${{ steps.app-user.outputs.email }}"
+          git add skills-index.json
+          if git diff --cached --quiet; then
+            echo "Skills index is up to date."
+          else
+            git commit -m "Update skills index"
+            git push origin HEAD:${{ github.ref_name }}
+          fi
