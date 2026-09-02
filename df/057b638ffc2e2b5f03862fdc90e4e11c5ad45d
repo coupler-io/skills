@@ -1,0 +1,26 @@
+.github/workflows/generate-skill-index.yml
+  s_a8a57cf742f3ad::t_76e208960b7356 18,21-22,24,27,44-52,56-57
+  h_94b34593fe7aa3 3,19-20,23,25,30-31,41,54,60,62-63
+  s_a8a57cf742f3ad::t_7c444cd321f073 26
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.8",
+  "base_commit_sha": "df057b638ffc2e2b5f03862fdc90e4e11c5ad45d",
+  "prompts": {},
+  "humans": {
+    "h_94b34593fe7aa3": {
+      "author": "Artur Hebda <arturhebda@gmail.com>"
+    }
+  },
+  "sessions": {
+    "s_a8a57cf742f3ad": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "fe870527-8eba-49c2-9abf-1c5b057b969e",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": "Artur Hebda <arturhebda@gmail.com>"
+    }
+  }
+}
