@@ -1,8 +1,12 @@
 # Allowlist: ICP-first structure — finance/sales/ecommerce/marketing-and-ads + capability + utilities, the manifest, and repo docs
 /*
 !/.gitignore
+!/.gitattributes
 !/README.md
 !/.claude-plugin/
+!/.github/
+!/.github/**
+!/skills-index.json
 !/finance/
 !/sales/
 !/ecommerce/

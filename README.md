@@ -6,6 +6,8 @@ Curated skill collection for business data analysis powered by the [Coupler.io](
 
 Skills are organized by ICP (ideal customer profile) first — Finance, Sales, E-commerce, Marketing & Ads — then by shared **Capability** and general **Utilities**.
 
+The machine-readable catalog is `skills-index.json`. **Do not edit it by hand** — it is generated from `SKILL.md` frontmatter. Change the skill files, then run `python .github/scripts/generate_skill_index.py`, or let the GitHub Action regenerate it on merge to `main`.
+
 ### Finance
 
 | Skill | File | What it does |
