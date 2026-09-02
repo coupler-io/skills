@@ -1,0 +1,24 @@
+skills-index.json
+  s_a8a57cf742f3ad::t_fa23e29ee569c9 1-116
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.8",
+  "base_commit_sha": "ff41ffd8d2debefafa8a6467de95fbd8028baf7d",
+  "prompts": {},
+  "humans": {
+    "h_94b34593fe7aa3": {
+      "author": "Artur Hebda <arturhebda@gmail.com>"
+    }
+  },
+  "sessions": {
+    "s_a8a57cf742f3ad": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "fe870527-8eba-49c2-9abf-1c5b057b969e",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": "Artur Hebda <arturhebda@gmail.com>"
+    }
+  }
+}
