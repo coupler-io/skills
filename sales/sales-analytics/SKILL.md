@@ -1,6 +1,14 @@
 ---
 name: sales-analytics
 description: Use this skill when the user wants to analyze sales pipeline, review win rates, investigate sales velocity or cycle length, build a sales report, evaluate rep performance, look at lead source quality, or answer questions about their CRM data. Triggers include 'how is the pipeline', 'win rate by segment', 'sales cycle', 'pipeline coverage', 'rep performance', 'forecast accuracy', 'why are deals stalling', 'lead source quality', 'stage conversion', 'pull my Salesforce numbers', 'HubSpot deals report', 'sales report'.
+metadata:
+  category: sales
+  sources:
+    - Salesforce
+    - HubSpot
+    - Pipedrive
+    - Close.com
+    - Zoho CRM
 ---
 
 # Sales Analytics

@@ -1,6 +1,9 @@
 ---
 name: coupler-live-artifact
 description: Build a live Cowork artifact (persistent HTML widget) backed by a Coupler.io dataflow. Use this skill whenever the user wants a live dashboard, persistent widget, daily-check page, or interactive explorer over Coupler.io data — including phrases like "live artifact for Coupler", "Coupler dashboard widget", "build a widget over a Coupler dataset", "Coupler.io live dashboard", "build a daily dashboard from a Coupler dataflow", or any time they ask to render Coupler data in a re-openable view that auto-refreshes. Triggers even when the user does not say "skill" or "artifact" but describes the same outcome (e.g. "I want a page I can check every morning that pulls my Coupler data").
+metadata:
+  category: utilities
+  sources: []
 ---
 
 # Coupler.io live artifact

@@ -13,6 +13,8 @@ description: >-
   create-dataflow skill instead).
 metadata:
   version: 0.1.0
+  category: capability
+  sources: []
 ---
 
 # Get Started

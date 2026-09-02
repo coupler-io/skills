@@ -1,6 +1,9 @@
 ---
 name: refine-prompt
 description: "Use this skill when the user's request is vague, incomplete, or poorly structured and needs to be sharpened into a detailed, actionable analytics prompt before analysis. Triggers include underspecified asks like 'how's my marketing doing', 'show me sales data', 'what campaigns performed best' — requests missing a time period, explicit metrics, data sources, comparison criteria, or output format."
+metadata:
+  category: capability
+  sources: []
 ---
 
 # Refine Prompt

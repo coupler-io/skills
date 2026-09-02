@@ -1,6 +1,9 @@
 ---
 name: report-generation
 description: Use this skill to produce a structured business report from analysis output and validate it before delivery — turning metrics, findings, and recommendations into a scannable, decision-ready document, then sanity-checking arithmetic, units, claims, and consistency. Industry-agnostic; works for marketing, ecom, finance, sales, or any analytics output. Compose with a domain bundle (e.g., ecom-analytics + report-generation) for domain-flavored reports. Triggers include 'write a report', 'summarize this analysis', 'put this in a report format', 'create a TL;DR', 'monthly business review', 'weekly performance report', 'executive summary', 'structured update on …', 'turn this into a report', 'sanity-check these numbers', 'validate this analysis', 'does this add up', 'review this for accuracy'.
+metadata:
+  category: capability
+  sources: []
 ---
 
 # Report Generation
