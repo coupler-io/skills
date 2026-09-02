@@ -31,6 +31,21 @@ Skills are organized by ICP (ideal customer profile) first — Finance, Sales, E
 | **marketing-analytics** | `marketing-and-ads/marketing-analytics/` | Marketing performance — campaign analysis, cross-channel comparison, anomaly detection. Covers paid, organic, email, and social. |
 | **ppc-analytics** | `marketing-and-ads/ppc-analytics/` | Paid-ads (PPC) performance — per-platform funnel traces, efficiency-first comparison (ranked on CPA/ROAS), budget pacing, ad-fatigue checks, and honest attribution (never blends conversions across platforms; offers an independent-source cross-check and blended CAC). Facebook + Google Ads first-class. |
 
+#### Google Ads deep dives
+
+Eight Google-Ads-only skills in `marketing-and-ads/google-ads/`. Each one owns a single question and hands off to the others rather than duplicating them — `ppc-analytics` stays the cross-platform paid view.
+
+| Skill | What it does |
+| --- | --- |
+| **google-ads-performance-review** | The baseline read — what changed in the account and why. Period comparison, cost-per-lead moves, impression-share loss. Run this before deciding anything else. |
+| **google-ads-waste-and-scale** | The cutting view — search-term waste, negative-keyword candidates, what to pause, and a budget-neutral reallocation proposal. |
+| **google-ads-keyword-and-quality-score-analysis** | The earning view — which keywords deserve more money, which overcharge for the same clicks, match-type and quality-score diagnosis. |
+| **google-ads-budget-pacing** | Month-end arithmetic — on-track or overspending, daily target, which campaigns are budget-capped, and whether more budget would do anything. |
+| **google-ads-conversion-tracking-audit** | Whether the conversion numbers can be trusted at all — double-counting, Analytics disagreement, untracked spend. Run before any cost or return conclusion. |
+| **google-ads-settings-audit** | Account configuration priced in the spend flowing through it — search partners, Display expansion, location intent, auto-apply, ad rotation, conversion windows, bid strategies. |
+| **google-ads-pmax-transparency** | Opening the Performance Max black box — Shopping cannibalisation, brand-traffic buying, asset-group performance. |
+| **google-ads-client-report** | The monthly client write-up — what to say, how to present a missed target. Built only when asked. |
+
 ### Capability
 
 Cross-ICP building blocks — compose these with a domain skill above.
@@ -121,7 +136,7 @@ Each ICP is its own plugin, so you install only what you need. Available plugins
 | `coupler-finance` | finance-analytics |
 | `coupler-sales` | sales-analytics |
 | `coupler-ecommerce` | ecom-analytics |
-| `coupler-marketing-ads` | marketing-analytics |
+| `coupler-marketing-ads` | marketing-analytics, ppc-analytics, + the 8 Google Ads deep dives |
 | `coupler-capability` | get-started, create-dataflow, generate-data-set-context, refine-prompt, report-generation |
 | `coupler-utilities` | coupler-live-artifact |
 | `humanizer` | humanizer (+ `/humanize` command) |
