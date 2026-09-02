@@ -43,9 +43,8 @@
       "sources": [
         "Shopify",
         "WooCommerce",
-        "BigCommerce",
-        "Magento",
-        "GA4",
+        "Adobe Commerce (Magento)",
+        "Google Analytics 4 (GA4)",
         "Stripe",
         "Klaviyo"
       ],
@@ -58,7 +57,7 @@
       "sources": [
         "QuickBooks",
         "Xero",
-        "NetSuite",
+        "Oracle NetSuite",
         "Stripe",
         "Sage"
       ],
@@ -70,9 +69,9 @@
       "category": "marketing-and-ads",
       "sources": [
         "Google Ads",
-        "Facebook Ads",
+        "Facebook Ads (Meta Ads)",
         "LinkedIn Ads",
-        "GA4"
+        "Google Analytics 4 (GA4)"
       ],
       "description": "Analyze marketing performance data using Coupler.io MCP tools (list-dataflows, get-schema, get-data). Use when the user asks to pull or analyze data from Coupler.io dataflows/data sets, generate marketing performance reports, understand campaign ROI, or investigate changes in business metrics. Make sure to use this skill whenever the user mentions Coupler.io data, marketing dashboards, channel comparisons, campaign analysis, or asks questions like \"why did conversions drop\", \"which channel has best ROI\", \"where should I spend more\", \"what's working\", \"show me my marketing numbers\", \"pull my latest data\", even if they don't explicitly say \"marketing analytics\". For deep paid-ads-only analysis (per-platform ad efficiency, budget pacing, brand vs non-brand, ad fatigue), use the ppc-analytics skill instead — this skill owns the cross-channel view."
     },
@@ -81,7 +80,7 @@
       "path": "marketing-and-ads/ppc-analytics",
       "category": "marketing-and-ads",
       "sources": [
-        "Facebook Ads",
+        "Facebook Ads (Meta Ads)",
         "Google Ads"
       ],
       "description": "Analyze paid-ads (PPC) performance over the ad data connected in your Coupler.io workspace — spend, impressions, clicks, CTR, CPC, CPM, conversions, CPA, ROAS — with per-platform funnel traces, an efficiency-first comparison table, brand vs non-brand splits, budget pacing, and a weekly PPC review. Use this skill when the user asks \"how are my ads performing\", \"weekly PPC report\", \"why did CPA spike\", \"ROAS by platform\", \"Facebook vs Google Ads\", \"compare Meta and Google\", \"am I overspending my ad budget\", \"which campaigns should I scale or pause\", \"ad fatigue check\", \"blended CAC\". Facebook Ads + Google Ads are first-class; other ad platforms best-effort. It never silently sums platform-reported conversions across platforms — attribution double-counts; it reports per platform and computes blended CAC from an independent source when one exists. Paid-ads deep dives only: for cross-channel marketing (email, social, SEO) use marketing-analytics; report formatting composes report-generation."
@@ -94,8 +93,8 @@
         "Salesforce",
         "HubSpot",
         "Pipedrive",
-        "Close",
-        "Zoho"
+        "Close.com",
+        "Zoho CRM"
       ],
       "description": "Use this skill when the user wants to analyze sales pipeline, review win rates, investigate sales velocity or cycle length, build a sales report, evaluate rep performance, look at lead source quality, or answer questions about their CRM data. Triggers include 'how is the pipeline', 'win rate by segment', 'sales cycle', 'pipeline coverage', 'rep performance', 'forecast accuracy', 'why are deals stalling', 'lead source quality', 'stage conversion', 'pull my Salesforce numbers', 'HubSpot deals report', 'sales report'."
     },
