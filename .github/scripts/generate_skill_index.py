@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import sys
 from pathlib import Path
 from typing import Any
@@ -82,17 +83,18 @@ def collect_skills(repo_root: Path) -> list[dict[str, Any]]:
     return skills
 
 
-def compute_flattened_slug(path: str) -> str | None:
-    parts = path.strip("/").split("/")
-    if len(parts) <= 1:
-        return None
-    return "-".join(parts[-2:])
+def parameterize(value: str) -> str:
+    # Matches Ruby's String#parameterize: keeps _ distinct from -, so foo_bar and foo-bar are different slugs.
+    value = re.sub(r"[^a-zA-Z0-9\-_]+", "-", value)
+    value = re.sub(r"-{2,}", "-", value)
+    value = value.strip("-")
+    return value.lower()
 
 
 def find_duplicate_leaf_slugs(skills: list[dict[str, Any]]) -> dict[str, list[str]]:
     by_leaf: dict[str, list[str]] = {}
     for skill in skills:
-        leaf = skill["path"].split("/")[-1]
+        leaf = parameterize(skill["path"].split("/")[-1])
         by_leaf.setdefault(leaf, []).append(skill["path"])
     return {leaf: paths for leaf, paths in by_leaf.items() if len(paths) > 1}
 
@@ -123,43 +125,20 @@ def write_index(skills: list[dict[str, Any]], output: Path) -> None:
     output.write_text(render_index(skills), encoding="utf-8")
 
 
-def check(skills: list[dict[str, Any]], output: Path) -> int:
-    duplicates = find_duplicate_leaf_slugs(skills)
-    if duplicates:
-        for leaf, paths in duplicates.items():
-            print(f"Duplicate skill slug {leaf!r}:", file=sys.stderr)
-            for path in paths:
-                suggestion = compute_flattened_slug(path)
-                if suggestion:
-                    print(
-                        f"  {path}  ->  suggested folder name: {suggestion!r}",
-                        file=sys.stderr,
-                    )
-                else:
-                    print(
-                        f"  {path}  (pick a unique folder name)",
-                        file=sys.stderr,
-                    )
-        print(
-            "\nThe slug comes from the skill's directory name, not its `name` "
-            "frontmatter field. If you just added one of these, rename its "
-            "directory to the suggested folder name above, e.g.:\n"
-            "  git mv sales/analytics sales/sales-analytics",
-            file=sys.stderr,
-        )
-        return 1
+def print_duplicates(duplicates: dict[str, list[str]]) -> None:
+    for leaf, paths in duplicates.items():
+        print(f"Duplicate skill slug {leaf!r}:", file=sys.stderr)
+        for path in paths:
+            print(f"  {path}", file=sys.stderr)
 
-    expected = render_index(skills)
-    actual = output.read_text(encoding="utf-8") if output.exists() else None
-    if actual != expected:
-        print(
-            f"{output} is stale — run python .github/scripts/generate_skill_index.py",
-            file=sys.stderr,
-        )
-        return 1
-
-    print(f"OK: {len(skills)} skills, no duplicate slugs, index up to date")
-    return 0
+    print(
+        "\nEvery skill's file is always named SKILL.md - what needs to be "
+        "unique is the FOLDER it lives in. If you just added one of these "
+        "skills, rename its folder to something no other skill uses. For "
+        "example:\n"
+        "  sales/analytics/SKILL.md  ->  sales/sales-analytics/SKILL.md",
+        file=sys.stderr,
+    )
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -169,7 +148,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument(
         "--check",
         action="store_true",
-        help="Validate without writing; exit 1 on duplicate leaf slugs or a stale index file",
+        help="Validate without writing; exit 1 on duplicate leaf slugs",
     )
     args = parser.parse_args(argv)
 
@@ -177,8 +156,14 @@ def main(argv: list[str] | None = None) -> int:
     output = args.output.resolve()
     skills = collect_skills(root)
 
+    duplicates = find_duplicate_leaf_slugs(skills)
+    if duplicates:
+        print_duplicates(duplicates)
+        return 1
+
     if args.check:
-        return check(skills, output)
+        print(f"OK: {len(skills)} skills, no duplicate slugs")
+        return 0
 
     write_index(skills, output)
     print(f"Wrote {len(skills)} skills to {output}")
