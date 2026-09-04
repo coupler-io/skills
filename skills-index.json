@@ -64,6 +64,78 @@
       "description": "Use this skill when the user wants to analyze financial performance, review P&L health, monitor MRR/ARR, investigate margin or cost trends, build a finance report, check cash flow or runway, or answer questions about their accounting/billing data. Triggers include 'how is revenue trending', 'gross margin', 'MRR breakdown', 'churn impact on ARR', 'why did costs go up', 'operating expenses', 'cash runway', 'P&L review', 'EBITDA', 'cost per acquisition trend', 'pull my QuickBooks numbers', 'finance report'."
     },
     {
+      "name": "google-ads-budget-pacing",
+      "path": "marketing-and-ads/google-ads/google-ads-budget-pacing",
+      "category": "marketing-and-ads",
+      "sources": [
+        "Google Ads"
+      ],
+      "description": "Use for \"am I on track with my Google Ads budget\", \"will I overspend this month\", \"how much should I spend a day\", \"which campaigns are capped by budget\", \"we underspent and I don't know why\", \"where should I move budget\", or a mid-month spend check — even when the user never says \"pacing\". Also use when someone needs to know whether adding budget to a campaign would do anything at all. Google Ads only."
+    },
+    {
+      "name": "google-ads-client-report",
+      "path": "marketing-and-ads/google-ads/google-ads-client-report",
+      "category": "marketing-and-ads",
+      "sources": [
+        "Google Ads"
+      ],
+      "description": "Use when someone asks for a monthly Google Ads report for a client, wants the client deck built, needs last month's Google Ads performance written up, asks for an end-of-month PPC report, asks \"what do I tell the client\", or asks how to present a target they missed — even when they never say the word \"report\". Also use when the Google Ads section of a client review or QBR is what's wanted. For agencies and in-house teams reporting upward. Google Ads only."
+    },
+    {
+      "name": "google-ads-conversion-tracking-audit",
+      "path": "marketing-and-ads/google-ads/google-ads-conversion-tracking-audit",
+      "category": "marketing-and-ads",
+      "sources": [
+        "Google Ads"
+      ],
+      "description": "Use for \"can I trust my Google Ads conversion numbers\", \"audit my conversion tracking\", \"why do Google Ads and Analytics disagree\", \"are my conversions double-counted\", \"my conversions dropped overnight\", \"how much of my spend has no tracking\" — and whenever someone doubts their numbers, even without the word \"audit\". Run before trusting any cost or return conclusion about the account. Google Ads only."
+    },
+    {
+      "name": "google-ads-keyword-and-quality-score-analysis",
+      "path": "marketing-and-ads/google-ads/google-ads-keyword-and-quality-score-analysis",
+      "category": "marketing-and-ads",
+      "sources": [
+        "Google Ads"
+      ],
+      "description": "Use for \"which keywords make money\", \"my quality score dropped\", \"should I use exact or broad match\", \"which keywords are worth more budget\", \"why is my cost per click so high\", \"find me new keywords to bid on\" — even when the user never says \"keyword\". This is the earning view: which keywords deserve more money and which are overcharging for the same clicks. For the cutting view, use google-ads-waste-and-scale instead. Google Ads only."
+    },
+    {
+      "name": "google-ads-performance-review",
+      "path": "marketing-and-ads/google-ads/google-ads-performance-review",
+      "category": "marketing-and-ads",
+      "sources": [
+        "Google Ads"
+      ],
+      "description": "Use for \"how are my Google Ads doing\", \"why did my cost per lead go up\", \"which campaigns improved this month\", \"am I losing impression share\", \"what happened to my Google Ads last week\", or a weekly or monthly account check — even when the user never says \"review\". Also use when someone wants to know what changed in the account and why, or needs the baseline read before deciding anything else. Google Ads only."
+    },
+    {
+      "name": "google-ads-pmax-transparency",
+      "path": "marketing-and-ads/google-ads/google-ads-pmax-transparency",
+      "category": "marketing-and-ads",
+      "sources": [
+        "Google Ads"
+      ],
+      "description": "Use for \"how is Performance Max doing\", \"is PMax cannibalising my Shopping campaigns\", \"I can't see anything inside PMax\", \"is Performance Max just buying my own brand traffic\", \"should I keep PMax or go back to Shopping\", \"what are my asset groups doing\" — even when the user only says \"PMax\" or \"my Google Ads black box\". Also use when PMax conversions rose but the account total didn't. Google Ads only."
+    },
+    {
+      "name": "google-ads-settings-audit",
+      "path": "marketing-and-ads/google-ads/google-ads-settings-audit",
+      "category": "marketing-and-ads",
+      "sources": [
+        "Google Ads"
+      ],
+      "description": "Use for \"audit my Google Ads settings\", \"is my account set up right\", \"I inherited this account, what's wrong with it\", \"why is my traffic showing outside my area\", \"check my campaign settings\", \"new client account review\" — even when the user never says \"settings\". Covers search partners, Display expansion, location intent, auto-apply, ad rotation, conversion windows, budgets and bid strategies, each priced in the spend flowing through it. Most of these toggles default in Google's favour. Google Ads only."
+    },
+    {
+      "name": "google-ads-waste-and-scale",
+      "path": "marketing-and-ads/google-ads/google-ads-waste-and-scale",
+      "category": "marketing-and-ads",
+      "sources": [
+        "Google Ads"
+      ],
+      "description": "Use for \"where am I wasting money on Google Ads\", \"which keywords should I pause\", \"find me negative keywords\", \"search terms report analysis\", \"which campaigns should I scale\", \"clean up my Google Ads account\", \"what should I cut and where should the money go\" — even without the words \"waste\" or \"scale\". Also use when someone wants a budget-neutral reallocation proposal for the account. Google Ads only."
+    },
+    {
       "name": "marketing-analytics",
       "path": "marketing-and-ads/marketing-analytics",
       "category": "marketing-and-ads",

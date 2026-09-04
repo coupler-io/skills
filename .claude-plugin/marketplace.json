@@ -6,7 +6,7 @@
   },
   "metadata": {
     "description": "Coupler.io-authored Claude Code skills and plugins — ICP analytics (finance, sales, e-commerce, marketing & ads) plus cross-ICP capability skills and utilities",
-    "version": "1.1.0"
+    "version": "1.2.0"
   },
   "plugins": [
     {
@@ -47,7 +47,15 @@
       "category": "marketing",
       "skills": [
         "./marketing-and-ads/marketing-analytics",
-        "./marketing-and-ads/ppc-analytics"
+        "./marketing-and-ads/ppc-analytics",
+        "./marketing-and-ads/google-ads/google-ads-performance-review",
+        "./marketing-and-ads/google-ads/google-ads-waste-and-scale",
+        "./marketing-and-ads/google-ads/google-ads-keyword-and-quality-score-analysis",
+        "./marketing-and-ads/google-ads/google-ads-budget-pacing",
+        "./marketing-and-ads/google-ads/google-ads-conversion-tracking-audit",
+        "./marketing-and-ads/google-ads/google-ads-settings-audit",
+        "./marketing-and-ads/google-ads/google-ads-pmax-transparency",
+        "./marketing-and-ads/google-ads/google-ads-client-report"
       ]
     },
     {
