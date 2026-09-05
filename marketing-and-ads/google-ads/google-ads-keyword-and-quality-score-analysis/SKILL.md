@@ -18,8 +18,6 @@ metadata:
 **Shows which keywords deserve more money, and which are quietly overcharging you for the same
 clicks.**
 
-[Source tag: Google Ads]
-
 Two things make this hard to see from the interface. Brand terms convert at several times the rate of
 everything else at a fraction of the click cost, so any ranked list that mixes them tells you to
 invest in demand you already had. And Quality Score gets read as a grade to improve, when it's a
@@ -250,6 +248,7 @@ sibling needs it, and it's what users tire of restating.
 | Funding a winner needs month-end arithmetic | `google-ads-budget-pacing` |
 | The keywords sit inside Performance Max, where they aren't exposed | `google-ads-pmax-transparency` |
 | The findings are going to a client | `google-ads-client-report` |
+| No packaged report type carries the metric you need | `google-ads-custom-gaql` |
 | Platforms other than Google Ads are in scope | `ppc-analytics` |
 
 ## Next Question (REQUIRED)

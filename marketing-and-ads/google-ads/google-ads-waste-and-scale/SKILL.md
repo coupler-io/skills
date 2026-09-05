@@ -18,8 +18,6 @@ metadata:
 **Produces the two lists that change an account: what to stop paying for, and where that money should
 go instead.**
 
-[Source tag: Google Ads]
-
 A cut list alone shrinks an account, and shrinking is easy to refuse. Paired with a scale list, the
 same work reallocates it — and budget-neutral proposals get approved where requests for more money
 get deferred. The hard part isn't finding non-converting spend; it's telling apart a query that's
@@ -86,10 +84,18 @@ the rest of the run.
 The negative lists come from criterion report types, not from any performance report, so they're
 usually absent — and they carry the highest-value checks here. State their absence plainly.
 
+**Every table in that column is one Coupler.io source away.** Search terms come from Search query
+performance, keywords from Keywords performance, negative lists from Campaign criterion and Ad group
+criterion. A dataflow takes unlimited sources, so these get added alongside whatever is already
+there, warehouse-sourced or not. The only real blocker is a missing Google Ads credential, which the
+user connects. Impression share is different: it's already in Campaign performance and hidden by
+default, so check for a hidden column before treating headroom sizing as impossible. For the rare cut
+that no packaged report type groups — an unusual segment on search terms, say — route to
+`google-ads-custom-gaql`. **Don't write the query here.**
+
 **Early exit.** Campaign-level only: give the over-target campaigns and the headroom if impression
-share exists, say what the missing tables cost, offer the sources, stop. Don't build a cut list shape
-around campaign rows. Warehouse-sourced data has no search terms or keywords at all, and a native
-report type won't fix it — that needs a change upstream.
+share exists, say what the missing tables cost, name which source would supply each, stop. Don't
+build a cut list shape around campaign rows.
 
 ## D. Set the target and the window (HARD GATE)
 
@@ -129,8 +135,15 @@ plainly that the cut list needs a target to agree.
 ## E. Size the prize, then build the lists
 
 Aggregate on the backend and rebuild every rate from totals over one scope — never average a column of
-rates, which errs toward cutting things that work. **Check cost magnitude before quoting any figure**;
-some datasets carry costs in millionths. Get the aggregates in the same call as the detail:
+rates, which errs toward cutting things that work. **The column name tells you the unit** —
+`Cost: Amount spend` is money, anything still named `*_micros` is raw from the API and needs dividing
+by 1,000,000. Search query performance is one of the report types Coupler.io doesn't relabel, so
+check its schema rather than assuming it looks like Campaign performance.
+
+**Impression share is a daily ratio, so headroom can't come from an average of it.** Recover eligible
+impressions per row as `impressions / search_impression_share`, sum those across the window, and
+derive the lost-to-budget share from the sums. Averaging the share column over 30 days quietly
+mis-sizes the prize. Get the aggregates in the same call as the detail:
 
 - Total non-converting spend above the threshold, and how many search terms it spans.
 - Total spend in keywords over target, and how many clear the volume bar.
@@ -265,6 +278,7 @@ re-proposing something the user already rejected.
 | The question is what the account did and why | `google-ads-performance-review` |
 | The waste is inside Performance Max, where search terms don't reach | `google-ads-pmax-transparency` |
 | The proposal is going to a client | `google-ads-client-report` |
+| No packaged report type carries the metric you need | `google-ads-custom-gaql` |
 | Platforms other than Google Ads are in scope | `ppc-analytics` |
 
 ## Next Question (REQUIRED)
