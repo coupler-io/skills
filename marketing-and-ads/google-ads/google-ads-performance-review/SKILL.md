@@ -83,21 +83,20 @@ much of the rest happens, and it's the first thing they hear.
 |---|---|---|
 | Cost + clicks + impressions + campaign | The headline numbers | Nothing runs. Say so and stop |
 | A date column at daily grain | Week-on-week and month-on-month in E | Totals only, no comparison. Don't invent a daily rate |
-| Campaign type | The fair breakdown | Say the headline click-through rate and click cost are mixing incomparable formats. Infer nothing. Campaign performance carries advertising channel type, so check whether it's hidden before calling it unavailable |
-| Impression share, lost to budget, lost to rank | The missing-demand read | That section can't run yet. Demand missed can't be read from spend shape. Campaign performance carries these, so say which of the three fixes applies |
+| Campaign type | The fair breakdown | Say the headline click-through rate and click cost are mixing incomparable formats. Infer nothing |
+| Impression share, lost to budget, lost to rank | The missing-demand read | That section can't run yet. Demand missed can't be read from spend shape. Name the fix from the table below |
 | Conversion action name | One named conversion, not a blended total | Say that which conversion you counted is unverifiable, and point at the conversion tracking audit |
 | Currency, where accounts share a dataflow | One total | Report per account rather than a mixed total |
 
 Say **"not checkable from this data"** — never imply a check ran clean when it didn't run.
 
-**A missing column is one of four things, and they have different fixes.** Name which one you think
+**A missing column is one of three things, and they have different fixes.** Name which one you think
 it is rather than reporting the column as unavailable.
 
 | Why it's missing | How you can tell | The fix |
 |---|---|---|
-| Hidden in the dataset step | The report type is right but the column isn't in the schema. Impression share, advertising channel type and most Campaign performance metrics are hidden by default | Unhide it in the dataflow's dataset step, then refresh. Cheapest of the four |
 | The report type isn't in the dataflow | Nothing at that grain exists — no search terms anywhere, no keyword rows, no asset groups | Add a Google Ads source with that report type to the same dataflow. A dataflow takes unlimited sources |
-| No report type carries the metric | It's a field combination Google exposes but no packaged report groups that way — hourly segments, ad-group-level conversion actions | Custom GAQL. Route to `google-ads-custom-gaql`; don't hand-write the query here |
+| No report type carries it in the shape you need | The report type is there but the column isn't, or it's a field combination no packaged report groups that way — hourly segments, ad-group-level conversion actions | Custom GAQL, which pulls exactly the fields named. Route to `google-ads-custom-gaql`; don't hand-write the query here |
 | No Google Ads credential | The data reaches Coupler.io through a warehouse or another platform's connector, and no Google Ads source exists in any dataflow | The user connects Google Ads. That's a consent step for them, not a dead end |
 
 **Early exit.** Cost and clicks only, no dates and no campaign type: give the totals, say what the

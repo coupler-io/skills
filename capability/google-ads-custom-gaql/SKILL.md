@@ -52,7 +52,7 @@ Call `get-integration(type: "source", key: "google-ads")` and read the `entity` 
 
 **Genuinely GAQL-only:** hourly data via `segments.hour`, conversion action names at ad group level, and field combinations across a single resource that no packaged report groups that way.
 
-**A column can also be present but hidden.** Impression share, advertising channel type and most Campaign performance metrics default to hidden in the dataset step. If the report type is already in the dataflow and only the column is missing, unhiding it is the fix — not a new source.
+**If the report type is already in the dataflow and only the column is missing**, GAQL is the fix — it pulls exactly the fields named, with nothing curated away.
 
 ### Step 3: Resolve Credentials and Ad Account
 

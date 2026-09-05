@@ -88,10 +88,9 @@ usually absent — and they carry the highest-value checks here. State their abs
 performance, keywords from Keywords performance, negative lists from Campaign criterion and Ad group
 criterion. A dataflow takes unlimited sources, so these get added alongside whatever is already
 there, warehouse-sourced or not. The only real blocker is a missing Google Ads credential, which the
-user connects. Impression share is different: it's already in Campaign performance and hidden by
-default, so check for a hidden column before treating headroom sizing as impossible. For the rare cut
-that no packaged report type groups — an unusual segment on search terms, say — route to
-`google-ads-custom-gaql`. **Don't write the query here.**
+user connects. Where a packaged report type doesn't carry the column in the shape you need — impression
+share the account's report doesn't return, an unusual segment on search terms — Custom GAQL pulls
+exactly the fields named. Route to `google-ads-custom-gaql`. **Don't write the query here.**
 
 **Early exit.** Campaign-level only: give the over-target campaigns and the headroom if impression
 share exists, say what the missing tables cost, name which source would supply each, stop. Don't
