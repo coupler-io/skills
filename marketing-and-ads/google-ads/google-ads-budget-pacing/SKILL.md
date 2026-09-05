@@ -17,8 +17,6 @@ metadata:
 
 **Tells you whether you'll land on budget, and what to move to make sure you do.**
 
-[Source tag: Google Ads]
-
 Google Ads has no monthly budget for standard campaigns — the number a client actually cares about
 lives in a retainer or media plan, outside the platform. So the account can't tell you whether you're
 on track, and the spend report can't tell you why. The trap underneath it: a campaign underspending
@@ -119,8 +117,10 @@ answer at `E`=28 in a 30-day month, exactly when the number matters most.
 | Required daily spend | (Budget − spend to date) ÷ R |
 | Required change | (Required daily ÷ trailing daily) − 1 |
 
-One query, aggregated on the backend — never pull raw rows and total them in context. **Check cost
-magnitude before quoting any figure**; some datasets carry costs in millionths.
+One query, aggregated on the backend — never pull raw rows and total them in context. **The column
+name tells you the unit** — `Cost: Amount spend` and `Campaign: Budget amount` are money, anything
+still named `*_micros` is raw from the API and needs dividing by 1,000,000. Campaign budgets is one
+of the report types Coupler.io doesn't relabel, so read its schema before quoting a budget figure.
 
 **Lead with the trailing projection.** Linear assumes the whole period looks like the period so far;
 trailing assumes the next weeks look like the last seven days.
@@ -222,6 +222,7 @@ which is the difference between a three-call run and a five-call one.
 | The efficiency case rests on conversion numbers that are doubted | `google-ads-conversion-tracking-audit` |
 | Budgets or bid strategies look misconfigured rather than mis-sized | `google-ads-settings-audit` |
 | The pacing story is going to a client | `google-ads-client-report` |
+| No packaged report type carries the metric you need | `google-ads-custom-gaql` |
 | Platforms other than Google Ads are in scope | `ppc-analytics` |
 
 ## Next Question (REQUIRED)

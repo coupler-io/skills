@@ -18,8 +18,6 @@ metadata:
 **Tells you what the account did, why it changed, and what to do about it — with a number behind
 every recommendation.**
 
-[Source tag: Google Ads]
-
 The account-level average is the most misleading figure in Google Ads. It blends Display
 click-through rates with Search, lets branded traffic flatter every efficiency number, and hides a
 Performance Max campaign quietly taking credit for conversions Shopping earned. Meanwhile a cost per
@@ -55,8 +53,8 @@ layer gets wrong.
 the brand campaign list, the timezone — if saved context or this conversation has it, use it.
 
 **Speak at call two.** **Coverage prunes the run** — no impression-share columns means section E's
-demand read is dead, so don't query for it, just say so. **Missing data is a line in the output, not
-a gate.** **Don't narrate steps** — the user wants the review, not the itinerary.
+demand read can't run, so don't query for it, say so and name the fix. **Missing data is a line in
+the output, not a gate.** **Don't narrate steps** — the user wants the review, not the itinerary.
 
 ## A. Connect (HARD GATE)
 
@@ -86,17 +84,24 @@ much of the rest happens, and it's the first thing they hear.
 | Cost + clicks + impressions + campaign | The headline numbers | Nothing runs. Say so and stop |
 | A date column at daily grain | Week-on-week and month-on-month in E | Totals only, no comparison. Don't invent a daily rate |
 | Campaign type | The fair breakdown | Say the headline click-through rate and click cost are mixing incomparable formats. Infer nothing |
-| Impression share, lost to budget, lost to rank | The missing-demand read | That section is dead. Note that a source carrying them can be added — demand missed can't be read from spend shape |
+| Impression share, lost to budget, lost to rank | The missing-demand read | That section can't run yet. Demand missed can't be read from spend shape. Name the fix from the table below |
 | Conversion action name | One named conversion, not a blended total | Say that which conversion you counted is unverifiable, and point at the conversion tracking audit |
 | Currency, where accounts share a dataflow | One total | Report per account rather than a mixed total |
 
 Say **"not checkable from this data"** — never imply a check ran clean when it didn't run.
 
+**A missing column is one of three things, and they have different fixes.** Name which one you think
+it is rather than reporting the column as unavailable.
+
+| Why it's missing | How you can tell | The fix |
+|---|---|---|
+| The report type isn't in the dataflow | Nothing at that grain exists — no search terms anywhere, no keyword rows, no asset groups | Add a Google Ads source with that report type to the same dataflow. A dataflow takes unlimited sources |
+| No report type carries it in the shape you need | The report type is there but the column isn't, or it's a field combination no packaged report groups that way — hourly segments, ad-group-level conversion actions | Custom GAQL, which pulls exactly the fields named. Route to `google-ads-custom-gaql`; don't hand-write the query here |
+| No Google Ads credential | The data reaches Coupler.io through a warehouse or another platform's connector, and no Google Ads source exists in any dataflow | The user connects Google Ads. That's a consent step for them, not a dead end |
+
 **Early exit.** Cost and clicks only, no dates and no campaign type: give the totals, say what the
-missing columns cost, offer the source, stop. Don't build a full review shape around four numbers,
-and don't offer to chart them. Where the ad data arrives through a warehouse rather than the native
-connector, expect no impression share, no campaign type, no search terms and no keywords — and
-adding a native report type will not fix it, because that needs a change upstream.
+missing columns cost, name the fix from the table above, stop. Don't build a full review shape around
+four numbers, and don't offer to chart them.
 
 ## D. Compute
 
@@ -104,12 +109,15 @@ Anchor to the **last complete day in the account's timezone** and name that date
 partial, and a partial day makes a healthy account look like it collapsed.
 
 One query, not six — current period and prior period as separate labelled blocks, account level and
-campaign level together. Drop any block C marked dead.
+campaign level together. Drop any block C said couldn't run.
 
 **Rebuild every rate from summed totals** — the average of several campaigns' cost-per-acquisition
-figures is not the account's. **Check cost magnitude before quoting any figure**; some datasets carry
-costs in millionths, and getting it wrong scales every finding by a million. Count **one** conversion
-action and say which.
+figures is not the account's. Count **one** conversion action and say which.
+
+**The column name tells you the unit.** `Cost: Amount spend` is money — Coupler.io labels and formats
+it that way. A column still named `cost_micros`, or any `*_micros`, is raw from the Google Ads API and
+needs dividing by 1,000,000. Raw names show up in Custom GAQL sources and in the report types
+Coupler.io doesn't relabel, so read the schema rather than assuming either way. Say which you found.
 
 ## E. What to conclude
 
@@ -122,7 +130,13 @@ never a wildcard match on the word "brand"** — campaign names contain it in no
 the match silently mis-buckets spend.
 
 **The demand you're missing.** Per Search and Shopping campaign, report share won, lost to budget,
-and lost to rank, then act on the split:
+and lost to rank, then act on the split.
+
+**Never sum or average impression share across dates.** These are daily ratios, so `AVG()` over a
+30-day window is wrong and `SUM()` is meaningless. Recover eligible impressions per row first,
+`impressions / search_impression_share`, sum those and the impressions, then divide. Do the same for
+the lost-to-budget and lost-to-rank shares. Quoting a raw average here is the single easiest way to
+hand someone a confident wrong number.
 
 | Pattern | Meaning | Action |
 |---|---|---|
@@ -228,6 +242,7 @@ another separate stop. Every sibling reads this.
 | The gap sits inside Performance Max | `google-ads-pmax-transparency` |
 | An inherited account needs its configuration checked | `google-ads-settings-audit` |
 | The output is for a client, not the operator | `google-ads-client-report` |
+| No packaged report type carries the metric you need | `google-ads-custom-gaql` |
 | Platforms other than Google Ads are in scope | `ppc-analytics` |
 
 ## Next Question (REQUIRED)
