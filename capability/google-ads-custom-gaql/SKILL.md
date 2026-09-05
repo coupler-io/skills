@@ -114,6 +114,8 @@ Set these params on `create-dataflow-source` (or `update-dataflow-source` if a G
 
 A dataflow accepts unlimited sources, so this is added alongside whatever is already there. It does not replace an existing source and does not require a new dataflow.
 
+**If the GAQL data will be combined with a packaged report, put both sources in the same dataflow.** `create-dataset` can only reference datasets from the same dataflow, so splitting them across two dataflows makes them impossible to join later without redoing the source.
+
 ### Step 7: Run and Verify
 
 Call `run-dataflow`, then `get-schema` on the resulting dataset. Report what you find before anyone analyses it.
@@ -127,9 +129,26 @@ Call `run-dataflow`, then `get-schema` on the resulting dataset. Report what you
 
 Coupler.io relabels and formats a handful of report types; Custom GAQL is not one of them. Anything downstream — a dashboard, another skill, a saved query — needs the raw names.
 
-### Step 8: Report and Hand Off
+### Step 8: Combine With a Packaged Report, If Both Are in Play
 
-Confirm the dataflow and dataset, the resource queried, the date window and whether it rolls, and which columns need dividing by 1,000,000.
+**Each source produces its own dataset.** A GAQL source added next to a packaged report type gives the dataflow two separate tables, not one wider one. If the answer needs columns from both — GAQL for the field nobody else has, the packaged report for everything else — build a SQL dataset over them with `create-dataset`.
+
+Call it on the dataflow, referencing each dataset by its `table_name` from `list-datasets`. Read `get-schema` on both first and take each `columnName` verbatim, in double quotes — the two sides do not name things alike, and that is the whole difficulty here.
+
+| Trap | What to do |
+|---|---|
+| The two sides name the same thing differently | `"Campaign: Campaign name"` on the packaged side, `campaign.name` or similar on the GAQL side. Join on IDs where you have them, not display names |
+| Units differ across the join | The packaged side is already currency, the GAQL side is `*_micros`. Divide before combining, never after, and alias the result so no one has to remember |
+| Grains differ | Joining daily campaign rows to hourly rows multiplies the daily metrics across every hour. Aggregate one side to the other's grain first |
+| Appending instead of joining | Two datasets covering the same campaigns and dates double the spend when stacked. Append only when the rows are genuinely disjoint |
+
+Alias every output column with `AS` — the query is stored and re-runs on each refresh, and the aliases pin the names this dataset exposes. **Give the user the `preview_url` from the result**, which is how they check the output is right.
+
+If a plain Append or Join covers it, that's available in the dataset step and is simpler than SQL. Reach for `create-dataset` when the combination needs real logic.
+
+### Step 9: Report and Hand Off
+
+Confirm the dataflow and dataset, the resource queried, the date window and whether it rolls, and which columns need dividing by 1,000,000. Where you built a combined dataset, say which datasets it draws on and give its `preview_url`.
 
 **This skill configures the source. It does not do the analysis.** Route back to whichever skill asked, or by the user's original question — `google-ads-performance-review`, `google-ads-waste-and-scale`, `google-ads-conversion-tracking-audit` and the rest of the Google Ads pack.
 
@@ -146,6 +165,9 @@ Confirm the dataflow and dataset, the resource queried, the date window and whet
 
 **A packaged report type would have worked:**
 > {Report type} already carries every field you asked for, with labelled columns and converted currency. Want that instead of a Custom GAQL source?
+
+**Datasets to combine sit in different dataflows:**
+> The GAQL data is in {dataflow A} and the report data is in {dataflow B}, and a SQL dataset can only combine datasets from the same dataflow. I can rebuild the GAQL source in {dataflow B} so they can be joined — want me to?
 
 ## Guidelines
 
