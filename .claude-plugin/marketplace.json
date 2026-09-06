@@ -79,7 +79,8 @@
       "description": "Utility skills for Coupler.io workflows.",
       "category": "productivity",
       "skills": [
-        "./utilities/coupler-live-artifact"
+        "./utilities/coupler-live-artifact",
+        "./skill-review"
       ]
     },
     {
