@@ -77,7 +77,7 @@ high. Otherwise pick, name it, and go.
 | A conversion metric and its cost | Cost per result, CVR, the decomposition | Traffic metrics only. Say plainly that no efficiency verdict is possible |
 | Conversion value | ROAS | Report cost per result only, and say ROAS is not checkable |
 | Two comparable periods of history | Every delta in the skill | A point-in-time snapshot. Say the "what changed" half cannot run |
-| Video play metrics | The video funnel, and hook rate as an early signal | Skip the funnel and say so once; do not silently drop it on a video platform |
+| Video play metrics | The video funnel, and hook rate as an early signal | Skip the funnel and say so once; do not silently drop it on a video platform. Say they are report metrics to select in the wizard, not data TikTok withholds |
 | Reach and frequency | Whether a CPM rise is saturation | CPM movement is visible but unexplained |
 | Ad grain | Attributing a campaign move to one creative | Campaign grain only. Say the cause may sit one level down |
 

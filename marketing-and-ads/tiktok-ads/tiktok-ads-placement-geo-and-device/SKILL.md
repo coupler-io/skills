@@ -78,15 +78,22 @@ not have it.
 |---|---|---|
 | Spend, impressions, clicks by dimension | Any read at all | Nothing runs. Say so and stop |
 | A conversion metric by dimension | Cost per result per placement, country, device — the point | Traffic ranking only, which on this skill is actively misleading: the partner network wins every traffic ranking and loses every cost-per-result one. Say that plainly |
-| Placement dimension | The partner-network read, the highest-value finding here | The largest question goes unanswered. Say the audience report can carry placement and it should be added |
-| Country | The geo read and its exclusion candidates | Skip and say so |
-| Province or region | Sub-country reads on large markets | Country granularity only, which hides most of the effect in the US and Brazil |
-| Operating system | The device read | Skip and say so |
-| Network type | Whether poor mobile connections explain a conversion-rate gap | The device gap is visible but unexplained |
+| Placement dimension | The partner-network read, the highest-value finding here | The largest question goes unanswered. Say an audience report with the **Placement** dimension would answer it |
+| Country | The geo read and its exclusion candidates | Skip, and say the **Country code** audience dimension supplies it |
+| Province or region | Sub-country reads on large markets | Country granularity only, which hides most of the effect in the US and Brazil. **Province** and **DMA region** are audience dimensions that would fix it |
+| Operating system | The device read | Skip, and say the **Platform** audience dimension supplies it. **Device brand** is on the same list |
+| Network type | Whether poor mobile connections explain a conversion-rate gap | The device gap is visible but unexplained. The **Ac** audience dimension carries connection type |
 | Hourly rows | Hour of day and day of week | Say the dayparting read needs hourly rows in the dataflow. Never approximate it |
 | Enough conversions per cell | A defensible verdict on any cell | Cells below the floor are listed as unproven, never as losers |
 
-**"Not checkable from this data" is a finding. "Clean" is a claim.**
+**Every dimension above lives on one setting: the audience dimensions of an audience report.** The
+four `Audience …` report types take a dimension selection covering placement, country code, province,
+DMA region, platform, device brand, connection type, language, age, gender and the interest
+categories. So a missing split is a dimension nobody selected, not something TikTok withholds.
+
+**Say it can be added — never offer to add it yourself.** TikTok's audience dimensions and report
+metrics are set in the Coupler.io wizard and are not exposed to this assistant, so the user makes that
+change. Tell them exactly which dimension to pick and on which report type.
 
 ## D. Compute
 

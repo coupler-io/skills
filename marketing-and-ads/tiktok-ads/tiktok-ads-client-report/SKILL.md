@@ -79,7 +79,7 @@ month last year, or both.
 | Conversion value | ROAS, which most clients read first | Cost per result only. Say it once in the report, not as an apology |
 | The full period with no gaps | A defensible total | A gap in a client report is a credibility problem. Name the dates and say so before building anything |
 | A comparison period | Month on month, and separating account from market | A standalone month. Say the report has no trend and offer to add one next cycle |
-| Video play metrics | The attention section clients expect on TikTok | Skip it and say so rather than substituting impressions |
+| Video play metrics | The attention section clients expect on TikTok | Skip it and say so rather than substituting impressions. They are report metrics the user can select in the wizard for next cycle |
 | Ad grain | Naming the creative that drove the month | Campaign-level narrative only |
 
 **"Not checkable from this data" is a finding.** In a client report it goes in the appendix, named,
