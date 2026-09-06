@@ -155,3 +155,17 @@ Each ICP is its own plugin, so you install only what you need. Available plugins
 ```
 
 **Manual** — copy any skill folder (each contains a `SKILL.md`) into your project's `.claude/skills/` directory. The skill activates automatically when its trigger phrases are matched.
+
+---
+
+## Contributing a skill
+
+**Run `skill-review` against your skill before opening the PR.** Ask Claude to "review this skill" with the file open, or point it at your branch. It checks the eleven defects this repo has actually shipped — asserted units, dead ends that a Coupler.io source would fix, fixes the assistant cannot perform, non-additive metrics, internal contradictions, claims recalled rather than verified — plus frontmatter conventions, cross-references and manifest wiring. It is faster than a human catching the same things in review, and every entry on its list got there because something shipped with it.
+
+The same skill is worth running when you review someone else's.
+
+**Placement and frontmatter.** Put the skill under its ICP directory, or `capability/` for a cross-ICP building block, or `utilities/` for a general tool. `name` must be exactly the folder slug, since that is how sibling skills cross-reference it. `metadata.category` should be one already in use, `metadata.sources` the integration name verbatim from `get-integration` (or `[]`), and `metadata.version` `1.0.0` for something new.
+
+**Wiring.** Register the skill in the right plugin in `.claude-plugin/marketplace.json` and add a row to the table above. Leave `skills-index.json` to the generator. Note that the repo's `.gitignore` allowlists root entries, so a new top-level directory needs its own `!` line.
+
+**One thing to check before bumping the manifest version:** if another open PR is bumping it to the same value, both merge without a git conflict and the second bump is silently lost.
