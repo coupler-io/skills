@@ -68,14 +68,22 @@ placement and position together; position is where the Audience Network finding 
 | Spend and a conversion event | Cost per outcome at all | Nothing runs beyond a CPM comparison, and a CPM comparison recommends exactly the wrong placements |
 | Publisher platform | Facebook against Instagram against Audience Network | The headline finding is unavailable. A publisher platform breakdown on the source would light it up |
 | Platform position | Feed against Reels against Stories against Explore | Platform-level only; you cannot separate Reels from Feed, which is usually the interesting split |
-| Country or region | Geographic read and exclusion candidates | Skip the section and say why |
-| Device platform or impression device | Mobile against desktop | Skip the section and say why |
-| Hour-of-day breakdown | The dayparting curve | Skip it. Say a scheduling read needs an hourly breakdown, and say what it would be worth |
+| Country or region | Geographic read and exclusion candidates | Skip the section, and say a `country, region` breakdown on the source would supply it |
+| Device platform or impression device | Mobile against desktop | Skip the section, and name `device_platform` or `impression_device` as the breakdown that supplies it |
+| Hour-of-day breakdown | The dayparting curve | Skip it. Say a scheduling read needs the hourly-stats breakdown, name what it would be worth, and don't approximate it |
 | Enough volume per cell | Any verdict at all | Report cells below the floor as unreadable rather than as poor performers |
+
+**Every dimension in that table is a breakdown setting, not a missing feature.** Meta Ads reaches
+Coupler.io through one analytics report type, Insights, and what it returns is decided by two
+selections on the source: **Metrics and dimensions** for the measures, **Breakdowns** for the splits.
+Publisher platform, platform position, country, region, device platform, impression device and hourly
+stats are all on the breakdown list. So name the selection that would answer the question rather than
+reporting the dimension as unavailable.
 
 **Breakdowns do not combine freely.** Each breakdown multiplies the number of rows and divides the
 volume per cell, so a placement-by-country-by-device read on a modest account produces cells with two
-conversions each. Read one dimension at a time and say so.
+conversions each. Read one dimension at a time and say so. One source carries one breakdown selection,
+so two dimensions usually means two sources on the same dataflow.
 
 **"Not checkable from this data" is a finding. "Clean" is a claim.**
 

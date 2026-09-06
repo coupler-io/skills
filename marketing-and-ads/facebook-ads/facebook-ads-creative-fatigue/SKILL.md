@@ -71,7 +71,7 @@ frequency read instead of a decay curve.
 | A conversion event | Cost per result by days live — the number that matters | CTR decay only. Say plainly that CTR decay is a leading indicator, not the cost |
 | A frequency distribution | How many people are at high exposure rather than the average | Average frequency only, which hides the tail. A frequency value breakdown would light it up |
 | Ad launch date or first-seen date | Days live, and the measured lifespan | Derive first-seen from the earliest row and say it is bounded by the dataset window |
-| Video metrics | Whether the hook decays before the body | Skip silently on image accounts |
+| Video metrics | Whether the hook decays before the body | Skip silently on image accounts. On a video account, name them as metrics to select on the Insights source |
 
 **"Not checkable from this data" is a finding. "Clean" is a claim.**
 

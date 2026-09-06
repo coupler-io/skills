@@ -69,7 +69,7 @@ brief for the next round needs to know what the winners actually were, not just 
 | A conversion event | Cost per outcome — the only honest ranking | CTR ranking only, and you say plainly that this ranks attention, not results |
 | Inline link clicks | The real click step | Headline clicks include likes, comments and expands. Say the funnel step is inflated |
 | Landing page views | Separating the click step from the page step | You cannot tell a slow page from a weak ad. Say so before blaming either |
-| Video play, ThruPlay and quartile metrics | Hook rate, hold rate, completion | No video read. Skip the section silently on image-only accounts; say so on video accounts |
+| Video play, ThruPlay and quartile metrics | Hook rate, hold rate, completion | No video read. Skip the section silently on image-only accounts. On a video account say so, and name them as metrics to select on the Insights source rather than as data Meta doesn't have |
 | Quality, engagement rate and conversion rate rankings | The diagnosis triangle | Diagnosis falls back to the funnel steps alone, which is workable but blunter |
 | Asset-level breakdown | Which image, headline or body text is doing the work inside Advantage+ creative | Ad-level only. Where dynamic creative is on, say the ad-level read is an average across assets and may hide the finding |
 | Creative attributes — format, copy, call to action | The what-the-winners-share brief | Report winners by name and say the pattern could not be derived |

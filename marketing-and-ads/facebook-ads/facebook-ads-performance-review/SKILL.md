@@ -84,6 +84,12 @@ reaches back far enough for the comparison the user asked for.
 | Objective | Comparing like with like | Campaigns on different objectives get compared anyway; flag it as a caveat |
 | Prior-period rows in the same dataset | The comparison | A rolling window caps the comparison. State the cap; never extrapolate past it |
 
+**A missing metric here is a selection, not a limit.** Meta Ads arrives through one analytics report
+type, Insights, and its **Metrics and dimensions** setting decides which measures come back — the
+default is about a dozen, and reach, frequency, inline link clicks, video and result metrics are all
+on the list to add. Name the metric to select rather than reporting it as unavailable. Splits like
+placement, country or device come from the separate **Breakdowns** setting.
+
 **"Not checkable from this data" is a finding. "Clean" is a claim.**
 
 ## D. Compute
