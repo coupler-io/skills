@@ -175,19 +175,34 @@ Each ICP is its own plugin, so you install only what you need. Available plugins
 | `coupler-finance` | finance-analytics |
 | `coupler-sales` | sales-analytics |
 | `coupler-ecommerce` | ecom-analytics |
-| `coupler-marketing-ads` | marketing-analytics, ppc-analytics, + the 8 Google Ads and 11 TikTok Ads deep dives |
+| `coupler-marketing-ads` | marketing-analytics, ppc-analytics, + the 8 Google Ads, 11 Meta / Facebook Ads and 11 TikTok Ads deep dives |
 | `coupler-capability` | get-started, create-dataflow, google-ads-custom-gaql, generate-data-set-context, refine-prompt, report-generation |
 | `coupler-utilities` | coupler-live-artifact |
 | `humanizer` | humanizer (+ `/humanize` command) |
 
-**As a Claude Code plugin (repo-wide)** — add to your `.claude/settings.json`:
+Plugin skills are namespaced by their plugin, so they can be invoked explicitly as `/coupler-finance:finance-analytics`. Most of them are model-invoked too — Claude reaches for them when the request matches their description. If the install summary says `Run /reload-plugins to activate.`, run that.
+
+**Install only the plugin you need.** Every skill's description stays in context for the whole session, so a plugin's cost scales with how many skills it carries. `coupler-marketing-ads` bundles 32 and adds roughly 5.5k tokens to every session; the single-skill plugins add a few hundred. Check any plugin before installing it:
+
+```
+claude plugin details coupler-marketing-ads@coupler-io-skills
+```
+
+**For a whole team** — register the marketplace in the repository's `.claude/settings.json` so collaborators get it once they trust the folder:
 
 ```json
 {
-  "plugins": [
-    "https://github.com/coupler-io/skills"
-  ]
+  "extraKnownMarketplaces": {
+    "coupler-io-skills": {
+      "source": {
+        "source": "github",
+        "repo": "coupler-io/skills"
+      }
+    }
+  }
 }
 ```
 
-**Manual** — copy any skill folder (each contains a `SKILL.md`) into your project's `.claude/skills/` directory. The skill activates automatically when its trigger phrases are matched.
+This adds the marketplace, not the plugins. Each person still runs `/plugin install <plugin>@coupler-io-skills` to pick what they want. To pre-enable plugins as well, see [`enabledPlugins`](https://code.claude.com/docs/en/settings-reference#plugin-settings).
+
+**Manual** — copy any skill folder (each contains a `SKILL.md`) into your project's `.claude/skills/` directory. Skills installed this way are not namespaced, and Claude activates them when the request matches their description.
