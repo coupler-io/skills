@@ -182,6 +182,12 @@ Each ICP is its own plugin, so you install only what you need. Available plugins
 
 Plugin skills are namespaced by their plugin, so they can be invoked explicitly as `/coupler-finance:finance-analytics`. Most of them are model-invoked too — Claude reaches for them when the request matches their description. If the install summary says `Run /reload-plugins to activate.`, run that.
 
+**Install only the plugin you need.** Every skill's description stays in context for the whole session, so a plugin's cost scales with how many skills it carries. `coupler-marketing-ads` bundles 32 and adds roughly 5.5k tokens to every session; the single-skill plugins add a few hundred. Check any plugin before installing it:
+
+```
+claude plugin details coupler-marketing-ads@coupler-io-skills
+```
+
 **For a whole team** — register the marketplace in the repository's `.claude/settings.json` so collaborators get it once they trust the folder:
 
 ```json
