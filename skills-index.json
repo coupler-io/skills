@@ -64,6 +64,105 @@
       "description": "Use this skill when the user wants to analyze financial performance, review P&L health, monitor MRR/ARR, investigate margin or cost trends, build a finance report, check cash flow or runway, or answer questions about their accounting/billing data. Triggers include 'how is revenue trending', 'gross margin', 'MRR breakdown', 'churn impact on ARR', 'why did costs go up', 'operating expenses', 'cash runway', 'P&L review', 'EBITDA', 'cost per acquisition trend', 'pull my QuickBooks numbers', 'finance report'."
     },
     {
+      "name": "facebook-ads-audience-analysis",
+      "path": "marketing-and-ads/facebook-ads/facebook-ads-audience-analysis",
+      "category": "marketing-and-ads",
+      "sources": [
+        "Facebook Ads (Meta Ads)"
+      ],
+      "description": "Use for \"which audiences are working on Meta\", \"is my lookalike better than broad\", \"is retargeting worth it\", \"who is actually converting\", \"should I still be running interest targeting\", \"which age group should I bid on\", or \"my audiences feel tired\" — even when the user never says \"audience\". This is the targeting read: which audiences earn their spend and which are paying for the same people twice. Meta / Facebook Ads only."
+    },
+    {
+      "name": "facebook-ads-budget-pacing",
+      "path": "marketing-and-ads/facebook-ads/facebook-ads-budget-pacing",
+      "category": "marketing-and-ads",
+      "sources": [
+        "Facebook Ads (Meta Ads)"
+      ],
+      "description": "Use for \"am I on track with my Meta budget\", \"will I overspend this month\", \"how much should I be spending a day\", \"which ad sets are capped\", \"we underspent and I don't know why\", \"why won't this ad set spend\", or a mid-month spend check — even when the user never says \"pacing\". Also use when someone needs to know whether adding budget to an ad set would do anything at all. Meta / Facebook Ads only."
+    },
+    {
+      "name": "facebook-ads-client-report",
+      "path": "marketing-and-ads/facebook-ads/facebook-ads-client-report",
+      "category": "marketing-and-ads",
+      "sources": [
+        "Facebook Ads (Meta Ads)"
+      ],
+      "description": "Use when someone asks for a monthly Meta report for a client, wants the Facebook section of a client deck built, needs last month's paid social written up, asks for an end-of-month social ads report, asks \"what do I tell the client\", or asks how to present a target they missed — even when they never say the word \"report\". For agencies and in-house teams reporting upward. Meta / Facebook Ads only."
+    },
+    {
+      "name": "facebook-ads-creative-analysis",
+      "path": "marketing-and-ads/facebook-ads/facebook-ads-creative-analysis",
+      "category": "marketing-and-ads",
+      "sources": [
+        "Facebook Ads (Meta Ads)"
+      ],
+      "description": "Use for \"which creative is working on Meta\", \"which ads should I put money behind\", \"what should the next round of creative look like\", \"why is my quality ranking below average\", \"is my hook working\", \"which video is holding attention\", or \"what do my winners have in common\" — even when the user never says \"creative\". This is the which-ads-win read; for which winning ads are dying, use the fatigue skill instead. Meta / Facebook Ads only."
+    },
+    {
+      "name": "facebook-ads-creative-fatigue",
+      "path": "marketing-and-ads/facebook-ads/facebook-ads-creative-fatigue",
+      "category": "marketing-and-ads",
+      "sources": [
+        "Facebook Ads (Meta Ads)"
+      ],
+      "description": "Use for \"is my Meta creative burning out\", \"my CTR is dropping\", \"my CPMs keep rising\", \"how long before I need new ads\", \"which ads should I refresh\", \"how much new creative do I need a month\", or \"this ad used to work\" — even when the user never says \"fatigue\". This is the how-long-has-it-left read; for which creative wins in the first place, use the creative analysis skill instead. Meta / Facebook Ads only."
+    },
+    {
+      "name": "facebook-ads-performance-review",
+      "path": "marketing-and-ads/facebook-ads/facebook-ads-performance-review",
+      "category": "marketing-and-ads",
+      "sources": [
+        "Facebook Ads (Meta Ads)"
+      ],
+      "description": "Use for \"how are my Meta ads doing\", \"why did my cost per result go up\", \"what changed on Facebook this month\", \"which campaigns improved\", \"my CPMs are climbing\", or a weekly or monthly account check — even when the user never says \"review\". Also use when someone wants the baseline read before deciding anything else in the account. Meta / Facebook Ads only."
+    },
+    {
+      "name": "facebook-ads-pixel-and-attribution-audit",
+      "path": "marketing-and-ads/facebook-ads/facebook-ads-pixel-and-attribution-audit",
+      "category": "marketing-and-ads",
+      "sources": [
+        "Facebook Ads (Meta Ads)"
+      ],
+      "description": "Use for \"can I trust my Meta conversion numbers\", \"why does Facebook claim more purchases than Shopify\", \"are my conversions double counted\", \"is my pixel firing\", \"how much of this is view-through\", \"my conversions dropped overnight\", or \"how much spend has no tracking\" — and whenever someone doubts the numbers, even without the word \"audit\". Run before trusting any cost or return conclusion about the account. Meta / Facebook Ads only."
+    },
+    {
+      "name": "facebook-ads-placement-geo-and-device",
+      "path": "marketing-and-ads/facebook-ads/facebook-ads-placement-geo-and-device",
+      "category": "marketing-and-ads",
+      "sources": [
+        "Facebook Ads (Meta Ads)"
+      ],
+      "description": "Use for \"is Audience Network wasting my money\", \"should I turn off automatic placements\", \"how are Reels doing versus Feed\", \"which countries are working on Meta\", \"is mobile or desktop converting\", \"what time of day should I be running\", or \"where is my budget actually going\" — even when the user never says \"placement\". Covers where and when the ads are shown, and what each of those is worth. Meta / Facebook Ads only."
+    },
+    {
+      "name": "facebook-ads-settings-audit",
+      "path": "marketing-and-ads/facebook-ads/facebook-ads-settings-audit",
+      "category": "marketing-and-ads",
+      "sources": [
+        "Facebook Ads (Meta Ads)"
+      ],
+      "description": "Use for \"audit my Meta ads settings\", \"is this account set up right\", \"I inherited this Facebook account, what's wrong with it\", \"are the Advantage+ toggles on\", \"check my campaign settings\", \"why is this ad set optimising for the wrong thing\", or \"new client account review\" — even when the user never says \"settings\". Covers optimisation goals, budget level, bid strategy, Advantage+ and expansion toggles, attribution setting and delivery issues, each priced in the spend flowing through it. Most of these default in Meta's favour. Meta / Facebook Ads only."
+    },
+    {
+      "name": "facebook-ads-structure-and-learning-review",
+      "path": "marketing-and-ads/facebook-ads/facebook-ads-structure-and-learning-review",
+      "category": "marketing-and-ads",
+      "sources": [
+        "Facebook Ads (Meta Ads)"
+      ],
+      "description": "Use for \"is my Meta account built right\", \"why are my ad sets stuck in learning\", \"do I have too many ad sets\", \"should I consolidate\", \"why won't this ad set exit learning\", \"I inherited this Facebook account, what's wrong with it\", or \"my delivery keeps restarting\" — even when the user never says \"structure\". Covers how the account is organised and what that costs it in learning. Meta / Facebook Ads only."
+    },
+    {
+      "name": "facebook-ads-waste-and-scale",
+      "path": "marketing-and-ads/facebook-ads/facebook-ads-waste-and-scale",
+      "category": "marketing-and-ads",
+      "sources": [
+        "Facebook Ads (Meta Ads)"
+      ],
+      "description": "Use for \"where am I wasting money on Meta\", \"which ad sets should I pause\", \"what should I turn off\", \"which campaigns should I scale\", \"clean up my Facebook account\", \"what do I cut and where does the money go\" — even without the words \"waste\" or \"scale\". Also use when someone wants a budget-neutral reallocation proposal for the account. Meta / Facebook Ads only."
+    },
+    {
       "name": "google-ads-budget-pacing",
       "path": "marketing-and-ads/google-ads/google-ads-budget-pacing",
       "category": "marketing-and-ads",
@@ -156,6 +255,105 @@
         "Google Ads"
       ],
       "description": "Analyze paid-ads (PPC) performance over the ad data connected in your Coupler.io workspace — spend, impressions, clicks, CTR, CPC, CPM, conversions, CPA, ROAS — with per-platform funnel traces, an efficiency-first comparison table, brand vs non-brand splits, budget pacing, and a weekly PPC review. Use this skill when the user asks \"how are my ads performing\", \"weekly PPC report\", \"why did CPA spike\", \"ROAS by platform\", \"Facebook vs Google Ads\", \"compare Meta and Google\", \"am I overspending my ad budget\", \"which campaigns should I scale or pause\", \"ad fatigue check\", \"blended CAC\". Facebook Ads + Google Ads are first-class; other ad platforms best-effort. It never silently sums platform-reported conversions across platforms — attribution double-counts; it reports per platform and computes blended CAC from an independent source when one exists. Paid-ads deep dives only: for cross-channel marketing (email, social, SEO) use marketing-analytics; report formatting composes report-generation."
+    },
+    {
+      "name": "tiktok-ads-audience-analysis",
+      "path": "marketing-and-ads/tiktok-ads/tiktok-ads-audience-analysis",
+      "category": "marketing-and-ads",
+      "sources": [
+        "TikTok Ads"
+      ],
+      "description": "Use for \"which audiences are working on TikTok\", \"is interest targeting worth it\", \"should I just go broad\", \"who is actually converting\", \"which age group should I bid on\", \"are my behaviour segments earning their spend\", or \"is my targeting or my creative doing the work\" — even when the user never says \"audience\". This is the who-converts read: which segments earn their spend and whether targeting is buying anything the creative was not already buying. TikTok Ads only."
+    },
+    {
+      "name": "tiktok-ads-budget-pacing",
+      "path": "marketing-and-ads/tiktok-ads/tiktok-ads-budget-pacing",
+      "category": "marketing-and-ads",
+      "sources": [
+        "TikTok Ads"
+      ],
+      "description": "Use for \"am I on track with my TikTok budget\", \"will I overspend this month\", \"how much should I be spending a day\", \"which ad groups are capped\", \"we underspent and I don't know why\", \"why won't this ad group spend\", or a mid-month spend check — even when the user never says \"pacing\". Also use when someone needs to know whether adding budget to an ad group would do anything at all. TikTok Ads only."
+    },
+    {
+      "name": "tiktok-ads-client-report",
+      "path": "marketing-and-ads/tiktok-ads/tiktok-ads-client-report",
+      "category": "marketing-and-ads",
+      "sources": [
+        "TikTok Ads"
+      ],
+      "description": "Use when someone asks for a monthly TikTok report for a client, wants the TikTok section of a client deck built, needs last month's paid social written up, asks for an end-of-month TikTok report, asks \"what do I tell the client\", or asks how to present a target they missed — even when they never say the word \"report\". For agencies and in-house teams reporting upward. TikTok Ads only."
+    },
+    {
+      "name": "tiktok-ads-creative-analysis",
+      "path": "marketing-and-ads/tiktok-ads/tiktok-ads-creative-analysis",
+      "category": "marketing-and-ads",
+      "sources": [
+        "TikTok Ads"
+      ],
+      "description": "Use for \"which creative is working on TikTok\", \"which videos should I put money behind\", \"what should the next round of creative look like\", \"is my hook working\", \"which video is holding attention\", \"why do people scroll past my ad\", or \"what do my winners have in common\" — even when the user never says \"creative\". This is the which-videos-win read; for which winning videos are dying, use the fatigue skill instead. TikTok Ads only."
+    },
+    {
+      "name": "tiktok-ads-creative-fatigue-and-velocity",
+      "path": "marketing-and-ads/tiktok-ads/tiktok-ads-creative-fatigue-and-velocity",
+      "category": "marketing-and-ads",
+      "sources": [
+        "TikTok Ads"
+      ],
+      "description": "Use for \"is my TikTok creative burning out\", \"my hook rate is dropping\", \"my CPMs keep rising\", \"how long before I need new videos\", \"which ads should I refresh\", \"how much new creative do I need a month\", \"how many videos should we shoot\", or \"this video used to work\" — even when the user never says \"fatigue\". This is the how-long-has-it-left read and the production-cadence number; for which videos win in the first place, use the creative analysis skill. TikTok Ads only."
+    },
+    {
+      "name": "tiktok-ads-gmv-max-and-shop-review",
+      "path": "marketing-and-ads/tiktok-ads/tiktok-ads-gmv-max-and-shop-review",
+      "category": "marketing-and-ads",
+      "sources": [
+        "TikTok Ads"
+      ],
+      "description": "Use for \"how is GMV Max doing\", \"should I use GMV Max or run campaigns manually\", \"is GMV Max cannibalising my other campaigns\", \"which products are selling on TikTok Shop\", \"my GMV Max ROI dropped\", \"I can't see anything inside GMV Max\", or \"is TikTok Shop worth the spend\" — even when the user only says \"Shop ads\" or \"my TikTok black box\". TikTok Ads only, and only for accounts running TikTok Shop."
+    },
+    {
+      "name": "tiktok-ads-performance-review",
+      "path": "marketing-and-ads/tiktok-ads/tiktok-ads-performance-review",
+      "category": "marketing-and-ads",
+      "sources": [
+        "TikTok Ads"
+      ],
+      "description": "Use for \"how are my TikTok ads doing\", \"why did my cost per result go up\", \"what changed on TikTok this month\", \"which campaigns improved\", \"my CPMs are climbing\", \"my video views dropped\", or a weekly or monthly account check — even when the user never says \"review\". Also use when someone wants the baseline read before deciding anything else in the account. TikTok Ads only."
+    },
+    {
+      "name": "tiktok-ads-pixel-and-attribution-audit",
+      "path": "marketing-and-ads/tiktok-ads/tiktok-ads-pixel-and-attribution-audit",
+      "category": "marketing-and-ads",
+      "sources": [
+        "TikTok Ads"
+      ],
+      "description": "Use for \"can I trust my TikTok conversion numbers\", \"why does TikTok claim more purchases than Shopify\", \"are my conversions double counted\", \"is my pixel firing\", \"why do standard and real-time conversions disagree\", \"my conversions dropped overnight\", or \"how much spend has no tracking\" — and whenever someone doubts the numbers, even without the word \"audit\". Run before trusting any cost or return conclusion about the account. TikTok Ads only."
+    },
+    {
+      "name": "tiktok-ads-placement-geo-and-device",
+      "path": "marketing-and-ads/tiktok-ads/tiktok-ads-placement-geo-and-device",
+      "category": "marketing-and-ads",
+      "sources": [
+        "TikTok Ads"
+      ],
+      "description": "Use for \"is Pangle wasting my money\", \"should I turn off automatic placement\", \"how is Search Feed doing\", \"which countries are working on TikTok\", \"is iOS or Android converting\", \"what time of day should I be running\", or \"where is my budget actually going\" — even when the user never says \"placement\". Covers where and when the ads are shown, and what each of those is worth. TikTok Ads only."
+    },
+    {
+      "name": "tiktok-ads-structure-and-learning-review",
+      "path": "marketing-and-ads/tiktok-ads/tiktok-ads-structure-and-learning-review",
+      "category": "marketing-and-ads",
+      "sources": [
+        "TikTok Ads"
+      ],
+      "description": "Use for \"is my TikTok account built right\", \"why are my ad groups stuck in learning\", \"do I have too many ad groups\", \"should I consolidate\", \"why won't this ad group exit learning\", \"I inherited this TikTok account, what's wrong with it\", or \"my delivery keeps restarting\" — even when the user never says \"structure\". Covers how the account is organised and what that costs it in learning. TikTok Ads only."
+    },
+    {
+      "name": "tiktok-ads-waste-and-scale",
+      "path": "marketing-and-ads/tiktok-ads/tiktok-ads-waste-and-scale",
+      "category": "marketing-and-ads",
+      "sources": [
+        "TikTok Ads"
+      ],
+      "description": "Use for \"where am I wasting money on TikTok\", \"which ad groups should I pause\", \"what should I turn off\", \"which campaigns should I scale\", \"clean up my TikTok account\", \"find me negative keywords for Search Ads\", or \"what do I cut and where does the money go\" — even without the words \"waste\" or \"scale\". Also use when someone wants a budget-neutral reallocation proposal for the account. TikTok Ads only."
     },
     {
       "name": "sales-analytics",
