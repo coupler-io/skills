@@ -17,8 +17,6 @@ metadata:
 
 **Builds the report a client reads at month end — the kind that survives scrutiny.**
 
-[Source tag: Google Ads]
-
 Two failure modes bracket this job. A report that lists metrics without judgement makes the client do
 the analysis, and they'll conclude the agency isn't adding any. A report showing only wins destroys
 trust the first time the client finds the miss themselves — and they always do. The difference
@@ -262,6 +260,7 @@ first.
 | A KPI miss traces to keyword-level cost | `google-ads-keyword-and-quality-score-analysis` |
 | The gap sits inside Performance Max | `google-ads-pmax-transparency` |
 | An inherited account needs its configuration checked | `google-ads-settings-audit` |
+| A figure the report needs isn't in any packaged report type | `google-ads-custom-gaql` |
 | The report needs platforms other than Google Ads | `ppc-analytics` |
 
 ## Next Question (REQUIRED)

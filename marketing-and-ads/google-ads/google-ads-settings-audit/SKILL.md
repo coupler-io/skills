@@ -18,8 +18,6 @@ metadata:
 
 **Finds the configuration defects that cost money quietly, and puts a spend figure on each one.**
 
-[Source tag: Google Ads]
-
 Most of these settings default in Google's favour and never announce themselves. Search partners
 delivering traffic that behaves nothing like your core inventory, location targeting set to anyone
 merely *interested in* your area, recommendations applying themselves — none of it looks broken, and
@@ -226,6 +224,7 @@ intentional choice, and the audit stops being read.
 | The waste is in keywords and search terms, not settings | `google-ads-waste-and-scale` |
 | Quality score is the suspected cause of high click costs | `google-ads-keyword-and-quality-score-analysis` |
 | The findings are going to a client | `google-ads-client-report` |
+| No packaged report type carries the metric you need | `google-ads-custom-gaql` |
 | Platforms other than Google Ads are in scope | `ppc-analytics` |
 
 ## Next Question (REQUIRED)

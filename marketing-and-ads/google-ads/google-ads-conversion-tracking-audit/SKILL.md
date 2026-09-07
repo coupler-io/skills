@@ -18,8 +18,6 @@ metadata:
 **Tells you whether you can trust your Google Ads conversion numbers — before you move budget on
 them.**
 
-[Source tag: Google Ads]
-
 Every decision in the account rests on the conversion figure: what to scale, what to cut, what to
 tell the client. It is also the least reliable number in paid media, and it fails quietly. A
 micro-action flagged primary, a tag and a CRM import both firing on one event, a campaign with no
@@ -83,7 +81,7 @@ much of the rest happens, and it's the first thing they hear.
 | Column present | Live | Absent means |
 |---|---|---|
 | Cost + clicks + campaign | Untracked spend — the headline number | No headline. Say so; it's the finding people act on |
-| Conversion action name | Inventory · primary/secondary · duplicates | A conversion-action-level source would light these up — the default campaign report doesn't carry action names. Until it exists these checks are dead, and you **never** report "no duplicates found" |
+| Conversion action name | Inventory · primary/secondary · duplicates | The default Campaign performance report doesn't carry action names. **Campaign performance with conversion actions name** does, and it's one source away. Ad-group-level action breakdowns need Custom GAQL instead — route to `google-ads-custom-gaql`. Until one exists these checks can't run, and you **never** report "no duplicates found" |
 | Final URL / landing page | Tagging and UTM consistency | Tagging unchecked; any channel split built on those UTMs is unverified |
 | Conversion lag / days-to-conversion | Measured lag | 72h placeholder, labelled an assumption |
 | An independent source (Analytics, store, CRM) | Directional cross-check | Platform figures only |
@@ -92,10 +90,11 @@ Say **"not checkable from this data"** — never "clean". An audit that quietly 
 a false clean bill of health.
 
 **Early exit.** If only the first row is live, this is a one-number run: give the untracked-spend
-figure, say the other checks need a report type the workspace doesn't have, offer to add it, stop.
-Don't build a full audit shape around a single finding, and don't offer to chart it. Where the data
-arrives through a warehouse rather than the native connector, expect most dimensions to be absent and
-a native report type *not* to fix it.
+figure, say the other checks need a report type the dataflow doesn't have, name it, offer to add it,
+stop. Don't build a full audit shape around a single finding, and don't offer to chart it. Where the
+data arrives through a warehouse rather than a Google Ads source, the report types are still
+available — a dataflow takes unlimited sources, so a Google Ads source gets added alongside the
+warehouse one. That needs a Google Ads credential, which the user connects if they don't have it.
 
 ## D. Compute
 
@@ -103,8 +102,9 @@ One query, not five. It should carry the inventory by action, the untracked-spen
 the duplicate signal by action-and-campaign, and the account denominators — as separate labelled
 blocks in one result set. Add a lag block to the same call only if the schema showed a lag dimension.
 
-Anchor to the last complete day in the account's timezone. **Check cost magnitude before quoting any
-figure** — some datasets carry costs in millionths. Rebuild every rate from summed totals.
+Anchor to the last complete day in the account's timezone. Rebuild every rate from summed totals.
+**The column name tells you the unit** — `Cost: Amount spend` is money, anything still named
+`*_micros` is raw from the API and needs dividing by 1,000,000.
 
 ## E. What to conclude
 
@@ -216,6 +216,7 @@ cheaper.
 | Untracked spend is concentrated in Performance Max | `google-ads-pmax-transparency` |
 | The pacing verdict depends on these numbers | `google-ads-budget-pacing` |
 | The findings are going to a client | `google-ads-client-report` |
+| Conversion actions are needed at ad group level | `google-ads-custom-gaql` |
 | Conversions are being summed across ad platforms | `ppc-analytics` |
 
 ## Next Question (REQUIRED)
