@@ -67,6 +67,17 @@
         "./marketing-and-ads/tiktok-ads/tiktok-ads-placement-geo-and-device",
         "./marketing-and-ads/tiktok-ads/tiktok-ads-gmv-max-and-shop-review",
         "./marketing-and-ads/tiktok-ads/tiktok-ads-client-report"
+        "./marketing-and-ads/facebook-ads/facebook-ads-performance-review",
+        "./marketing-and-ads/facebook-ads/facebook-ads-waste-and-scale",
+        "./marketing-and-ads/facebook-ads/facebook-ads-creative-analysis",
+        "./marketing-and-ads/facebook-ads/facebook-ads-creative-fatigue",
+        "./marketing-and-ads/facebook-ads/facebook-ads-audience-analysis",
+        "./marketing-and-ads/facebook-ads/facebook-ads-budget-pacing",
+        "./marketing-and-ads/facebook-ads/facebook-ads-pixel-and-attribution-audit",
+        "./marketing-and-ads/facebook-ads/facebook-ads-settings-audit",
+        "./marketing-and-ads/facebook-ads/facebook-ads-structure-and-learning-review",
+        "./marketing-and-ads/facebook-ads/facebook-ads-placement-geo-and-device",
+        "./marketing-and-ads/facebook-ads/facebook-ads-client-report"
       ]
     },
     {

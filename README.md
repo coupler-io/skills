@@ -66,6 +66,24 @@ Eleven TikTok-only skills in `marketing-and-ads/tiktok-ads/`. Same shape as the 
 | **tiktok-ads-gmv-max-and-shop-review** | What GMV Max is actually buying, whether it cannibalises campaigns already making those sales, and which products carry it. |
 | **tiktok-ads-client-report** | The monthly client write-up — the kind that survives being questioned. Built only when asked. |
 
+#### Meta / Facebook Ads deep dives
+
+Eleven Meta-only skills in `marketing-and-ads/facebook-ads/`. Same shape as the Google pack — each owns a single question and routes to its siblings rather than duplicating them, with `ppc-analytics` still the cross-platform paid view.
+
+| Skill | What it does |
+| --- | --- |
+| **facebook-ads-performance-review** | The baseline read — what moved this period and which campaigns moved it. Cost decomposed into CPM, CTR and conversion rate. Run this before deciding anything else. |
+| **facebook-ads-waste-and-scale** | The cutting view — ad sets spending without results, creative past its fatigue threshold, each cut paired with where the money should go instead. |
+| **facebook-ads-creative-analysis** | Which ads win and why — thumbstop and hook rate, what the winners have in common, and the brief for the next production round. |
+| **facebook-ads-creative-fatigue** | How long the winners have left — CTR decay against first-week baseline, CPM drift, a refresh queue ranked by spend at risk, and monthly creative volume needed. |
+| **facebook-ads-audience-analysis** | Which audiences earn their spend — lookalike vs interest vs broad vs retargeting, saturation as audiences age, and who is being paid for twice. |
+| **facebook-ads-budget-pacing** | Month-end arithmetic — on-track or overspending, required daily spend, which ad sets are capped, and whether more budget would do anything. |
+| **facebook-ads-pixel-and-attribution-audit** | Whether the conversion numbers can be trusted — pixel and CAPI coverage, deduplication, view-through share, the platform-vs-store gap. Run before any cost or return conclusion. |
+| **facebook-ads-settings-audit** | Configuration priced in the spend flowing through it — optimisation goals, bid strategy, Advantage+ and expansion toggles, attribution setting. Most of these default in Meta's favour. |
+| **facebook-ads-structure-and-learning-review** | How the account is organised and what that costs in learning — ad sets stuck below event volume, fragmentation, audience overlap, consolidation with the spend affected. |
+| **facebook-ads-placement-geo-and-device** | Where the budget actually goes — Feed vs Reels vs Stories vs Audience Network, region, device and delivery hour, each with what it is worth. |
+| **facebook-ads-client-report** | The monthly client write-up — KPIs against goal, creative winners, the attribution caveat stated once and plainly. Built only when asked. |
+
 ### Capability
 
 Cross-ICP building blocks — compose these with a domain skill above.
