@@ -18,8 +18,6 @@ metadata:
 **Gets as far inside Performance Max as the data honestly allows, and tells you exactly where that
 stops.**
 
-[Source tag: Google Ads]
-
 Most PMax reporting quietly presents the visible fraction as the whole picture. The campaign type
 exposes less than any other, so a report that doesn't say how much it couldn't see is misleading by
 construction — and the most expensive error in the account sits right here: PMax conversions climbing
@@ -235,6 +233,7 @@ break, and they're invisible in the data once the window moves past them.
 | Search terms and negatives are the job | `google-ads-waste-and-scale` |
 | PMax spend needs sizing against a budget | `google-ads-budget-pacing` |
 | The PMax story is going to a client | `google-ads-client-report` |
+| No packaged report type carries the metric you need | `google-ads-custom-gaql` |
 | Platforms other than Google Ads are in scope | `ppc-analytics` |
 
 ## Next Question (REQUIRED)

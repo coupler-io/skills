@@ -35,7 +35,7 @@ The machine-readable catalog is `skills-index.json`. **Do not edit it by hand** 
 
 #### Google Ads deep dives
 
-Eight Google-Ads-only skills in `marketing-and-ads/google-ads/`. Each one owns a single question and hands off to the others rather than duplicating them — `ppc-analytics` stays the cross-platform paid view.
+Eight Google-Ads-only skills in `marketing-and-ads/google-ads/`. Each one owns a single question and hands off to the others rather than duplicating them — `ppc-analytics` stays the cross-platform paid view. When a request needs a field no packaged report type carries, they route to `capability/google-ads-custom-gaql`.
 
 | Skill | What it does |
 | --- | --- |
@@ -48,6 +48,42 @@ Eight Google-Ads-only skills in `marketing-and-ads/google-ads/`. Each one owns a
 | **google-ads-pmax-transparency** | Opening the Performance Max black box — Shopping cannibalisation, brand-traffic buying, asset-group performance. |
 | **google-ads-client-report** | The monthly client write-up — what to say, how to present a missed target. Built only when asked. |
 
+#### TikTok Ads deep dives
+
+Eleven TikTok-only skills in `marketing-and-ads/tiktok-ads/`. Same shape as the Google pack — each owns a single question and routes to its siblings rather than duplicating them, with `ppc-analytics` still the cross-platform paid view.
+
+| Skill | What it does |
+| --- | --- |
+| **tiktok-ads-performance-review** | The baseline read — what moved, which campaigns moved it, and how much of the change each one caused. Run this before deciding anything else. |
+| **tiktok-ads-waste-and-scale** | The cutting view — what to turn off and what to fund with the money, as one decision rather than two. |
+| **tiktok-ads-creative-analysis** | Which videos earn their spend, where the losing ones lose people, and what the next round should be. |
+| **tiktok-ads-creative-fatigue-and-velocity** | Which videos are dying, how long they have left, and how many new ones a month the account needs to keep up. |
+| **tiktok-ads-audience-analysis** | Which audiences earn their spend — and whether targeting is doing any work the creative was not already doing. |
+| **tiktok-ads-budget-pacing** | Where the month ends if nothing changes, the daily spend to land on plan, and which ad groups will not take more money. |
+| **tiktok-ads-pixel-and-attribution-audit** | Whether the conversion numbers can be trusted before you move budget on them. Run before any cost or return conclusion. |
+| **tiktok-ads-structure-and-learning-review** | Whether the account is split into more ad groups than its budget can feed, priced in what that costs in delivery. |
+| **tiktok-ads-placement-geo-and-device** | Where and when the money actually goes, and what each of those places is worth. |
+| **tiktok-ads-gmv-max-and-shop-review** | What GMV Max is actually buying, whether it cannibalises campaigns already making those sales, and which products carry it. |
+| **tiktok-ads-client-report** | The monthly client write-up — the kind that survives being questioned. Built only when asked. |
+
+#### Meta / Facebook Ads deep dives
+
+Eleven Meta-only skills in `marketing-and-ads/facebook-ads/`. Same shape as the Google pack — each owns a single question and routes to its siblings rather than duplicating them, with `ppc-analytics` still the cross-platform paid view.
+
+| Skill | What it does |
+| --- | --- |
+| **facebook-ads-performance-review** | The baseline read — what moved this period and which campaigns moved it. Cost decomposed into CPM, CTR and conversion rate. Run this before deciding anything else. |
+| **facebook-ads-waste-and-scale** | The cutting view — ad sets spending without results, creative past its fatigue threshold, each cut paired with where the money should go instead. |
+| **facebook-ads-creative-analysis** | Which ads win and why — thumbstop and hook rate, what the winners have in common, and the brief for the next production round. |
+| **facebook-ads-creative-fatigue** | How long the winners have left — CTR decay against first-week baseline, CPM drift, a refresh queue ranked by spend at risk, and monthly creative volume needed. |
+| **facebook-ads-audience-analysis** | Which audiences earn their spend — lookalike vs interest vs broad vs retargeting, saturation as audiences age, and who is being paid for twice. |
+| **facebook-ads-budget-pacing** | Month-end arithmetic — on-track or overspending, required daily spend, which ad sets are capped, and whether more budget would do anything. |
+| **facebook-ads-pixel-and-attribution-audit** | Whether the conversion numbers can be trusted — pixel and CAPI coverage, deduplication, view-through share, the platform-vs-store gap. Run before any cost or return conclusion. |
+| **facebook-ads-settings-audit** | Configuration priced in the spend flowing through it — optimisation goals, bid strategy, Advantage+ and expansion toggles, attribution setting. Most of these default in Meta's favour. |
+| **facebook-ads-structure-and-learning-review** | How the account is organised and what that costs in learning — ad sets stuck below event volume, fragmentation, audience overlap, consolidation with the spend affected. |
+| **facebook-ads-placement-geo-and-device** | Where the budget actually goes — Feed vs Reels vs Stories vs Audience Network, region, device and delivery hour, each with what it is worth. |
+| **facebook-ads-client-report** | The monthly client write-up — KPIs against goal, creative winners, the attribution caveat stated once and plainly. Built only when asked. |
+
 ### Capability
 
 Cross-ICP building blocks — compose these with a domain skill above.
@@ -56,6 +92,7 @@ Cross-ICP building blocks — compose these with a domain skill above.
 | --- | --- | --- |
 | **get-started** | `capability/get-started/SKILL.md` | Onboard a brand-new or empty workspace from zero to the user's own data in the chat — anchor on stated intent, route template-or-scratch, script the guided credential round-trip, build + run the first dataflow, then offer a refresh schedule. |
 | **create-dataflow** | `capability/create-dataflow/SKILL.md` | Configure a Coupler.io dataflow end to end — pick an integration, attach a credential, wire source → destination, and trigger a run. |
+| **google-ads-custom-gaql** | `capability/google-ads-custom-gaql/SKILL.md` | Build a Custom GAQL source when no packaged Google Ads report type carries the field — and name the packaged type when one does. Covers resource choice, date macros, and the raw column names and micros that come back. |
 | **generate-data-set-context** | `capability/generate-data-set-context/SKILL.md` | Produce an AI-readable description for a dataset so future sessions inherit its schema context. |
 | **refine-prompt** | `capability/refine-prompt/SKILL.md` | Sharpen a vague or underspecified analytics request into a detailed, actionable prompt — filling in time period, metrics, data sources, and output format — before analysis. |
 | **report-generation** | `capability/report-generation/SKILL.md` | Industry-agnostic report formatter and validator. Turns analysis output into a structured TL;DR → Metrics → Context → Recommendations → Next Questions report, then runs a Phase 2 validation pass (arithmetic, units, claim-vs-data, logical gates). Compose with a domain skill for domain-flavored reports. |
@@ -139,8 +176,8 @@ Each ICP is its own plugin, so you install only what you need. Available plugins
 | `coupler-finance` | finance-analytics |
 | `coupler-sales` | sales-analytics |
 | `coupler-ecommerce` | ecom-analytics |
-| `coupler-marketing-ads` | marketing-analytics, ppc-analytics, + the 8 Google Ads deep dives |
-| `coupler-capability` | get-started, create-dataflow, generate-data-set-context, refine-prompt, report-generation |
+| `coupler-marketing-ads` | marketing-analytics, ppc-analytics, + the 8 Google Ads, 11 Meta / Facebook Ads and 11 TikTok Ads deep dives |
+| `coupler-capability` | get-started, create-dataflow, google-ads-custom-gaql, generate-data-set-context, refine-prompt, report-generation |
 | `coupler-utilities` | coupler-live-artifact, skill-review |
 | `humanizer` | humanizer (+ `/humanize` command) |
 
