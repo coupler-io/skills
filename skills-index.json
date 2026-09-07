@@ -257,6 +257,105 @@
       "description": "Analyze paid-ads (PPC) performance over the ad data connected in your Coupler.io workspace — spend, impressions, clicks, CTR, CPC, CPM, conversions, CPA, ROAS — with per-platform funnel traces, an efficiency-first comparison table, brand vs non-brand splits, budget pacing, and a weekly PPC review. Use this skill when the user asks \"how are my ads performing\", \"weekly PPC report\", \"why did CPA spike\", \"ROAS by platform\", \"Facebook vs Google Ads\", \"compare Meta and Google\", \"am I overspending my ad budget\", \"which campaigns should I scale or pause\", \"ad fatigue check\", \"blended CAC\". Facebook Ads + Google Ads are first-class; other ad platforms best-effort. It never silently sums platform-reported conversions across platforms — attribution double-counts; it reports per platform and computes blended CAC from an independent source when one exists. Paid-ads deep dives only: for cross-channel marketing (email, social, SEO) use marketing-analytics; report formatting composes report-generation."
     },
     {
+      "name": "tiktok-ads-audience-analysis",
+      "path": "marketing-and-ads/tiktok-ads/tiktok-ads-audience-analysis",
+      "category": "marketing-and-ads",
+      "sources": [
+        "TikTok Ads"
+      ],
+      "description": "Use for \"which audiences are working on TikTok\", \"is interest targeting worth it\", \"should I just go broad\", \"who is actually converting\", \"which age group should I bid on\", \"are my behaviour segments earning their spend\", or \"is my targeting or my creative doing the work\" — even when the user never says \"audience\". This is the who-converts read: which segments earn their spend and whether targeting is buying anything the creative was not already buying. TikTok Ads only."
+    },
+    {
+      "name": "tiktok-ads-budget-pacing",
+      "path": "marketing-and-ads/tiktok-ads/tiktok-ads-budget-pacing",
+      "category": "marketing-and-ads",
+      "sources": [
+        "TikTok Ads"
+      ],
+      "description": "Use for \"am I on track with my TikTok budget\", \"will I overspend this month\", \"how much should I be spending a day\", \"which ad groups are capped\", \"we underspent and I don't know why\", \"why won't this ad group spend\", or a mid-month spend check — even when the user never says \"pacing\". Also use when someone needs to know whether adding budget to an ad group would do anything at all. TikTok Ads only."
+    },
+    {
+      "name": "tiktok-ads-client-report",
+      "path": "marketing-and-ads/tiktok-ads/tiktok-ads-client-report",
+      "category": "marketing-and-ads",
+      "sources": [
+        "TikTok Ads"
+      ],
+      "description": "Use when someone asks for a monthly TikTok report for a client, wants the TikTok section of a client deck built, needs last month's paid social written up, asks for an end-of-month TikTok report, asks \"what do I tell the client\", or asks how to present a target they missed — even when they never say the word \"report\". For agencies and in-house teams reporting upward. TikTok Ads only."
+    },
+    {
+      "name": "tiktok-ads-creative-analysis",
+      "path": "marketing-and-ads/tiktok-ads/tiktok-ads-creative-analysis",
+      "category": "marketing-and-ads",
+      "sources": [
+        "TikTok Ads"
+      ],
+      "description": "Use for \"which creative is working on TikTok\", \"which videos should I put money behind\", \"what should the next round of creative look like\", \"is my hook working\", \"which video is holding attention\", \"why do people scroll past my ad\", or \"what do my winners have in common\" — even when the user never says \"creative\". This is the which-videos-win read; for which winning videos are dying, use the fatigue skill instead. TikTok Ads only."
+    },
+    {
+      "name": "tiktok-ads-creative-fatigue-and-velocity",
+      "path": "marketing-and-ads/tiktok-ads/tiktok-ads-creative-fatigue-and-velocity",
+      "category": "marketing-and-ads",
+      "sources": [
+        "TikTok Ads"
+      ],
+      "description": "Use for \"is my TikTok creative burning out\", \"my hook rate is dropping\", \"my CPMs keep rising\", \"how long before I need new videos\", \"which ads should I refresh\", \"how much new creative do I need a month\", \"how many videos should we shoot\", or \"this video used to work\" — even when the user never says \"fatigue\". This is the how-long-has-it-left read and the production-cadence number; for which videos win in the first place, use the creative analysis skill. TikTok Ads only."
+    },
+    {
+      "name": "tiktok-ads-gmv-max-and-shop-review",
+      "path": "marketing-and-ads/tiktok-ads/tiktok-ads-gmv-max-and-shop-review",
+      "category": "marketing-and-ads",
+      "sources": [
+        "TikTok Ads"
+      ],
+      "description": "Use for \"how is GMV Max doing\", \"should I use GMV Max or run campaigns manually\", \"is GMV Max cannibalising my other campaigns\", \"which products are selling on TikTok Shop\", \"my GMV Max ROI dropped\", \"I can't see anything inside GMV Max\", or \"is TikTok Shop worth the spend\" — even when the user only says \"Shop ads\" or \"my TikTok black box\". TikTok Ads only, and only for accounts running TikTok Shop."
+    },
+    {
+      "name": "tiktok-ads-performance-review",
+      "path": "marketing-and-ads/tiktok-ads/tiktok-ads-performance-review",
+      "category": "marketing-and-ads",
+      "sources": [
+        "TikTok Ads"
+      ],
+      "description": "Use for \"how are my TikTok ads doing\", \"why did my cost per result go up\", \"what changed on TikTok this month\", \"which campaigns improved\", \"my CPMs are climbing\", \"my video views dropped\", or a weekly or monthly account check — even when the user never says \"review\". Also use when someone wants the baseline read before deciding anything else in the account. TikTok Ads only."
+    },
+    {
+      "name": "tiktok-ads-pixel-and-attribution-audit",
+      "path": "marketing-and-ads/tiktok-ads/tiktok-ads-pixel-and-attribution-audit",
+      "category": "marketing-and-ads",
+      "sources": [
+        "TikTok Ads"
+      ],
+      "description": "Use for \"can I trust my TikTok conversion numbers\", \"why does TikTok claim more purchases than Shopify\", \"are my conversions double counted\", \"is my pixel firing\", \"why do standard and real-time conversions disagree\", \"my conversions dropped overnight\", or \"how much spend has no tracking\" — and whenever someone doubts the numbers, even without the word \"audit\". Run before trusting any cost or return conclusion about the account. TikTok Ads only."
+    },
+    {
+      "name": "tiktok-ads-placement-geo-and-device",
+      "path": "marketing-and-ads/tiktok-ads/tiktok-ads-placement-geo-and-device",
+      "category": "marketing-and-ads",
+      "sources": [
+        "TikTok Ads"
+      ],
+      "description": "Use for \"is Pangle wasting my money\", \"should I turn off automatic placement\", \"how is Search Feed doing\", \"which countries are working on TikTok\", \"is iOS or Android converting\", \"what time of day should I be running\", or \"where is my budget actually going\" — even when the user never says \"placement\". Covers where and when the ads are shown, and what each of those is worth. TikTok Ads only."
+    },
+    {
+      "name": "tiktok-ads-structure-and-learning-review",
+      "path": "marketing-and-ads/tiktok-ads/tiktok-ads-structure-and-learning-review",
+      "category": "marketing-and-ads",
+      "sources": [
+        "TikTok Ads"
+      ],
+      "description": "Use for \"is my TikTok account built right\", \"why are my ad groups stuck in learning\", \"do I have too many ad groups\", \"should I consolidate\", \"why won't this ad group exit learning\", \"I inherited this TikTok account, what's wrong with it\", or \"my delivery keeps restarting\" — even when the user never says \"structure\". Covers how the account is organised and what that costs it in learning. TikTok Ads only."
+    },
+    {
+      "name": "tiktok-ads-waste-and-scale",
+      "path": "marketing-and-ads/tiktok-ads/tiktok-ads-waste-and-scale",
+      "category": "marketing-and-ads",
+      "sources": [
+        "TikTok Ads"
+      ],
+      "description": "Use for \"where am I wasting money on TikTok\", \"which ad groups should I pause\", \"what should I turn off\", \"which campaigns should I scale\", \"clean up my TikTok account\", \"find me negative keywords for Search Ads\", or \"what do I cut and where does the money go\" — even without the words \"waste\" or \"scale\". Also use when someone wants a budget-neutral reallocation proposal for the account. TikTok Ads only."
+    },
+    {
       "name": "sales-analytics",
       "path": "sales/sales-analytics",
       "category": "sales",
