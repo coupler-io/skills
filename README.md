@@ -48,6 +48,24 @@ Eight Google-Ads-only skills in `marketing-and-ads/google-ads/`. Each one owns a
 | **google-ads-pmax-transparency** | Opening the Performance Max black box — Shopping cannibalisation, brand-traffic buying, asset-group performance. |
 | **google-ads-client-report** | The monthly client write-up — what to say, how to present a missed target. Built only when asked. |
 
+#### TikTok Ads deep dives
+
+Eleven TikTok-only skills in `marketing-and-ads/tiktok-ads/`. Same shape as the Google pack — each owns a single question and routes to its siblings rather than duplicating them, with `ppc-analytics` still the cross-platform paid view.
+
+| Skill | What it does |
+| --- | --- |
+| **tiktok-ads-performance-review** | The baseline read — what moved, which campaigns moved it, and how much of the change each one caused. Run this before deciding anything else. |
+| **tiktok-ads-waste-and-scale** | The cutting view — what to turn off and what to fund with the money, as one decision rather than two. |
+| **tiktok-ads-creative-analysis** | Which videos earn their spend, where the losing ones lose people, and what the next round should be. |
+| **tiktok-ads-creative-fatigue-and-velocity** | Which videos are dying, how long they have left, and how many new ones a month the account needs to keep up. |
+| **tiktok-ads-audience-analysis** | Which audiences earn their spend — and whether targeting is doing any work the creative was not already doing. |
+| **tiktok-ads-budget-pacing** | Where the month ends if nothing changes, the daily spend to land on plan, and which ad groups will not take more money. |
+| **tiktok-ads-pixel-and-attribution-audit** | Whether the conversion numbers can be trusted before you move budget on them. Run before any cost or return conclusion. |
+| **tiktok-ads-structure-and-learning-review** | Whether the account is split into more ad groups than its budget can feed, priced in what that costs in delivery. |
+| **tiktok-ads-placement-geo-and-device** | Where and when the money actually goes, and what each of those places is worth. |
+| **tiktok-ads-gmv-max-and-shop-review** | What GMV Max is actually buying, whether it cannibalises campaigns already making those sales, and which products carry it. |
+| **tiktok-ads-client-report** | The monthly client write-up — the kind that survives being questioned. Built only when asked. |
+
 #### Meta / Facebook Ads deep dives
 
 Eleven Meta-only skills in `marketing-and-ads/facebook-ads/`. Same shape as the Google pack — each owns a single question and routes to its siblings rather than duplicating them, with `ppc-analytics` still the cross-platform paid view.
@@ -156,7 +174,7 @@ Each ICP is its own plugin, so you install only what you need. Available plugins
 | `coupler-finance` | finance-analytics |
 | `coupler-sales` | sales-analytics |
 | `coupler-ecommerce` | ecom-analytics |
-| `coupler-marketing-ads` | marketing-analytics, ppc-analytics, + the 8 Google Ads and 11 Meta / Facebook Ads deep dives |
+| `coupler-marketing-ads` | marketing-analytics, ppc-analytics, + the 8 Google Ads and 11 TikTok Ads deep dives |
 | `coupler-capability` | get-started, create-dataflow, generate-data-set-context, refine-prompt, report-generation |
 | `coupler-utilities` | coupler-live-artifact |
 | `humanizer` | humanizer (+ `/humanize` command) |

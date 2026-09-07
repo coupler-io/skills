@@ -6,7 +6,7 @@
   },
   "metadata": {
     "description": "Coupler.io-authored Claude Code skills and plugins — ICP analytics (finance, sales, e-commerce, marketing & ads) plus cross-ICP capability skills and utilities",
-    "version": "1.3.0"
+    "version": "1.4.0"
   },
   "plugins": [
     {
@@ -56,6 +56,17 @@
         "./marketing-and-ads/google-ads/google-ads-settings-audit",
         "./marketing-and-ads/google-ads/google-ads-pmax-transparency",
         "./marketing-and-ads/google-ads/google-ads-client-report",
+        "./marketing-and-ads/tiktok-ads/tiktok-ads-performance-review",
+        "./marketing-and-ads/tiktok-ads/tiktok-ads-waste-and-scale",
+        "./marketing-and-ads/tiktok-ads/tiktok-ads-creative-analysis",
+        "./marketing-and-ads/tiktok-ads/tiktok-ads-creative-fatigue-and-velocity",
+        "./marketing-and-ads/tiktok-ads/tiktok-ads-audience-analysis",
+        "./marketing-and-ads/tiktok-ads/tiktok-ads-budget-pacing",
+        "./marketing-and-ads/tiktok-ads/tiktok-ads-pixel-and-attribution-audit",
+        "./marketing-and-ads/tiktok-ads/tiktok-ads-structure-and-learning-review",
+        "./marketing-and-ads/tiktok-ads/tiktok-ads-placement-geo-and-device",
+        "./marketing-and-ads/tiktok-ads/tiktok-ads-gmv-max-and-shop-review",
+        "./marketing-and-ads/tiktok-ads/tiktok-ads-client-report"
         "./marketing-and-ads/facebook-ads/facebook-ads-performance-review",
         "./marketing-and-ads/facebook-ads/facebook-ads-waste-and-scale",
         "./marketing-and-ads/facebook-ads/facebook-ads-creative-analysis",
