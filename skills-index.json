@@ -23,6 +23,15 @@
       "description": "Use this skill when the user's Coupler.io workspace is NEW or EMPTY — no datasets, no credentials — and they want their data flowing, or when any data request arrives from an account with nothing set up yet. Triggers include: \"get started\", \"set up Coupler\", \"connect my data\", \"I just signed up\", \"pull my QuickBooks/Shopify/HubSpot/ads data\", an empty list-datasets result, or a missing credential. Goal: take the user from an empty workspace to their own data rendered in this chat, in one guided pass — including the one-time browser step to authorize their source. Do NOT use for accounts that already have datasets or dataflows (work with their data directly), for platform questions (\"what sources do you support?\"), or for adding a source to an existing setup (use the create-dataflow skill instead)."
     },
     {
+      "name": "google-ads-custom-gaql",
+      "path": "capability/google-ads-custom-gaql",
+      "category": "capability",
+      "sources": [
+        "Google Ads"
+      ],
+      "description": "Use this skill when the user needs Google Ads data that no packaged report type carries, or asks for a Custom GAQL source. Triggers include: 'I need a Google Ads field that isn't in any report', 'can I get hourly Google Ads data', 'break conversions down by action at ad group level', 'product-level Shopping data', 'write me a GAQL query', 'query the Google Ads API directly', or another Google Ads skill reporting that a metric exists in no report type. Configures the source; the analysis belongs to the skill that asked."
+    },
+    {
       "name": "refine-prompt",
       "path": "capability/refine-prompt",
       "category": "capability",
