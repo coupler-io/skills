@@ -43,7 +43,8 @@ Manager tells you almost nothing about where the month ends.
 → one combined query. **Two calls** when the dataset is already known.
 
 Overriding rules: never spend a call proving the connection works; speak at the coverage read; treat
-missing data as a line in the write-up rather than a gate; don't narrate steps.
+missing data as a line in the write-up rather than a gate; don't narrate steps; render rankings,
+trends and splits as inline visuals in the message rather than offering to make them.
 
 ## A. Connect to Coupler.io (HARD GATE)
 
@@ -143,17 +144,46 @@ date, projected month end, budget, variance in currency and percent, required da
 coverage, the budget's provenance, ad sets excluded for learning · Recommendations = the reallocation
 lines with a ceiling on each.
 
+### Inline visuals (REQUIRED)
+
+**Render these in the message itself. They are not an offer and not a follow-up** — a ranking, a
+trend or a split of a total delivered as prose is a defect in this skill's output.
+
+Scale bars from zero. Put the unit and the scale maximum on a label line above the visual. Cap at
+eight rows and roll the rest into `Other (n)`. Mark rows under the volume floor rather than drawing
+them to scale, and never bar a rate without its denominator in the row. **The visual replaces the
+prose it would have taken** — one sentence of interpretation underneath, never a restatement of the
+rows.
+
+Forms: unicode bar (`█`, scaled to the largest row) for rankings and splits; sparkline
+(`▁▂▃▄▅▆▇█`, first and last values labelled) for five or more periods; mermaid for structure only,
+never for quantity.
+
+| Whenever the run produced | Render |
+|---|---|
+| A month-to-date spend path over five or more days | Sparkline of daily spend, first and last labelled, with the required daily figure and the projected month end written out beside it |
+| Three or more campaigns with different pacing verdicts | Unicode bar of spend to date as a share of each campaign's own budget, the verdict word in the row |
+| A reallocation of more than two lines | Two unicode bars of the same total — before, then after — in the same line order |
+
+**Render nothing** when there is a single figure, fewer than three comparable rows, an early exit,
+or a coverage table dominated by "not checkable". A two-row bar trains the reader to skip the
+visuals on the runs that have eight.
+
 ## H. Offer to build it out (CONDITIONAL)
+
+**The inline visuals above are not optional and are not this section's business.** This section
+covers only what *leaves the conversation* — a written record, a brief, a document, a pack. It
+**stays silent unless the run produced something a document carries better than the message already
+did.**
 
 | Found | Worth making | Why |
 |---|---|---|
-| A projection against budget over the month | A pacing chart, actual against required run rate | The gap is a shape, and everyone reads it faster than a sentence |
-| Four or more campaigns with different pacing verdicts | A pacing status table by campaign | Splits a total three ways at a glance |
-| A reallocation going to someone who was not in this conversation | A written record for the account file | It has to survive being forwarded |
+| A reallocation going to someone who was not in this conversation | A written record with each line, its ceiling and its reason | Half-actioned reallocations come from missing ceilings |
 
-**Stay silent when** pacing is inside the band, there is one finding, or "not checkable" dominates
-coverage. One thing, named by what it contains and who it is for. If the client pack is what they
-want, route to `facebook-ads-client-report`. Never build it unasked.
+**Stay silent when** pacing is inside the band, there is one finding, "not checkable" dominates
+coverage, or the inline visuals above already carried the finding. One thing, named by what it
+contains and who it is for — never a menu. If the client pack is what they want, route to
+`facebook-ads-client-report`. Never build it unasked; never delay the answer to make it.
 
 ## I. Save what you learned
 
