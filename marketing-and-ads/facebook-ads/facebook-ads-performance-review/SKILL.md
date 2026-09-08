@@ -50,6 +50,8 @@ These override everything below:
 - **Speak at the coverage read**, before the data query. It is output, not preparation, and it prunes
   the rest of the run.
 - **Missing data is a line in the write-up, not a gate.** Don't stop mid-run to ask about it.
+- **Render rankings, trends and splits as inline visuals** in the message. They are part of the
+  answer, not something to offer afterwards.
 - **Don't narrate steps.** The user wants the read, not the itinerary.
 
 ## A. Connect to Coupler.io (HARD GATE)
@@ -150,23 +152,47 @@ Key Metrics = spend, cost per result, CPM, CTR, frequency, each with its delta �
 the attribution window, the period cap · Recommendations = which campaigns to look at and which
 sibling answers the next question.
 
+### Inline visuals (REQUIRED)
+
+**Render these in the message itself. They are not an offer and not a follow-up** — a ranking, a
+trend or a split of a total delivered as prose is a defect in this skill's output.
+
+Scale bars from zero. Put the unit and the scale maximum on a label line above the visual. Cap at
+eight rows and roll the rest into `Other (n)`. Mark rows under the volume floor rather than drawing
+them to scale, and never bar a rate without its denominator in the row. **The visual replaces the
+prose it would have taken** — one sentence of interpretation underneath, never a restatement of the
+rows.
+
+Forms: unicode bar (`█`, scaled to the largest row) for rankings and splits; sparkline
+(`▁▂▃▄▅▆▇█`, first and last values labelled) for five or more periods; mermaid for structure only,
+never for quantity.
+
+| Whenever the run produced | Render |
+|---|---|
+| Five or more periods of CPM, CTR, frequency or cost per result | A sparkline on each metric's Key Metrics line, first and last labelled — the delta and the shape in one row |
+| Three or more campaigns contributing to one account delta | Unicode bar of each campaign's contribution to the change, in currency, largest first |
+| A spend mix that shifted between periods | Two unicode bars of share of spend — prior, then current — in the same campaign order |
+
+**Render nothing** when there is a single figure, fewer than three comparable rows, an early exit,
+or a coverage table dominated by "not checkable". A two-row bar trains the reader to skip the
+visuals on the runs that have eight.
+
 ## G. Offer to build it out (CONDITIONAL)
 
-The written answer is complete. Offer one thing on top of it only when the run produced something a
-picture carries better than the message did.
+**The inline visuals above are not optional and are not this section's business.** This section
+covers only what *leaves the conversation* — a written record, a brief, a document, a pack. It
+**stays silent unless the run produced something a document carries better than the message already
+did.**
 
 | Found | Worth making | Why |
 |---|---|---|
-| A CPM or frequency trend over several weeks | A trend line with the baseline marked | A curve is a shape; a sentence about it is not |
-| Four or more campaigns contributing to one delta | A contribution waterfall | Shows where the change actually came from |
 | A read going to someone who was not in this conversation | A written record for the account file | It has to survive being forwarded |
 
-**Stay silent when** the run was an early exit, there is one finding, or "not checkable" dominates
-the coverage table.
-
-**One thing, named by what it contains and who it is for** — never a menu. If the monthly client pack
-is what they actually want, route to `facebook-ads-client-report` rather than building a deck here.
-Never build it unasked; never delay the answer to make it.
+**Stay silent when** the run was an early exit, there is one finding, "not checkable" dominates the
+coverage table, or the inline visuals above already carried the finding. One thing, named by what it
+contains and who it is for — never a menu. If the monthly client pack is what they actually want,
+route to `facebook-ads-client-report` rather than building a deck here. Never build it unasked;
+never delay the answer to make it.
 
 ## H. Save what you learned
 

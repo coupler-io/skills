@@ -45,7 +45,8 @@ different work.
 → one combined query. **Two calls** when the dataset is known.
 
 Overriding rules: never spend a call proving the connection works; speak at the coverage read;
-missing data is a line in the write-up, not a gate; don't narrate steps.
+missing data is a line in the write-up, not a gate; don't narrate steps; render rankings, trends and
+splits as inline visuals in the message rather than offering to make them.
 
 ## A. Connect to Coupler.io (HARD GATE)
 
@@ -137,17 +138,45 @@ per outcome for the top and bottom three, hook rate, hold rate, the funnel step 
 coverage, volume floors, the rankings caveat · Recommendations = the production brief, plus which ads
 to keep funding.
 
+### Inline visuals (REQUIRED)
+
+**Render these in the message itself. They are not an offer and not a follow-up** — a ranking, a
+trend or a split of a total delivered as prose is a defect in this skill's output.
+
+Scale bars from zero. Put the unit and the scale maximum on a label line above the visual. Cap at
+eight rows and roll the rest into `Other (n)`. Mark rows under the volume floor rather than drawing
+them to scale, and never bar a rate without its denominator in the row. **The visual replaces the
+prose it would have taken** — one sentence of interpretation underneath, never a restatement of the
+rows.
+
+Forms: unicode bar (`█`, scaled to the largest row) for rankings and splits; sparkline
+(`▁▂▃▄▅▆▇█`, first and last values labelled) for five or more periods; mermaid for structure only,
+never for quantity.
+
+| Whenever the run produced | Render |
+|---|---|
+| Four or more ads above the results floor | Unicode bar of cost per outcome, ranked, the account average stated on the label line, results count in each row |
+| Hook rate and hold rate across three or more videos | Two unicode bars stacked in the same ad order — hook, then hold — so the drop-off per ad is readable down the column |
+| A funnel step-rate diagnosis | Unicode bar per step for the best and worst ad, the step where they diverge marked in the row |
+
+**Render nothing** when there is a single figure, fewer than three comparable rows, an early exit,
+or a coverage table dominated by "not checkable". A two-row bar trains the reader to skip the
+visuals on the runs that have eight.
+
 ## G. Offer to build it out (CONDITIONAL)
+
+**The inline visuals above are not optional and are not this section's business.** This section
+covers only what *leaves the conversation* — a written record, a brief, a document, a pack. It
+**stays silent unless the run produced something a document carries better than the message already
+did.**
 
 | Found | Worth making | Why |
 |---|---|---|
-| Six or more ads with a spread of cost per outcome | A ranked bar with the account average marked | A distribution is a shape |
-| A funnel diagnosis across several ads | A step-rate comparison grid | Shows at a glance which ads fail at which step |
-| A video hook and hold comparison | A two-axis plot, hook against hold | The quadrants are the brief |
-| A production brief going to a designer or agency | A written creative brief for the next round | It leaves the conversation, so it has to stand alone |
+| A production brief going to a designer or agency | A written creative brief for the next round | It stands alone outside the conversation, and the brief is the ask |
 
-**Stay silent when** there are two ads, results are below the floor, or "not checkable" dominates.
-One thing, named by what it contains and who it is for. Never build it unasked.
+**Stay silent when** there are two ads, results are below the floor, "not checkable" dominates, or
+the inline visuals above already carried the finding. One thing, named by what it contains and who
+it is for — never a menu. Never build it unasked; never delay the answer to make it.
 
 ## H. Save what you learned
 
