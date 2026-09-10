@@ -26,6 +26,17 @@ The machine-readable catalog is `skills-index.json`. **Do not edit it by hand** 
 | --- | --- | --- |
 | **ecom-analytics** | `ecommerce/ecom-analytics/SKILL.md` | E-commerce performance — funnel conversion, AOV, cohort retention, repeat purchase, anomaly detection. Works with Shopify, WooCommerce, GA4, Klaviyo, Stripe, and more. |
 
+#### Shopify deep dives
+
+Four Shopify-only skills in `ecommerce/shopify/`. Same shape as the ads packs — each owns a single question and routes to its siblings rather than duplicating them, with `ecom-analytics` still the cross-platform store view. They share their definitions deliberately: store performance is the baseline the others read against, and sell-through, inventory value and dead-stock cash live in one skill only.
+
+| Skill | What it does |
+| --- | --- |
+| **shopify-store-performance** | The baseline read — the full sales ladder, orders, AOV, refunds vs returns, new vs returning, and which of the three drivers moved revenue. Run this before deciding anything else. |
+| **shopify-product-and-variant-sales** | Which products and variants earn their place — ranked by money and by margin on the right cost basis, with stock-out distortion flagged instead of buried. |
+| **shopify-inventory-and-stockout-risk** | What runs out, when, what it costs, and the date you must order by — plus inventory value split four ways and the cash parked in dead stock. |
+| **shopify-repeat-purchase-and-retention** | Which campaign and which first offer bought customers who came back — cohorts cut by UTM and discount status, with open cohorts excluded from every comparison. |
+
 ### Marketing & Ads
 
 | Skill | Location | What it does |
@@ -174,7 +185,7 @@ Each ICP is its own plugin, so you install only what you need. Available plugins
 | --- | --- |
 | `coupler-finance` | finance-analytics |
 | `coupler-sales` | sales-analytics |
-| `coupler-ecommerce` | ecom-analytics |
+| `coupler-ecommerce` | ecom-analytics, + the 4 Shopify deep dives |
 | `coupler-marketing-ads` | marketing-analytics, ppc-analytics, + the 8 Google Ads, 11 Meta / Facebook Ads and 11 TikTok Ads deep dives |
 | `coupler-capability` | get-started, create-dataflow, google-ads-custom-gaql, generate-data-set-context, refine-prompt, report-generation |
 | `coupler-utilities` | coupler-live-artifact |
@@ -182,7 +193,7 @@ Each ICP is its own plugin, so you install only what you need. Available plugins
 
 Plugin skills are namespaced by their plugin, so they can be invoked explicitly as `/coupler-finance:finance-analytics`. Most of them are model-invoked too — Claude reaches for them when the request matches their description. If the install summary says `Run /reload-plugins to activate.`, run that.
 
-**Install only the plugin you need.** Every skill's description stays in context for the whole session, so a plugin's cost scales with how many skills it carries. `coupler-marketing-ads` bundles 32 and adds roughly 5.5k tokens to every session; the single-skill plugins add a few hundred. Check any plugin before installing it:
+**Install only the plugin you need.** Every skill's description stays in context for the whole session, so a plugin's cost scales with how many skills it carries. `coupler-marketing-ads` bundles 32 and adds roughly 5.5k tokens to every session, `coupler-ecommerce` bundles 5 and adds roughly 700; the single-skill plugins add a few hundred. Check any plugin before installing it:
 
 ```
 claude plugin details coupler-marketing-ads@coupler-io-skills
