@@ -197,15 +197,15 @@ def main(argv: list[str] | None = None) -> int:
     skills = collect_skills(root)
 
     invalid_names = find_invalid_skill_names(skills)
-    duplicate_names = find_duplicate_skill_names(skills)
     mismatches = find_name_directory_mismatches(skills)
-    if invalid_names or duplicate_names or mismatches:
+    duplicate_names = find_duplicate_skill_names(skills)
+    if invalid_names or mismatches or duplicate_names:
         if invalid_names:
             print_invalid_names(invalid_names)
-        if duplicate_names:
-            print_duplicate_names(duplicate_names)
         if mismatches:
             print_name_directory_mismatches(mismatches)
+        if duplicate_names:
+            print_duplicate_names(duplicate_names)
         return 1
 
     if args.check:
