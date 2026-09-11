@@ -83,28 +83,29 @@ def collect_skills(repo_root: Path) -> list[dict[str, Any]]:
     return skills
 
 
-def parameterize(value: str) -> str:
-    # Matches Ruby's String#parameterize: keeps _ distinct from -, so foo_bar and foo-bar are different slugs.
-    value = re.sub(r"[^a-zA-Z0-9\-_]+", "-", value)
-    value = re.sub(r"-{2,}", "-", value)
-    value = value.strip("-")
-    return value.lower()
+NAME_PATTERN = re.compile(r"^[a-z0-9]([a-z0-9_-]*[a-z0-9])?$")
+
+
+def find_invalid_skill_names(skills: list[dict[str, Any]]) -> list[dict[str, str]]:
+    return [
+        {"path": skill["path"], "name": skill["name"]}
+        for skill in skills
+        if not NAME_PATTERN.match(skill["name"])
+    ]
 
 
 def find_duplicate_skill_names(skills: list[dict[str, Any]]) -> dict[str, list[str]]:
     by_name: dict[str, list[str]] = {}
     for skill in skills:
-        slug = parameterize(skill["name"])
-        by_name.setdefault(slug, []).append(skill["path"])
-    return {slug: paths for slug, paths in by_name.items() if len(paths) > 1}
+        by_name.setdefault(skill["name"], []).append(skill["path"])
+    return {name: paths for name, paths in by_name.items() if len(paths) > 1}
 
 
 def find_name_directory_mismatches(skills: list[dict[str, Any]]) -> list[dict[str, str]]:
     mismatches = []
     for skill in skills:
-        leaf = parameterize(skill["path"].split("/")[-1])
-        name_slug = parameterize(skill["name"])
-        if leaf != name_slug:
+        leaf = skill["path"].split("/")[-1]
+        if leaf != skill["name"]:
             mismatches.append({"path": skill["path"], "name": skill["name"]})
     return mismatches
 
@@ -133,6 +134,20 @@ def render_index(skills: list[dict[str, Any]]) -> str:
 def write_index(skills: list[dict[str, Any]], output: Path) -> None:
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(render_index(skills), encoding="utf-8")
+
+
+def print_invalid_names(invalid: list[dict[str, str]]) -> None:
+    for skill in invalid:
+        print(
+            f"Invalid skill name {skill['name']!r}: {skill['path']}",
+            file=sys.stderr,
+        )
+
+    print(
+        "\nA skill's `name` may only contain lowercase ASCII letters, digits, "
+        "- and _, and can't start or end with - or _.",
+        file=sys.stderr,
+    )
 
 
 def print_duplicate_names(duplicates: dict[str, list[str]]) -> None:
@@ -173,7 +188,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument(
         "--check",
         action="store_true",
-        help="Validate without writing; exit 1 on duplicate or mismatched skill names",
+        help="Validate without writing; exit 1 on invalid, duplicate, or mismatched skill names",
     )
     args = parser.parse_args(argv)
 
@@ -181,9 +196,12 @@ def main(argv: list[str] | None = None) -> int:
     output = args.output.resolve()
     skills = collect_skills(root)
 
+    invalid_names = find_invalid_skill_names(skills)
     duplicate_names = find_duplicate_skill_names(skills)
     mismatches = find_name_directory_mismatches(skills)
-    if duplicate_names or mismatches:
+    if invalid_names or duplicate_names or mismatches:
+        if invalid_names:
+            print_invalid_names(invalid_names)
         if duplicate_names:
             print_duplicate_names(duplicate_names)
         if mismatches:
@@ -191,7 +209,7 @@ def main(argv: list[str] | None = None) -> int:
         return 1
 
     if args.check:
-        print(f"OK: {len(skills)} skills, all names unique and matching their folders")
+        print(f"OK: {len(skills)} skills, all names valid, unique, and matching their folders")
         return 0
 
     write_index(skills, output)
