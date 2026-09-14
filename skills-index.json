@@ -6,6 +6,7 @@
       "path": "capability/create-dataflow",
       "category": "capability",
       "sources": [],
+      "short_description": "",
       "description": "Use this skill when the user wants to create a new dataflow, set up a new data import, connect a new data source to a destination, pull data from an integration into Google Sheets or BigQuery or another destination, or configure a source-to-destination data pipeline. Triggers include: 'import my HubSpot data', 'set up a Stripe export', 'create a pipeline from X to Y', 'I want to pull data from [source]', 'create a new dataflow', 'connect [source] to [destination]', 'set up a data flow for [source]'."
     },
     {
@@ -13,6 +14,7 @@
       "path": "capability/generate-data-set-context",
       "category": "capability",
       "sources": [],
+      "short_description": "",
       "description": "Use this skill when the user wants to explore a dataset's context, or write or update documentation for the data it holds. Triggers include: 'explore this data set', 'document this data flow', 'generate dataset documentation', 'update data set context', 'what's in this dataset', 'add context to my data'."
     },
     {
@@ -20,6 +22,7 @@
       "path": "capability/get-started",
       "category": "capability",
       "sources": [],
+      "short_description": "",
       "description": "Use this skill when the user's Coupler.io workspace is NEW or EMPTY — no datasets, no credentials — and they want their data flowing, or when any data request arrives from an account with nothing set up yet. Triggers include: \"get started\", \"set up Coupler\", \"connect my data\", \"I just signed up\", \"pull my QuickBooks/Shopify/HubSpot/ads data\", an empty list-datasets result, or a missing credential. Goal: take the user from an empty workspace to their own data rendered in this chat, in one guided pass — including the one-time browser step to authorize their source. Do NOT use for accounts that already have datasets or dataflows (work with their data directly), for platform questions (\"what sources do you support?\"), or for adding a source to an existing setup (use the create-dataflow skill instead)."
     },
     {
@@ -29,6 +32,7 @@
       "sources": [
         "Google Ads"
       ],
+      "short_description": "",
       "description": "Use this skill when the user needs Google Ads data that no packaged report type carries, or asks for a Custom GAQL source. Triggers include: 'I need a Google Ads field that isn't in any report', 'can I get hourly Google Ads data', 'break conversions down by action at ad group level', 'product-level Shopping data', 'write me a GAQL query', 'query the Google Ads API directly', or another Google Ads skill reporting that a metric exists in no report type. Configures the source; the analysis belongs to the skill that asked."
     },
     {
@@ -36,6 +40,7 @@
       "path": "capability/refine-prompt",
       "category": "capability",
       "sources": [],
+      "short_description": "",
       "description": "Use this skill when the user's request is vague, incomplete, or poorly structured and needs to be sharpened into a detailed, actionable analytics prompt before analysis. Triggers include underspecified asks like 'how's my marketing doing', 'show me sales data', 'what campaigns performed best' — requests missing a time period, explicit metrics, data sources, comparison criteria, or output format."
     },
     {
@@ -43,6 +48,7 @@
       "path": "capability/report-generation",
       "category": "capability",
       "sources": [],
+      "short_description": "",
       "description": "Use this skill to produce a structured business report from analysis output and validate it before delivery — turning metrics, findings, and recommendations into a scannable, decision-ready document, then sanity-checking arithmetic, units, claims, and consistency. Industry-agnostic; works for marketing, ecom, finance, sales, or any analytics output. Compose with a domain bundle (e.g., ecom-analytics + report-generation) for domain-flavored reports. Triggers include 'write a report', 'summarize this analysis', 'put this in a report format', 'create a TL;DR', 'monthly business review', 'weekly performance report', 'executive summary', 'structured update on …', 'turn this into a report', 'sanity-check these numbers', 'validate this analysis', 'does this add up', 'review this for accuracy'."
     },
     {
@@ -57,6 +63,7 @@
         "Stripe",
         "Klaviyo"
       ],
+      "short_description": "",
       "description": "Use this skill when the user wants to analyze e-commerce performance, review funnel conversion, investigate AOV or repeat-purchase trends, build an ecom report, check sales velocity, understand customer cohorts and retention, or answer questions about their store's sales data. Triggers include 'how is my store performing', 'what's my conversion rate', 'cart abandonment', 'AOV trend', 'repeat purchase rate', 'why did revenue drop', 'cohort retention', 'top products', 'new vs returning customer revenue', 'lifetime value', 'pull my Shopify numbers', 'ecom report'."
     },
     {
@@ -70,6 +77,7 @@
         "Stripe",
         "Sage"
       ],
+      "short_description": "",
       "description": "Use this skill when the user wants to analyze financial performance, review P&L health, monitor MRR/ARR, investigate margin or cost trends, build a finance report, check cash flow or runway, or answer questions about their accounting/billing data. Triggers include 'how is revenue trending', 'gross margin', 'MRR breakdown', 'churn impact on ARR', 'why did costs go up', 'operating expenses', 'cash runway', 'P&L review', 'EBITDA', 'cost per acquisition trend', 'pull my QuickBooks numbers', 'finance report'."
     },
     {
@@ -79,6 +87,7 @@
       "sources": [
         "Facebook Ads (Meta Ads)"
       ],
+      "short_description": "",
       "description": "Use for \"which audiences are working on Meta\", \"is my lookalike better than broad\", \"is retargeting worth it\", \"who is actually converting\", \"should I still be running interest targeting\", \"which age group should I bid on\", or \"my audiences feel tired\" — even when the user never says \"audience\". This is the targeting read: which audiences earn their spend and which are paying for the same people twice. Meta / Facebook Ads only."
     },
     {
@@ -88,6 +97,7 @@
       "sources": [
         "Facebook Ads (Meta Ads)"
       ],
+      "short_description": "",
       "description": "Use for \"am I on track with my Meta budget\", \"will I overspend this month\", \"how much should I be spending a day\", \"which ad sets are capped\", \"we underspent and I don't know why\", \"why won't this ad set spend\", or a mid-month spend check — even when the user never says \"pacing\". Also use when someone needs to know whether adding budget to an ad set would do anything at all. Meta / Facebook Ads only."
     },
     {
@@ -97,6 +107,7 @@
       "sources": [
         "Facebook Ads (Meta Ads)"
       ],
+      "short_description": "",
       "description": "Use when someone asks for a monthly Meta report for a client, wants the Facebook section of a client deck built, needs last month's paid social written up, asks for an end-of-month social ads report, asks \"what do I tell the client\", or asks how to present a target they missed — even when they never say the word \"report\". For agencies and in-house teams reporting upward. Meta / Facebook Ads only."
     },
     {
@@ -106,6 +117,7 @@
       "sources": [
         "Facebook Ads (Meta Ads)"
       ],
+      "short_description": "",
       "description": "Use for \"which creative is working on Meta\", \"which ads should I put money behind\", \"what should the next round of creative look like\", \"why is my quality ranking below average\", \"is my hook working\", \"which video is holding attention\", or \"what do my winners have in common\" — even when the user never says \"creative\". This is the which-ads-win read; for which winning ads are dying, use the fatigue skill instead. Meta / Facebook Ads only."
     },
     {
@@ -115,6 +127,7 @@
       "sources": [
         "Facebook Ads (Meta Ads)"
       ],
+      "short_description": "",
       "description": "Use for \"is my Meta creative burning out\", \"my CTR is dropping\", \"my CPMs keep rising\", \"how long before I need new ads\", \"which ads should I refresh\", \"how much new creative do I need a month\", or \"this ad used to work\" — even when the user never says \"fatigue\". This is the how-long-has-it-left read; for which creative wins in the first place, use the creative analysis skill instead. Meta / Facebook Ads only."
     },
     {
@@ -124,6 +137,7 @@
       "sources": [
         "Facebook Ads (Meta Ads)"
       ],
+      "short_description": "",
       "description": "Use for \"how are my Meta ads doing\", \"why did my cost per result go up\", \"what changed on Facebook this month\", \"which campaigns improved\", \"my CPMs are climbing\", or a weekly or monthly account check — even when the user never says \"review\". Also use when someone wants the baseline read before deciding anything else in the account. Meta / Facebook Ads only."
     },
     {
@@ -133,6 +147,7 @@
       "sources": [
         "Facebook Ads (Meta Ads)"
       ],
+      "short_description": "",
       "description": "Use for \"can I trust my Meta conversion numbers\", \"why does Facebook claim more purchases than Shopify\", \"are my conversions double counted\", \"is my pixel firing\", \"how much of this is view-through\", \"my conversions dropped overnight\", or \"how much spend has no tracking\" — and whenever someone doubts the numbers, even without the word \"audit\". Run before trusting any cost or return conclusion about the account. Meta / Facebook Ads only."
     },
     {
@@ -142,6 +157,7 @@
       "sources": [
         "Facebook Ads (Meta Ads)"
       ],
+      "short_description": "",
       "description": "Use for \"is Audience Network wasting my money\", \"should I turn off automatic placements\", \"how are Reels doing versus Feed\", \"which countries are working on Meta\", \"is mobile or desktop converting\", \"what time of day should I be running\", or \"where is my budget actually going\" — even when the user never says \"placement\". Covers where and when the ads are shown, and what each of those is worth. Meta / Facebook Ads only."
     },
     {
@@ -151,6 +167,7 @@
       "sources": [
         "Facebook Ads (Meta Ads)"
       ],
+      "short_description": "",
       "description": "Use for \"audit my Meta ads settings\", \"is this account set up right\", \"I inherited this Facebook account, what's wrong with it\", \"are the Advantage+ toggles on\", \"check my campaign settings\", \"why is this ad set optimising for the wrong thing\", or \"new client account review\" — even when the user never says \"settings\". Covers optimisation goals, budget level, bid strategy, Advantage+ and expansion toggles, attribution setting and delivery issues, each priced in the spend flowing through it. Most of these default in Meta's favour. Meta / Facebook Ads only."
     },
     {
@@ -160,6 +177,7 @@
       "sources": [
         "Facebook Ads (Meta Ads)"
       ],
+      "short_description": "",
       "description": "Use for \"is my Meta account built right\", \"why are my ad sets stuck in learning\", \"do I have too many ad sets\", \"should I consolidate\", \"why won't this ad set exit learning\", \"I inherited this Facebook account, what's wrong with it\", or \"my delivery keeps restarting\" — even when the user never says \"structure\". Covers how the account is organised and what that costs it in learning. Meta / Facebook Ads only."
     },
     {
@@ -169,6 +187,7 @@
       "sources": [
         "Facebook Ads (Meta Ads)"
       ],
+      "short_description": "",
       "description": "Use for \"where am I wasting money on Meta\", \"which ad sets should I pause\", \"what should I turn off\", \"which campaigns should I scale\", \"clean up my Facebook account\", \"what do I cut and where does the money go\" — even without the words \"waste\" or \"scale\". Also use when someone wants a budget-neutral reallocation proposal for the account. Meta / Facebook Ads only."
     },
     {
@@ -178,6 +197,7 @@
       "sources": [
         "Google Ads"
       ],
+      "short_description": "",
       "description": "Use for \"am I on track with my Google Ads budget\", \"will I overspend this month\", \"how much should I spend a day\", \"which campaigns are capped by budget\", \"we underspent and I don't know why\", \"where should I move budget\", or a mid-month spend check — even when the user never says \"pacing\". Also use when someone needs to know whether adding budget to a campaign would do anything at all. Google Ads only."
     },
     {
@@ -187,6 +207,7 @@
       "sources": [
         "Google Ads"
       ],
+      "short_description": "",
       "description": "Use when someone asks for a monthly Google Ads report for a client, wants the client deck built, needs last month's Google Ads performance written up, asks for an end-of-month PPC report, asks \"what do I tell the client\", or asks how to present a target they missed — even when they never say the word \"report\". Also use when the Google Ads section of a client review or QBR is what's wanted. For agencies and in-house teams reporting upward. Google Ads only."
     },
     {
@@ -196,6 +217,7 @@
       "sources": [
         "Google Ads"
       ],
+      "short_description": "",
       "description": "Use for \"can I trust my Google Ads conversion numbers\", \"audit my conversion tracking\", \"why do Google Ads and Analytics disagree\", \"are my conversions double-counted\", \"my conversions dropped overnight\", \"how much of my spend has no tracking\" — and whenever someone doubts their numbers, even without the word \"audit\". Run before trusting any cost or return conclusion about the account. Google Ads only."
     },
     {
@@ -205,6 +227,7 @@
       "sources": [
         "Google Ads"
       ],
+      "short_description": "",
       "description": "Use for \"which keywords make money\", \"my quality score dropped\", \"should I use exact or broad match\", \"which keywords are worth more budget\", \"why is my cost per click so high\", \"find me new keywords to bid on\" — even when the user never says \"keyword\". This is the earning view: which keywords deserve more money and which are overcharging for the same clicks. For the cutting view, use google-ads-waste-and-scale instead. Google Ads only."
     },
     {
@@ -214,6 +237,7 @@
       "sources": [
         "Google Ads"
       ],
+      "short_description": "",
       "description": "Use for \"how are my Google Ads doing\", \"why did my cost per lead go up\", \"which campaigns improved this month\", \"am I losing impression share\", \"what happened to my Google Ads last week\", or a weekly or monthly account check — even when the user never says \"review\". Also use when someone wants to know what changed in the account and why, or needs the baseline read before deciding anything else. Google Ads only."
     },
     {
@@ -223,6 +247,7 @@
       "sources": [
         "Google Ads"
       ],
+      "short_description": "",
       "description": "Use for \"how is Performance Max doing\", \"is PMax cannibalising my Shopping campaigns\", \"I can't see anything inside PMax\", \"is Performance Max just buying my own brand traffic\", \"should I keep PMax or go back to Shopping\", \"what are my asset groups doing\" — even when the user only says \"PMax\" or \"my Google Ads black box\". Also use when PMax conversions rose but the account total didn't. Google Ads only."
     },
     {
@@ -232,6 +257,7 @@
       "sources": [
         "Google Ads"
       ],
+      "short_description": "",
       "description": "Use for \"audit my Google Ads settings\", \"is my account set up right\", \"I inherited this account, what's wrong with it\", \"why is my traffic showing outside my area\", \"check my campaign settings\", \"new client account review\" — even when the user never says \"settings\". Covers search partners, Display expansion, location intent, auto-apply, ad rotation, conversion windows, budgets and bid strategies, each priced in the spend flowing through it. Most of these toggles default in Google's favour. Google Ads only."
     },
     {
@@ -241,6 +267,7 @@
       "sources": [
         "Google Ads"
       ],
+      "short_description": "",
       "description": "Use for \"where am I wasting money on Google Ads\", \"which keywords should I pause\", \"find me negative keywords\", \"search terms report analysis\", \"which campaigns should I scale\", \"clean up my Google Ads account\", \"what should I cut and where should the money go\" — even without the words \"waste\" or \"scale\". Also use when someone wants a budget-neutral reallocation proposal for the account. Google Ads only."
     },
     {
@@ -253,6 +280,7 @@
         "LinkedIn Ads",
         "Google Analytics 4 (GA4)"
       ],
+      "short_description": "",
       "description": "Analyze marketing performance data using Coupler.io MCP tools (list-dataflows, get-schema, get-data). Use when the user asks to pull or analyze data from Coupler.io dataflows/data sets, generate marketing performance reports, understand campaign ROI, or investigate changes in business metrics. Make sure to use this skill whenever the user mentions Coupler.io data, marketing dashboards, channel comparisons, campaign analysis, or asks questions like \"why did conversions drop\", \"which channel has best ROI\", \"where should I spend more\", \"what's working\", \"show me my marketing numbers\", \"pull my latest data\", even if they don't explicitly say \"marketing analytics\". For deep paid-ads-only analysis (per-platform ad efficiency, budget pacing, brand vs non-brand, ad fatigue), use the ppc-analytics skill instead — this skill owns the cross-channel view."
     },
     {
@@ -263,6 +291,7 @@
         "Facebook Ads (Meta Ads)",
         "Google Ads"
       ],
+      "short_description": "",
       "description": "Analyze paid-ads (PPC) performance over the ad data connected in your Coupler.io workspace — spend, impressions, clicks, CTR, CPC, CPM, conversions, CPA, ROAS — with per-platform funnel traces, an efficiency-first comparison table, brand vs non-brand splits, budget pacing, and a weekly PPC review. Use this skill when the user asks \"how are my ads performing\", \"weekly PPC report\", \"why did CPA spike\", \"ROAS by platform\", \"Facebook vs Google Ads\", \"compare Meta and Google\", \"am I overspending my ad budget\", \"which campaigns should I scale or pause\", \"ad fatigue check\", \"blended CAC\". Facebook Ads + Google Ads are first-class; other ad platforms best-effort. It never silently sums platform-reported conversions across platforms — attribution double-counts; it reports per platform and computes blended CAC from an independent source when one exists. Paid-ads deep dives only: for cross-channel marketing (email, social, SEO) use marketing-analytics; report formatting composes report-generation."
     },
     {
@@ -272,6 +301,7 @@
       "sources": [
         "TikTok Ads"
       ],
+      "short_description": "",
       "description": "Use for \"which audiences are working on TikTok\", \"is interest targeting worth it\", \"should I just go broad\", \"who is actually converting\", \"which age group should I bid on\", \"are my behaviour segments earning their spend\", or \"is my targeting or my creative doing the work\" — even when the user never says \"audience\". This is the who-converts read: which segments earn their spend and whether targeting is buying anything the creative was not already buying. TikTok Ads only."
     },
     {
@@ -281,6 +311,7 @@
       "sources": [
         "TikTok Ads"
       ],
+      "short_description": "",
       "description": "Use for \"am I on track with my TikTok budget\", \"will I overspend this month\", \"how much should I be spending a day\", \"which ad groups are capped\", \"we underspent and I don't know why\", \"why won't this ad group spend\", or a mid-month spend check — even when the user never says \"pacing\". Also use when someone needs to know whether adding budget to an ad group would do anything at all. TikTok Ads only."
     },
     {
@@ -290,6 +321,7 @@
       "sources": [
         "TikTok Ads"
       ],
+      "short_description": "",
       "description": "Use when someone asks for a monthly TikTok report for a client, wants the TikTok section of a client deck built, needs last month's paid social written up, asks for an end-of-month TikTok report, asks \"what do I tell the client\", or asks how to present a target they missed — even when they never say the word \"report\". For agencies and in-house teams reporting upward. TikTok Ads only."
     },
     {
@@ -299,6 +331,7 @@
       "sources": [
         "TikTok Ads"
       ],
+      "short_description": "",
       "description": "Use for \"which creative is working on TikTok\", \"which videos should I put money behind\", \"what should the next round of creative look like\", \"is my hook working\", \"which video is holding attention\", \"why do people scroll past my ad\", or \"what do my winners have in common\" — even when the user never says \"creative\". This is the which-videos-win read; for which winning videos are dying, use the fatigue skill instead. TikTok Ads only."
     },
     {
@@ -308,6 +341,7 @@
       "sources": [
         "TikTok Ads"
       ],
+      "short_description": "",
       "description": "Use for \"is my TikTok creative burning out\", \"my hook rate is dropping\", \"my CPMs keep rising\", \"how long before I need new videos\", \"which ads should I refresh\", \"how much new creative do I need a month\", \"how many videos should we shoot\", or \"this video used to work\" — even when the user never says \"fatigue\". This is the how-long-has-it-left read and the production-cadence number; for which videos win in the first place, use the creative analysis skill. TikTok Ads only."
     },
     {
@@ -317,6 +351,7 @@
       "sources": [
         "TikTok Ads"
       ],
+      "short_description": "",
       "description": "Use for \"how is GMV Max doing\", \"should I use GMV Max or run campaigns manually\", \"is GMV Max cannibalising my other campaigns\", \"which products are selling on TikTok Shop\", \"my GMV Max ROI dropped\", \"I can't see anything inside GMV Max\", or \"is TikTok Shop worth the spend\" — even when the user only says \"Shop ads\" or \"my TikTok black box\". TikTok Ads only, and only for accounts running TikTok Shop."
     },
     {
@@ -326,6 +361,7 @@
       "sources": [
         "TikTok Ads"
       ],
+      "short_description": "",
       "description": "Use for \"how are my TikTok ads doing\", \"why did my cost per result go up\", \"what changed on TikTok this month\", \"which campaigns improved\", \"my CPMs are climbing\", \"my video views dropped\", or a weekly or monthly account check — even when the user never says \"review\". Also use when someone wants the baseline read before deciding anything else in the account. TikTok Ads only."
     },
     {
@@ -335,6 +371,7 @@
       "sources": [
         "TikTok Ads"
       ],
+      "short_description": "",
       "description": "Use for \"can I trust my TikTok conversion numbers\", \"why does TikTok claim more purchases than Shopify\", \"are my conversions double counted\", \"is my pixel firing\", \"why do standard and real-time conversions disagree\", \"my conversions dropped overnight\", or \"how much spend has no tracking\" — and whenever someone doubts the numbers, even without the word \"audit\". Run before trusting any cost or return conclusion about the account. TikTok Ads only."
     },
     {
@@ -344,6 +381,7 @@
       "sources": [
         "TikTok Ads"
       ],
+      "short_description": "",
       "description": "Use for \"is Pangle wasting my money\", \"should I turn off automatic placement\", \"how is Search Feed doing\", \"which countries are working on TikTok\", \"is iOS or Android converting\", \"what time of day should I be running\", or \"where is my budget actually going\" — even when the user never says \"placement\". Covers where and when the ads are shown, and what each of those is worth. TikTok Ads only."
     },
     {
@@ -353,6 +391,7 @@
       "sources": [
         "TikTok Ads"
       ],
+      "short_description": "",
       "description": "Use for \"is my TikTok account built right\", \"why are my ad groups stuck in learning\", \"do I have too many ad groups\", \"should I consolidate\", \"why won't this ad group exit learning\", \"I inherited this TikTok account, what's wrong with it\", or \"my delivery keeps restarting\" — even when the user never says \"structure\". Covers how the account is organised and what that costs it in learning. TikTok Ads only."
     },
     {
@@ -362,6 +401,7 @@
       "sources": [
         "TikTok Ads"
       ],
+      "short_description": "",
       "description": "Use for \"where am I wasting money on TikTok\", \"which ad groups should I pause\", \"what should I turn off\", \"which campaigns should I scale\", \"clean up my TikTok account\", \"find me negative keywords for Search Ads\", or \"what do I cut and where does the money go\" — even without the words \"waste\" or \"scale\". Also use when someone wants a budget-neutral reallocation proposal for the account. TikTok Ads only."
     },
     {
@@ -375,6 +415,7 @@
         "Close.com",
         "Zoho CRM"
       ],
+      "short_description": "Pipeline health, win rates, sales velocity and rep performance, straight from your CRM.",
       "description": "Use this skill when the user wants to analyze sales pipeline, review win rates, investigate sales velocity or cycle length, build a sales report, evaluate rep performance, look at lead source quality, or answer questions about their CRM data. Triggers include 'how is the pipeline', 'win rate by segment', 'sales cycle', 'pipeline coverage', 'rep performance', 'forecast accuracy', 'why are deals stalling', 'lead source quality', 'stage conversion', 'pull my Salesforce numbers', 'HubSpot deals report', 'sales report'."
     },
     {
@@ -382,6 +423,7 @@
       "path": "utilities/coupler-live-artifact",
       "category": "utilities",
       "sources": [],
+      "short_description": "",
       "description": "Build a live Cowork artifact (persistent HTML widget) backed by a Coupler.io dataflow. Use this skill whenever the user wants a live dashboard, persistent widget, daily-check page, or interactive explorer over Coupler.io data — including phrases like \"live artifact for Coupler\", \"Coupler dashboard widget\", \"build a widget over a Coupler dataset\", \"Coupler.io live dashboard\", \"build a daily dashboard from a Coupler dataflow\", or any time they ask to render Coupler data in a re-openable view that auto-refreshes. Triggers even when the user does not say \"skill\" or \"artifact\" but describes the same outcome (e.g. \"I want a page I can check every morning that pulls my Coupler data\")."
     },
     {
@@ -389,6 +431,7 @@
       "path": "utilities/humanizer",
       "category": "utilities",
       "sources": [],
+      "short_description": "",
       "description": "Remove AI writing patterns and add human voice to any text. Use when the user says \"humanize this\", \"make it sound human\", \"remove AI patterns\", \"this sounds like AI\", \"make it natural\", \"de-slop this\", \"edit for voice\", or when reviewing any drafted text (blog posts, emails, Slack messages, social posts, docs) for AI-sounding language. Also activate after generating any written content when the user has asked for natural or human-sounding output."
     }
   ]

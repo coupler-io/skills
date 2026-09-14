@@ -159,6 +159,35 @@ These are the tools the Coupler.io MCP server exposes. Skills use them automatic
 
 ---
 
+## Skill frontmatter
+
+The [Agent Skills spec](https://agentskills.io/specification) allows only six top-level frontmatter keys — `name`, `description`, `license`, `compatibility`, `metadata`, `allowed-tools` — and Claude rejects a `SKILL.md` that carries anything else. Everything of ours therefore lives under `metadata`:
+
+```yaml
+---
+name: sales-analytics
+description: Use this skill when the user wants to analyze sales pipeline, review win rates, … # for the agent: what it does and when to reach for it
+metadata:
+  short_description: Pipeline health, win rates, sales velocity and rep performance, straight from your CRM. # for humans: one line, shown in the UI
+  category: sales
+  sources:
+    - Salesforce
+---
+```
+
+`description` is the agent's routing signal, so it is long and stuffed with trigger phrases — unreadable in a skill catalog. `short_description` is the human-facing counterpart: one sentence, no "use this skill when", safe to render in a card or list. It is optional; consumers should fall back to a truncated `description` when it is absent.
+
+Both are length-capped, and `python .github/scripts/generate_skill_index.py --check` fails the build when either is exceeded:
+
+| Field | Limit | Why |
+| --- | --- | --- |
+| `description` | 500 characters | Claude Desktop stops reading a description after roughly 500 characters, so trigger phrases past the cap never reach the agent choosing the skill. |
+| `metadata.short_description` | 200 characters | It is rendered in the UI, where anything longer than a sentence stops being scannable. |
+
+Twelve skills predate the description cap and are exempted by slug in `ALLOWLISTED_LONG_DESCRIPTIONS` in the generator — Claude is already truncating them, so each is a trim waiting to happen. The list only shrinks: trimming one below 500 characters fails the check until you also delete its slug, and new skills can't be added to it.
+
+Both land in `skills-index.json`, which is what the API and the MCP server read.
+
 ## Installation
 
 **From the marketplace** — add this repo as a plugin marketplace, then install the per-cluster plugin(s) you want:

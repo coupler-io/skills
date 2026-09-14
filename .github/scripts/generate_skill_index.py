@@ -33,7 +33,7 @@ def parse_frontmatter(path: Path) -> dict[str, Any]:
     return data
 
 
-def normalize_description(value: Any) -> str:
+def normalize_text(value: Any) -> str:
     if value is None:
         return ""
     return " ".join(str(value).split())
@@ -69,7 +69,8 @@ def skill_entry(path: Path, repo_root: Path) -> dict[str, Any]:
         "sources": normalize_sources(
             metadata.get("sources", data.get("sources")), path
         ),
-        "description": normalize_description(data.get("description")),
+        "short_description": normalize_text(metadata.get("short_description")),
+        "description": normalize_text(data.get("description")),
     }
 
 
@@ -85,6 +86,33 @@ def collect_skills(repo_root: Path) -> list[dict[str, Any]]:
 
 NAME_PATTERN = re.compile(r"^[a-z0-9]([a-z0-9_-]*[a-z0-9])?$")
 
+# Claude Desktop stops reading a description after roughly 500 characters, so
+# anything past that never reaches the agent deciding whether to load the skill.
+DESCRIPTION_MAX_CHARS = 500
+SHORT_DESCRIPTION_MAX_CHARS = 200
+
+# Skills whose descriptions predate the cap. Claude Desktop is already ignoring
+# their tails, so each entry is a trim waiting to happen: shorten the
+# description, then delete its slug here. New skills don't get to join the list,
+# and it can only shrink - a slug that no longer needs the exemption fails the
+# check until it's removed.
+ALLOWLISTED_LONG_DESCRIPTIONS = frozenset(
+    {
+        "coupler-live-artifact",
+        "create-dataflow",
+        "ecom-analytics",
+        "facebook-ads-settings-audit",
+        "finance-analytics",
+        "get-started",
+        "google-ads-custom-gaql",
+        "google-ads-settings-audit",
+        "marketing-analytics",
+        "ppc-analytics",
+        "report-generation",
+        "sales-analytics",
+    }
+)
+
 
 def find_invalid_skill_names(skills: list[dict[str, Any]]) -> list[dict[str, str]]:
     return [
@@ -99,6 +127,24 @@ def find_duplicate_skill_names(skills: list[dict[str, Any]]) -> dict[str, list[s
     for skill in skills:
         by_name.setdefault(skill["name"], []).append(skill["path"])
     return {name: paths for name, paths in by_name.items() if len(paths) > 1}
+
+
+def find_too_long(
+    skills: list[dict[str, Any]], field: str, limit: int
+) -> list[dict[str, Any]]:
+    return [
+        {"name": skill["name"], "length": len(skill[field])}
+        for skill in skills
+        if len(skill[field]) > limit
+    ]
+
+
+def find_stale_allowlisting(skills: list[dict[str, Any]]) -> list[str]:
+    too_long = {
+        skill["name"]
+        for skill in find_too_long(skills, "description", DESCRIPTION_MAX_CHARS)
+    }
+    return sorted(ALLOWLISTED_LONG_DESCRIPTIONS - too_long)
 
 
 def find_name_directory_mismatches(skills: list[dict[str, Any]]) -> list[dict[str, str]]:
@@ -164,6 +210,49 @@ def print_duplicate_names(duplicates: dict[str, list[str]]) -> None:
     )
 
 
+def print_too_long(
+    too_long: list[dict[str, Any]], field: str, limit: int, guidance: str
+) -> None:
+    for skill in too_long:
+        print(
+            f"{skill['name']}: {field} is too long - {skill['length']} "
+            f"characters against a {limit}-character limit",
+            file=sys.stderr,
+        )
+
+    print(f"\n{guidance}", file=sys.stderr)
+
+
+DESCRIPTION_GUIDANCE = (
+    "Claude Desktop stops reading a skill's `description` after roughly 500 "
+    "characters, so any trigger phrase past the limit is invisible to the agent "
+    "choosing the skill. Trim the least distinctive triggers rather than the "
+    "opening sentence - the first line is what the agent reads first."
+)
+
+
+def print_stale_allowlisting(stale: list[str]) -> None:
+    for name in stale:
+        print(
+            f"{name}: allowlisted description no longer needs the exemption",
+            file=sys.stderr,
+        )
+
+    print(
+        "\nRemove the slug(s) above from ALLOWLISTED_LONG_DESCRIPTIONS in this "
+        "script. The list only shrinks: once a description fits the "
+        f"{DESCRIPTION_MAX_CHARS}-character limit (or the skill is renamed or "
+        "deleted), its exemption has to go with it.",
+        file=sys.stderr,
+    )
+
+SHORT_DESCRIPTION_GUIDANCE = (
+    "A skill's `metadata.short_description` is rendered in the UI, so it has to "
+    "stay one readable sentence. Move any detail an agent needs into "
+    "`description`, which is the field agents actually read."
+)
+
+
 def print_name_directory_mismatches(mismatches: list[dict[str, str]]) -> None:
     for mismatch in mismatches:
         print(
@@ -188,7 +277,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument(
         "--check",
         action="store_true",
-        help="Validate without writing; exit 1 on invalid, duplicate, or mismatched skill names",
+        help="Validate without writing; exit 1 on any bad skill name or too-long description",
     )
     args = parser.parse_args(argv)
 
@@ -199,6 +288,15 @@ def main(argv: list[str] | None = None) -> int:
     invalid_names = find_invalid_skill_names(skills)
     mismatches = find_name_directory_mismatches(skills)
     duplicate_names = find_duplicate_skill_names(skills)
+    long_descriptions = [
+        skill
+        for skill in find_too_long(skills, "description", DESCRIPTION_MAX_CHARS)
+        if skill["name"] not in ALLOWLISTED_LONG_DESCRIPTIONS
+    ]
+    long_short_descriptions = find_too_long(
+        skills, "short_description", SHORT_DESCRIPTION_MAX_CHARS
+    )
+    stale_allowlisting = find_stale_allowlisting(skills)
 
     if invalid_names:
         print_invalid_names(invalid_names)
@@ -206,12 +304,40 @@ def main(argv: list[str] | None = None) -> int:
         print_name_directory_mismatches(mismatches)
     if duplicate_names:
         print_duplicate_names(duplicate_names)
+    if long_descriptions:
+        print_too_long(
+            long_descriptions,
+            "description",
+            DESCRIPTION_MAX_CHARS,
+            DESCRIPTION_GUIDANCE,
+        )
+    if long_short_descriptions:
+        print_too_long(
+            long_short_descriptions,
+            "short_description",
+            SHORT_DESCRIPTION_MAX_CHARS,
+            SHORT_DESCRIPTION_GUIDANCE,
+        )
+    if stale_allowlisting:
+        print_stale_allowlisting(stale_allowlisting)
 
-    if invalid_names or mismatches or duplicate_names:
+    if (
+        invalid_names
+        or mismatches
+        or duplicate_names
+        or long_descriptions
+        or long_short_descriptions
+        or stale_allowlisting
+    ):
         return 1
 
     if args.check:
-        print(f"OK: {len(skills)} skills, all names valid, unique, and matching their folders")
+        exempt = len(ALLOWLISTED_LONG_DESCRIPTIONS)
+        print(
+            f"OK: {len(skills)} skills, all names valid, unique, and matching "
+            "their folders, all descriptions within limits "
+            f"({exempt} allowlisted)"
+        )
         return 0
 
     write_index(skills, output)
