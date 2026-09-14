@@ -90,7 +90,7 @@ def find_invalid_skill_names(skills: list[dict[str, Any]]) -> list[dict[str, str
     return [
         {"path": skill["path"], "name": skill["name"]}
         for skill in skills
-        if not NAME_PATTERN.match(skill["name"])
+        if not NAME_PATTERN.fullmatch(skill["name"])
     ]
 
 
