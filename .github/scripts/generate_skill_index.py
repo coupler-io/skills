@@ -84,34 +84,32 @@ def collect_skills(repo_root: Path) -> list[dict[str, Any]]:
     return skills
 
 
-NAME_PATTERN = re.compile(r"^[a-z0-9]([a-z0-9_-]*[a-z0-9])?$")
+SPEC_URL = "https://agentskills.io/specification#frontmatter"
 
-# Claude Desktop stops reading a description after roughly 500 characters, so
-# anything past that never reaches the agent deciding whether to load the skill.
-DESCRIPTION_MAX_CHARS = 500
+# The name and description rules below re-implement part of the spec, which
+# ships a reference validator we could delegate to instead:
+# https://github.com/agentskills/agentskills/tree/main/skills-ref
+# Not yet - it self-describes as demonstration-only rather than production
+# ready, and it wouldn't cover our own additions (short_description, the
+# category/sources metadata, the folder-name match). Worth revisiting once it
+# stabilises, keeping our extras as a layer on top of `skills-ref validate`.
+
+# Lowercase alphanumerics separated by single hyphens, per the spec: no
+# underscores, no leading or trailing hyphen, no consecutive hyphens.
+NAME_PATTERN = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")
+
+# Hard limits from the Agent Skills spec.
+NAME_MAX_CHARS = 64
+DESCRIPTION_MAX_CHARS = 1024
+
+# Ours, since the spec says nothing about a human-facing summary.
 SHORT_DESCRIPTION_MAX_CHARS = 200
 
-# Skills whose descriptions predate the cap. Claude Desktop is already ignoring
-# their tails, so each entry is a trim waiting to happen: shorten the
-# description, then delete its slug here. New skills don't get to join the list,
-# and it can only shrink - a slug that no longer needs the exemption fails the
-# check until it's removed.
-ALLOWLISTED_LONG_DESCRIPTIONS = frozenset(
-    {
-        "coupler-live-artifact",
-        "create-dataflow",
-        "ecom-analytics",
-        "facebook-ads-settings-audit",
-        "finance-analytics",
-        "get-started",
-        "google-ads-custom-gaql",
-        "google-ads-settings-audit",
-        "marketing-analytics",
-        "ppc-analytics",
-        "report-generation",
-        "sales-analytics",
-    }
-)
+# Advisory only. Descriptions past this still load fine - published collections
+# sit either side of it, obra/superpowers at 79-234 characters and
+# coreyhaines31/marketingskills at 432-1014 - but it's a useful nudge to check
+# that the tail is still earning its context.
+DESCRIPTION_WARN_CHARS = 500
 
 
 def find_invalid_skill_names(skills: list[dict[str, Any]]) -> list[dict[str, str]]:
@@ -137,14 +135,6 @@ def find_too_long(
         for skill in skills
         if len(skill[field]) > limit
     ]
-
-
-def find_stale_allowlisting(skills: list[dict[str, Any]]) -> list[str]:
-    too_long = {
-        skill["name"]
-        for skill in find_too_long(skills, "description", DESCRIPTION_MAX_CHARS)
-    }
-    return sorted(ALLOWLISTED_LONG_DESCRIPTIONS - too_long)
 
 
 def find_name_directory_mismatches(skills: list[dict[str, Any]]) -> list[dict[str, str]]:
@@ -190,8 +180,10 @@ def print_invalid_names(invalid: list[dict[str, str]]) -> None:
         )
 
     print(
-        "\nA skill's `name` may only contain lowercase ASCII letters, digits, "
-        "- and _, and can't start or end with - or _.",
+        "\nA skill's `name` may only contain lowercase letters, digits, and "
+        "single hyphens, and must start and end with a letter or digit. "
+        "Underscores and consecutive hyphens aren't allowed. "
+        f"See {SPEC_URL}",
         file=sys.stderr,
     )
 
@@ -223,34 +215,42 @@ def print_too_long(
     print(f"\n{guidance}", file=sys.stderr)
 
 
-DESCRIPTION_GUIDANCE = (
-    "Claude Desktop stops reading a skill's `description` after roughly 500 "
-    "characters, so any trigger phrase past the limit is invisible to the agent "
-    "choosing the skill. Trim the least distinctive triggers rather than the "
-    "opening sentence - the first line is what the agent reads first."
+NAME_GUIDANCE = (
+    f"The Agent Skills spec caps `name` at {NAME_MAX_CHARS} characters. "
+    "Renaming means renaming the folder too, since the two have to match. "
+    f"See {SPEC_URL}"
 )
 
-
-def print_stale_allowlisting(stale: list[str]) -> None:
-    for name in stale:
-        print(
-            f"{name}: allowlisted description no longer needs the exemption",
-            file=sys.stderr,
-        )
-
-    print(
-        "\nRemove the slug(s) above from ALLOWLISTED_LONG_DESCRIPTIONS in this "
-        "script. The list only shrinks: once a description fits the "
-        f"{DESCRIPTION_MAX_CHARS}-character limit (or the skill is renamed or "
-        "deleted), its exemption has to go with it.",
-        file=sys.stderr,
-    )
+DESCRIPTION_GUIDANCE = (
+    f"The Agent Skills spec caps `description` at {DESCRIPTION_MAX_CHARS} "
+    "characters, and a skill that breaks the cap may be rejected outright "
+    "rather than truncated. Trim the least distinctive trigger phrases rather "
+    f"than the opening sentence. See {SPEC_URL}"
+)
 
 SHORT_DESCRIPTION_GUIDANCE = (
     "A skill's `metadata.short_description` is rendered in the UI, so it has to "
     "stay one readable sentence. Move any detail an agent needs into "
     "`description`, which is the field agents actually read."
 )
+
+
+def print_long_description_warnings(warnings: list[dict[str, Any]]) -> None:
+    for skill in warnings:
+        print(
+            f"Warning: {skill['name']}: description is {skill['length']} "
+            f"characters, over the {DESCRIPTION_WARN_CHARS}-character "
+            "guideline",
+            file=sys.stderr,
+        )
+
+    print(
+        f"\n{len(warnings)} description(s) above {DESCRIPTION_WARN_CHARS} "
+        f"characters. Not a failure - the spec allows {DESCRIPTION_MAX_CHARS} - "
+        "but agents weigh the opening sentence most heavily, so a long tail of "
+        "trigger phrases earns less than the context it costs.",
+        file=sys.stderr,
+    )
 
 
 def print_name_directory_mismatches(mismatches: list[dict[str, str]]) -> None:
@@ -277,7 +277,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument(
         "--check",
         action="store_true",
-        help="Validate without writing; exit 1 on any bad skill name or too-long description",
+        help="Validate without writing; exit 1 on any name or field that breaks a spec limit",
     )
     args = parser.parse_args(argv)
 
@@ -288,15 +288,11 @@ def main(argv: list[str] | None = None) -> int:
     invalid_names = find_invalid_skill_names(skills)
     mismatches = find_name_directory_mismatches(skills)
     duplicate_names = find_duplicate_skill_names(skills)
-    long_descriptions = [
-        skill
-        for skill in find_too_long(skills, "description", DESCRIPTION_MAX_CHARS)
-        if skill["name"] not in ALLOWLISTED_LONG_DESCRIPTIONS
-    ]
+    long_names = find_too_long(skills, "name", NAME_MAX_CHARS)
+    long_descriptions = find_too_long(skills, "description", DESCRIPTION_MAX_CHARS)
     long_short_descriptions = find_too_long(
         skills, "short_description", SHORT_DESCRIPTION_MAX_CHARS
     )
-    stale_allowlisting = find_stale_allowlisting(skills)
 
     if invalid_names:
         print_invalid_names(invalid_names)
@@ -304,6 +300,8 @@ def main(argv: list[str] | None = None) -> int:
         print_name_directory_mismatches(mismatches)
     if duplicate_names:
         print_duplicate_names(duplicate_names)
+    if long_names:
+        print_too_long(long_names, "name", NAME_MAX_CHARS, NAME_GUIDANCE)
     if long_descriptions:
         print_too_long(
             long_descriptions,
@@ -318,25 +316,28 @@ def main(argv: list[str] | None = None) -> int:
             SHORT_DESCRIPTION_MAX_CHARS,
             SHORT_DESCRIPTION_GUIDANCE,
         )
-    if stale_allowlisting:
-        print_stale_allowlisting(stale_allowlisting)
 
     if (
         invalid_names
         or mismatches
         or duplicate_names
+        or long_names
         or long_descriptions
         or long_short_descriptions
-        or stale_allowlisting
     ):
         return 1
 
+    # Advisory, so it runs past the failure return and never changes the exit
+    # code. Everything reaching here is already under DESCRIPTION_MAX_CHARS.
+    warnings = find_too_long(skills, "description", DESCRIPTION_WARN_CHARS)
+    if warnings:
+        print_long_description_warnings(warnings)
+
     if args.check:
-        exempt = len(ALLOWLISTED_LONG_DESCRIPTIONS)
         print(
             f"OK: {len(skills)} skills, all names valid, unique, and matching "
-            "their folders, all descriptions within limits "
-            f"({exempt} allowlisted)"
+            f"their folders, all fields within spec limits "
+            f"({len(warnings)} long description(s) warned about)"
         )
         return 0
 

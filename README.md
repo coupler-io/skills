@@ -161,7 +161,7 @@ These are the tools the Coupler.io MCP server exposes. Skills use them automatic
 
 ## Skill frontmatter
 
-The [Agent Skills spec](https://agentskills.io/specification) allows only six top-level frontmatter keys — `name`, `description`, `license`, `compatibility`, `metadata`, `allowed-tools` — and Claude rejects a `SKILL.md` that carries anything else. Everything of ours therefore lives under `metadata`:
+The [Agent Skills spec](https://agentskills.io/specification#frontmatter) allows only six top-level frontmatter keys — `name`, `description`, `license`, `compatibility`, `metadata`, `allowed-tools` — and a `SKILL.md` carrying anything else can be rejected outright. Claude Code's own [frontmatter reference](https://code.claude.com/docs/en/skills#frontmatter-reference) accepts considerably more (`when_to_use`, `model`, `effort`, `context`, `agent`, `argument-hint`, `disable-model-invocation`, `allowed-tools`, `disallowed-tools`, and others), but those are Claude-only extensions that other runtimes ignore. We target the portable six, so everything of ours lives under `metadata`:
 
 ```yaml
 ---
@@ -177,16 +177,17 @@ metadata:
 
 `description` is the agent's routing signal, so it is long and stuffed with trigger phrases — unreadable in a skill catalog. `short_description` is the human-facing counterpart: one sentence, no "use this skill when", safe to render in a card or list. It is optional; consumers should fall back to a truncated `description` when it is absent.
 
-Both are length-capped, and `python .github/scripts/generate_skill_index.py --check` fails the build when either is exceeded:
+`python .github/scripts/generate_skill_index.py --check` enforces the length limits:
 
-| Field | Limit | Why |
+| Field | Limit | Source |
 | --- | --- | --- |
-| `description` | 500 characters | Claude Desktop stops reading a description after roughly 500 characters, so trigger phrases past the cap never reach the agent choosing the skill. |
-| `metadata.short_description` | 200 characters | It is rendered in the UI, where anything longer than a sentence stops being scannable. |
+| `name` | 64 characters | [Spec](https://agentskills.io/specification#frontmatter). Renaming means renaming the folder too — the two must match. |
+| `description` | 1024 characters | [Spec](https://agentskills.io/specification#frontmatter). |
+| `metadata.short_description` | 200 characters | Ours. It renders in the UI, where anything longer than a sentence stops being scannable. |
 
-Twelve skills predate the description cap and are exempted by slug in `ALLOWLISTED_LONG_DESCRIPTIONS` in the generator — Claude is already truncating them, so each is a trim waiting to happen. The list only shrinks: trimming one below 500 characters fails the check until you also delete its slug, and new skills can't be added to it.
+Above 500 characters a `description` only earns a **warning** — it still passes. There is no consensus on the right length: [obra/superpowers](https://github.com/obra/superpowers) ships descriptions of 79–234 characters, while [coreyhaines31/marketingskills](https://github.com/coreyhaines31/marketingskills) runs 432–1014. The warning is a nudge to check the tail is still earning its context, not a rule — agents weigh the opening sentence most heavily.
 
-Both land in `skills-index.json`, which is what the API and the MCP server read.
+Both descriptions land in `skills-index.json`, which is what the API and the MCP server read.
 
 ## Installation
 
