@@ -1,0 +1,19 @@
+utilities/humanizer/skills/humanizer/SKILL.md
+  s_dba03c2000170c::t_eb42d7dd687472 11
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.8",
+  "base_commit_sha": "6079892f5208a7e238393ce41416555ea73685b8",
+  "prompts": {},
+  "sessions": {
+    "s_dba03c2000170c": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "f9f89f20-4ee1-4755-b84f-18e4eaf7af0e",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Artur Hebda <arturhebda@gmail.com>"
+    }
+  }
+}
