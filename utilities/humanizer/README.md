@@ -6,8 +6,6 @@ Identifies and removes AI writing patterns to make text sound natural and human.
 
 **Skill: humanizer** — Activates automatically when you ask to humanize text, remove AI patterns, make something sound natural, or review drafted content for AI tells. Covers 23 named patterns across content, language, style, communication, and filler categories.
 
-**Command: /humanize** — On-demand rewrite. Pass text directly or provide a file path.
-
 ## Usage
 
 Ask naturally:
@@ -15,9 +13,6 @@ Ask naturally:
 - "Make this email sound less like AI"
 - "De-slop this"
 - "Review this for AI patterns"
-
-Or use the command:
-- `/humanize Here is some text to rewrite...`
 
 ## What it catches
 
