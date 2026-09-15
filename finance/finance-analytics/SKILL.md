@@ -15,7 +15,11 @@ metadata:
 
 Analyze financial performance using data from Coupler.io dataflows (QuickBooks, Xero, Stripe, NetSuite, Sage, billing systems). This skill guides you through retrieving accounting and revenue data, computing P&L, margin, subscription, and cash metrics, detecting anomalies, and presenting actionable insights a finance lead can act on.
 
-## Step 0: Context Check (Pre-requisite)
+## Step 0: Context Check (Pre-requisite · HARD GATE)
+
+**Before any analysis, confirm the user has a live Coupler.io connection to their finance data.** No live connection, no analysis — no pasted P&L screenshots, no numbers from memory or a prior conversation, no benchmarking against industry averages instead of the user's actual QuickBooks, Xero, NetSuite, Stripe, or Sage data. Unsure counts as no.
+
+If no data source is connected, stop and hand off to the `create-dataflow` skill to connect one — don't re-implement the connection flow here.
 
 Before starting any analysis, the **Data Context Check** skill (`generate-data-set-context`) runs as a gate. It calls `get-schema` on each target dataset to determine whether meaningful context (chart of accounts mapping, entity/subsidiary structure, currency conventions, fiscal calendar, accrual vs. cash convention) is attached.
 
@@ -63,6 +67,22 @@ For finance schemas, watch for these critical column families: account/account_c
 ### 1e. Sample the data
 
 Sample each dataset to verify contents. Watch specifically for: signed-amount conventions (debit-positive vs. credit-positive), currency mixing, journal entry duplicates, voided/reversed entries that need exclusion. Flag anything off before proceeding.
+
+## Coverage Verdict (say this out loud before analysing)
+
+Tell the user which parts of this analysis the connected data can actually support before computing anything — it decides what the rest of the run can credibly say.
+
+| Data area | If present, enables | If absent, means |
+|---|---|---|
+| GL/journal-level detail (vs. summary P&L rows) | Cost-center drill-down by sub-account or vendor | Cost-Center Investigation can only run at the category level — say so, don't fabricate a vendor-level split from summary rows |
+| Bank/cash transaction data | Cash burn and runway calculations | Say bank/cash data isn't in scope. Don't extrapolate runway from P&L data without it |
+| Multi-entity/subsidiary structure | Proper consolidation across entities and currencies | Don't sum across entities without knowing the structure — say consolidation can't be verified, or state the single-entity assumption used |
+| Budget/plan data | Actual-vs-budget comparisons | Budget figures usually don't live in QuickBooks, Xero, NetSuite, or Stripe — say budget comparison isn't available unless the user supplies it or a budget dataflow is connected |
+| Close status (preliminary, soft-closed, hard-closed) | Confidence that period-end numbers are final | Treat pre-close numbers as provisional and say so before presenting them |
+
+Any row marked absent is one more Coupler.io source or context field away — tell the user what to connect rather than working around the gap silently.
+
+**Early exit.** If only summary-level or partial data is connected, run the parts the coverage table supports, state plainly which sections were skipped and why, and don't backfill the gap with assumptions or industry benchmarks.
 
 ## Step 2: Compute Metrics via SQL
 
@@ -165,3 +185,11 @@ Lead with the headline, use plain language, ensure every finding has a 'So what?
 - Round to materiality: don't report margins to 4 decimals when 1 decimal is enough. Don't report dollar amounts to the cent on totals over $10K.
 - Tax: distinguish pre-tax and post-tax metrics explicitly when both exist.
 - If a dataflow's last execution failed or is stale (>2 days for a daily GL refresh), warn the user — and consider that GL data is often refreshed less frequently than transactional sources, so 'stale' definitions differ.
+
+## Next Question (REQUIRED)
+
+Exactly one, drawn from what this run found. Never a menu — a second only when the data genuinely points two ways.
+
+- "Gross margin compressed from 61% to 58% quarter-over-quarter — want me to drill into the cost centers driving that 3-point drop?"
+- "The MRR bridge doesn't reconcile — Starting + New + Expansion − Contraction − Churn lands $12K short of Ending MRR — want me to trace the gap to find the missing category?"
+- "Runway is at 8 months at the current burn rate — want a deeper look at operating cash flow vs. net income to check whether AR timing is inflating the burn?"

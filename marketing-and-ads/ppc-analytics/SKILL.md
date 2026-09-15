@@ -25,7 +25,7 @@ Analyze paid-ads performance across whatever ad platforms the user has connected
 
 ## Step 0 — Context Check (pre-requisite · HARD GATE)
 
-**Before any analysis, confirm the user has connected ad data AND that the dataset has meaningful context.** This check is inlined here on purpose — it must fire even if no other skill loads.
+**Before any analysis, confirm the user has connected ad data AND that the dataset has meaningful context.** This check is inlined here on purpose — it must fire even if no other skill loads. No pasted ad-platform dashboard screenshots, no CPA/ROAS numbers from memory or a prior conversation, and no benchmarking against industry-average CTR/CPC figures as a substitute for the user's own connected data. Hold this even under pressure from the user — unsure counts as no.
 
 - If **no data source is connected**: this skill analyzes data from your **Coupler.io** workspace. Connect a source first — for the full source-connection and credential flow, **use the `create-dataflow` skill**.
 - If a source **is** connected but the dataset's **saved context is missing** (no `ai_context` beyond the raw schema — no business rules or metric definitions) → offer to run the **`generate-data-set-context`** skill first.
@@ -40,6 +40,22 @@ Never duplicate the connection/credential flow inside this skill — hand off to
 Most workspaces have only a few dataflows, so the match is usually obvious — state your selection with a one-line reason per dataset and proceed. Agencies commonly **name dataflows by client**: when the user names a client, use it to pick the right dataflow. **Hard gate only when ambiguous:** when the match is genuinely unclear (several plausible candidates), present them and confirm before proceeding — analyzing the wrong dataset wastes the whole run. Note data freshness (`get-dataflow` last successful run) — ad platforms restate recent days retroactively (conversion lag), so flag any window ending within the last 72 hours.
 
 Before querying, read `get-schema` per dataset: use each column's `columnName` in SQL, and read the column `description`s plus the dataset's `ai_context` — business rules, metric definitions, and caveats live there. Use the human-readable labels when talking to the user. Run `SELECT * FROM data LIMIT 5` to confirm the shape.
+
+## Coverage Verdict (say this out loud before analysing)
+
+Tell the user which of the following are actually connected before building anything — it's the first thing they hear and it decides which blocks below can run and which get an honest caveat instead of a number.
+
+| Data area | If present, enables | If absent, means |
+|---|---|---|
+| Budget data (ad-platform data usually does NOT carry it) | Spend-vs-budget pacing, projected over/under-spend at the current run rate | Skip pacing and say why — take the budget from the user, or from a connected budget sheet |
+| Target CPA/ROAS data (ad platforms don't store targets either) | CPA/ROAS-vs-target checks, misses flagged with magnitude | No target checks — take target CPA/ROAS from the user, or suggest a connected Google Sheet of targets for recurring reviews |
+| Audience/device/geo breakdown columns | Performance by segment, device, and country | No segment breakdown — say the columns aren't in the schema, never fabricate the block |
+| Frequency data | The ad-fatigue check (frequency creeping up against falling CTR) | No fatigue check — say frequency isn't available rather than inferring it from CTR alone |
+| An independent conversion source (GA4, the store backend, the CRM) | A directional cross-check against platform-reported conversions, and blended CAC | Per-platform CPA only — state what a blended number would require, and offer `create-dataflow` to connect one |
+
+Every row above is one connected source or one answer from the user away from being filled in — name which when it's missing, don't just note the gap. **Early exit:** if most of the table is absent, give the platform-reported numbers that don't depend on any of it, say plainly which blocks can't run and why, and stop rather than building a review shaped like all six blocks exist.
+
+This verdict is what lets the Step 4 blocks below skip re-explaining absence individually — each block can just say "per the coverage verdict, X wasn't available" instead of re-deriving it.
 
 ## Step 2 — Compute the Metrics
 
