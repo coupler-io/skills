@@ -55,6 +55,7 @@
         "./marketing-and-ads/google-ads/google-ads-settings-audit",
         "./marketing-and-ads/google-ads/google-ads-pmax-transparency",
         "./marketing-and-ads/google-ads/google-ads-client-report",
+        "./marketing-and-ads/google-ads/google-ads-custom-gaql",
         "./marketing-and-ads/tiktok-ads/tiktok-ads-performance-review",
         "./marketing-and-ads/tiktok-ads/tiktok-ads-waste-and-scale",
         "./marketing-and-ads/tiktok-ads/tiktok-ads-creative-analysis",
@@ -83,12 +84,11 @@
       "name": "coupler-capability",
       "source": "./",
       "strict": false,
-      "description": "Core Coupler.io MCP capabilities — create dataflows, build Custom GAQL sources, generate dataset context, refine prompts, generate reports.",
+      "description": "Core Coupler.io MCP capabilities — create dataflows, generate dataset context, refine prompts, generate reports.",
       "category": "productivity",
       "skills": [
         "./capability/get-started",
         "./capability/create-dataflow",
-        "./capability/google-ads-custom-gaql",
         "./capability/generate-data-set-context",
         "./capability/refine-prompt",
         "./capability/report-generation"

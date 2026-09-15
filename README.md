@@ -35,7 +35,7 @@ The machine-readable catalog is `skills-index.json`. **Do not edit it by hand** 
 
 #### Google Ads deep dives
 
-Eight Google-Ads-only skills in `marketing-and-ads/google-ads/`. Each one owns a single question and hands off to the others rather than duplicating them — `ppc-analytics` stays the cross-platform paid view. When a request needs a field no packaged report type carries, they route to `capability/google-ads-custom-gaql`.
+Eight Google-Ads-only skills in `marketing-and-ads/google-ads/`. Each one owns a single question and hands off to the others rather than duplicating them — `ppc-analytics` stays the cross-platform paid view. When a request needs a field no packaged report type carries, they route to `google-ads-custom-gaql`, which lives alongside them in the same directory as the pack's escape hatch (not a ninth deep dive).
 
 | Skill | What it does |
 | --- | --- |
@@ -47,6 +47,7 @@ Eight Google-Ads-only skills in `marketing-and-ads/google-ads/`. Each one owns a
 | **google-ads-settings-audit** | Account configuration priced in the spend flowing through it — search partners, Display expansion, location intent, auto-apply, ad rotation, conversion windows, bid strategies. |
 | **google-ads-pmax-transparency** | Opening the Performance Max black box — Shopping cannibalisation, brand-traffic buying, asset-group performance. |
 | **google-ads-client-report** | The monthly client write-up — what to say, how to present a missed target. Built only when asked. |
+| **google-ads-custom-gaql** | The pack's escape hatch, not a ninth deep dive — build a Custom GAQL source when no packaged Google Ads report type carries the field, and name the packaged type when one does. Covers resource choice, date macros, and the raw column names and micros that come back. |
 
 #### TikTok Ads deep dives
 
@@ -92,7 +93,6 @@ Cross-ICP building blocks — compose these with a domain skill above.
 | --- | --- | --- |
 | **get-started** | `capability/get-started/SKILL.md` | Onboard a brand-new or empty workspace from zero to the user's own data in the chat — anchor on stated intent, route template-or-scratch, script the guided credential round-trip, build + run the first dataflow, then offer a refresh schedule. |
 | **create-dataflow** | `capability/create-dataflow/SKILL.md` | Configure a Coupler.io dataflow end to end — pick an integration, attach a credential, wire source → destination, and trigger a run. |
-| **google-ads-custom-gaql** | `capability/google-ads-custom-gaql/SKILL.md` | Build a Custom GAQL source when no packaged Google Ads report type carries the field — and name the packaged type when one does. Covers resource choice, date macros, and the raw column names and micros that come back. |
 | **generate-data-set-context** | `capability/generate-data-set-context/SKILL.md` | Produce an AI-readable description for a dataset so future sessions inherit its schema context. |
 | **refine-prompt** | `capability/refine-prompt/SKILL.md` | Sharpen a vague or underspecified analytics request into a detailed, actionable prompt — filling in time period, metrics, data sources, and output format — before analysis. |
 | **report-generation** | `capability/report-generation/SKILL.md` | Industry-agnostic report formatter and validator. Turns analysis output into a structured TL;DR → Metrics → Context → Recommendations → Next Questions report, then runs a Phase 2 validation pass (arithmetic, units, claim-vs-data, logical gates). Compose with a domain skill for domain-flavored reports. |
@@ -175,14 +175,14 @@ Each ICP is its own plugin, so you install only what you need. Available plugins
 | `coupler-finance` | finance-analytics |
 | `coupler-sales` | sales-analytics |
 | `coupler-ecommerce` | ecom-analytics |
-| `coupler-marketing-ads` | marketing-analytics, ppc-analytics, + the 8 Google Ads, 11 Meta / Facebook Ads and 11 TikTok Ads deep dives |
-| `coupler-capability` | get-started, create-dataflow, google-ads-custom-gaql, generate-data-set-context, refine-prompt, report-generation |
+| `coupler-marketing-ads` | marketing-analytics, ppc-analytics, google-ads-custom-gaql, + the 8 Google Ads, 11 Meta / Facebook Ads and 11 TikTok Ads deep dives |
+| `coupler-capability` | get-started, create-dataflow, generate-data-set-context, refine-prompt, report-generation |
 | `coupler-utilities` | coupler-live-artifact |
 | `humanizer` | humanizer (+ `/humanize` command) |
 
 Plugin skills are namespaced by their plugin, so they can be invoked explicitly as `/coupler-finance:finance-analytics`. Most of them are model-invoked too — Claude reaches for them when the request matches their description. If the install summary says `Run /reload-plugins to activate.`, run that.
 
-**Install only the plugin you need.** Every skill's description stays in context for the whole session, so a plugin's cost scales with how many skills it carries. `coupler-marketing-ads` bundles 32 and adds roughly 5.5k tokens to every session; the single-skill plugins add a few hundred. Check any plugin before installing it:
+**Install only the plugin you need.** Every skill's description stays in context for the whole session, so a plugin's cost scales with how many skills it carries. `coupler-marketing-ads` bundles 33 and adds roughly 5.5k tokens to every session; the single-skill plugins add a few hundred. Check any plugin before installing it:
 
 ```
 claude plugin details coupler-marketing-ads@coupler-io-skills
