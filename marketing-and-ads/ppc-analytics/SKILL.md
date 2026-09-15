@@ -1,16 +1,14 @@
 ---
 name: ppc-analytics
 description: >
-  Analyze paid-ads (PPC) performance over the ad data connected in your Coupler.io workspace — spend, impressions,
-  clicks, CTR, CPC, CPM, conversions, CPA, ROAS — with per-platform funnel traces, an efficiency-first comparison
-  table, brand vs non-brand splits, budget pacing, and a weekly PPC review. Use this skill when the user asks
+  Analyze paid-ads (PPC) performance over your connected Coupler.io ad data — spend, impressions, clicks, CTR,
+  CPC, CPM, conversions, CPA, ROAS — with per-platform funnel traces, an efficiency-first comparison table,
+  brand vs non-brand splits, budget pacing, and a weekly PPC review. Use this skill when the user asks
   "how are my ads performing", "weekly PPC report", "why did CPA spike", "ROAS by platform", "Facebook vs Google
-  Ads", "compare Meta and Google", "am I overspending my ad budget", "which campaigns should I scale or pause",
-  "ad fatigue check", "blended CAC". Facebook Ads + Google Ads are first-class; other ad platforms best-effort.
-  It never silently sums platform-reported conversions across platforms — attribution double-counts; it reports
-  per platform and computes blended CAC from an independent source when one exists. Paid-ads deep dives only:
-  for cross-channel marketing (email, social, SEO) use marketing-analytics; report formatting composes
-  report-generation.
+  Ads", "am I overspending my ad budget", "which campaigns should I scale or pause", "ad fatigue check",
+  "blended CAC". Facebook Ads + Google Ads are first-class; other platforms best-effort. Never sums conversions
+  across platforms (attribution double-counts) — reports per platform instead. Paid-ads deep dives only: for
+  cross-channel marketing (email, social, SEO) use marketing-analytics; composes report-generation.
 metadata:
   version: 0.2.0
   category: marketing-and-ads
