@@ -4,7 +4,7 @@
     "name": "Coupler.io"
   },
   "metadata": {
-    "description": "Coupler.io-authored Claude Code skills and plugins — ICP analytics (finance, sales, e-commerce, marketing & ads) plus cross-ICP capability skills and utilities",
+    "description": "Coupler.io-authored Claude Code skills and plugins for business analytics by function (finance, sales, ecommerce, marketing & ads) plus shared capability skills and utilities",
     "version": "1.4.0"
   },
   "plugins": [
