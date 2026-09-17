@@ -120,7 +120,12 @@ function monthLabel(iso) {
 // All Coupler.io operations go through the single dispatcher tool.
 // Operations are invoked as {verb:"call", name:"<operation>", args:{...}}
 // with snake_case args (dataflow_id, dataset_snapshot_id).
-const COUPLER_TOOL = "mcp__b2221b32-5723-40e6-b17d-a36abcd4c057__coupler";
+//
+// The tool name below is a PLACEHOLDER. It is specific to one Cowork
+// installation's registered Coupler MCP connector and must never be copied
+// as-is — replace it with the mcp__<connector-id>__coupler tool name you
+// discovered in SKILL.md Step 3 before using this snippet.
+const COUPLER_TOOL = "mcp__<connector-id>__coupler"; // TODO: replace with your discovered tool name
 
 async function callCoupler(name, args) {
   return await window.cowork.callMcpTool(COUPLER_TOOL, { verb: "call", name, args });

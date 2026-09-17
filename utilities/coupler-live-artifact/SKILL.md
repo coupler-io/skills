@@ -45,14 +45,14 @@ Default to live-snapshot for load. Add a "Refresh data" button for forced refres
 
 ### Step 3 — Pick widget MCP tools
 
-Only list MCP tools you actually call from the widget in the `mcp_tools` parameter of `create_artifact`. There is a single Coupler tool — the dispatcher:
+Only list MCP tools you actually call from the widget in the `mcp_tools` parameter of `create_artifact`. There is a single Coupler tool — the dispatcher — but **its exact name is specific to this Cowork installation and must never be hardcoded.** Find it yourself: look through your own available tools for the one matching `mcp__<connector-id>__coupler`, where `<connector-id>` is a UUID tied to this installation's registered Coupler MCP connector. Every installation has a different UUID — a skill that ships a literal one will silently call a tool name that doesn't exist anywhere else.
 
-- `mcp__b2221b32-5723-40e6-b17d-a36abcd4c057__coupler` — list it once in `mcp_tools`; it covers all operations.
+- Whatever you find, list it once in `mcp_tools`; it covers all operations.
 
 Widget-side calls take the form:
 
 ```js
-window.cowork.callMcpTool("mcp__b2221b32-5723-40e6-b17d-a36abcd4c057__coupler",
+window.cowork.callMcpTool("<your discovered mcp__<connector-id>__coupler tool name>",
   { verb: "call", name: "list-datasets", args: { dataflow_id: DATAFLOW_ID } })
 ```
 
@@ -92,7 +92,7 @@ mcp__cowork__create_artifact({
   id: "<kebab-slug>",
   html_path: "<absolute path to the .html in outputs>",
   description: "<one-line summary of what it shows>",
-  mcp_tools: ["mcp__b2221b32-5723-40e6-b17d-a36abcd4c057__coupler"]
+  mcp_tools: ["<your discovered mcp__<connector-id>__coupler tool name, from Step 3>"]
 })
 ```
 
