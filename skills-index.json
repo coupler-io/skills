@@ -386,7 +386,7 @@
     },
     {
       "name": "humanizer",
-      "path": "utilities/humanizer/skills/humanizer",
+      "path": "utilities/humanizer",
       "category": "utilities",
       "sources": [],
       "description": "Remove AI writing patterns and add human voice to any text. Use when the user says \"humanize this\", \"make it sound human\", \"remove AI patterns\", \"this sounds like AI\", \"make it natural\", \"de-slop this\", \"edit for voice\", or when reviewing any drafted text (blog posts, emails, Slack messages, social posts, docs) for AI-sounding language. Also activate after generating any written content when the user has asked for natural or human-sounding output."

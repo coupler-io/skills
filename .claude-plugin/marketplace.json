@@ -101,25 +101,9 @@
       "description": "Utility skills for Coupler.io workflows.",
       "category": "productivity",
       "skills": [
-        "./utilities/coupler-live-artifact"
+        "./utilities/coupler-live-artifact",
+        "./utilities/humanizer"
       ]
-    },
-    {
-      "name": "humanizer",
-      "source": "./utilities/humanizer",
-      "description": "Identify and remove AI writing patterns to make text sound natural and human. Adds a /humanize command + auto-triggering skill.",
-      "version": "0.1.0",
-      "author": {
-        "name": "Nika"
-      },
-      "keywords": [
-        "writing",
-        "editing",
-        "ai-detection",
-        "tone",
-        "style"
-      ],
-      "category": "content"
     }
   ]
 }

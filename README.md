@@ -101,7 +101,7 @@ Cross-ICP building blocks — compose these with a domain skill above.
 
 | Skill | Location | What it does |
 | --- | --- | --- |
-| **humanizer** | `utilities/humanizer/` | Rewrites AI-generated text to remove detectable patterns and add human voice. Also available as the `/humanize` slash command. |
+| **humanizer** | `utilities/humanizer/` | Rewrites AI-generated text to remove detectable patterns and add human voice. |
 | **coupler-live-artifact** | `utilities/coupler-live-artifact/` | Builds a live Cowork artifact — a persistent, re-openable HTML widget backed by a Coupler.io dataflow that auto-refreshes (live dashboards, daily-check pages, data explorers). |
 
 ---
@@ -177,8 +177,7 @@ Each ICP is its own plugin, so you install only what you need. Available plugins
 | `coupler-ecommerce` | ecom-analytics |
 | `coupler-marketing-ads` | marketing-analytics, ppc-analytics, + the 8 Google Ads, 11 Meta / Facebook Ads and 11 TikTok Ads deep dives |
 | `coupler-capability` | get-started, create-dataflow, google-ads-custom-gaql, generate-data-set-context, refine-prompt, report-generation |
-| `coupler-utilities` | coupler-live-artifact |
-| `humanizer` | humanizer (+ `/humanize` command) |
+| `coupler-utilities` | coupler-live-artifact, humanizer |
 
 Plugin skills are namespaced by their plugin, so they can be invoked explicitly as `/coupler-finance:finance-analytics`. Most of them are model-invoked too — Claude reaches for them when the request matches their description. If the install summary says `Run /reload-plugins to activate.`, run that.
 
