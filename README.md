@@ -116,6 +116,20 @@ Eleven Meta-only skills in `marketing-and-ads/facebook-ads/`. Same shape as the 
 | [**facebook-ads-placement-geo-and-device**](marketing-and-ads/facebook-ads/facebook-ads-placement-geo-and-device/SKILL.md) | Where the budget actually goes — Feed vs Reels vs Stories vs Audience Network, region, device and delivery hour, each with what it is worth. |
 | [**facebook-ads-client-report**](marketing-and-ads/facebook-ads/facebook-ads-client-report/SKILL.md) | The monthly client write-up — KPIs against goal, creative winners, the attribution caveat stated once and plainly. Built only when asked. |
 
+#### SEO deep dives
+
+Seven organic-search skills in `marketing-and-ads/seo/`, built on Google Search Console and GA4. Same shape as the ad packs — each owns a single question and routes to its siblings rather than duplicating them.
+
+| Skill | What it does |
+| --- | --- |
+| [**gsc-search-opportunity-finder**](marketing-and-ads/seo/gsc-search-opportunity-finder/SKILL.md) | The earning view — queries ranking just off page one, pages seen but not clicked, and pages cannibalising each other for the same query, each with the action. |
+| [**content-decay-detector**](marketing-and-ads/seo/content-decay-detector/SKILL.md) | Pages quietly losing organic traffic — whether it's a ranking slip or fewer people searching, and which are worth refreshing first. |
+| [**gsc-ga4-landing-page-performance**](marketing-and-ads/seo/gsc-ga4-landing-page-performance/SKILL.md) | Search to outcome — search clicks and rankings next to engagement, conversions and revenue per landing page. Needs GSC and GA4. |
+| [**gsc-country-device-performance**](marketing-and-ads/seo/gsc-country-device-performance/SKILL.md) | Where and on what — clicks, CTR and position by market and by device, against the site's own average. |
+| [**branded-vs-nonbranded-search-split**](marketing-and-ads/seo/branded-vs-nonbranded-search-split/SKILL.md) | Whether search growth is new reach or just people who already know you — brand vs non-brand share, trend, and new non-brand queries. |
+| [**new-page-indexation-tracker**](marketing-and-ads/seo/new-page-indexation-tracker/SKILL.md) | Whether new pages get seen — days from publish to first impression, first click and a settled ranking, and which pages went nowhere. |
+| [**ai-traffic-vs-organic-report**](marketing-and-ads/seo/ai-traffic-vs-organic-report/SKILL.md) | Traffic from ChatGPT, Perplexity, Gemini and Claude against organic search — sessions, engagement, conversions, revenue. Measures referrals, not citations. GA4 only. |
+
 ### Sales
 
 | Skill | What it does |
@@ -221,14 +235,14 @@ Each business function is its own plugin, so you install only what you need. Ava
 | `coupler-finance` | finance-analytics |
 | `coupler-sales` | sales-analytics |
 | `coupler-ecommerce` | ecom-analytics |
-| `coupler-marketing-ads` | marketing-analytics, ppc-analytics, + the 8 Google Ads, 11 Meta / Facebook Ads and 11 TikTok Ads deep dives |
+| `coupler-marketing-ads` | marketing-analytics, ppc-analytics, + the 8 Google Ads, 11 Meta / Facebook Ads and 11 TikTok Ads deep dives, + the 7 SEO skills |
 | `coupler-capability` | get-started, create-dataflow, google-ads-custom-gaql, generate-data-set-context, refine-prompt, report-generation |
 | `coupler-utilities` | coupler-live-artifact |
 | `humanizer` | humanizer (+ `/humanize` command) |
 
 Plugin skills are namespaced by their plugin, so they can be invoked explicitly as `/coupler-finance:finance-analytics`. Most of them are model-invoked too — Claude reaches for them when the request matches their description. If the install summary says `Run /reload-plugins to activate.`, run that.
 
-**Install only the plugin you need.** Every skill's description stays in context for the whole session, so a plugin's cost scales with how many skills it carries. `coupler-marketing-ads` bundles 32 and adds roughly 5.5k tokens to every session; the single-skill plugins add a few hundred. Check any plugin before installing it:
+**Install only the plugin you need.** Every skill's description stays in context for the whole session, so a plugin's cost scales with how many skills it carries. `coupler-marketing-ads` bundles 39 and adds roughly 8k tokens to every session; the single-skill plugins add a few hundred. Check any plugin before installing it:
 
 ```
 claude plugin details coupler-marketing-ads@coupler-io-skills
