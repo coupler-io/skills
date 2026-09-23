@@ -44,7 +44,8 @@ replacement creative has not been briefed, so the account limps for another fort
 → one combined query. **Two calls** when the dataset is known.
 
 Overriding rules: never spend a call proving the connection works; speak at the coverage read;
-missing data is a line in the write-up, not a gate; don't narrate steps.
+missing data is a line in the write-up, not a gate; don't narrate steps; render rankings, trends and
+splits as inline visuals in the message rather than offering to make them.
 
 ## A. Connect to Coupler.io (HARD GATE)
 
@@ -138,16 +139,46 @@ the refresh queue with days remaining, frequency, CTR against baseline, lifespan
 coverage, the volume floor, ads excluded for recent edits · Recommendations = the refresh queue and
 the production cadence with its arithmetic.
 
+### Inline visuals (REQUIRED)
+
+**Render these in the message itself. They are not an offer and not a follow-up** — a ranking, a
+trend or a split of a total delivered as prose is a defect in this skill's output.
+
+Scale bars from zero. Put the unit and the scale maximum on a label line above the visual. Cap at
+eight rows and roll the rest into `Other (n)`. Mark rows under the volume floor rather than drawing
+them to scale, and never bar a rate without its denominator in the row. **The visual replaces the
+prose it would have taken** — one sentence of interpretation underneath, never a restatement of the
+rows.
+
+Forms: unicode bar (`█`, scaled to the largest row) for rankings and splits; sparkline
+(`▁▂▃▄▅▆▇█`, first and last values labelled) for five or more periods; mermaid for structure only,
+never for quantity.
+
+| Whenever the run produced | Render |
+|---|---|
+| Five or more periods for a decaying ad | One sparkline per ad of CTR or cost per result against days live, first and last labelled — the decay curve is the finding, and prose cannot show it |
+| A refresh queue of three or more ads | Unicode bar of days remaining, shortest first, spend at risk in each row |
+| Frequency across four or more ads | Unicode bar of frequency with raw impressions in the row, so a high frequency on thin delivery is visible |
+
+**Render nothing** when there is a single figure, fewer than three comparable rows, an early exit,
+or a coverage table dominated by "not checkable". A two-row bar trains the reader to skip the
+visuals on the runs that have eight.
+
 ## G. Offer to build it out (CONDITIONAL)
+
+**The inline visuals above are not optional and are not this section's business.** This section
+covers only what *leaves the conversation* — a written record, a brief, a document, a pack. It
+**stays silent unless the run produced something a document carries better than the message already
+did.**
 
 | Found | Worth making | Why |
 |---|---|---|
-| Decay curves for three or more ads | CTR or cost per result against days live, one line per ad | The crossing point is the entire finding and prose cannot show it |
-| A frequency distribution with a long tail | A frequency histogram | The tail is invisible in the average |
-| A refresh queue going to whoever produces the creative | A written brief with the queue and the cadence | It leaves the conversation, and the cadence is the ask |
+| A refresh queue going to whoever produces the creative | A written brief with the queue and the monthly cadence arithmetic | It leaves the conversation, and the cadence is the ask |
 
-**Stay silent when** history is too short for curves, one ad is involved, or "not checkable"
-dominates. One thing, named by what it contains and who it is for. Never build it unasked.
+**Stay silent when** history is too short for a curve, one ad is involved, "not checkable"
+dominates, or the inline visuals above already carried the finding. One thing, named by what it
+contains and who it is for — never a menu. Never build it unasked; never delay the answer to make
+it.
 
 ## H. Save what you learned
 

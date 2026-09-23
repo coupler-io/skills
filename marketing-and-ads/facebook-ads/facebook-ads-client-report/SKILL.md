@@ -45,7 +45,8 @@ its number and the caveats are stated once, plainly, rather than hedged through 
 pack.
 
 Overriding rules: never spend a call proving the connection works; speak at the coverage read;
-missing data becomes a line in the appendix, not a mid-run question; don't narrate steps.
+missing data becomes a line in the appendix, not a mid-run question; don't narrate steps; render
+rankings, trends and splits as inline visuals in the pack rather than offering to make them.
 
 ## A. Connect to Coupler.io (HARD GATE)
 
@@ -161,20 +162,49 @@ Never deliver a client pack that has not passed.
 Round consistently and do not imply precision the data does not have. A cost per result quoted to two
 decimal places on eleven conversions is a claim the document cannot support.
 
+### Inline visuals (REQUIRED)
+
+**Render these in the message itself. They are not an offer and not a follow-up** — a ranking, a
+trend or a split of a total delivered as prose is a defect in this skill's output.
+
+Scale bars from zero. Put the unit and the scale maximum on a label line above the visual. Cap at
+eight rows and roll the rest into `Other (n)`. Mark rows under the volume floor rather than drawing
+them to scale, and never bar a rate without its denominator in the row. **The visual replaces the
+prose it would have taken** — one sentence of interpretation underneath, never a restatement of the
+rows.
+
+Forms: unicode bar (`█`, scaled to the largest row) for rankings and splits; sparkline
+(`▁▂▃▄▅▆▇█`, first and last values labelled) for five or more periods; mermaid for structure only,
+never for quantity.
+
+| Whenever the run produced | Render |
+|---|---|
+| KPI performance against target across three or more metrics | Unicode bar per metric, actual against target on the same scale, the gap in currency or percent in the row |
+| Three or more months of a headline metric | Sparkline on that metric's KPI-table line, first and last labelled |
+| A spend split across campaigns or objectives | Unicode bar of share of the month's spend, top seven plus `Other (n campaigns)` |
+
+**Render nothing** when there is a single figure, fewer than three comparable rows, an early exit,
+or a coverage table dominated by "not checkable". A two-row bar trains the reader to skip the
+visuals on the runs that have eight.
+
+**In a client pack specifically:** the Summary carries at most two visuals — more and the client
+reads none of them. The misses section always carries the target-against-actual bar for the metric
+that missed; a miss explained only in prose reads as a miss being buried. The appendix carries the
+rest. Every visual in a pack that leaves the building is validated by Phase 2 like any other claim.
+
 ## H. Offer to build it out (CONDITIONAL)
 
-Here the offer is more likely to fire than anywhere else in the pack, because the output leaves the
-building by design.
+**The inline visuals above are not optional and are not this section's business.** This section
+covers only what *leaves the conversation* — a written record, a brief, a document, a pack. It
+**stays silent unless the run produced something a document carries better than the message already
+did.**
 
 | Found | Worth making | Why |
 |---|---|---|
-| A complete pack for an external client | The formatted document or deck | It is the deliverable, not an extra |
-| KPI performance against target across several metrics | A target-versus-actual chart for the summary slide | Clients read the chart first |
-| A trend across three or more months | The trend line | Context the table cannot carry |
+| A complete pack for an external client | The formatted document or deck, in the format the client receives | It is the deliverable, not an extra |
 
-**Offer one thing.** The pack itself, in the format the client receives. Do not offer a menu of four
-formats to somebody who is already late for a meeting. Never build it unasked, and never delay the
-written answer to make it.
+**Stay silent when** there is nothing to send outward. One thing, named by what it contains and who
+it is for — never a menu. Never build it unasked; never delay the answer to make it.
 
 ## I. Save what you learned
 
