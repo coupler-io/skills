@@ -5,7 +5,7 @@
   },
   "metadata": {
     "description": "Coupler.io-authored Claude Code skills and plugins — ICP analytics (finance, sales, e-commerce, marketing & ads) plus cross-ICP capability skills and utilities",
-    "version": "1.4.0"
+    "version": "1.5.0"
   },
   "plugins": [
     {
@@ -35,7 +35,11 @@
       "description": "E-commerce analytics over your Coupler.io data.",
       "category": "ecommerce",
       "skills": [
-        "./ecommerce/ecom-analytics"
+        "./ecommerce/ecom-analytics",
+        "./ecommerce/shopify/shopify-store-performance",
+        "./ecommerce/shopify/shopify-product-and-variant-sales",
+        "./ecommerce/shopify/shopify-inventory-and-stockout-risk",
+        "./ecommerce/shopify/shopify-repeat-purchase-and-retention"
       ]
     },
     {
