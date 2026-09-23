@@ -67,6 +67,46 @@
       "description": "Use this skill when the user wants to analyze e-commerce performance, review funnel conversion, investigate AOV or repeat-purchase trends, build an ecom report, check sales velocity, understand customer cohorts and retention, or answer questions about their store's sales data. Triggers include 'how is my store performing', 'what's my conversion rate', 'cart abandonment', 'AOV trend', 'repeat purchase rate', 'why did revenue drop', 'cohort retention', 'top products', 'new vs returning customer revenue', 'lifetime value', 'pull my Shopify numbers', 'ecom report'."
     },
     {
+      "name": "shopify-inventory-and-stockout-risk",
+      "path": "ecommerce/shopify/shopify-inventory-and-stockout-risk",
+      "category": "ecommerce",
+      "sources": [
+        "Shopify"
+      ],
+      "short_description": "",
+      "description": "Use for \"what's about to run out\", \"what should I reorder\", \"when do I need to place the order\", \"how much stock do I have\", \"what's my inventory worth\", \"which SKUs are overstocked\", \"how much cash is sitting in dead stock\", or \"what's my sell-through\" — even when the user never says \"inventory\". Use when the decision is what to order and by when, or whether a sales fall is a stock problem rather than a demand problem. Shopify only."
+    },
+    {
+      "name": "shopify-product-and-variant-sales",
+      "path": "ecommerce/shopify/shopify-product-and-variant-sales",
+      "category": "ecommerce",
+      "sources": [
+        "Shopify"
+      ],
+      "short_description": "",
+      "description": "Use for \"which products are selling\", \"what are my best sellers\", \"which variants should I drop\", \"what's my margin by product\", \"which size sells\", \"how did the launch do\", \"what's my revenue concentration\", or \"sales by vendor\" — even when the user never says \"variant\". Use when the decision is what to reorder, drop, promote or mark down, or when a store-level move needs tracing to the products behind it. Shopify only."
+    },
+    {
+      "name": "shopify-repeat-purchase-and-retention",
+      "path": "ecommerce/shopify/shopify-repeat-purchase-and-retention",
+      "category": "ecommerce",
+      "sources": [
+        "Shopify"
+      ],
+      "short_description": "",
+      "description": "Use for \"what's our repeat rate\", \"do customers come back\", \"which campaign brings customers who buy again\", \"what's our customer lifetime value\", \"how long until the second order\", \"do discounted customers stick around\", \"are our cohorts getting worse\", or \"how much revenue comes from repeat customers\" — even when the user never says \"retention\" or \"cohort\". Use when the decision is where acquisition money goes, or when retention email timing needs a number. Shopify only."
+    },
+    {
+      "name": "shopify-store-performance",
+      "path": "ecommerce/shopify/shopify-store-performance",
+      "category": "Data analysis",
+      "sources": [
+        "Shopify"
+      ],
+      "short_description": "The store's baseline trading read — sales ladder, orders, AOV, refunds vs returns, new vs returning — and which of the three drivers moved revenue.",
+      "description": "Use for Shopify store questions like \"how did the store do last month\", \"why did our store revenue drop\", \"what's our store's average order value\", \"how many orders did the shop take last week\", \"what's our store's refund rate\", or a weekly or monthly trading check on the shop — even when the user never says \"performance\". Use when the decision is whether store revenue moved and which of orders, order size or returns moved it. Shopify only."
+    },
+    {
       "name": "finance-analytics",
       "path": "finance/finance-analytics",
       "category": "finance",
