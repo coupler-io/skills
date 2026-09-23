@@ -33,7 +33,7 @@ def parse_frontmatter(path: Path) -> dict[str, Any]:
     return data
 
 
-def normalize_description(value: Any) -> str:
+def normalize_text(value: Any) -> str:
     if value is None:
         return ""
     return " ".join(str(value).split())
@@ -69,7 +69,8 @@ def skill_entry(path: Path, repo_root: Path) -> dict[str, Any]:
         "sources": normalize_sources(
             metadata.get("sources", data.get("sources")), path
         ),
-        "description": normalize_description(data.get("description")),
+        "short_description": normalize_text(metadata.get("short_description")),
+        "description": normalize_text(data.get("description")),
     }
 
 
@@ -83,20 +84,66 @@ def collect_skills(repo_root: Path) -> list[dict[str, Any]]:
     return skills
 
 
-def parameterize(value: str) -> str:
-    # Matches Ruby's String#parameterize: keeps _ distinct from -, so foo_bar and foo-bar are different slugs.
-    value = re.sub(r"[^a-zA-Z0-9\-_]+", "-", value)
-    value = re.sub(r"-{2,}", "-", value)
-    value = value.strip("-")
-    return value.lower()
+SPEC_URL = "https://agentskills.io/specification#frontmatter"
+
+# The name and description rules below re-implement part of the spec, which
+# ships a reference validator we could delegate to instead:
+# https://github.com/agentskills/agentskills/tree/main/skills-ref
+# Not yet - it self-describes as demonstration-only rather than production
+# ready, and it wouldn't cover our own additions (short_description, the
+# category/sources metadata, the folder-name match). Worth revisiting once it
+# stabilises, keeping our extras as a layer on top of `skills-ref validate`.
+
+# Lowercase alphanumerics separated by single hyphens, per the spec: no
+# underscores, no leading or trailing hyphen, no consecutive hyphens.
+NAME_PATTERN = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")
+
+# Hard limits from the Agent Skills spec.
+NAME_MAX_CHARS = 64
+DESCRIPTION_MAX_CHARS = 1024
+
+# Ours, since the spec says nothing about a human-facing summary.
+SHORT_DESCRIPTION_MAX_CHARS = 200
+
+# Advisory only. Descriptions past this still load fine - published collections
+# sit either side of it, obra/superpowers at 79-234 characters and
+# coreyhaines31/marketingskills at 432-1014 - but it's a useful nudge to check
+# that the tail is still earning its context.
+DESCRIPTION_WARN_CHARS = 500
 
 
-def find_duplicate_leaf_slugs(skills: list[dict[str, Any]]) -> dict[str, list[str]]:
-    by_leaf: dict[str, list[str]] = {}
+def find_invalid_skill_names(skills: list[dict[str, Any]]) -> list[dict[str, str]]:
+    return [
+        {"path": skill["path"], "name": skill["name"]}
+        for skill in skills
+        if not NAME_PATTERN.fullmatch(skill["name"])
+    ]
+
+
+def find_duplicate_skill_names(skills: list[dict[str, Any]]) -> dict[str, list[str]]:
+    by_name: dict[str, list[str]] = {}
     for skill in skills:
-        leaf = parameterize(skill["path"].split("/")[-1])
-        by_leaf.setdefault(leaf, []).append(skill["path"])
-    return {leaf: paths for leaf, paths in by_leaf.items() if len(paths) > 1}
+        by_name.setdefault(skill["name"], []).append(skill["path"])
+    return {name: paths for name, paths in by_name.items() if len(paths) > 1}
+
+
+def find_too_long(
+    skills: list[dict[str, Any]], field: str, limit: int
+) -> list[dict[str, Any]]:
+    return [
+        {"name": skill["name"], "length": len(skill[field])}
+        for skill in skills
+        if len(skill[field]) > limit
+    ]
+
+
+def find_name_directory_mismatches(skills: list[dict[str, Any]]) -> list[dict[str, str]]:
+    mismatches = []
+    for skill in skills:
+        leaf = skill["path"].split("/")[-1]
+        if leaf != skill["name"]:
+            mismatches.append({"path": skill["path"], "name": skill["name"]})
+    return mismatches
 
 
 INDEX_README = (
@@ -125,18 +172,100 @@ def write_index(skills: list[dict[str, Any]], output: Path) -> None:
     output.write_text(render_index(skills), encoding="utf-8")
 
 
-def print_duplicates(duplicates: dict[str, list[str]]) -> None:
-    for leaf, paths in duplicates.items():
-        print(f"Duplicate skill slug {leaf!r}:", file=sys.stderr)
+def print_invalid_names(invalid: list[dict[str, str]]) -> None:
+    for skill in invalid:
+        print(
+            f"Invalid skill name {skill['name']!r}: {skill['path']}",
+            file=sys.stderr,
+        )
+
+    print(
+        "\nA skill's `name` may only contain lowercase letters, digits, and "
+        "single hyphens, and must start and end with a letter or digit. "
+        "Underscores and consecutive hyphens aren't allowed. "
+        f"See {SPEC_URL}",
+        file=sys.stderr,
+    )
+
+
+def print_duplicate_names(duplicates: dict[str, list[str]]) -> None:
+    for slug, paths in duplicates.items():
+        print(f"Duplicate skill name {slug!r}:", file=sys.stderr)
         for path in paths:
             print(f"  {path}", file=sys.stderr)
 
     print(
-        "\nEvery skill's file is always named SKILL.md - what needs to be "
-        "unique is the FOLDER it lives in. If you just added one of these "
-        "skills, rename its folder to something no other skill uses. For "
-        "example:\n"
-        "  sales/analytics/SKILL.md  ->  sales/sales-analytics/SKILL.md",
+        "\nEach skill's `name` in SKILL.md frontmatter must be unique across "
+        "the repository. Rename one of the skills above (both the `name` "
+        "field and its folder) so they no longer collide.",
+        file=sys.stderr,
+    )
+
+
+def print_too_long(
+    too_long: list[dict[str, Any]], field: str, limit: int, guidance: str
+) -> None:
+    for skill in too_long:
+        print(
+            f"{skill['name']}: {field} is too long - {skill['length']} "
+            f"characters against a {limit}-character limit",
+            file=sys.stderr,
+        )
+
+    print(f"\n{guidance}", file=sys.stderr)
+
+
+NAME_GUIDANCE = (
+    f"The Agent Skills spec caps `name` at {NAME_MAX_CHARS} characters. "
+    "Renaming means renaming the folder too, since the two have to match. "
+    f"See {SPEC_URL}"
+)
+
+DESCRIPTION_GUIDANCE = (
+    f"The Agent Skills spec caps `description` at {DESCRIPTION_MAX_CHARS} "
+    "characters, and a skill that breaks the cap may be rejected outright "
+    "rather than truncated. Trim the least distinctive trigger phrases rather "
+    f"than the opening sentence. See {SPEC_URL}"
+)
+
+SHORT_DESCRIPTION_GUIDANCE = (
+    "A skill's `metadata.short_description` is rendered in the UI, so it has to "
+    "stay one readable sentence. Move any detail an agent needs into "
+    "`description`, which is the field agents actually read."
+)
+
+
+def print_long_description_warnings(warnings: list[dict[str, Any]]) -> None:
+    for skill in warnings:
+        print(
+            f"Warning: {skill['name']}: description is {skill['length']} "
+            f"characters, over the {DESCRIPTION_WARN_CHARS}-character "
+            "guideline",
+            file=sys.stderr,
+        )
+
+    print(
+        f"\n{len(warnings)} description(s) above {DESCRIPTION_WARN_CHARS} "
+        f"characters. Not a failure - the spec allows {DESCRIPTION_MAX_CHARS} - "
+        "but agents weigh the opening sentence most heavily, so a long tail of "
+        "trigger phrases earns less than the context it costs.",
+        file=sys.stderr,
+    )
+
+
+def print_name_directory_mismatches(mismatches: list[dict[str, str]]) -> None:
+    for mismatch in mismatches:
+        print(
+            f"Skill folder doesn't match its name: {mismatch['path']} "
+            f"has name {mismatch['name']!r}",
+            file=sys.stderr,
+        )
+
+    print(
+        "\nEvery skill's file is always named SKILL.md - the FOLDER it "
+        "lives in must match its frontmatter `name`. For example:\n"
+        "  sales/sales-analytics/SKILL.md with name: sales-analytics  ->  valid\n"
+        "  sales/sales-analytics/SKILL.md with name: analytics        ->  invalid",
         file=sys.stderr,
     )
 
@@ -148,7 +277,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument(
         "--check",
         action="store_true",
-        help="Validate without writing; exit 1 on duplicate leaf slugs",
+        help="Validate without writing; exit 1 on any name or field that breaks a spec limit",
     )
     args = parser.parse_args(argv)
 
@@ -156,13 +285,60 @@ def main(argv: list[str] | None = None) -> int:
     output = args.output.resolve()
     skills = collect_skills(root)
 
-    duplicates = find_duplicate_leaf_slugs(skills)
-    if duplicates:
-        print_duplicates(duplicates)
+    invalid_names = find_invalid_skill_names(skills)
+    mismatches = find_name_directory_mismatches(skills)
+    duplicate_names = find_duplicate_skill_names(skills)
+    long_names = find_too_long(skills, "name", NAME_MAX_CHARS)
+    long_descriptions = find_too_long(skills, "description", DESCRIPTION_MAX_CHARS)
+    long_short_descriptions = find_too_long(
+        skills, "short_description", SHORT_DESCRIPTION_MAX_CHARS
+    )
+
+    if invalid_names:
+        print_invalid_names(invalid_names)
+    if mismatches:
+        print_name_directory_mismatches(mismatches)
+    if duplicate_names:
+        print_duplicate_names(duplicate_names)
+    if long_names:
+        print_too_long(long_names, "name", NAME_MAX_CHARS, NAME_GUIDANCE)
+    if long_descriptions:
+        print_too_long(
+            long_descriptions,
+            "description",
+            DESCRIPTION_MAX_CHARS,
+            DESCRIPTION_GUIDANCE,
+        )
+    if long_short_descriptions:
+        print_too_long(
+            long_short_descriptions,
+            "short_description",
+            SHORT_DESCRIPTION_MAX_CHARS,
+            SHORT_DESCRIPTION_GUIDANCE,
+        )
+
+    if (
+        invalid_names
+        or mismatches
+        or duplicate_names
+        or long_names
+        or long_descriptions
+        or long_short_descriptions
+    ):
         return 1
 
+    # Advisory, so it runs past the failure return and never changes the exit
+    # code. Everything reaching here is already under DESCRIPTION_MAX_CHARS.
+    warnings = find_too_long(skills, "description", DESCRIPTION_WARN_CHARS)
+    if warnings:
+        print_long_description_warnings(warnings)
+
     if args.check:
-        print(f"OK: {len(skills)} skills, no duplicate slugs")
+        print(
+            f"OK: {len(skills)} skills, all names valid, unique, and matching "
+            f"their folders, all fields within spec limits "
+            f"({len(warnings)} long description(s) warned about)"
+        )
         return 0
 
     write_index(skills, output)

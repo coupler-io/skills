@@ -5,7 +5,7 @@
   },
   "metadata": {
     "description": "Coupler.io-authored Claude Code skills and plugins for business analytics by function (finance, sales, ecommerce, marketing & ads) plus shared capability skills and utilities",
-    "version": "1.4.0"
+    "version": "1.5.0"
   },
   "plugins": [
     {
@@ -35,7 +35,11 @@
       "description": "E-commerce analytics over your Coupler.io data.",
       "category": "ecommerce",
       "skills": [
-        "./ecommerce/ecom-analytics"
+        "./ecommerce/ecom-analytics",
+        "./ecommerce/shopify/shopify-store-performance",
+        "./ecommerce/shopify/shopify-product-and-variant-sales",
+        "./ecommerce/shopify/shopify-inventory-and-stockout-risk",
+        "./ecommerce/shopify/shopify-repeat-purchase-and-retention"
       ]
     },
     {
@@ -101,25 +105,9 @@
       "description": "Utility skills for Coupler.io workflows.",
       "category": "productivity",
       "skills": [
-        "./utilities/coupler-live-artifact"
+        "./utilities/coupler-live-artifact",
+        "./utilities/humanizer"
       ]
-    },
-    {
-      "name": "humanizer",
-      "source": "./utilities/humanizer",
-      "description": "Identify and remove AI writing patterns to make text sound natural and human. Adds a /humanize command + auto-triggering skill.",
-      "version": "0.1.0",
-      "author": {
-        "name": "Nika"
-      },
-      "keywords": [
-        "writing",
-        "editing",
-        "ai-detection",
-        "tone",
-        "style"
-      ],
-      "category": "content"
     }
   ]
 }

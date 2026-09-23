@@ -17,6 +17,7 @@ Ready-to-use AI agent skills for marketing, PPC, sales, finance, ecommerce, and 
 - [How Coupler.io skills work](#how-couplerio-skills-work)
 - [Installation](#installation)
 - [Coupler.io MCP](#couplerio-mcp-tools)
+- [Skill frontmatter](#skill-frontmatter)
 - [Contributing](#contributing-and-development)
 
 ## What can you do with Coupler.io skills?
@@ -133,6 +134,17 @@ Eleven Meta-only skills in `marketing-and-ads/facebook-ads/`. Same shape as the 
 | --- | --- |
 | [**ecom-analytics**](ecommerce/ecom-analytics/SKILL.md) | E-commerce performance — funnel conversion, AOV, cohort retention, repeat purchase, anomaly detection. Works with Shopify, WooCommerce, GA4, Klaviyo, Stripe, and more. |
 
+#### Shopify deep dives
+
+Four Shopify-only skills in `ecommerce/shopify/`. Same shape as the ads packs — each owns a single question and routes to its siblings rather than duplicating them, with `ecom-analytics` still the cross-platform store view. They share their definitions deliberately: store performance is the baseline the others read against, and sell-through, inventory value and dead-stock cash live in one skill only.
+
+| Skill | What it does |
+| --- | --- |
+| [**shopify-store-performance**](ecommerce/shopify/shopify-store-performance/SKILL.md) | The baseline read — the full sales ladder, orders, AOV, refunds vs returns, new vs returning, and which of the three drivers moved revenue. Run this before deciding anything else. |
+| [**shopify-product-and-variant-sales**](ecommerce/shopify/shopify-product-and-variant-sales/SKILL.md) | Which products and variants earn their place — ranked by money and by margin on the right cost basis, with stock-out distortion flagged instead of buried. |
+| [**shopify-inventory-and-stockout-risk**](ecommerce/shopify/shopify-inventory-and-stockout-risk/SKILL.md) | What runs out, when, what it costs, and the date you must order by — plus inventory value split four ways and the cash parked in dead stock. |
+| [**shopify-repeat-purchase-and-retention**](ecommerce/shopify/shopify-repeat-purchase-and-retention/SKILL.md) | Which campaign and which first offer bought customers who came back — cohorts cut by UTM and discount status, with open cohorts excluded from every comparison. |
+
 ### Capabilities
 
 Shared building blocks. Compose these with any domain skill above.
@@ -150,7 +162,7 @@ Shared building blocks. Compose these with any domain skill above.
 
 | Skill | What it does |
 | --- | --- |
-| [**humanizer**](utilities/humanizer/skills/humanizer/SKILL.md) | Rewrites AI-generated text to remove detectable patterns and add human voice. Also available as the `/humanize` slash command. |
+| [**humanizer**](utilities/humanizer/SKILL.md) | Rewrites AI-generated text to remove detectable patterns and add human voice. Also available as the `/humanize` slash command. |
 | [**coupler-live-artifact**](utilities/coupler-live-artifact/SKILL.md) | Builds a live Cowork artifact — a persistent, re-openable HTML widget backed by a Coupler.io dataflow that auto-refreshes (live dashboards, daily-check pages, data explorers). |
 
 ---
@@ -295,6 +307,36 @@ These are the tools the Coupler.io MCP server exposes. Skills use them automatic
 > **Deprecated:** `list-dataflows` — replaced by `list-datasets`.
 
 ---
+
+## Skill frontmatter
+
+The [Agent Skills spec](https://agentskills.io/specification#frontmatter) allows only six top-level frontmatter keys — `name`, `description`, `license`, `compatibility`, `metadata`, `allowed-tools` — and a `SKILL.md` carrying anything else can be rejected outright. Claude Code's own [frontmatter reference](https://code.claude.com/docs/en/skills#frontmatter-reference) accepts considerably more (`when_to_use`, `model`, `effort`, `context`, `agent`, `argument-hint`, `disable-model-invocation`, `allowed-tools`, `disallowed-tools`, and others), but those are Claude-only extensions that other runtimes ignore. We target the portable six, so everything of ours lives under `metadata`:
+
+```yaml
+---
+name: sales-analytics
+description: Use this skill when the user wants to analyze sales pipeline, review win rates, … # for the agent: what it does and when to reach for it
+metadata:
+  short_description: Pipeline health, win rates, sales velocity and rep performance, straight from your CRM. # for humans: one line, shown in the UI
+  category: sales
+  sources:
+    - Salesforce
+---
+```
+
+`description` is the agent's routing signal, so it is long and stuffed with trigger phrases — unreadable in a skill catalog. `short_description` is the human-facing counterpart: one sentence, no "use this skill when", safe to render in a card or list. It is optional; consumers should fall back to a truncated `description` when it is absent.
+
+`python .github/scripts/generate_skill_index.py --check` enforces the length limits:
+
+| Field | Limit | Source |
+| --- | --- | --- |
+| `name` | 64 characters | [Spec](https://agentskills.io/specification#frontmatter). Renaming means renaming the folder too — the two must match. |
+| `description` | 1024 characters | [Spec](https://agentskills.io/specification#frontmatter). |
+| `metadata.short_description` | 200 characters | Ours. It renders in the UI, where anything longer than a sentence stops being scannable. |
+
+Above 500 characters a `description` only earns a **warning** — it still passes. There is no consensus on the right length: [obra/superpowers](https://github.com/obra/superpowers) ships descriptions of 79–234 characters, while [coreyhaines31/marketingskills](https://github.com/coreyhaines31/marketingskills) runs 432–1014. The warning is a nudge to check the tail is still earning its context, not a rule — agents weigh the opening sentence most heavily.
+
+Both descriptions land in `skills-index.json`, which is what the API and the MCP server read.
 
 ## Contributing and development
 
