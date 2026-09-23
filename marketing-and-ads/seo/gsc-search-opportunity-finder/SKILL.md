@@ -2,16 +2,14 @@
 name: gsc-search-opportunity-finder
 description: >
   Finds the clicks you're leaving on the table in Google Search, from live Search Console data in
-  your Coupler.io workspace — queries ranking just off page one, pages that get seen but not clicked,
-  and pages quietly competing with each other for the same query. Use for "which keywords are close
-  to page one on my site", "striking distance keyword report", "which of my pages get search
-  impressions but no clicks", "find my organic CTR gaps", "are my pages cannibalizing each other in
-  search", "where are my quick SEO wins", "what should I optimize for organic search next" — even
-  when the user never says "opportunity". The earning view: which search positions are worth acting
-  on and what the action is. For pages losing traffic they used to have, use content-decay-detector.
-  Google Search Console only. Siblings: content-decay-detector, gsc-ga4-landing-page-performance,
-  gsc-country-device-performance, new-page-indexation-tracker, ai-traffic-vs-organic-report,
-  branded-vs-nonbranded-search-split, ppc-analytics.
+  your Coupler.io workspace — queries ranking just off page one, pages that get seen but not
+  clicked, and pages quietly competing with each other for the same query. Use for "which keywords
+  are close to page one on my site", "striking distance keyword report", "which of my pages get
+  search impressions but no clicks", "find my organic CTR gaps", "are my pages cannibalizing each
+  other in search", "where are my quick SEO wins", "what should I optimize for organic search next"
+  — even when the user never says "opportunity". The earning view: which search positions are worth
+  acting on and what the action is. For pages losing traffic they used to have, use
+  content-decay-detector. Google Search Console only.
 metadata:
   version: 1.0.0
   category: marketing-and-ads
@@ -251,6 +249,19 @@ writing, in the same closing block. Every sibling reads this context.
 - Saved context can be stale and applies only to the dataset it was read from. Where context and data
   disagree, the data wins.
 - This skill cannot modify itself — route skill feedback to the maintainer.
+
+## Related skills
+
+| Go here instead when | Skill |
+|---|---|
+| Pages that used to earn more are losing clicks over time | `content-decay-detector` |
+| The question is what search visitors do after they land — engagement, conversions, revenue | `gsc-ga4-landing-page-performance` |
+| The gap is by market or device rather than by query or page | `gsc-country-device-performance` |
+| The question is whether search growth is new reach or people already searching your name | `branded-vs-nonbranded-search-split` |
+| Recently published pages aren't showing up in Google or earning clicks yet | `new-page-indexation-tracker` |
+| The question is traffic from ChatGPT, Perplexity, Gemini or Claude rather than Google | `ai-traffic-vs-organic-report` |
+| Organic search is one channel among several being compared | `marketing-analytics` |
+| The question is paid search, or paid and organic search side by side | `ppc-analytics` |
 
 ## Next Question (REQUIRED)
 
