@@ -1,15 +1,15 @@
 ---
 name: gsc-ga4-landing-page-performance
 description: >
-  Joins Google Search Console and GA4 to show which landing pages bring organic traffic and what that
-  traffic does once it lands, from live data in your Coupler.io workspace — search clicks and rankings
-  next to engagement, conversions and revenue, per page. Use for "does my organic search traffic convert",
-  "which landing pages actually make money from SEO", "which SEO pages are worth the effort", "my rankings are
-  up but sales aren't", "which pages get search clicks but no conversions", "landing page SEO report" — even
-  when the user never says "landing page". This is the search-to-outcome view: the page ranks, gets
-  clicked, then what. For search-side only use gsc-search-opportunity-finder; for AI-referral traffic
-  use ai-traffic-vs-organic-report. Needs GA4 and Search Console. Siblings: gsc-search-opportunity-finder,
-  content-decay-detector, gsc-country-device-performance, ai-traffic-vs-organic-report.
+  Joins Google Search Console and GA4 to show which landing pages bring organic traffic and what
+  that traffic does once it lands, from live data in your Coupler.io workspace — search clicks and
+  rankings next to engagement, conversions and revenue, per page. Use for "does my organic search
+  traffic convert", "which landing pages actually make money from SEO", "which SEO pages are worth
+  the effort", "my rankings are up but sales aren't", "which pages get search clicks but no
+  conversions", "landing page SEO report" — even when the user never says "landing page". This is
+  the search-to-outcome view: the page ranks, gets clicked, then what. For search-side only use
+  gsc-search-opportunity-finder; for AI-referral traffic use ai-traffic-vs-organic-report. Needs GA4
+  and Search Console.
 metadata:
   version: 1.0.0
   category: marketing-and-ads
@@ -215,6 +215,18 @@ valuable thing to save: it's the hardest part of the run and it's stable across 
 - Saved context can be stale and applies only to the datasets it was read from. Where context and data
   disagree, the data wins.
 - This skill cannot modify itself — route skill feedback to the maintainer.
+
+## Related skills
+
+| Go here instead when | Skill |
+|---|---|
+| The question is which queries or pages to optimise next — striking distance, seen but not clicked, cannibalisation | `gsc-search-opportunity-finder` |
+| Pages that used to earn more are losing clicks over time | `content-decay-detector` |
+| The gap is by market or device rather than by query or page | `gsc-country-device-performance` |
+| The question is whether search growth is new reach or people already searching your name | `branded-vs-nonbranded-search-split` |
+| Recently published pages aren't showing up in Google or earning clicks yet | `new-page-indexation-tracker` |
+| The question is traffic from ChatGPT, Perplexity, Gemini or Claude rather than Google | `ai-traffic-vs-organic-report` |
+| Organic search is one channel among several being compared | `marketing-analytics` |
 
 ## Next Question (REQUIRED)
 

@@ -1,14 +1,15 @@
 ---
 name: branded-vs-nonbranded-search-split
 description: >
-  Splits your organic search into brand and non-brand and tells you which is really growing, from live
-  Google Search Console data in your Coupler.io workspace — clicks, impressions, CTR and position for
-  people searching your name versus people finding you cold, the non-brand share and its trend, and new
-  non-brand queries coming in. Use for "is my SEO growth real or just brand", "brand vs non-brand organic search", "how much of my search traffic is people searching my name", "is my non-brand search traffic growing", "am I reaching new audiences in organic search", "split my organic search by brand" — even when the user never says
-  "branded". This is the is-it-real-demand view: whether search growth is new reach or just people who
-  already know you. For the full opportunity list use gsc-search-opportunity-finder. Google Search
-  Console only. Siblings: gsc-search-opportunity-finder, content-decay-detector,
-  gsc-ga4-landing-page-performance, gsc-country-device-performance.
+  Splits your organic search into brand and non-brand and tells you which is really growing, from
+  live Google Search Console data in your Coupler.io workspace — clicks, impressions, CTR and
+  position for people searching your name versus people finding you cold, the non-brand share and
+  its trend, and new non-brand queries coming in. Use for "is my SEO growth real or just brand",
+  "brand vs non-brand organic search", "how much of my search traffic is people searching my name",
+  "is my non-brand search traffic growing", "am I reaching new audiences in organic search", "split
+  my organic search by brand" — even when the user never says "branded". This is the
+  is-it-real-demand view: whether search growth is new reach or just people who already know you.
+  For the full opportunity list use gsc-search-opportunity-finder. Google Search Console only.
 metadata:
   version: 1.0.0
   category: marketing-and-ads
@@ -218,6 +219,19 @@ same closing block. The brand pattern saved here is read by `gsc-search-opportun
 - Saved context can be stale and applies only to the dataset it was read from. Where context and data
   disagree, the data wins.
 - This skill cannot modify itself — route skill feedback to the maintainer.
+
+## Related skills
+
+| Go here instead when | Skill |
+|---|---|
+| The question is which queries or pages to optimise next — striking distance, seen but not clicked, cannibalisation | `gsc-search-opportunity-finder` |
+| Pages that used to earn more are losing clicks over time | `content-decay-detector` |
+| The question is what search visitors do after they land — engagement, conversions, revenue | `gsc-ga4-landing-page-performance` |
+| The gap is by market or device rather than by query or page | `gsc-country-device-performance` |
+| Recently published pages aren't showing up in Google or earning clicks yet | `new-page-indexation-tracker` |
+| The question is traffic from ChatGPT, Perplexity, Gemini or Claude rather than Google | `ai-traffic-vs-organic-report` |
+| Organic search is one channel among several being compared | `marketing-analytics` |
+| The question is paid search, or paid and organic search side by side | `ppc-analytics` |
 
 ## Next Question (REQUIRED)
 

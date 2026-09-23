@@ -1,15 +1,15 @@
 ---
 name: gsc-country-device-performance
 description: >
-  Breaks organic search performance down by country and device, from live Google Search Console data in
-  your Coupler.io workspace — clicks, impressions, click-through rate and average position by market and
-  by phone/desktop/tablet, against the site's own average. Use for "how does my organic search do by country",
-  "which markets underperform in search", "is mobile or desktop better for my search traffic", "where am I losing search clicks by device", "should I localise for SEO", "which countries rank worse than my site average" — even when the user
-  never says "country" or "device". This is the where-and-on-what view: which markets and devices earn
-  their impressions and which lag the site. For query-level opportunities use gsc-search-opportunity-finder;
-  for what traffic does after landing use gsc-ga4-landing-page-performance. Google Search Console only.
-  Siblings: gsc-search-opportunity-finder, content-decay-detector, gsc-ga4-landing-page-performance,
-  ai-traffic-vs-organic-report.
+  Breaks organic search performance down by country and device, from live Google Search Console data
+  in your Coupler.io workspace — clicks, impressions, click-through rate and average position by
+  market and by phone/desktop/tablet, against the site's own average. Use for "how does my organic
+  search do by country", "which markets underperform in search", "is mobile or desktop better for my
+  search traffic", "where am I losing search clicks by device", "should I localise for SEO", "which
+  countries rank worse than my site average" — even when the user never says "country" or "device".
+  This is the where-and-on-what view: which markets and devices earn their impressions and which lag
+  the site. For query-level opportunities use gsc-search-opportunity-finder; for what traffic does
+  after landing use gsc-ga4-landing-page-performance. Google Search Console only.
 metadata:
   version: 1.0.0
   category: marketing-and-ads
@@ -207,6 +207,18 @@ discovery. Confirm before writing, in the same closing block.
 - Saved context can be stale and applies only to the dataset it was read from. Where context and data
   disagree, the data wins.
 - This skill cannot modify itself — route skill feedback to the maintainer.
+
+## Related skills
+
+| Go here instead when | Skill |
+|---|---|
+| The question is which queries or pages to optimise next — striking distance, seen but not clicked, cannibalisation | `gsc-search-opportunity-finder` |
+| Pages that used to earn more are losing clicks over time | `content-decay-detector` |
+| The question is what search visitors do after they land — engagement, conversions, revenue | `gsc-ga4-landing-page-performance` |
+| The question is whether search growth is new reach or people already searching your name | `branded-vs-nonbranded-search-split` |
+| Recently published pages aren't showing up in Google or earning clicks yet | `new-page-indexation-tracker` |
+| The question is traffic from ChatGPT, Perplexity, Gemini or Claude rather than Google | `ai-traffic-vs-organic-report` |
+| Organic search is one channel among several being compared | `marketing-analytics` |
 
 ## Next Question (REQUIRED)
 

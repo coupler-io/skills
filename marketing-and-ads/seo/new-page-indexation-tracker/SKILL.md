@@ -1,13 +1,15 @@
 ---
 name: new-page-indexation-tracker
 description: >
-  Tracks how long new pages take to get picked up by Google and start earning traffic, from live Google
-  Search Console data in your Coupler.io workspace — days from publish to first impression, to first
-  click, to a settled ranking, and which pages have gone nowhere. Use for "are my new pages getting indexed by Google", "how long until new content ranks in search", "which of my pages is Google ignoring", "did my new posts get picked up in search", "why isn't my new page showing up in Google", "how fast does my content start ranking" — even when the
-  user never says "indexation". This is the did-it-get-seen view: whether the publishing pipeline is
-  reaching Google and how quickly. For pages that once ranked and are slipping use content-decay-detector.
-  Google Search Console only. Siblings: gsc-search-opportunity-finder, content-decay-detector,
-  gsc-ga4-landing-page-performance, gsc-country-device-performance.
+  Tracks how long new pages take to get picked up by Google and start earning traffic, from live
+  Google Search Console data in your Coupler.io workspace — days from publish to first impression,
+  to first click, to a settled ranking, and which pages have gone nowhere. Use for "are my new pages
+  getting indexed by Google", "how long until new content ranks in search", "which of my pages is
+  Google ignoring", "did my new posts get picked up in search", "why isn't my new page showing up in
+  Google", "how fast does my content start ranking" — even when the user never says "indexation".
+  This is the did-it-get-seen view: whether the publishing pipeline is reaching Google and how
+  quickly. For pages that once ranked and are slipping use content-decay-detector. Google Search
+  Console only.
 metadata:
   version: 1.0.0
   category: marketing-and-ads
@@ -211,6 +213,18 @@ publish dates and known-indexed pages is what lets the next run skip the draft g
 - Saved context can be stale and applies only to the dataset it was read from. Where context and data
   disagree, the data wins.
 - This skill cannot modify itself — route skill feedback to the maintainer.
+
+## Related skills
+
+| Go here instead when | Skill |
+|---|---|
+| The question is which queries or pages to optimise next — striking distance, seen but not clicked, cannibalisation | `gsc-search-opportunity-finder` |
+| Pages that used to earn more are losing clicks over time | `content-decay-detector` |
+| The question is what search visitors do after they land — engagement, conversions, revenue | `gsc-ga4-landing-page-performance` |
+| The gap is by market or device rather than by query or page | `gsc-country-device-performance` |
+| The question is whether search growth is new reach or people already searching your name | `branded-vs-nonbranded-search-split` |
+| The question is traffic from ChatGPT, Perplexity, Gemini or Claude rather than Google | `ai-traffic-vs-organic-report` |
+| Organic search is one channel among several being compared | `marketing-analytics` |
 
 ## Next Question (REQUIRED)
 

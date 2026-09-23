@@ -1,14 +1,15 @@
 ---
 name: ai-traffic-vs-organic-report
 description: >
-  Shows how much traffic answer engines like ChatGPT, Perplexity, Gemini and Claude send your site, and
-  how it compares to normal organic search, from live GA4 data in your Coupler.io workspace — sessions,
-  engagement, conversions and revenue from AI referrals against organic, and whether AI is growing or
-  replacing search. Use for "how much traffic does my site get from ChatGPT", "are AI answer engines sending me visitors", "AI referral vs organic search traffic", "am I getting AEO traffic to my site", "how is answer engine optimization doing for us", "should I
-  invest in GEO", "are my AI referrals converting" — even when the user says "ranking in AI answers" or
-  "GEO check". Important: this measures traffic AI engines already send you, not whether you appear in
-  their answers — citation tracking needs data GA4 and Search Console don't hold. GA4 only. Siblings:
-  gsc-search-opportunity-finder, content-decay-detector, gsc-ga4-landing-page-performance.
+  Shows how much traffic answer engines like ChatGPT, Perplexity, Gemini and Claude send your site,
+  and how it compares to normal organic search, from live GA4 data in your Coupler.io workspace —
+  sessions, engagement, conversions and revenue from AI referrals against organic, and whether AI is
+  growing or replacing search. Use for "how much traffic does my site get from ChatGPT", "are AI
+  answer engines sending me visitors", "AI referral vs organic search traffic", "am I getting AEO
+  traffic to my site", "how is answer engine optimization doing for us", "should I invest in GEO",
+  "are my AI referrals converting" — even when the user says "ranking in AI answers" or "GEO check".
+  Important: this measures traffic AI engines already send you, not whether you appear in their
+  answers — citation tracking needs data GA4 and Search Console don't hold. GA4 only.
 metadata:
   version: 1.0.0
   category: marketing-and-ads
@@ -236,6 +237,18 @@ discovery. Confirm before writing, in the same closing block.
 - Saved context can be stale and applies only to the dataset it was read from. Where context and data
   disagree, the data wins.
 - This skill cannot modify itself — route skill feedback to the maintainer.
+
+## Related skills
+
+| Go here instead when | Skill |
+|---|---|
+| The question is which queries or pages to optimise next — striking distance, seen but not clicked, cannibalisation | `gsc-search-opportunity-finder` |
+| Pages that used to earn more are losing clicks over time | `content-decay-detector` |
+| The question is what search visitors do after they land — engagement, conversions, revenue | `gsc-ga4-landing-page-performance` |
+| The gap is by market or device rather than by query or page | `gsc-country-device-performance` |
+| The question is whether search growth is new reach or people already searching your name | `branded-vs-nonbranded-search-split` |
+| Recently published pages aren't showing up in Google or earning clicks yet | `new-page-indexation-tracker` |
+| Organic search is one channel among several being compared | `marketing-analytics` |
 
 ## Next Question (REQUIRED)
 

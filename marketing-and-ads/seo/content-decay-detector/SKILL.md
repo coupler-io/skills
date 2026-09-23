@@ -1,14 +1,15 @@
 ---
 name: content-decay-detector
 description: >
-  Finds pages that are quietly losing organic traffic over time, from live Google Search Console data
-  in your Coupler.io workspace — which pages are down on clicks, whether it's a ranking slip or fewer
-  people searching, and which are worth updating first. Use for "which of my pages are losing search traffic", "what
-  content is decaying", "which blog posts should I refresh", "why is my organic search traffic sliding", "which pages dropped in Google since last quarter", "find pages that need updating for SEO" — even when the user never says
-  "decay". This is the losing-ground view: pages that used to do better and why. For pages that never
-  ranked well in the first place use gsc-search-opportunity-finder; for a sudden site-wide drop use
-  gsc-traffic-drop-diagnosis. Google Search Console only. Siblings: gsc-search-opportunity-finder,
-  gsc-ga4-landing-page-performance, new-page-indexation-tracker, branded-vs-nonbranded-search-split.
+  Finds pages that are quietly losing organic traffic over time, from live Google Search Console
+  data in your Coupler.io workspace — which pages are down on clicks, whether it's a ranking slip or
+  fewer people searching, and which are worth updating first. Use for "which of my pages are losing
+  search traffic", "what content is decaying", "which blog posts should I refresh", "why is my
+  organic search traffic sliding", "which pages dropped in Google since last quarter", "find pages
+  that need updating for SEO" — even when the user never says "decay". This is the losing-ground
+  view: pages that used to do better and why. For pages that never ranked well in the first place
+  use gsc-search-opportunity-finder. A sudden site-wide drop isn't decay — this skill flags it
+  rather than diagnosing it. Google Search Console only.
 metadata:
   version: 1.0.0
   category: marketing-and-ads
@@ -218,10 +219,26 @@ closing block.
   half-settled week as decay. Say which state the dataset reads.
 - **A page that vanished may just be below the withholding threshold**, not gone. Don't report a zero as
   a total loss without saying it could be withheld low volume.
+- **A sudden site-wide drop isn't decay.** If most pages lost clicks in the same week, say so plainly:
+  that pattern points to an indexing, technical or algorithm-update event, and refreshing pages one by
+  one won't fix it. Don't rank a refresh shortlist on top of it — route to `new-page-indexation-tracker`
+  for indexing symptoms and name the technical check as the next step.
 - **Seasonality masquerades as decay** without a year of data. Say when you can't rule it out.
 - Saved context can be stale and applies only to the dataset it was read from. Where context and data
   disagree, the data wins.
 - This skill cannot modify itself — route skill feedback to the maintainer.
+
+## Related skills
+
+| Go here instead when | Skill |
+|---|---|
+| The question is which queries or pages to optimise next — striking distance, seen but not clicked, cannibalisation | `gsc-search-opportunity-finder` |
+| The question is what search visitors do after they land — engagement, conversions, revenue | `gsc-ga4-landing-page-performance` |
+| The gap is by market or device rather than by query or page | `gsc-country-device-performance` |
+| The question is whether search growth is new reach or people already searching your name | `branded-vs-nonbranded-search-split` |
+| Most pages fell in the same week — a sudden site-wide drop is an indexing or technical question, not decay | `new-page-indexation-tracker` |
+| The question is traffic from ChatGPT, Perplexity, Gemini or Claude rather than Google | `ai-traffic-vs-organic-report` |
+| Organic search is one channel among several being compared | `marketing-analytics` |
 
 ## Next Question (REQUIRED)
 
