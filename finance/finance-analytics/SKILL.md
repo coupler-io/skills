@@ -70,6 +70,8 @@ Always compute via SQL in `get-data`. Floating-point aggregations over thousands
 
 ### Working with multiple datasets
 
+**Combining datasets:** `get-data` reads one dataset at a time and cannot join across them. Query each separately and synthesize when you are comparing side by side or pulling something small. When the user wants to repeat an analysis that needs a real join (matching rows across datasets, or aggregating over the combined result), build it with `create-dataset` so it re-runs on every refresh; its inputs must all live in the same dataflow. For a one-off question, combine the results yourself, and if the data is too large for that, say so and suggest `create-dataset`.
+
 **Date alignment:** Posting date vs. transaction date vs. service date can differ — confirm which the user wants. Use fiscal calendar if the company doesn't operate on calendar months.
 
 **Currency normalization:** Multi-entity companies need consolidation; always state your conversion approach (period-end FX vs. average FX vs. native).

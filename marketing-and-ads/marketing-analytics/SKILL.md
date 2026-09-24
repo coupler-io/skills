@@ -97,7 +97,7 @@ Always compute metrics via SQL in `get-data` rather than doing arithmetic in-con
 
 For each channel present in the data, compute the relevant metrics. Read `references/channel-metrics.md` for the full catalog of metrics by channel, including definitions, formulas, and benchmark ranges.
 
-When querying multiple dataflows, query each separately and synthesize the results. Explain what you're pulling from each source so the user understands the data lineage.
+**Combining datasets:** `get-data` reads one dataset at a time and cannot join across them. Query each separately and synthesize when you are comparing side by side or pulling something small. When the user wants to repeat an analysis that needs a real join (matching rows across datasets, or aggregating over the combined result), build it with `create-dataset` so it re-runs on every refresh; its inputs must all live in the same dataflow. For a one-off question, combine the results yourself, and if the data is too large for that, say so and suggest `create-dataset`. Explain what you're pulling from each source so the user understands the data lineage.
 
 ## Step 3: Draft Findings and Get User Feedback
 
