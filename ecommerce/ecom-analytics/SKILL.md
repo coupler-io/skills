@@ -75,6 +75,8 @@ Always compute metrics via SQL in `get-data`. Floating-point aggregations over t
 
 ### Working with multiple datasets
 
+**Combining datasets:** `get-data` reads one dataset at a time and cannot join across them. Query each separately and synthesize when you are comparing side by side or pulling something small. When the user wants to repeat an analysis that needs a real join (matching rows across datasets, or aggregating over the combined result), build it with `create-dataset` so it re-runs on every refresh; its inputs must all live in the same dataflow. For a one-off question, combine the results yourself, and if the data is too large for that, say so and suggest `create-dataset`.
+
 **Date alignment:** Different sources use different date formats and grains (Shopify: ISO timestamp; GA4: date string; Stripe: Unix). Aggregate to a common grain before comparing.
 
 **Currency normalization:** Multi-currency stores need explicit normalization (always confirm the conversion source/rate with the user before reporting).
