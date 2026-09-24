@@ -95,6 +95,58 @@ Eleven Meta-only skills in `marketing-and-ads/facebook-ads/`. Same shape as the 
 | **facebook-ads-placement-geo-and-device** | Where the budget actually goes — Feed vs Reels vs Stories vs Audience Network, region, device and delivery hour, each with what it is worth. |
 | **facebook-ads-client-report** | The monthly client write-up — KPIs against goal, creative winners, the attribution caveat stated once and plainly. Built only when asked. |
 
+#### Microsoft Ads deep dives
+
+Eleven Microsoft Ads (Bing) skills in `marketing-and-ads/microsoft-ads/`. Same shape as the Google pack, with triggers anchored to Microsoft, Bing and UET so the two packs don't collide. Adds what Microsoft carries and Google doesn't: share of voice with click share, LinkedIn profile targeting (company, industry, job function), and the negative keyword conflict report.
+
+| Skill | What it does |
+| --- | --- |
+| **microsoft-ads-performance-review** | The Microsoft Ads baseline read — what the account did, why it changed, the demand it is missing, and what to do, with a number on each. |
+| **microsoft-ads-budget-pacing** | Where Microsoft Ads spend lands by month end, which campaigns are capped by budget, and whether more money would buy anything. |
+| **microsoft-ads-waste-and-scale** | Finds Microsoft Ads spend past the point of being early with nothing to show, builds safe negatives, and moves the money to capped campaigns. |
+| **microsoft-ads-conversion-tracking-audit** | Whether Microsoft Ads conversions can be trusted — goals counting, double counts, untracked spend, dated breaks — before anyone moves money. |
+| **microsoft-ads-keyword-and-quality-score-analysis** | Which Microsoft Ads keywords earn their money, quality weighted by spend, which part of quality is failing, and what low quality costs. |
+| **microsoft-ads-settings-audit** | Prices every Microsoft Ads setting that costs money — syndication, location intent, audience setting, bid strategies, Google Import overwrites. |
+| **microsoft-ads-audience-analysis** | Which Microsoft Ads audiences earn their spend — lists, age and gender, and LinkedIn profile cuts by industry and job function — with bid adjustments. |
+| **microsoft-ads-geo-device-and-dayparting** | Where, on what device and at what hour Microsoft Ads spend earns — share of spend against share of results, with adjustments sized. |
+| **microsoft-ads-competitive-position** | The Microsoft Ads account's position in the auction — share won, lost to budget or rank, top of page, click share — and where to defend. |
+| **microsoft-ads-shopping-and-product-performance** | Which products Microsoft Shopping makes money on, which spend without selling or never serve, and how to restructure the product groups. |
+| **microsoft-ads-client-report** | The monthly Microsoft Ads report a client can read — scored against agreed targets, misses explained honestly, next month's plan attached. |
+
+#### LinkedIn Ads deep dives
+
+Ten LinkedIn-only skills in `marketing-and-ads/linkedin-ads/`. The connector has no member demographics, geography or hourly split, so there's no audience or dayparting skill; each skill says so where it's asked and points to Campaign Manager. Adds a native lead gen form skill instead.
+
+| Skill | What it does |
+| --- | --- |
+| **linkedin-ads-performance-review** | The LinkedIn Ads baseline read — what the account did, why it changed, reach and frequency, and what to do, with a number on each. |
+| **linkedin-ads-budget-pacing** | Where LinkedIn Ads spend lands by month end, which campaigns spend their full budget, and why the underspenders can't spend. |
+| **linkedin-ads-waste-and-scale** | Finds LinkedIn Ads spend past the point of being early with nothing to show — campaigns, creatives, Audience Network, saturation — and moves it. |
+| **linkedin-ads-conversion-tracking-audit** | Whether LinkedIn Ads conversions can be trusted — rules, attribution overcount, view-through share, untracked spend, dated breaks. |
+| **linkedin-ads-lead-gen-form-performance** | Which LinkedIn lead gen forms earn their leads — cost per lead, form completion, and who the leads are from their own answers, never as individuals. |
+| **linkedin-ads-creative-analysis** | Which LinkedIn Ads creatives win within their own format, what winners share, and a brief for the next round. |
+| **linkedin-ads-creative-fatigue** | Which LinkedIn Ads creatives are wearing out, roughly how long each has left, whether it's the audience, and how many new creatives a month. |
+| **linkedin-ads-placement-and-device** | What LinkedIn Ads spend earns on LinkedIn against the Audience Network, by placement and device, with what to switch off. |
+| **linkedin-ads-settings-and-structure-audit** | Prices every LinkedIn Ads setting and structural choice costing money — objectives, bids, Audience Network, expansion, overlapping campaigns. |
+| **linkedin-ads-client-report** | The monthly LinkedIn Ads report a client can read — scored against agreed targets, misses explained honestly, next month's plan attached. |
+
+#### Amazon Ads deep dives
+
+Ten Amazon-only skills in `marketing-and-ads/amazon-ads/`, built for the Amazon Ads (Unified) connector and degrading gracefully on the legacy one. Every run declares one sales basis (ACOS or ROAS, one attribution window) and never totals marketplaces in different currencies.
+
+| Skill | What it does |
+| --- | --- |
+| **amazon-ads-performance-review** | The Amazon Ads baseline read — what the account did, why ACOS moved, split by ad product, and what to do, with a number on each. |
+| **amazon-ads-budget-pacing** | Where Amazon Ads spend lands by month end, which campaigns run out of budget early, portfolio caps, and whether more money would pay back. |
+| **amazon-ads-waste-and-scale** | Finds Amazon search terms and product matches spending without selling, builds safe negatives, harvests winners, and moves the money. |
+| **amazon-ads-targeting-analysis** | Which Amazon keywords and product targets earn, what each should bid from its own revenue per click, and how match types and auto groups compare. |
+| **amazon-ads-placement-and-search-share** | Where on Amazon the ads earn — top of search, rest of search, product pages — placement adjustments sized, and top-of-search share. |
+| **amazon-ads-product-and-asin-performance** | Which advertised Amazon products earn their spend, which spend without selling, what shoppers buy instead, and when it's the listing. |
+| **amazon-ads-new-to-brand-and-halo** | What Amazon Sponsored Brands, Display, TV and DSP buy beyond ACOS — new-to-brand customers, halo sales, branded searches. |
+| **amazon-ads-attribution-and-metrics-audit** | Whether Amazon Ads sales and ACOS are comparable and trustworthy — windows, halo and views, currency, restatement, ad share of total sales. |
+| **amazon-ads-settings-and-structure-audit** | Prices every Amazon Ads setting and structural choice costing money — effective top-of-search bids, self-competition, brand mixing, crowded ad groups. |
+| **amazon-ads-client-report** | The monthly Amazon Ads report a client can read — scored against agreed targets, misses explained honestly, next month's plan attached. |
+
 ### Capability
 
 Cross-ICP building blocks — compose these with a domain skill above.
@@ -216,13 +268,13 @@ Each ICP is its own plugin, so you install only what you need. Available plugins
 | `coupler-finance` | finance-analytics |
 | `coupler-sales` | sales-analytics |
 | `coupler-ecommerce` | ecom-analytics, + the 4 Shopify deep dives |
-| `coupler-marketing-ads` | marketing-analytics, ppc-analytics, + the 8 Google Ads, 11 Meta / Facebook Ads and 11 TikTok Ads deep dives |
+| `coupler-marketing-ads` | marketing-analytics, ppc-analytics, + the 8 Google Ads, 11 Meta / Facebook Ads, 11 TikTok Ads, 11 Microsoft Ads, 10 LinkedIn Ads and 10 Amazon Ads deep dives |
 | `coupler-capability` | get-started, create-dataflow, google-ads-custom-gaql, generate-data-set-context, refine-prompt, report-generation |
 | `coupler-utilities` | coupler-live-artifact, humanizer |
 
 Plugin skills are namespaced by their plugin, so they can be invoked explicitly as `/coupler-finance:finance-analytics`. Most of them are model-invoked too — Claude reaches for them when the request matches their description. If the install summary says `Run /reload-plugins to activate.`, run that.
 
-**Install only the plugin you need.** Every skill's description stays in context for the whole session, so a plugin's cost scales with how many skills it carries. `coupler-marketing-ads` bundles 32 and adds roughly 5.5k tokens to every session, `coupler-ecommerce` bundles 5 and adds roughly 700; the single-skill plugins add a few hundred. Check any plugin before installing it:
+**Install only the plugin you need.** Every skill's description stays in context for the whole session, so a plugin's cost scales with how many skills it carries. `coupler-marketing-ads` bundles 63 and adds roughly 11k tokens to every session, `coupler-ecommerce` bundles 5 and adds roughly 700; the single-skill plugins add a few hundred. Check any plugin before installing it:
 
 ```
 claude plugin details coupler-marketing-ads@coupler-io-skills

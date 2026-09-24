@@ -5,7 +5,7 @@
   },
   "metadata": {
     "description": "Coupler.io-authored Claude Code skills and plugins — ICP analytics (finance, sales, e-commerce, marketing & ads) plus cross-ICP capability skills and utilities",
-    "version": "1.5.0"
+    "version": "1.6.0"
   },
   "plugins": [
     {
@@ -80,7 +80,38 @@
         "./marketing-and-ads/facebook-ads/facebook-ads-settings-audit",
         "./marketing-and-ads/facebook-ads/facebook-ads-structure-and-learning-review",
         "./marketing-and-ads/facebook-ads/facebook-ads-placement-geo-and-device",
-        "./marketing-and-ads/facebook-ads/facebook-ads-client-report"
+        "./marketing-and-ads/facebook-ads/facebook-ads-client-report",
+        "./marketing-and-ads/microsoft-ads/microsoft-ads-performance-review",
+        "./marketing-and-ads/microsoft-ads/microsoft-ads-budget-pacing",
+        "./marketing-and-ads/microsoft-ads/microsoft-ads-waste-and-scale",
+        "./marketing-and-ads/microsoft-ads/microsoft-ads-conversion-tracking-audit",
+        "./marketing-and-ads/microsoft-ads/microsoft-ads-keyword-and-quality-score-analysis",
+        "./marketing-and-ads/microsoft-ads/microsoft-ads-settings-audit",
+        "./marketing-and-ads/microsoft-ads/microsoft-ads-audience-analysis",
+        "./marketing-and-ads/microsoft-ads/microsoft-ads-geo-device-and-dayparting",
+        "./marketing-and-ads/microsoft-ads/microsoft-ads-competitive-position",
+        "./marketing-and-ads/microsoft-ads/microsoft-ads-shopping-and-product-performance",
+        "./marketing-and-ads/microsoft-ads/microsoft-ads-client-report",
+        "./marketing-and-ads/linkedin-ads/linkedin-ads-performance-review",
+        "./marketing-and-ads/linkedin-ads/linkedin-ads-budget-pacing",
+        "./marketing-and-ads/linkedin-ads/linkedin-ads-waste-and-scale",
+        "./marketing-and-ads/linkedin-ads/linkedin-ads-conversion-tracking-audit",
+        "./marketing-and-ads/linkedin-ads/linkedin-ads-lead-gen-form-performance",
+        "./marketing-and-ads/linkedin-ads/linkedin-ads-creative-analysis",
+        "./marketing-and-ads/linkedin-ads/linkedin-ads-creative-fatigue",
+        "./marketing-and-ads/linkedin-ads/linkedin-ads-placement-and-device",
+        "./marketing-and-ads/linkedin-ads/linkedin-ads-settings-and-structure-audit",
+        "./marketing-and-ads/linkedin-ads/linkedin-ads-client-report",
+        "./marketing-and-ads/amazon-ads/amazon-ads-performance-review",
+        "./marketing-and-ads/amazon-ads/amazon-ads-budget-pacing",
+        "./marketing-and-ads/amazon-ads/amazon-ads-waste-and-scale",
+        "./marketing-and-ads/amazon-ads/amazon-ads-targeting-analysis",
+        "./marketing-and-ads/amazon-ads/amazon-ads-placement-and-search-share",
+        "./marketing-and-ads/amazon-ads/amazon-ads-product-and-asin-performance",
+        "./marketing-and-ads/amazon-ads/amazon-ads-new-to-brand-and-halo",
+        "./marketing-and-ads/amazon-ads/amazon-ads-attribution-and-metrics-audit",
+        "./marketing-and-ads/amazon-ads/amazon-ads-settings-and-structure-audit",
+        "./marketing-and-ads/amazon-ads/amazon-ads-client-report"
       ]
     },
     {
