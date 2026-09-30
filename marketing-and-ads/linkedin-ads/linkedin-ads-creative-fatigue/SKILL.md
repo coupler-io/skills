@@ -4,8 +4,8 @@ description: >
   Use for "are my LinkedIn ads burning out", "my LinkedIn click-through rate is dropping", "my
   LinkedIn frequency is too high", "how long before I need new LinkedIn ads", "which LinkedIn
   creatives should I refresh", "how much new creative do I need for LinkedIn a month", or "this
-  LinkedIn ad used to work" — even when the user never says "fatigue". This is the how-long-has-it-
-  left read; for which LinkedIn creative wins in the first place, use the creative analysis skill.
+  LinkedIn ad used to work" — even when the user never says "fatigue". This is the how-long-has-it-left
+  read; for which LinkedIn creative wins in the first place, use the creative analysis skill.
   LinkedIn Ads only.
 metadata:
   version: 1.0.0
@@ -80,9 +80,9 @@ inside a dataflow named for something else. If the dataset has a source or platf
 several ad platforms, filter to LinkedIn explicitly and say so. The connector splits its data across
 report types — ad analytics by one dimension, by several dimensions, sponsored leads, and entity
 lists for campaigns, campaign groups, creatives and conversions — each a different grain. Say which
-you have; campaign-per-day and creative-per-day rows look alike and produce different totals.
-Read the cost column by its key in `get-schema` — `costInLocalCurrency` or `costInUsd` — never by
-its label or format; both are labelled "Cost: Amount spend".
+you have; campaign-per-day and creative-per-day rows look alike and produce different totals. Read
+the cost column by its key in the schema — `costInLocalCurrency` or `costInUsd` — never by its label
+or format; both are labelled "Cost: Amount spend".
 
 This skill reads **ad analytics by creative** at daily grain — spend, impressions, landing page
 clicks, results — and approximate member reach from a **MONTHLY or ALL** source per creative and per
@@ -157,9 +157,10 @@ months. Say what it rests on.
 
 ## F. Deliver
 
-Compose `report-generation`. TL;DR = which creatives need replacing and when · Key Metrics =
-frequency, click-through trend, weeks left · Context = creative against audience wear · 
-Recommendations = the refresh queue and the production number.
+Load the `report-generation` skill and run both of its phases: draft, then check. Fill its sections
+as: TL;DR = which creatives need replacing and when · Key Metrics = frequency, click-through trend,
+weeks left · Context = creative against audience wear · Recommendations = the refresh queue and the
+production number.
 
 ### Inline visuals
 
@@ -222,6 +223,7 @@ Write back: useful creative life measured, the production number, campaigns foun
 | The audience needs widening in settings | `linkedin-ads-settings-and-structure-audit` |
 | Saturation spend needs sizing as waste | `linkedin-ads-waste-and-scale` |
 | Cost per result moved without fatigue signs | `linkedin-ads-performance-review` |
+| Formatting and checking the final report | `report-generation` |
 
 ## Next Question (REQUIRED)
 

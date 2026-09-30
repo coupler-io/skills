@@ -11,6 +11,7 @@ metadata:
   category: marketing-and-ads
   short_description: "The Amazon Ads baseline read — what the account did, why ACOS moved, split by ad product, and what to do, with a number on each."
   sources:
+    - Amazon Ads
     - Amazon Ads (Unified)
 ---
 
@@ -69,15 +70,14 @@ diagnose the connector.
 
 Locate the account's Amazon Ads data and **say which dataset you picked, and which connector it
 comes from**. Amazon Ads, the standard connector, is one fixed report per ad product; only its
-Sponsored Products metrics name the attribution window (sales7d, sales14d). Amazon Ads (Unified),
-enabled only on some accounts, is one custom report across Sponsored Products, Sponsored Brands,
-Sponsored Display, Sponsored TV and DSP, with an ad product column. Where no column names the
-window, use Amazon's defaults — 7 days for Sponsored Products, 14 for Sponsored Brands and Display —
-and confirm with the user only for anything else. Datasets are often named after the client or the
-marketplace rather than the platform. Say the ad products, marketplaces and grain you have —
-campaign-per-day, search-term and advertised-product rows look alike and produce different totals.
-Unified has no spend column: read the cost column from `get-schema` — Total cost, which may include
-fees on DSP rows.
+Sponsored Products metrics name the attribution window (sales7d, sales14d). Amazon Ads (Unified) is
+one custom report across Sponsored Products, Sponsored Brands, Sponsored Display, Sponsored TV and
+DSP, with an ad product column. Where no column names the window, use Amazon's defaults — 7 days for
+Sponsored Products, 14 for Sponsored Brands and Display — and confirm with the user only for
+anything else. Datasets are often named after the client or the marketplace rather than the
+platform. Say the ad products, marketplaces and grain you have — campaign-per-day, search-term and
+advertised-product rows look alike and produce different totals. Unified has no spend column. The
+cost column is Total cost, which may include fees on DSP rows; read the schema to confirm.
 
 A review runs at campaign-per-day grain: on legacy, the Campaign report for each ad product the
 account runs; on Unified, the custom report with ad product, campaign and date.
@@ -100,7 +100,7 @@ it is rather than reporting the column as unavailable.
 |---|---|---|
 | The report type or ad product isn't in the dataflow | No search-term rows, no Sponsored Brands rows, no advertised-product rows | Add an Amazon Ads source with that report or ad product to the same dataflow. A dataflow takes unlimited sources |
 | The metric or dimension wasn't picked | The report is there but the column isn't — metrics (and, on Unified, dimensions) are chosen in the source wizard | Edit the source and add it |
-| The legacy connector doesn't carry it | Legacy Amazon Ads dataset; the ask needs impression share or its rank, geography, device, audience segments or DSP | Check legacy first: top-of-search share is on the SP Campaign, Placement and Targeting reports and SB Campaign. The rest needs Amazon Ads (Unified), enabled only on some accounts — offer it only where it is; otherwise say legacy can't answer this |
+| The legacy connector doesn't carry it | Legacy Amazon Ads dataset; the ask needs impression share or its rank, geography, device, audience segments or DSP | Check legacy first: top-of-search share is on the SP Campaign, Placement and Targeting reports and SB Campaign. The rest needs Amazon Ads (Unified): offer it only if it's among the sources the user can add; otherwise say legacy can't answer this |
 | No Amazon Ads credential | No Amazon Ads source exists in any dataflow | The user connects Amazon Ads. That's a consent step for them, not a dead end |
 
 Say **"not checkable from this data"** — never imply a check ran clean when it didn't run.
@@ -123,8 +123,8 @@ one attribution window, and either promoted-product sales or all attributed sale
 and click-based or including views. Sponsored Products and Sponsored Brands can report on different
 windows; never compare or add them until the window matches.
 
-**Each marketplace bills in its own currency.** Never add US dollars to euros. Use the converted-
-currency metrics where the source has them and name the currency, or report per marketplace.
+**Each marketplace bills in its own currency.** Never add US dollars to euros. Use the converted-currency
+metrics where the source has them and name the currency, or report per marketplace.
 
 **Recent days understate sales.** Amazon keeps attributing purchases to a click for days
 afterwards, and sales are gross ordered sales — before returns and cancellations. Leave the last 14
@@ -164,9 +164,10 @@ almost always price, stock, reviews or the Buy Box. Say so before recommending a
 
 ## F. Deliver
 
-Compose `report-generation`. TL;DR = what the account did, what changed, the one thing to do · Key
-Metrics = headline figures against the previous period · Context = ad product breakdown, movers
-with causes · Recommendations = campaign, number, expected effect.
+Load the `report-generation` skill and run both of its phases: draft, then check. Fill its sections
+as: TL;DR = what the account did, what changed, the one thing to do · Key Metrics = headline figures
+against the previous period · Context = ad product breakdown, movers with causes · Recommendations =
+campaign, number, expected effect.
 
 ### Inline visuals
 
@@ -238,6 +239,7 @@ sibling reads this.
 | Settings or structure | `amazon-ads-settings-and-structure-audit` |
 | The output is for a client | `amazon-ads-client-report` |
 | Other ad platforms in scope | `ppc-analytics` |
+| Formatting and checking the final report | `report-generation` |
 
 ## Next Question (REQUIRED)
 

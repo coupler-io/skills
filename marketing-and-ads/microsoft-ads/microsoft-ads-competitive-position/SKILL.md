@@ -147,9 +147,10 @@ click cost.
 
 ## F. Deliver
 
-Compose `report-generation`. TL;DR = where the account is losing position and to what · Key Metrics
-= share won, lost to budget, lost to rank, click share · Context = slippage by campaign and key
-keywords · Recommendations = defend, pull back or buy, each with its term and number.
+Load the `report-generation` skill and run both of its phases: draft, then check. Fill its sections
+as: TL;DR = where the account is losing position and to what · Key Metrics = share won, lost to
+budget, lost to rank, click share · Context = slippage by campaign and key keywords ·
+Recommendations = defend, pull back or buy, each with its term and number.
 
 Close the output with the boundary line: *competitor identities aren't in this data.*
 
@@ -211,6 +212,7 @@ for the next run's slippage comparison, **and the dataset and account timezone.*
 | Lost to budget is the problem | `microsoft-ads-budget-pacing` |
 | The baseline read comes first | `microsoft-ads-performance-review` |
 | Comparing position across ad platforms | `ppc-analytics` |
+| Formatting and checking the final report | `report-generation` |
 
 ## Next Question (REQUIRED)
 

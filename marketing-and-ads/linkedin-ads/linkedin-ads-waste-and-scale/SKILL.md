@@ -75,9 +75,9 @@ inside a dataflow named for something else. If the dataset has a source or platf
 several ad platforms, filter to LinkedIn explicitly and say so. The connector splits its data across
 report types — ad analytics by one dimension, by several dimensions, sponsored leads, and entity
 lists for campaigns, campaign groups, creatives and conversions — each a different grain. Say which
-you have; campaign-per-day and creative-per-day rows look alike and produce different totals.
-Read the cost column by its key in `get-schema` — `costInLocalCurrency` or `costInUsd` — never by
-its label or format; both are labelled "Cost: Amount spend".
+you have; campaign-per-day and creative-per-day rows look alike and produce different totals. Read
+the cost column by its key in the schema — `costInLocalCurrency` or `costInUsd` — never by its label
+or format; both are labelled "Cost: Amount spend".
 
 This skill reads **ad analytics** by campaign, by creative and by serving location (on against off
 LinkedIn), reach where it was pulled, and the **Campaigns** entity for budget, objective and
@@ -165,9 +165,10 @@ The total stays the same.
 
 ## F. Deliver
 
-Compose `report-generation`. TL;DR = how much is wasted, the one move · Key Metrics = wasted,
-too-early, saturation and freed spend · Context = classified rows, placements, competing campaigns ·
-Recommendations = pauses, setting changes, the reallocation.
+Load the `report-generation` skill and run both of its phases: draft, then check. Fill its sections
+as: TL;DR = how much is wasted, the one move · Key Metrics = wasted, too-early, saturation and freed
+spend · Context = classified rows, placements, competing campaigns · Recommendations = pauses,
+setting changes, the reallocation.
 
 ### Inline visuals
 
@@ -234,6 +235,7 @@ protected is re-proposed.
 | Lead form waste specifically | `linkedin-ads-lead-gen-form-performance` |
 | No results anywhere looks like tracking | `linkedin-ads-conversion-tracking-audit` |
 | Moving money across platforms | `ppc-analytics` |
+| Formatting and checking the final report | `report-generation` |
 
 ## Next Question (REQUIRED)
 

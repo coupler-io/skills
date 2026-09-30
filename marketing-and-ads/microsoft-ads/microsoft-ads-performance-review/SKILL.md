@@ -274,6 +274,7 @@ sibling reads this.
 | An inherited account needs its configuration checked | `microsoft-ads-settings-audit` |
 | The output is for a client, not the operator | `microsoft-ads-client-report` |
 | Platforms other than Microsoft Ads are in scope | `ppc-analytics` |
+| Formatting and checking the final report | `report-generation` |
 
 ## Next Question (REQUIRED)
 

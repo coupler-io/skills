@@ -5,8 +5,8 @@ description: >
   exact or broad match on Bing", "which Bing keywords are worth more budget", "why is my Microsoft
   Ads cost per click so high", "find me new keywords for Microsoft Ads" — even when the user never
   says "keyword". This is the earning view: which Microsoft Ads keywords deserve more money and
-  which are overcharging for the same clicks. For the cutting view, use microsoft-ads-waste-and-
-  scale instead. Microsoft Ads (Bing) only.
+  which are overcharging for the same clicks. For the cutting view, use microsoft-ads-waste-and-scale
+  instead. Microsoft Ads (Bing) only.
 metadata:
   version: 1.0.0
   category: marketing-and-ads
@@ -162,9 +162,10 @@ group it came from, with the query's own cost per conversion.
 
 ## F. Deliver
 
-Compose `report-generation`. TL;DR = which keywords deserve more and what's overcharging · Key
-Metrics = weighted quality, spend on below-average parts, low-quality premium · Context = the
-ranking, the failing parts · Recommendations = keyword, change, expected effect.
+Load the `report-generation` skill and run both of its phases: draft, then check. Fill its sections
+as: TL;DR = which keywords deserve more and what's overcharging · Key Metrics = weighted quality,
+spend on below-average parts, low-quality premium · Context = the ranking, the failing parts ·
+Recommendations = keyword, change, expected effect.
 
 ### Inline visuals
 
@@ -229,6 +230,7 @@ for the next run's comparison, parts found failing, **and the dataset and accoun
 | Losing position to competitors, not quality | `microsoft-ads-competitive-position` |
 | The baseline read comes first | `microsoft-ads-performance-review` |
 | Conversion numbers are doubted | `microsoft-ads-conversion-tracking-audit` |
+| Formatting and checking the final report | `report-generation` |
 
 ## Next Question (REQUIRED)
 

@@ -39,7 +39,7 @@ click-through rate and the ranking says more about format than about creative.
 **Read-only on your LinkedIn Ads account.** It never pauses or edits a creative.
 
 **This is the which-wins read.** For which winners are wearing out, use
-`linkedin-ads-creative- fatigue`.
+`linkedin-ads-creative-fatigue`.
 
 ## Call budget
 
@@ -80,9 +80,9 @@ inside a dataflow named for something else. If the dataset has a source or platf
 several ad platforms, filter to LinkedIn explicitly and say so. The connector splits its data across
 report types — ad analytics by one dimension, by several dimensions, sponsored leads, and entity
 lists for campaigns, campaign groups, creatives and conversions — each a different grain. Say which
-you have; campaign-per-day and creative-per-day rows look alike and produce different totals.
-Read the cost column by its key in `get-schema` — `costInLocalCurrency` or `costInUsd` — never by
-its label or format; both are labelled "Cost: Amount spend".
+you have; campaign-per-day and creative-per-day rows look alike and produce different totals. Read
+the cost column by its key in the schema — `costInLocalCurrency` or `costInUsd` — never by its label
+or format; both are labelled "Cost: Amount spend".
 
 This skill reads **ad analytics by creative** (and by creative with **card index** for carousels),
 the **Creatives** entity for format and status, the **Shares** entity for intro text and headline,
@@ -159,9 +159,10 @@ first seconds should do, and what to stop making.
 
 ## F. Deliver
 
-Compose `report-generation`. TL;DR = the winning creative per format and the one change · Key
-Metrics = results and cost per result for the top creatives · Context = within-format ranking, hook
-and hold, traffic against engagement · Recommendations = the brief.
+Load the `report-generation` skill and run both of its phases: draft, then check. Fill its sections
+as: TL;DR = the winning creative per format and the one change · Key Metrics = results and cost per
+result for the top creatives · Context = within-format ranking, hook and hold, traffic against
+engagement · Recommendations = the brief.
 
 ### Inline visuals
 
@@ -225,6 +226,7 @@ Write back: winning formats and traits found, creatives the user said to keep, t
 | The creative drives form leads | `linkedin-ads-lead-gen-form-performance` |
 | A creative is spending with nothing to show | `linkedin-ads-waste-and-scale` |
 | The baseline read comes first | `linkedin-ads-performance-review` |
+| Formatting and checking the final report | `report-generation` |
 
 ## Next Question (REQUIRED)
 

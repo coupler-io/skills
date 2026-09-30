@@ -77,9 +77,9 @@ inside a dataflow named for something else. If the dataset has a source or platf
 several ad platforms, filter to LinkedIn explicitly and say so. The connector splits its data across
 report types — ad analytics by one dimension, by several dimensions, sponsored leads, and entity
 lists for campaigns, campaign groups, creatives and conversions — each a different grain. Say which
-you have; campaign-per-day and creative-per-day rows look alike and produce different totals.
-Read the cost column by its key in `get-schema` — `costInLocalCurrency` or `costInUsd` — never by
-its label or format; both are labelled "Cost: Amount spend".
+you have; campaign-per-day and creative-per-day rows look alike and produce different totals. Read
+the cost column by its key in the schema — `costInLocalCurrency` or `costInUsd` — never by its label
+or format; both are labelled "Cost: Amount spend".
 
 The audit reads the **Campaigns** entity (objective, format, `cost_type`,
 `optimization_target_type`, unit cost, Audience Network and audience expansion settings, creative
@@ -159,9 +159,10 @@ stops them early; name the date.
 
 ## F. Deliver
 
-Compose `report-generation`. TL;DR = the costliest defect and its fix · Key Metrics = spend through
-defects, share of the account · Context = each check with verdict · Recommendations = setting,
-current state, change, spend affected.
+Load the `report-generation` skill and run both of its phases: draft, then check. Fill its sections
+as: TL;DR = the costliest defect and its fix · Key Metrics = spend through defects, share of the
+account · Context = each check with verdict · Recommendations = setting, current state, change,
+spend affected.
 
 ### Inline visuals
 
@@ -226,6 +227,7 @@ Deliberate choices aren't flagged again.
 | Overlap and saturation as waste | `linkedin-ads-waste-and-scale` |
 | A single creative is wearing out | `linkedin-ads-creative-fatigue` |
 | Conversion rules attached to campaigns | `linkedin-ads-conversion-tracking-audit` |
+| Formatting and checking the final report | `report-generation` |
 
 ## Next Question (REQUIRED)
 

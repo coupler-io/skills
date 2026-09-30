@@ -80,9 +80,9 @@ inside a dataflow named for something else. If the dataset has a source or platf
 several ad platforms, filter to LinkedIn explicitly and say so. The connector splits its data across
 report types — ad analytics by one dimension, by several dimensions, sponsored leads, and entity
 lists for campaigns, campaign groups, creatives and conversions — each a different grain. Say which
-you have; campaign-per-day and creative-per-day rows look alike and produce different totals.
-Read the cost column by its key in `get-schema` — `costInLocalCurrency` or `costInUsd` — never by
-its label or format; both are labelled "Cost: Amount spend".
+you have; campaign-per-day and creative-per-day rows look alike and produce different totals. Read
+the cost column by its key in the schema — `costInLocalCurrency` or `costInUsd` — never by its label
+or format; both are labelled "Cost: Amount spend".
 
 This skill reads **ad analytics** by campaign and creative (spend, lead form opens, leads) and the
 **Sponsored leads** report (one row per submitted lead, with the form, campaign, submission date,
@@ -148,7 +148,7 @@ never selected on its own.
 | Cheap cost per lead, junior or off-target titles | Cheap leads from the wrong people | Tighten targeting or add a qualifying question |
 | Low form completion | People open and walk away | Fewer questions, or a clearer offer above the form |
 | High completion, cost per lead rising | The form works; the audience or creative doesn't | Creative fatigue or targeting |
-| Many repeat submitters | The same people answering several forms | Count unique people with `COUNT(DISTINCT` the email column`)`; the lead total overstates reach |
+| Many repeat submitters | The same people answering several forms | Count unique people with `COUNT(DISTINCT <email column>)`; the lead total overstates reach |
 | Test leads in the count | Inflated leads | Exclude and restate |
 | One form beats the others on seniority mix at similar cost | The better form | Move spend to it |
 
@@ -162,9 +162,10 @@ CRM here.
 
 ## F. Deliver
 
-Compose `report-generation`. TL;DR = which forms earn their leads, and the one fix · Key Metrics =
-leads, cost per lead, form completion, seniority mix · Context = forms, campaigns, who the leads
-are · Recommendations = form or campaign, change, expected effect.
+Load the `report-generation` skill and run both of its phases: draft, then check. Fill its sections
+as: TL;DR = which forms earn their leads, and the one fix · Key Metrics = leads, cost per lead, form
+completion, seniority mix · Context = forms, campaigns, who the leads are · Recommendations = form
+or campaign, change, expected effect.
 
 ### Inline visuals
 
@@ -229,6 +230,7 @@ titles were grouped, **and the dataset and account timezone.** Never save any le
 | Which creative drives the leads | `linkedin-ads-creative-analysis` |
 | Lead-to-deal in the CRM | `sales-analytics` |
 | The baseline read comes first | `linkedin-ads-performance-review` |
+| Formatting and checking the final report | `report-generation` |
 
 ## Next Question (REQUIRED)
 

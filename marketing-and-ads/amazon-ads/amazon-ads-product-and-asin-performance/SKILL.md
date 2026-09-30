@@ -11,6 +11,7 @@ metadata:
   category: marketing-and-ads
   short_description: "Which advertised Amazon products earn their spend, which spend without selling, what shoppers buy instead, and when it's the listing."
   sources:
+    - Amazon Ads
     - Amazon Ads (Unified)
 ---
 
@@ -69,15 +70,14 @@ diagnose the connector.
 
 Locate the account's Amazon Ads data and **say which dataset you picked, and which connector it
 comes from**. Amazon Ads, the standard connector, is one fixed report per ad product; only its
-Sponsored Products metrics name the attribution window (sales7d, sales14d). Amazon Ads (Unified),
-enabled only on some accounts, is one custom report across Sponsored Products, Sponsored Brands,
-Sponsored Display, Sponsored TV and DSP, with an ad product column. Where no column names the
-window, use Amazon's defaults — 7 days for Sponsored Products, 14 for Sponsored Brands and Display —
-and confirm with the user only for anything else. Datasets are often named after the client or the
-marketplace rather than the platform. Say the ad products, marketplaces and grain you have —
-campaign-per-day, search-term and advertised-product rows look alike and produce different totals.
-Unified has no spend column: read the cost column from `get-schema` — Total cost, which may include
-fees on DSP rows.
+Sponsored Products metrics name the attribution window (sales7d, sales14d). Amazon Ads (Unified) is
+one custom report across Sponsored Products, Sponsored Brands, Sponsored Display, Sponsored TV and
+DSP, with an ad product column. Where no column names the window, use Amazon's defaults — 7 days for
+Sponsored Products, 14 for Sponsored Brands and Display — and confirm with the user only for
+anything else. Datasets are often named after the client or the marketplace rather than the
+platform. Say the ad products, marketplaces and grain you have — campaign-per-day, search-term and
+advertised-product rows look alike and produce different totals. Unified has no spend column. The
+cost column is Total cost, which may include fees on DSP rows; read the schema to confirm.
 
 This skill reads **advertised product** rows (ASIN, SKU, spend, clicks, orders, sales, promoted and
 halo sales) and **purchased product** rows (the ASIN bought after an ad click, when it differs from
@@ -107,7 +107,7 @@ it is rather than reporting the column as unavailable.
 |---|---|---|
 | The report type or ad product isn't in the dataflow | No search-term rows, no Sponsored Brands rows, no advertised-product rows | Add an Amazon Ads source with that report or ad product to the same dataflow. A dataflow takes unlimited sources |
 | The metric or dimension wasn't picked | The report is there but the column isn't — metrics (and, on Unified, dimensions) are chosen in the source wizard | Edit the source and add it |
-| The legacy connector doesn't carry it | Legacy Amazon Ads dataset; the ask needs impression share or its rank, geography, device, audience segments or DSP | Check legacy first: top-of-search share is on the SP Campaign, Placement and Targeting reports and SB Campaign. The rest needs Amazon Ads (Unified), enabled only on some accounts — offer it only where it is; otherwise say legacy can't answer this |
+| The legacy connector doesn't carry it | Legacy Amazon Ads dataset; the ask needs impression share or its rank, geography, device, audience segments or DSP | Check legacy first: top-of-search share is on the SP Campaign, Placement and Targeting reports and SB Campaign. The rest needs Amazon Ads (Unified): offer it only if it's among the sources the user can add; otherwise say legacy can't answer this |
 | No Amazon Ads credential | No Amazon Ads source exists in any dataflow | The user connects Amazon Ads. That's a consent step for them, not a dead end |
 
 Say **"not checkable from this data"** — never imply a check ran clean when it didn't run.
@@ -151,9 +151,10 @@ knowing. A lot of sales to one sibling means the shopper prefers it; consider ad
 
 ## F. Deliver
 
-Compose `report-generation`. TL;DR = which products carry the ads, which waste, and the one listing
-to check · Key Metrics = ad sales, ACOS, concentration, spend without selling · Context = ranking,
-halo, listing breaks · Recommendations = product, change, expected effect.
+Load the `report-generation` skill and run both of its phases: draft, then check. Fill its sections
+as: TL;DR = which products carry the ads, which waste, and the one listing to check · Key Metrics =
+ad sales, ACOS, concentration, spend without selling · Context = ranking, halo, listing breaks ·
+Recommendations = product, change, expected effect.
 
 ### Inline visuals
 
@@ -214,6 +215,7 @@ ACOS target, **and the dataset and account timezone.**
 | New-to-brand value of each product's ads | `amazon-ads-new-to-brand-and-halo` |
 | Store-side stock for a Shopify catalogue | `shopify-inventory-and-stockout-risk` |
 | The baseline read comes first | `amazon-ads-performance-review` |
+| Formatting and checking the final report | `report-generation` |
 
 ## Next Question (REQUIRED)
 

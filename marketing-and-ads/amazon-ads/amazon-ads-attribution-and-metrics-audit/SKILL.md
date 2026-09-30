@@ -11,6 +11,7 @@ metadata:
   category: marketing-and-ads
   short_description: "Whether Amazon Ads sales and ACOS are comparable and trustworthy — windows, halo and views, currency, restatement, ad share of total sales."
   sources:
+    - Amazon Ads
     - Amazon Ads (Unified)
 ---
 
@@ -72,15 +73,14 @@ diagnose the connector.
 
 Locate the account's Amazon Ads data and **say which dataset you picked, and which connector it
 comes from**. Amazon Ads, the standard connector, is one fixed report per ad product; only its
-Sponsored Products metrics name the attribution window (sales7d, sales14d). Amazon Ads (Unified),
-enabled only on some accounts, is one custom report across Sponsored Products, Sponsored Brands,
-Sponsored Display, Sponsored TV and DSP, with an ad product column. Where no column names the
-window, use Amazon's defaults — 7 days for Sponsored Products, 14 for Sponsored Brands and Display —
-and confirm with the user only for anything else. Datasets are often named after the client or the
-marketplace rather than the platform. Say the ad products, marketplaces and grain you have —
-campaign-per-day, search-term and advertised-product rows look alike and produce different totals.
-Unified has no spend column: read the cost column from `get-schema` — Total cost, which may include
-fees on DSP rows.
+Sponsored Products metrics name the attribution window (sales7d, sales14d). Amazon Ads (Unified) is
+one custom report across Sponsored Products, Sponsored Brands, Sponsored Display, Sponsored TV and
+DSP, with an ad product column. Where no column names the window, use Amazon's defaults — 7 days for
+Sponsored Products, 14 for Sponsored Brands and Display — and confirm with the user only for
+anything else. Datasets are often named after the client or the marketplace rather than the
+platform. Say the ad products, marketplaces and grain you have — campaign-per-day, search-term and
+advertised-product rows look alike and produce different totals. Unified has no spend column. The
+cost column is Total cost, which may include fees on DSP rows; read the schema to confirm.
 
 The audit reads the **schema first** — metric names and labels say which sales basis a column is,
 and on legacy Sponsored Products its window — then spend, orders and sales by ad product,
@@ -105,7 +105,7 @@ it is rather than reporting the column as unavailable.
 |---|---|---|
 | The report type or ad product isn't in the dataflow | No search-term rows, no Sponsored Brands rows, no advertised-product rows | Add an Amazon Ads source with that report or ad product to the same dataflow. A dataflow takes unlimited sources |
 | The metric or dimension wasn't picked | The report is there but the column isn't — metrics (and, on Unified, dimensions) are chosen in the source wizard | Edit the source and add it |
-| The legacy connector doesn't carry it | Legacy Amazon Ads dataset; the ask needs impression share or its rank, geography, device, audience segments or DSP | Check legacy first: top-of-search share is on the SP Campaign, Placement and Targeting reports and SB Campaign. The rest needs Amazon Ads (Unified), enabled only on some accounts — offer it only where it is; otherwise say legacy can't answer this |
+| The legacy connector doesn't carry it | Legacy Amazon Ads dataset; the ask needs impression share or its rank, geography, device, audience segments or DSP | Check legacy first: top-of-search share is on the SP Campaign, Placement and Targeting reports and SB Campaign. The rest needs Amazon Ads (Unified): offer it only if it's among the sources the user can add; otherwise say legacy can't answer this |
 | No Amazon Ads credential | No Amazon Ads source exists in any dataflow | The user connects Amazon Ads. That's a consent step for them, not a dead end |
 
 Say **"not checkable from this data"** — never imply a check ran clean when it didn't run.
@@ -149,9 +149,10 @@ to the cross-source layer — report the ratio and stop.
 
 ## F. Deliver
 
-Compose `report-generation`. TL;DR = can the numbers be compared, and the one fix · Key Metrics =
-window per ad product, halo and view uplift, spend affected by currency mixing · Context = the six
-checks · Recommendations = the basis and window to use for each comparison.
+Load the `report-generation` skill and run both of its phases: draft, then check. Fill its sections
+as: TL;DR = can the numbers be compared, and the one fix · Key Metrics = window per ad product, halo
+and view uplift, spend affected by currency mixing · Context = the six checks · Recommendations =
+the basis and window to use for each comparison.
 
 ### Inline visuals
 
@@ -211,6 +212,7 @@ restatement period if measured, **and the dataset and account timezone.** Every 
 | The numbers line up and the question is performance | `amazon-ads-performance-review` |
 | Upper-funnel value once bases are clear | `amazon-ads-new-to-brand-and-halo` |
 | Comparing Amazon with other platforms | `ppc-analytics` |
+| Formatting and checking the final report | `report-generation` |
 
 ## Next Question (REQUIRED)
 

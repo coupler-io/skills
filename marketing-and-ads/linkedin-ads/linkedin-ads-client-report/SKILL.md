@@ -2,8 +2,8 @@
 name: linkedin-ads-client-report
 description: >
   Use when someone asks for a monthly LinkedIn Ads report for a client, wants the LinkedIn section
-  of a client deck built, needs last month's LinkedIn Ads performance written up, asks for an end-
-  of-month LinkedIn Ads report, asks "what do I tell the client about LinkedIn", or asks how to
+  of a client deck built, needs last month's LinkedIn Ads performance written up, asks for an end-of-month
+  LinkedIn Ads report, asks "what do I tell the client about LinkedIn", or asks how to
   present a LinkedIn Ads target they missed — even when they never say the word "report". For
   agencies and in-house teams reporting upward. LinkedIn Ads only.
 metadata:
@@ -72,9 +72,9 @@ inside a dataflow named for something else. If the dataset has a source or platf
 several ad platforms, filter to LinkedIn explicitly and say so. The connector splits its data across
 report types — ad analytics by one dimension, by several dimensions, sponsored leads, and entity
 lists for campaigns, campaign groups, creatives and conversions — each a different grain. Say which
-you have; campaign-per-day and creative-per-day rows look alike and produce different totals.
-Read the cost column by its key in `get-schema` — `costInLocalCurrency` or `costInUsd` — never by
-its label or format; both are labelled "Cost: Amount spend".
+you have; campaign-per-day and creative-per-day rows look alike and produce different totals. Read
+the cost column by its key in the schema — `costInLocalCurrency` or `costInUsd` — never by its label
+or format; both are labelled "Cost: Amount spend".
 
 The report reads **ad analytics** by campaign at daily grain, with each campaign's objective, for
 the reporting month, the
@@ -127,9 +127,8 @@ total's. **Count one result and say which** — website conversions (post-click,
 lead gen form leads, or landing page clicks are different numbers; never add website conversions to
 form leads, and never mix post-view into a post-click comparison. **Say which clicks you mean** —
 LinkedIn's clicks are chargeable clicks, including clicks to the company page; landing page
-clicks are the traffic. Note month lengths — a 28-day month against a 31-day month is a built-
-in 10% drop in
-totals; compare daily averages where it matters and say so.
+clicks are the traffic. Note month lengths — a 28-day month against a 31-day month is a built-in
+10% drop in totals; compare daily averages where it matters and say so.
 
 **Never sum reach across days, campaigns or creatives.** Approximate member reach counts unique
 people, and the same person appears in every row they were reached in. Pull reach at the grain and
@@ -235,6 +234,7 @@ month doesn't re-ask the KPIs.
 | Next month's plan needs a budget move sized | `linkedin-ads-budget-pacing` |
 | The client asks about lead quality | `linkedin-ads-lead-gen-form-performance` |
 | The client report covers several ad platforms | `ppc-analytics` |
+| Formatting and checking the final report | `report-generation` |
 
 ## Next Question (REQUIRED)
 

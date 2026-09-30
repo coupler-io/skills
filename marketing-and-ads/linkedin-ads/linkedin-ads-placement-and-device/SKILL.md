@@ -78,9 +78,9 @@ inside a dataflow named for something else. If the dataset has a source or platf
 several ad platforms, filter to LinkedIn explicitly and say so. The connector splits its data across
 report types — ad analytics by one dimension, by several dimensions, sponsored leads, and entity
 lists for campaigns, campaign groups, creatives and conversions — each a different grain. Say which
-you have; campaign-per-day and creative-per-day rows look alike and produce different totals.
-Read the cost column by its key in `get-schema` — `costInLocalCurrency` or `costInUsd` — never by
-its label or format; both are labelled "Cost: Amount spend".
+you have; campaign-per-day and creative-per-day rows look alike and produce different totals. Read
+the cost column by its key in the schema — `costInLocalCurrency` or `costInUsd` — never by its label
+or format; both are labelled "Cost: Amount spend".
 
 This skill reads **ad analytics** by **serving location** (on LinkedIn against off LinkedIn), by
 **placement name**, and by **impression device type**, with campaign as the second dimension where
@@ -158,9 +158,10 @@ campaign, so a weak location is a targeting question for whichever campaigns rea
 
 ## F. Deliver
 
-Compose `report-generation`. TL;DR = the biggest mismatch and its fix · Key Metrics = spend and
-result shares per slice · Context = serving location, placement, device, location · Recommendations
-= slice, change, spend affected.
+Load the `report-generation` skill and run both of its phases: draft, then check. Fill its sections
+as: TL;DR = the biggest mismatch and its fix · Key Metrics = spend and result shares per slice ·
+Context = serving location, placement, device, location · Recommendations = slice, change, spend
+affected.
 
 ### Inline visuals
 
@@ -225,6 +226,7 @@ Write back: campaigns where the Audience Network is deliberate, the locations th
 | Off-LinkedIn spend as part of a waste sweep | `linkedin-ads-waste-and-scale` |
 | The baseline read comes first | `linkedin-ads-performance-review` |
 | Which creative works on which placement | `linkedin-ads-creative-analysis` |
+| Formatting and checking the final report | `report-generation` |
 
 ## Next Question (REQUIRED)
 

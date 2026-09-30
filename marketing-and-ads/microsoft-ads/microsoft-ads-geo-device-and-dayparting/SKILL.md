@@ -150,9 +150,10 @@ share-statistics report with the Hourly split.
 
 ## F. Deliver
 
-Compose `report-generation`. TL;DR = the biggest mismatch and its fix · Key Metrics = spend share
-against result share for the top slices · Context = location, device, hour · Recommendations =
-slice, adjustment or schedule, expected effect.
+Load the `report-generation` skill and run both of its phases: draft, then check. Fill its sections
+as: TL;DR = the biggest mismatch and its fix · Key Metrics = spend share against result share for
+the top slices · Context = location, device, hour · Recommendations = slice, adjustment or schedule,
+expected effect.
 
 ### Inline visuals
 
@@ -212,6 +213,7 @@ adjustments proposed and accepted, schedule blocks the user said to keep, **and 
 | The slice is an audience or demographic | `microsoft-ads-audience-analysis` |
 | Budget runs out before the good hours | `microsoft-ads-budget-pacing` |
 | The baseline read comes first | `microsoft-ads-performance-review` |
+| Formatting and checking the final report | `report-generation` |
 
 ## Next Question (REQUIRED)
 

@@ -149,9 +149,10 @@ separately so they don't flatter the product ranking.
 
 ## F. Deliver
 
-Compose `report-generation`. TL;DR = where product money is earned and lost, the one change · Key
-Metrics = revenue, spend, return, concentration · Context = products, groups, unserved products,
-queries · Recommendations = product or group, change, expected effect.
+Load the `report-generation` skill and run both of its phases: draft, then check. Fill its sections
+as: TL;DR = where product money is earned and lost, the one change · Key Metrics = revenue, spend,
+return, concentration · Context = products, groups, unserved products, queries · Recommendations =
+product or group, change, expected effect.
 
 ### Inline visuals
 
@@ -213,6 +214,7 @@ to keep regardless, negatives accepted, **and the dataset and account timezone.*
 | Revenue or purchase tracking is doubted | `microsoft-ads-conversion-tracking-audit` |
 | The baseline read comes first | `microsoft-ads-performance-review` |
 | Store-side product sales, not ad performance | `shopify-product-and-variant-sales` |
+| Formatting and checking the final report | `report-generation` |
 
 ## Next Question (REQUIRED)
 

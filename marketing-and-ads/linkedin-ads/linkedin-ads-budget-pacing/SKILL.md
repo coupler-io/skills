@@ -74,9 +74,9 @@ inside a dataflow named for something else. If the dataset has a source or platf
 several ad platforms, filter to LinkedIn explicitly and say so. The connector splits its data across
 report types — ad analytics by one dimension, by several dimensions, sponsored leads, and entity
 lists for campaigns, campaign groups, creatives and conversions — each a different grain. Say which
-you have; campaign-per-day and creative-per-day rows look alike and produce different totals.
-Read the cost column by its key in `get-schema` — `costInLocalCurrency` or `costInUsd` — never by
-its label or format; both are labelled "Cost: Amount spend".
+you have; campaign-per-day and creative-per-day rows look alike and produce different totals. Read
+the cost column by its key in the schema — `costInLocalCurrency` or `costInUsd` — never by its label
+or format; both are labelled "Cost: Amount spend".
 
 Pacing reads **ad analytics** at campaign-per-day grain for spend, and the **Campaigns** and
 **Campaign groups** entities for daily budget, lifetime budget, group budget, `cost_type`,
@@ -149,9 +149,10 @@ overstates the audience and understates frequency.
 
 ## G. Deliver
 
-Compose `report-generation`. TL;DR = where the month lands and the one move · Key Metrics = spend to
-date, projection, budget, required run rate · Context = campaigns at full budget, underspenders and
-causes · Recommendations = campaign, amount, expected effect.
+Load the `report-generation` skill and run both of its phases: draft, then check. Fill its sections
+as: TL;DR = where the month lands and the one move · Key Metrics = spend to date, projection,
+budget, required run rate · Context = campaigns at full budget, underspenders and causes ·
+Recommendations = campaign, amount, expected effect.
 
 ### Inline visuals
 
@@ -217,6 +218,7 @@ full budget, end dates, **and the dataset and account timezone.**
 | The money should come from waste | `linkedin-ads-waste-and-scale` |
 | The audience is saturated | `linkedin-ads-creative-fatigue` |
 | Budget spans several ad platforms | `ppc-analytics` |
+| Formatting and checking the final report | `report-generation` |
 
 ## Next Question (REQUIRED)
 

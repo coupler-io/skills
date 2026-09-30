@@ -2,8 +2,8 @@
 name: microsoft-ads-client-report
 description: >
   Use when someone asks for a monthly Microsoft Ads report for a client, wants the Bing section of a
-  client deck built, needs last month's Microsoft Ads performance written up, asks for an end-of-
-  month Bing Ads report, asks "what do I tell the client about Bing", or asks how to
+  client deck built, needs last month's Microsoft Ads performance written up, asks for an end-of-month
+  Bing Ads report, asks "what do I tell the client about Bing", or asks how to
   present a Microsoft Ads target they missed — even when they never say the word "report". For
   agencies and in-house teams reporting upward. Microsoft Ads (Bing) only.
 metadata:
@@ -208,6 +208,7 @@ month doesn't re-ask the KPIs.
 | The client's conversion numbers are doubted | `microsoft-ads-conversion-tracking-audit` |
 | Next month's plan needs a budget move sized | `microsoft-ads-budget-pacing` |
 | The client report covers several ad platforms | `ppc-analytics` |
+| Formatting and checking the final report | `report-generation` |
 
 ## Next Question (REQUIRED)
 

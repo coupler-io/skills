@@ -3,8 +3,8 @@ name: microsoft-ads-budget-pacing
 description: >
   Use for "am I on track with my Microsoft Ads budget", "will I overspend on Bing this month", "how
   much should I spend a day on Microsoft Ads", "which Bing campaigns are capped by budget", "we
-  underspent on Microsoft Ads and I don't know why", "where should I move Bing budget", or a mid-
-  month Microsoft Ads spend check — even when the user never says "pacing". Also use when someone
+  underspent on Microsoft Ads and I don't know why", "where should I move Bing budget", or a mid-month
+  Microsoft Ads spend check — even when the user never says "pacing". Also use when someone
   needs to know whether adding budget to a Microsoft Ads campaign would do anything at all.
   Microsoft Ads (Bing) only.
 metadata:
@@ -52,8 +52,8 @@ actually needs, and say so rather than padding the budget in advance.
 **Already known is not re-derived.** The dataset, the month's budget, the budget level, the targets,
 the timezone — if saved context or this conversation has it, use it.
 
-**Speak at call two.** **Coverage prunes the run** — no impression-share columns means the capped-
-campaign read can't run, so don't query for it; say so and name the fix. **Missing data is a line in
+**Speak at call two.** **Coverage prunes the run** — no impression-share columns means the capped-campaign
+read can't run, so don't query for it; say so and name the fix. **Missing data is a line in
 the output, not a gate.** **Don't narrate steps** — the user wants the answer, not the itinerary.
 
 ## A. Connect (HARD GATE)
@@ -157,9 +157,10 @@ for more.
 
 ## G. Deliver
 
-Compose `report-generation`. TL;DR = where the month lands and the one move · Key Metrics = spend to
-date, projection, budget, required run rate · Context = capped campaigns and why each is or isn't
-worth funding · Recommendations = campaign, amount, expected effect.
+Load the `report-generation` skill and run both of its phases: draft, then check. Fill its sections
+as: TL;DR = where the month lands and the one move · Key Metrics = spend to date, projection,
+budget, required run rate · Context = capped campaigns and why each is or isn't worth funding ·
+Recommendations = campaign, amount, expected effect.
 
 ### Inline visuals
 
@@ -229,6 +230,7 @@ closing block.
 | A delivery break needs its setting found | `microsoft-ads-settings-audit` |
 | The cost target itself is doubted | `microsoft-ads-conversion-tracking-audit` |
 | Budget spans several ad platforms | `ppc-analytics` |
+| Formatting and checking the final report | `report-generation` |
 
 ## Next Question (REQUIRED)
 

@@ -152,9 +152,10 @@ is most of the spend, demographic adjustments move little money; say so.
 
 ## F. Deliver
 
-Compose `report-generation`. TL;DR = which audiences deserve more, and the one adjustment · Key
-Metrics = spend and cost per conversion per segment type · Context = lists, profile cuts,
-demographics · Recommendations = segment, adjustment, expected effect.
+Load the `report-generation` skill and run both of its phases: draft, then check. Fill its sections
+as: TL;DR = which audiences deserve more, and the one adjustment · Key Metrics = spend and cost per
+conversion per segment type · Context = lists, profile cuts, demographics · Recommendations =
+segment, adjustment, expected effect.
 
 ### Inline visuals
 
@@ -214,6 +215,7 @@ are deliberate, adjustments proposed and accepted, **and the dataset and account
 | The segment is a location, device or hour | `microsoft-ads-geo-device-and-dayparting` |
 | The baseline read comes first | `microsoft-ads-performance-review` |
 | Conversion numbers are doubted | `microsoft-ads-conversion-tracking-audit` |
+| Formatting and checking the final report | `report-generation` |
 
 ## Next Question (REQUIRED)
 

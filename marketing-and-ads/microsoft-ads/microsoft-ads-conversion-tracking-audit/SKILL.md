@@ -156,9 +156,10 @@ conversions to another platform's.
 
 ## F. Deliver
 
-Compose `report-generation`. TL;DR = can the numbers be trusted, and the one fix · Key Metrics =
-headline conversions, inflation from duplicates, untracked spend share · Context = the six checks
-with verdicts · Recommendations = the goal to count, what to switch off, what to fix in the tag.
+Load the `report-generation` skill and run both of its phases: draft, then check. Fill its sections
+as: TL;DR = can the numbers be trusted, and the one fix · Key Metrics = headline conversions,
+inflation from duplicates, untracked spend share · Context = the six checks with verdicts ·
+Recommendations = the goal to count, what to switch off, what to fix in the tag.
 
 ### Inline visuals
 
@@ -220,6 +221,7 @@ goals to ignore and why, dated breaks, the measured or assumed conversion lag, w
 | Goal or Google Import settings need checking | `microsoft-ads-settings-audit` |
 | Zero-conversion spend is real waste, not missing tracking | `microsoft-ads-waste-and-scale` |
 | Conversions need comparing across platforms | `ppc-analytics` |
+| Formatting and checking the final report | `report-generation` |
 
 ## Next Question (REQUIRED)
 

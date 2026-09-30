@@ -159,9 +159,10 @@ optimisation. That's the most expensive silent defect in synced accounts.
 
 ## F. Deliver
 
-Compose `report-generation`. TL;DR = the costliest defect and its fix · Key Metrics = spend through
-defects, as a share of the account · Context = each check with verdict · Recommendations = setting,
-current state, change, spend affected.
+Load the `report-generation` skill and run both of its phases: draft, then check. Fill its sections
+as: TL;DR = the costliest defect and its fix · Key Metrics = spend through defects, as a share of
+the account · Context = each check with verdict · Recommendations = setting, current state, change,
+spend affected.
 
 ### Inline visuals
 
@@ -223,6 +224,7 @@ account timezone.** Deliberate settings aren't flagged again.
 | Partner waste down to publisher level | `microsoft-ads-waste-and-scale` |
 | Goals or Google-imported conversions are doubted | `microsoft-ads-conversion-tracking-audit` |
 | Audience lists need their value read | `microsoft-ads-audience-analysis` |
+| Formatting and checking the final report | `report-generation` |
 
 ## Next Question (REQUIRED)
 

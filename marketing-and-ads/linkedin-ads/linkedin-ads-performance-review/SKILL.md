@@ -74,9 +74,9 @@ inside a dataflow named for something else. If the dataset has a source or platf
 several ad platforms, filter to LinkedIn explicitly and say so. The connector splits its data across
 report types — ad analytics by one dimension, by several dimensions, sponsored leads, and entity
 lists for campaigns, campaign groups, creatives and conversions — each a different grain. Say which
-you have; campaign-per-day and creative-per-day rows look alike and produce different totals.
-Read the cost column by its key in `get-schema` — `costInLocalCurrency` or `costInUsd` — never by
-its label or format; both are labelled "Cost: Amount spend".
+you have; campaign-per-day and creative-per-day rows look alike and produce different totals. Read
+the cost column by its key in the schema — `costInLocalCurrency` or `costInUsd` — never by its label
+or format; both are labelled "Cost: Amount spend".
 
 A review runs off **ad analytics** at campaign-per-day grain, with the campaign's objective either
 on the rows or joined from the **Campaigns** entity. Campaign groups sit above campaigns and often
@@ -161,9 +161,10 @@ between campaigns that were always priced differently. **Check the mix first.**
 
 ## F. Deliver
 
-Compose `report-generation`. TL;DR = what the account did, what changed, the one thing to do · Key
-Metrics = headline figures against the previous period · Context = objective breakdown, reach and
-frequency, movers with causes · Recommendations = campaign, number, expected effect.
+Load the `report-generation` skill and run both of its phases: draft, then check. Fill its sections
+as: TL;DR = what the account did, what changed, the one thing to do · Key Metrics = headline figures
+against the previous period · Context = objective breakdown, reach and frequency, movers with causes
+· Recommendations = campaign, number, expected effect.
 
 ### Inline visuals
 
@@ -243,6 +244,7 @@ rows, **and the dataset and account timezone.** Every sibling reads this.
 | Settings or structure | `linkedin-ads-settings-and-structure-audit` |
 | The output is for a client | `linkedin-ads-client-report` |
 | Other ad platforms in scope | `ppc-analytics` |
+| Formatting and checking the final report | `report-generation` |
 
 ## Next Question (REQUIRED)
 

@@ -11,6 +11,7 @@ metadata:
   category: marketing-and-ads
   short_description: "What Amazon Sponsored Brands, Display, TV and DSP buy beyond ACOS — new-to-brand customers, halo sales, branded searches."
   sources:
+    - Amazon Ads
     - Amazon Ads (Unified)
 ---
 
@@ -68,15 +69,14 @@ diagnose the connector.
 
 Locate the account's Amazon Ads data and **say which dataset you picked, and which connector it
 comes from**. Amazon Ads, the standard connector, is one fixed report per ad product; only its
-Sponsored Products metrics name the attribution window (sales7d, sales14d). Amazon Ads (Unified),
-enabled only on some accounts, is one custom report across Sponsored Products, Sponsored Brands,
-Sponsored Display, Sponsored TV and DSP, with an ad product column. Where no column names the
-window, use Amazon's defaults — 7 days for Sponsored Products, 14 for Sponsored Brands and Display —
-and confirm with the user only for anything else. Datasets are often named after the client or the
-marketplace rather than the platform. Say the ad products, marketplaces and grain you have —
-campaign-per-day, search-term and advertised-product rows look alike and produce different totals.
-Unified has no spend column: read the cost column from `get-schema` — Total cost, which may include
-fees on DSP rows.
+Sponsored Products metrics name the attribution window (sales7d, sales14d). Amazon Ads (Unified) is
+one custom report across Sponsored Products, Sponsored Brands, Sponsored Display, Sponsored TV and
+DSP, with an ad product column. Where no column names the window, use Amazon's defaults — 7 days for
+Sponsored Products, 14 for Sponsored Brands and Display — and confirm with the user only for
+anything else. Datasets are often named after the client or the marketplace rather than the
+platform. Say the ad products, marketplaces and grain you have — campaign-per-day, search-term and
+advertised-product rows look alike and produce different totals. Unified has no spend column. The
+cost column is Total cost, which may include fees on DSP rows; read the schema to confirm.
 
 This skill reads spend, orders and sales by ad product and campaign with the **new-to-brand**
 purchases and sales, **promoted** and **halo** sales, **detail page views**, **branded searches**
@@ -101,7 +101,7 @@ it is rather than reporting the column as unavailable.
 |---|---|---|
 | The report type or ad product isn't in the dataflow | No search-term rows, no Sponsored Brands rows, no advertised-product rows | Add an Amazon Ads source with that report or ad product to the same dataflow. A dataflow takes unlimited sources |
 | The metric or dimension wasn't picked | The report is there but the column isn't — metrics (and, on Unified, dimensions) are chosen in the source wizard | Edit the source and add it |
-| The legacy connector doesn't carry it | Legacy Amazon Ads dataset; the ask needs impression share or its rank, geography, device, audience segments or DSP | Check legacy first: top-of-search share is on the SP Campaign, Placement and Targeting reports and SB Campaign. The rest needs Amazon Ads (Unified), enabled only on some accounts — offer it only where it is; otherwise say legacy can't answer this |
+| The legacy connector doesn't carry it | Legacy Amazon Ads dataset; the ask needs impression share or its rank, geography, device, audience segments or DSP | Check legacy first: top-of-search share is on the SP Campaign, Placement and Targeting reports and SB Campaign. The rest needs Amazon Ads (Unified): offer it only if it's among the sources the user can add; otherwise say legacy can't answer this |
 | No Amazon Ads credential | No Amazon Ads source exists in any dataflow | The user connects Amazon Ads. That's a consent step for them, not a dead end |
 
 Say **"not checkable from this data"** — never imply a check ran clean when it didn't run.
@@ -153,9 +153,10 @@ Say so once.
 
 ## F. Deliver
 
-Compose `report-generation`. TL;DR = what the upper-funnel spend is actually buying · Key Metrics =
-new-to-brand share, cost per new-to-brand order, halo share, view-credited share · Context = the
-fair comparison · Recommendations = ad product, change, expected effect.
+Load the `report-generation` skill and run both of its phases: draft, then check. Fill its sections
+as: TL;DR = what the upper-funnel spend is actually buying · Key Metrics = new-to-brand share, cost
+per new-to-brand order, halo share, view-credited share · Context = the fair comparison ·
+Recommendations = ad product, change, expected effect.
 
 ### Inline visuals
 
@@ -215,6 +216,7 @@ Write back: the value of a new customer if the user gave one, the job each ad pr
 | Which products the halo lands on | `amazon-ads-product-and-asin-performance` |
 | The baseline read comes first | `amazon-ads-performance-review` |
 | The client wants this explained | `amazon-ads-client-report` |
+| Formatting and checking the final report | `report-generation` |
 
 ## Next Question (REQUIRED)
 

@@ -78,7 +78,7 @@ This skill reads the **Search query performance report** (search query, keyword,
 delivered match type), the **Campaign performance report with share performance statistics** for
 impression share, and where present the **Publisher usage performance report** and the **Negative
 keyword conflict report**. Shopping queries live in the product search query report and belong to
-`microsoft-ads-shopping-and-product- performance`.
+`microsoft-ads-shopping-and-product-performance`.
 
 ## C. Coverage verdict — say this out loud before querying
 
@@ -168,9 +168,10 @@ stays the same; say so.
 
 ## F. Deliver
 
-Compose `report-generation`. TL;DR = how much is wasted, the one move · Key Metrics = wasted spend,
-too-early spend, freed spend, scale headroom · Context = classified queries, publishers, conflicts ·
-Recommendations = the negative list with match types, the exclusions, the reallocation.
+Load the `report-generation` skill and run both of its phases: draft, then check. Fill its sections
+as: TL;DR = how much is wasted, the one move · Key Metrics = wasted spend, too-early spend, freed
+spend, scale headroom · Context = classified queries, publishers, conflicts · Recommendations = the
+negative list with match types, the exclusions, the reallocation.
 
 ### Inline visuals
 
@@ -240,6 +241,7 @@ account timezone.** The next run must not re-propose a protected query.
 | The waste is inside Shopping campaigns | `microsoft-ads-shopping-and-product-performance` |
 | Zero conversions everywhere looks like tracking | `microsoft-ads-conversion-tracking-audit` |
 | Moving money across platforms | `ppc-analytics` |
+| Formatting and checking the final report | `report-generation` |
 
 ## Next Question (REQUIRED)
 
