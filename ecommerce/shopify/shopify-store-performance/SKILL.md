@@ -8,7 +8,7 @@ description: >
   which of orders, order size or returns moved it. Shopify only.
 metadata:
   version: 1.1.0
-  category: Data analysis
+  category: ecommerce
   short_description: >
     The store's baseline trading read — sales ladder, orders, AOV, refunds vs returns, new vs
     returning — and which of the three drivers moved revenue.
