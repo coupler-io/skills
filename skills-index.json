@@ -99,7 +99,7 @@
     {
       "name": "shopify-store-performance",
       "path": "ecommerce/shopify/shopify-store-performance",
-      "category": "Data analysis",
+      "category": "ecommerce",
       "sources": [
         "Shopify"
       ],
