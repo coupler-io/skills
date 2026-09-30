@@ -31,13 +31,13 @@ a desktop behave differently for a B2B buyer, and one campaign average hides it.
 - **Placements** — where on LinkedIn the ads showed and what each earned.
 - **Devices** — spend, impressions and landing page clicks by device; LinkedIn reports no
   conversions by device.
-- **Location, where the account allows it** — only for campaigns targeted to a single location.
+- **Location** — spend, results and cost per result by member country and region.
 - **What to switch off or shift**, priced.
 
 **Read-only on your LinkedIn Ads account.** It never changes a placement or targeting setting.
 
-**Performance by member country or region isn't in this connector.** The location read here comes
-only from campaigns whose targeting covers one location; say so when asked for a country breakdown.
+**Country and region come from member dimensions** on ad analytics by single dimension, one per
+source. They can't be crossed with campaign, so the location read is account-wide.
 
 ## Call budget
 
@@ -47,9 +47,9 @@ only from campaigns whose targeting covers one location; say so when asked for a
 | Warm — dataset already known | coverage verdict (speak) → one combined query = **2** |
 
 **This skill may need more than one dataset** — serving location, placement and device each come
-from ad analytics pulled by that dimension, and location targeting from the Campaigns entity. Add a
-call for each extra dataset the run actually needs, and say so rather than padding the budget in
-advance.
+from ad analytics pulled by that dimension, and member country or region from its own
+single-dimension source. Add a call for each extra dataset the run actually needs, and say so
+rather than padding the budget in advance.
 
 **Already known is not re-derived.** The dataset, the result counted, the cost target, the timezone
 — if saved context or this conversation has it, use it.
@@ -84,7 +84,8 @@ its label or format; both are labelled "Cost: Amount spend".
 
 This skill reads **ad analytics** by **serving location** (on LinkedIn against off LinkedIn), by
 **placement name**, and by **impression device type**, with campaign as the second dimension where
-the source uses multiple dimensions, and the **Campaigns** entity for location targeting.
+the source uses multiple dimensions, and **ad analytics by single dimension** on member country or
+member region for location.
 
 ## C. Coverage verdict — say this out loud before querying
 
@@ -94,7 +95,7 @@ the source uses multiple dimensions, and the **Campaigns** entity for location t
 | Placement name | Placement read | Skip it |
 | Impression device type | Device delivery read — no conversions or reach by device | Skip it |
 | Campaign as a second dimension | Per-campaign splits | Account-level splits only; say so |
-| Location in campaign targeting | Location read | Say location can't be read |
+| Member country or region | Location read, account-wide | Offer a single-dimension source; the user picks member country or region in the wizard |
 | Results + a cost target | Verdicts | Shares only, no verdicts |
 
 **A missing column is one of three things, and they have different fixes.** Name which one you think
@@ -111,9 +112,9 @@ Say **"not checkable from this data"** — never imply a check ran clean when it
 
 ## D. Compute
 
-Anchor to the **last complete day in the account's timezone** and name that date. Today is always
-partial, and a partial day makes a healthy account look like it collapsed. Use at least 30 complete
-days.
+Anchor to the **last complete day in the account's timezone** and name that date. Today is
+always partial, and a partial day makes a healthy account look like it collapsed. Use at least
+30 complete days.
 
 **Rebuild every rate from summed totals** — the average of several rows' cost per result is not the
 total's. **Count one result and say which** — website conversions (post-click, post-view, or both),
@@ -124,9 +125,9 @@ clicks are the traffic.
 
 **Volume floor.** No verdict under about ten results or twice the target in spend. Mark the slice.
 
-**Location from targeting.** Take campaigns whose targeting includes exactly one country or region,
-and read that location's results from those campaigns. Campaigns targeting several locations can't
-be split; count their spend as unassigned and say how much that is.
+**Location from member dimensions.** Read spend and results by member country or region, pulled as
+one period rather than summed days. LinkedIn's member values are approximate and drop values under
+three events, so the rows sum to less than the account total; label the gap as unassigned.
 
 ## E. What to conclude
 
@@ -137,24 +138,23 @@ and a much smaller share of its results, past the floor, switching it off on tha
 move — priced at the spend through it. On an awareness campaign, judge it on cost per thousand
 impressions and video views instead; cheap reach may be the point.
 
-**Placements.** Rank on-LinkedIn placements on the same mismatch. Placements aren't bid on
-separately; the lever is format and objective, so route anything actionable to settings and
-structure.
+**Placements.** Rank on-LinkedIn placements on the same mismatch. Placements aren't bid
+on separately; the lever is format and objective, so route anything actionable to
+settings and structure.
 
 **Devices.** Delivery only. LinkedIn doesn't report conversions or reach when results are split by
 device, so compare spend, click cost and landing page click-through rate by device — never cost per
 result. Don't propose cutting a device on results.
 
-**Location.** Compare single-location campaigns on cost per result against each other, and note that
-each location's campaigns may run different creative — the comparison is between campaigns, not a
-clean location test.
+**Location.** Rank countries or regions on the same mismatch. The split can't be crossed with
+campaign, so a weak location is a targeting question for whichever campaigns reach it.
 
 | What you see | Action |
 |---|---|
 | Off LinkedIn: big spend share, small result share | Switch the Audience Network off on those campaigns |
 | Off LinkedIn cheaper per result | Keep it; say so |
 | Mobile clicks dearer than desktop | Report it as delivery; no device cut without conversions |
-| One single-location campaign far behind the rest | Check its creative and audience before the location |
+| One country far behind the rest, past the floor | Name it and price excluding it from targeting |
 
 ## F. Deliver
 
@@ -174,7 +174,7 @@ denominator beside it. The visual replaces the prose it illustrates; don't say t
 | Any slice read | Paired share-of-spend and share-of-results bars — the gap is the finding |
 | Audience Network | On against off LinkedIn cost per result, per campaign |
 | Devices | Spend and landing page clicks by device as one split |
-| Location | Cost per result per single-location campaign, unassigned spend labelled |
+| Location | Spend and results share per country or region, unassigned spend labelled |
 
 ## G. Offer to build it out
 
@@ -191,8 +191,8 @@ whoever edits the campaigns.
 
 ## H. Save what you learned
 
-Write back: campaigns where the Audience Network is deliberate, the location each single-location
-campaign covers, **and the dataset and account timezone.**
+Write back: campaigns where the Audience Network is deliberate, the locations the account sells to,
+**and the dataset and account timezone.**
 
 ## Rules & Edge Cases
 
@@ -202,7 +202,8 @@ campaign covers, **and the dataset and account timezone.**
   Coupler.io dataflow so a check can run — that pulls more of your own data and touches nothing in
   LinkedIn Ads. Always offered, never silent. The user picks the source's metrics and dimensions in
   the Coupler wizard; name exactly which ones.
-- **Don't invent a country breakdown.** Member location isn't in the data; only targeting is.
+- **Location is member location, account-wide.** Never split it by campaign or infer it from
+  campaign names.
 - **No results by device.** LinkedIn doesn't report conversions by device; the device read is
   delivery only.
 - **Small numbers aren't trends.** Mark slices under the floor.
@@ -232,5 +233,5 @@ a second clause in the same block.
 
 - The Audience Network took a third of spend on your demo campaigns and 6% of the demos — want me to
   price switching it off campaign by campaign?
-- Only 40% of spend sits in single-country campaigns, so a country read covers less than half the
-  account — want me to show what it can say anyway?
+- Germany takes 22% of spend and 5% of leads across the account — want me to price excluding it
+  from targeting?

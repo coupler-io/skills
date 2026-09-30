@@ -70,11 +70,12 @@ diagnose the connector.
 ## B. Find the data
 
 Locate the account's Amazon Ads data and **say which dataset you picked, and which connector it
-comes from**. Amazon Ads (Unified) is one custom report across Sponsored Products, Sponsored Brands,
-Sponsored Display, Sponsored TV and DSP, with an ad product column; the older Amazon Ads connector
-is one fixed report per ad product. Only its Sponsored Products metrics name the attribution window
-(sales14d, purchases7d); its Brands, Display and TV metrics and every Unified metric don't, so state
-that window from Amazon's documentation or ask. Datasets are often named after the client or the
+comes from**. Amazon Ads, the standard connector, is one fixed report per ad product; only its
+Sponsored Products metrics name the attribution window (sales7d, sales14d). Amazon Ads (Unified),
+enabled only on some accounts, is one custom report across Sponsored Products, Sponsored Brands,
+Sponsored Display, Sponsored TV and DSP, with an ad product column. Where no column names the
+window, use Amazon's defaults — 7 days for Sponsored Products, 14 for Sponsored Brands and Display —
+and confirm with the user only for anything else. Datasets are often named after the client or the
 marketplace rather than the platform. Say the ad products, marketplaces and grain you have —
 campaign-per-day, search-term and advertised-product rows look alike and produce different totals.
 Unified has no spend column: read the cost column from `get-schema` — Total cost, which may include
@@ -101,8 +102,8 @@ it is rather than reporting the column as unavailable.
 | Why it's missing | How you can tell | The fix |
 |---|---|---|
 | The report type or ad product isn't in the dataflow | No search-term rows, no Sponsored Brands rows, no advertised-product rows | Add an Amazon Ads source with that report or ad product to the same dataflow. A dataflow takes unlimited sources |
-| The metric or dimension wasn't picked | The report is there but the column isn't — Unified metrics and dimensions are chosen in the source wizard | Edit the source and add it |
-| The legacy connector doesn't carry it | Legacy Amazon Ads dataset; the ask needs impression share or its rank, geography, device, audience segments or DSP | Add an Amazon Ads (Unified) source. Top-of-search share isn't one of these: legacy carries it on the SP Campaign, Placement and Targeting reports and SB Campaign |
+| The metric or dimension wasn't picked | The report is there but the column isn't — metrics (and, on Unified, dimensions) are chosen in the source wizard | Edit the source and add it |
+| The legacy connector doesn't carry it | Legacy Amazon Ads dataset; the ask needs impression share or its rank, geography, device, audience segments or DSP | Check legacy first: top-of-search share is on the SP Campaign, Placement and Targeting reports and SB Campaign. The rest needs Amazon Ads (Unified), enabled only on some accounts — offer it only where it is; otherwise say legacy can't answer this |
 | No Amazon Ads credential | No Amazon Ads source exists in any dataflow | The user connects Amazon Ads. That's a consent step for them, not a dead end |
 
 Say **"not checkable from this data"** — never imply a check ran clean when it didn't run.
@@ -112,9 +113,10 @@ Say **"not checkable from this data"** — never imply a check ran clean when it
 Anchor to the **last complete day in the account's timezone** and name that date. Today is always
 partial, and a partial day makes a healthy account look like it collapsed. Use at least 30 complete
 days for placements, eight weeks for share. **Recent days understate sales.** Amazon keeps
-attributing purchases to a click for days afterwards,
-and sales are gross ordered sales — before returns and cancellations. Leave the most recent days out
-of sales comparisons, or label them as still filling in, and say which.
+attributing purchases to a click for days afterwards, and sales are gross ordered sales — before
+returns and cancellations. Leave the last 14 complete days out of sales comparisons, or label them
+as still filling in, and say which — 14 days is the longest default attribution window (Sponsored
+Brands and Display), so sales inside it can still grow.
 
 **Rebuild every rate from summed totals** — ACOS is summed spend ÷ summed sales, never the average
 of campaign ACOS figures. **Say whether you quote ACOS (spend ÷ sales, lower is better) or ROAS
@@ -124,10 +126,10 @@ and click-based or including views. Sponsored Products and Sponsored Brands can 
 windows; never compare or add them until the window matches.
 
 **Never average share across rows or dates.** Weight top-of-search share only with the impressions
-on Top of Search placement rows: those impressions ÷ share gives eligible impressions per row; sum,
-then divide. Without a placement split, report each campaign's share per period unaggregated. Never
-average impression share rank; report the latest value. A raw average share is a confident wrong
-number.
+on Top of Search placement rows: those impressions ÷ share gives eligible impressions per row;
+sum, then divide. Without a placement split, report each campaign's share per period unaggregated.
+Never average impression share rank; report the latest value. A raw average share is a confident
+wrong number.
 
 **Volume floor.** No adjustment on a placement under about ten orders in the window.
 
@@ -146,11 +148,11 @@ from the account's own numbers.
 | Product pages cheap, ACOS at target | Useful cheap reach | Leave; don't push spend to the top |
 | Product pages missing target past floor | Wrong listings or loose targets | Route to targeting analysis |
 
-**Top-of-search share.** Slipping share on a campaign beating target means someone else is winning
-auctions the account can afford — bid up or raise the placement adjustment. **Brand terms losing
-top-of-search share** means a competitor is bidding on the brand; brand clicks are usually the
-cheapest to hold, so defend them first. Slipping share on terms missing target isn't a problem to
-fix.
+**Top-of-search share.** Slipping share on a campaign beating target means someone else is
+winning auctions the account can afford — bid up or raise the placement adjustment. **Brand
+terms losing top-of-search share** means a competitor is bidding on the brand; brand clicks
+are usually the cheapest to hold, so defend them first. Slipping share on terms missing target
+isn't a problem to fix.
 
 ## F. Deliver
 
@@ -200,8 +202,8 @@ the next comparison, **and the dataset and account timezone.**
   Coupler.io dataflow so a check can run — that pulls more of your own data and touches nothing in
   Amazon Ads. Always offered, never silent.
 - **Never name who took the share.** It isn't in this data.
-- **Never average shares or rank.** Weight share by Top of Search placement impressions, or leave it
-  unaggregated.
+- **Never average shares or rank.** Weight share by Top of Search placement impressions, or leave
+  it unaggregated.
 - **Placement adjustments multiply the bid.** Change one, and the effective bid at the top changes
   with it — read them together.
 - **Judge against the account's own history first.** An industry benchmark is never a target and
@@ -226,7 +228,7 @@ the next comparison, **and the dataset and account timezone.**
 Exactly one, drawn from what this run found. Never a menu. Where the offer fired, it rides along as
 a second clause in the same block.
 
-- Top of search converts at twice the rate of other placements on your three best campaigns, and
-  none has an adjustment — want them sized?
+- Top of search converts at twice the rate of other placements on your three best campaigns — share
+  their current top-of-search adjustments and I'll size new ones?
 - Your top-of-search share on brand terms fell from 70% to 45% in five weeks — someone's bidding on
   your name. Want me to price holding it?

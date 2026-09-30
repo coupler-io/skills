@@ -38,8 +38,8 @@ click-through rate and the ranking says more about format than about creative.
 
 **Read-only on your LinkedIn Ads account.** It never pauses or edits a creative.
 
-**This is the which-wins read.** For which winners are wearing out, use `linkedin-ads-creative-
-fatigue`.
+**This is the which-wins read.** For which winners are wearing out, use
+`linkedin-ads-creative- fatigue`.
 
 ## Call budget
 

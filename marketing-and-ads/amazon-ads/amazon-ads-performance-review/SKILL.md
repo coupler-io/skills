@@ -68,18 +68,19 @@ diagnose the connector.
 ## B. Find the data
 
 Locate the account's Amazon Ads data and **say which dataset you picked, and which connector it
-comes from**. Amazon Ads (Unified) is one custom report across Sponsored Products, Sponsored Brands,
-Sponsored Display, Sponsored TV and DSP, with an ad product column; the older Amazon Ads connector
-is one fixed report per ad product. Only its Sponsored Products metrics name the attribution window
-(sales14d, purchases7d); its Brands, Display and TV metrics and every Unified metric don't, so state
-that window from Amazon's documentation or ask. Datasets are often named after the client or the
+comes from**. Amazon Ads, the standard connector, is one fixed report per ad product; only its
+Sponsored Products metrics name the attribution window (sales7d, sales14d). Amazon Ads (Unified),
+enabled only on some accounts, is one custom report across Sponsored Products, Sponsored Brands,
+Sponsored Display, Sponsored TV and DSP, with an ad product column. Where no column names the
+window, use Amazon's defaults — 7 days for Sponsored Products, 14 for Sponsored Brands and Display —
+and confirm with the user only for anything else. Datasets are often named after the client or the
 marketplace rather than the platform. Say the ad products, marketplaces and grain you have —
 campaign-per-day, search-term and advertised-product rows look alike and produce different totals.
 Unified has no spend column: read the cost column from `get-schema` — Total cost, which may include
 fees on DSP rows.
 
-A review runs at campaign-per-day grain: on Unified, the custom report with ad product, campaign
-and date; on legacy, the Campaign report for each ad product the account runs.
+A review runs at campaign-per-day grain: on legacy, the Campaign report for each ad product the
+account runs; on Unified, the custom report with ad product, campaign and date.
 
 ## C. Coverage verdict — say this out loud before querying
 
@@ -98,8 +99,8 @@ it is rather than reporting the column as unavailable.
 | Why it's missing | How you can tell | The fix |
 |---|---|---|
 | The report type or ad product isn't in the dataflow | No search-term rows, no Sponsored Brands rows, no advertised-product rows | Add an Amazon Ads source with that report or ad product to the same dataflow. A dataflow takes unlimited sources |
-| The metric or dimension wasn't picked | The report is there but the column isn't — Unified metrics and dimensions are chosen in the source wizard | Edit the source and add it |
-| The legacy connector doesn't carry it | Legacy Amazon Ads dataset; the ask needs impression share or its rank, geography, device, audience segments or DSP | Add an Amazon Ads (Unified) source. Top-of-search share isn't one of these: legacy carries it on the SP Campaign, Placement and Targeting reports and SB Campaign |
+| The metric or dimension wasn't picked | The report is there but the column isn't — metrics (and, on Unified, dimensions) are chosen in the source wizard | Edit the source and add it |
+| The legacy connector doesn't carry it | Legacy Amazon Ads dataset; the ask needs impression share or its rank, geography, device, audience segments or DSP | Check legacy first: top-of-search share is on the SP Campaign, Placement and Targeting reports and SB Campaign. The rest needs Amazon Ads (Unified), enabled only on some accounts — offer it only where it is; otherwise say legacy can't answer this |
 | No Amazon Ads credential | No Amazon Ads source exists in any dataflow | The user connects Amazon Ads. That's a consent step for them, not a dead end |
 
 Say **"not checkable from this data"** — never imply a check ran clean when it didn't run.
@@ -125,9 +126,11 @@ windows; never compare or add them until the window matches.
 **Each marketplace bills in its own currency.** Never add US dollars to euros. Use the converted-
 currency metrics where the source has them and name the currency, or report per marketplace.
 
-**Recent days understate sales.** Amazon keeps attributing purchases to a click for days afterwards,
-and sales are gross ordered sales — before returns and cancellations. Leave the most recent days out
-of sales comparisons, or label them as still filling in, and say which.
+**Recent days understate sales.** Amazon keeps attributing purchases to a click for days
+afterwards, and sales are gross ordered sales — before returns and cancellations. Leave the last 14
+complete days out of sales comparisons, or label them as still filling in, and say which — 14 days
+is the longest default attribution window (Sponsored Brands and Display), so sales inside it can
+still grow.
 
 ## E. What to conclude
 
@@ -242,6 +245,6 @@ Exactly one, drawn from what this run found. Never a menu. Where the offer fired
 a second clause in the same block.
 
 - ACOS rose from 24% to 31% with click cost flat — almost all of it is one product whose conversion
-  rate halved on the 11th. Want me to check whether it lost the Buy Box or went out of stock?
+  rate halved on the 11th. Want me to check whether it went out of stock?
 - Sponsored Brands looks expensive at 48% ACOS, but 60% of its sales are new-to-brand — want me to
   read it on that instead?

@@ -48,10 +48,10 @@ lead moves, the creative has been wearing out for a while.
 | Cold | locate the data → coverage verdict (speak) → one combined query = **3** |
 | Warm — dataset already known | coverage verdict (speak) → one combined query = **2** |
 
-**This skill may need more than one dataset** — reach has to be pulled at the grain and window it's
-reported in, so reach per creative and per campaign is usually its own MONTHLY or ALL source. Add a
-call for each extra dataset the run actually needs, and say so rather than padding the budget in
-advance.
+**This skill may need more than one dataset** — reach has to be pulled at the grain and window
+it's reported in, so reach per creative and per campaign is usually its own MONTHLY or ALL
+source. Add a call for each extra dataset the run actually needs, and say so rather than
+padding the budget in advance.
 
 **Already known is not re-derived.** The dataset, the result counted, the cost target, the timezone
 — if saved context or this conversation has it, use it.
@@ -228,7 +228,7 @@ Write back: useful creative life measured, the production number, campaigns foun
 Exactly one, drawn from what this run found. Never a menu. Where the offer fired, it rides along as
 a second clause in the same block.
 
-- Frequency passed 7 on every creative in the demo campaign at once — that's the audience, not the
+- Frequency passed 5 on every creative in the demo campaign at once — that's the audience, not the
   ads. Want me to check what widening it would change?
 - Your useful creative life is about five weeks and you launch two a month across six campaigns —
   you need roughly five. Want the refresh queue by date?

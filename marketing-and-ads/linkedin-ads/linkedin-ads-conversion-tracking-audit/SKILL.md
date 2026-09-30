@@ -83,10 +83,10 @@ you have; campaign-per-day and creative-per-day rows look alike and produce diff
 Read the cost column by its key in `get-schema` — `costInLocalCurrency` or `costInUsd` — never by
 its label or format; both are labelled "Cost: Amount spend".
 
-The audit reads the **Conversions** entity (rule name, type, enabled, attribution setting, click and
-view windows, value, attached campaigns, and a last-fired date where present), **ad analytics by
-conversion** for counts, and **ad analytics by campaign** at daily grain for spend and landing page
-clicks.
+The audit reads the **Conversions** entity (rule name, type, enabled, attribution setting,
+click and view windows, value, attached campaigns, and a last-fired date where present), **ad
+analytics by conversion** for counts, and **ad analytics by campaign** at daily grain for
+spend and landing page clicks.
 
 ## C. Coverage verdict — say this out loud before querying
 
@@ -228,6 +228,6 @@ Exactly one, drawn from what this run found. Never a menu. Where the offer fired
 a second clause in the same block.
 
 - Your demo-request rule credits every campaign a member touched, so campaign rows sum to 1.7 times
-  the real total — want me to rerun last month's campaign ranking against your CRM's count?
+  your CRM's count — want me to rerun last month's campaign ranking against that count?
 - Six campaigns on a website conversion objective have no conversion rule attached — about a fifth
   of spend. Want the list?

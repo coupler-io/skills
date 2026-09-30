@@ -136,7 +136,7 @@ Eleven Microsoft Ads (Bing) skills in `marketing-and-ads/microsoft-ads/`. Same s
 
 #### LinkedIn Ads deep dives
 
-Ten LinkedIn-only skills in `marketing-and-ads/linkedin-ads/`. The connector has no member demographics, geography or hourly split, so there's no audience or dayparting skill; each skill says so where it's asked and points to Campaign Manager. Adds a native lead gen form skill instead.
+Ten LinkedIn-only skills in `marketing-and-ads/linkedin-ads/`. Member demographics and country/region come from single-dimension ad analytics (one member dimension per source, not crossable with campaign), and there's no hourly split, so there's no separate audience or dayparting skill. Adds a native lead gen form skill instead.
 
 | Skill | What it does |
 | --- | --- |
@@ -153,7 +153,7 @@ Ten LinkedIn-only skills in `marketing-and-ads/linkedin-ads/`. The connector has
 
 #### Amazon Ads deep dives
 
-Ten Amazon-only skills in `marketing-and-ads/amazon-ads/`, built for the Amazon Ads (Unified) connector and degrading gracefully on the legacy one. Every run declares one sales basis (ACOS or ROAS, one attribution window) and never totals marketplaces in different currencies.
+Ten Amazon-only skills in `marketing-and-ads/amazon-ads/`, built on the standard Amazon Ads connector, with extra coverage from Amazon Ads (Unified) where that connector is enabled on the account. Every run declares one sales basis (ACOS or ROAS, one attribution window) and never totals marketplaces in different currencies.
 
 | Skill | What it does |
 | --- | --- |

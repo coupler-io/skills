@@ -65,11 +65,12 @@ diagnose the connector.
 ## B. Find the data
 
 Locate the account's Amazon Ads data and **say which dataset you picked, and which connector it
-comes from**. Amazon Ads (Unified) is one custom report across Sponsored Products, Sponsored Brands,
-Sponsored Display, Sponsored TV and DSP, with an ad product column; the older Amazon Ads connector
-is one fixed report per ad product. Only its Sponsored Products metrics name the attribution window
-(sales14d, purchases7d); its Brands, Display and TV metrics and every Unified metric don't, so state
-that window from Amazon's documentation or ask. Datasets are often named after the client or the
+comes from**. Amazon Ads, the standard connector, is one fixed report per ad product; only its
+Sponsored Products metrics name the attribution window (sales7d, sales14d). Amazon Ads (Unified),
+enabled only on some accounts, is one custom report across Sponsored Products, Sponsored Brands,
+Sponsored Display, Sponsored TV and DSP, with an ad product column. Where no column names the
+window, use Amazon's defaults — 7 days for Sponsored Products, 14 for Sponsored Brands and Display —
+and confirm with the user only for anything else. Datasets are often named after the client or the
 marketplace rather than the platform. Say the ad products, marketplaces and grain you have —
 campaign-per-day, search-term and advertised-product rows look alike and produce different totals.
 Unified has no spend column: read the cost column from `get-schema` — Total cost, which may include
@@ -96,8 +97,8 @@ it is rather than reporting the column as unavailable.
 | Why it's missing | How you can tell | The fix |
 |---|---|---|
 | The report type or ad product isn't in the dataflow | No search-term rows, no Sponsored Brands rows, no advertised-product rows | Add an Amazon Ads source with that report or ad product to the same dataflow. A dataflow takes unlimited sources |
-| The metric or dimension wasn't picked | The report is there but the column isn't — Unified metrics and dimensions are chosen in the source wizard | Edit the source and add it |
-| The legacy connector doesn't carry it | Legacy Amazon Ads dataset; the ask needs impression share or its rank, geography, device, audience segments or DSP | Add an Amazon Ads (Unified) source. Top-of-search share isn't one of these: legacy carries it on the SP Campaign, Placement and Targeting reports and SB Campaign |
+| The metric or dimension wasn't picked | The report is there but the column isn't — metrics (and, on Unified, dimensions) are chosen in the source wizard | Edit the source and add it |
+| The legacy connector doesn't carry it | Legacy Amazon Ads dataset; the ask needs impression share or its rank, geography, device, audience segments or DSP | Check legacy first: top-of-search share is on the SP Campaign, Placement and Targeting reports and SB Campaign. The rest needs Amazon Ads (Unified), enabled only on some accounts — offer it only where it is; otherwise say legacy can't answer this |
 | No Amazon Ads credential | No Amazon Ads source exists in any dataflow | The user connects Amazon Ads. That's a consent step for them, not a dead end |
 
 Say **"not checkable from this data"** — never imply a check ran clean when it didn't run.
@@ -145,7 +146,7 @@ found in the data, what is already being done, and when the client should see it
 impression share.
 
 **Amazon-specific context a client needs**, stated only when it's true in this account: say ACOS or
-ROAS and which direction is good; last month's sales are still filling in for the final days;
+ROAS and which direction is good; last month's sales are still filling in for its final 14 days;
 Sponsored Brands and Display are judged on new-to-brand as well as ACOS; a conversion drop on one
 product is usually the listing — stock, price, Buy Box — not the ads; peak events like Prime Day
 make month-on-month comparisons unfair, so compare against the same event last year where possible.

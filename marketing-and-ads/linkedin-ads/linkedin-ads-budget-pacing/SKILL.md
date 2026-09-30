@@ -44,7 +44,7 @@ inference and should be said as one.
 | Warm — dataset already known | coverage verdict (speak) → one combined query = **2** |
 
 **This skill may need more than one dataset** — daily spend sits in ad analytics while budget
-amounts, bid strategy and schedule sit on the Campaigns and Campaign groups entities. Add a call for
+amounts, bid fields and schedule sit on the Campaigns and Campaign groups entities. Add a call for
 each extra dataset the run actually needs, and say so rather than padding the budget in advance.
 
 **Already known is not re-derived.** The dataset, the month's budget, the budget level, the cost
@@ -79,8 +79,8 @@ Read the cost column by its key in `get-schema` — `costInLocalCurrency` or `co
 its label or format; both are labelled "Cost: Amount spend".
 
 Pacing reads **ad analytics** at campaign-per-day grain for spend, and the **Campaigns** and
-**Campaign groups** entities for daily budget, lifetime budget, group budget, bid strategy, run
-schedule and status.
+**Campaign groups** entities for daily budget, lifetime budget, group budget, `cost_type`,
+`optimization_target_type`, unit cost, run schedule and status.
 
 ## C. Coverage verdict — say this out loud before querying
 
@@ -89,7 +89,7 @@ schedule and status.
 | Spend + campaign + daily date | The projection | Nothing runs |
 | Daily or lifetime budget per campaign | The capped read | Say capping can't be read |
 | Campaign group budget | The binding level | Assume campaign level and say so |
-| Bid strategy and bid amount | Whether a bid limits delivery | Underspend causes stay partly open |
+| `cost_type`, `optimization_target_type` and unit cost | Whether a bid limits delivery | Underspend causes stay partly open |
 | Results + a cost target | Whether a capped campaign deserves more | Capped campaigns listed without verdict |
 | Run schedule / end dates | Campaigns ending mid-month | Projection assumes all run to month end; say so |
 
@@ -125,7 +125,8 @@ partial, and a partial day makes a healthy account look like it collapsed.
   campaigns together. Sum at the level the budget is set, never per campaign on top of the group.
 - **Capped, inferred.** A campaign is spending its full budget when its Monday-to-Sunday spend
   reaches at least 95% of seven times its daily budget in most complete weeks. LinkedIn allows up to
-  twice the daily budget on a single day, so single days don't show the cap. Compare spend with the
+  twice the daily budget on a single day and caps a Monday-to-Sunday week at seven times it, so
+  single days don't show the cap. Compare spend with the
   budget only in the budget's currency code. State the rule and that it's an inference; LinkedIn
   doesn't report budget-limited delivery in this data.
 
@@ -222,7 +223,7 @@ full budget, end dates, **and the dataset and account timezone.**
 Exactly one, drawn from what this run found. Never a menu. Where the offer fired, it rides along as
 a second clause in the same block.
 
-- You'll land about 18% under budget, and two lead-gen campaigns sit at their full daily budget
+- You'll land about 18% under budget, and two lead-gen campaigns spend their full budget most weeks
   while beating your cost per lead — want me to size moving the gap onto them?
 - Three campaigns underspend on cost caps set below what they've been paying — want me to check what
   raising the caps would cost?

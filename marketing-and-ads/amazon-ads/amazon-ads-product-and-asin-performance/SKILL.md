@@ -17,8 +17,8 @@ metadata:
 # Amazon Ads Product and ASIN Performance
 
 **Tells you which advertised products earn their ad spend, which spend without selling, what
-shoppers buy instead after clicking an ad, and where the problem is the listing rather than the
-ads.**
+shoppers buy instead after clicking an ad, and where the problem is the listing rather than
+the ads.**
 
 Amazon ads are sold by campaign but bought by product. The campaign total hides a handful of ASINs
 earning most of the ad sales, a tail spending a little each and selling nothing, and products whose
@@ -32,8 +32,8 @@ review — which no bid change will fix.
 - **Products spending without selling**, past the floor.
 - **Promoted against halo** per product — how much of each ad's sales is the product advertised.
 - **What shoppers bought instead** — the other ASINs an ad led to.
-- **Listing problems flagged** — products whose conversion rate broke on a date with click cost
-  steady.
+- **Listing problems flagged** — products whose conversion rate broke on a date with click
+  cost steady.
 - **Where to move spend** among products.
 
 **Read-only on your Amazon Ads account.** It never changes a product, bid or listing.
@@ -68,11 +68,12 @@ diagnose the connector.
 ## B. Find the data
 
 Locate the account's Amazon Ads data and **say which dataset you picked, and which connector it
-comes from**. Amazon Ads (Unified) is one custom report across Sponsored Products, Sponsored Brands,
-Sponsored Display, Sponsored TV and DSP, with an ad product column; the older Amazon Ads connector
-is one fixed report per ad product. Only its Sponsored Products metrics name the attribution window
-(sales14d, purchases7d); its Brands, Display and TV metrics and every Unified metric don't, so state
-that window from Amazon's documentation or ask. Datasets are often named after the client or the
+comes from**. Amazon Ads, the standard connector, is one fixed report per ad product; only its
+Sponsored Products metrics name the attribution window (sales7d, sales14d). Amazon Ads (Unified),
+enabled only on some accounts, is one custom report across Sponsored Products, Sponsored Brands,
+Sponsored Display, Sponsored TV and DSP, with an ad product column. Where no column names the
+window, use Amazon's defaults — 7 days for Sponsored Products, 14 for Sponsored Brands and Display —
+and confirm with the user only for anything else. Datasets are often named after the client or the
 marketplace rather than the platform. Say the ad products, marketplaces and grain you have —
 campaign-per-day, search-term and advertised-product rows look alike and produce different totals.
 Unified has no spend column: read the cost column from `get-schema` — Total cost, which may include
@@ -80,8 +81,8 @@ fees on DSP rows.
 
 This skill reads **advertised product** rows (ASIN, SKU, spend, clicks, orders, sales, promoted and
 halo sales) and **purchased product** rows (the ASIN bought after an ad click, when it differs from
-the one advertised). On Unified, the advertised product and converted product dimensions; on
-legacy, the SP and SD advertised product reports and the SP, SB and SD purchased product reports.
+the one advertised). On legacy, the SP and SD advertised product reports and the SP, SB and SD
+purchased product reports; on Unified, the advertised product and converted product dimensions.
 
 ## C. Coverage verdict — say this out loud before querying
 
@@ -105,8 +106,8 @@ it is rather than reporting the column as unavailable.
 | Why it's missing | How you can tell | The fix |
 |---|---|---|
 | The report type or ad product isn't in the dataflow | No search-term rows, no Sponsored Brands rows, no advertised-product rows | Add an Amazon Ads source with that report or ad product to the same dataflow. A dataflow takes unlimited sources |
-| The metric or dimension wasn't picked | The report is there but the column isn't — Unified metrics and dimensions are chosen in the source wizard | Edit the source and add it |
-| The legacy connector doesn't carry it | Legacy Amazon Ads dataset; the ask needs impression share or its rank, geography, device, audience segments or DSP | Add an Amazon Ads (Unified) source. Top-of-search share isn't one of these: legacy carries it on the SP Campaign, Placement and Targeting reports and SB Campaign |
+| The metric or dimension wasn't picked | The report is there but the column isn't — metrics (and, on Unified, dimensions) are chosen in the source wizard | Edit the source and add it |
+| The legacy connector doesn't carry it | Legacy Amazon Ads dataset; the ask needs impression share or its rank, geography, device, audience segments or DSP | Check legacy first: top-of-search share is on the SP Campaign, Placement and Targeting reports and SB Campaign. The rest needs Amazon Ads (Unified), enabled only on some accounts — offer it only where it is; otherwise say legacy can't answer this |
 | No Amazon Ads credential | No Amazon Ads source exists in any dataflow | The user connects Amazon Ads. That's a consent step for them, not a dead end |
 
 Say **"not checkable from this data"** — never imply a check ran clean when it didn't run.
@@ -116,8 +117,10 @@ Say **"not checkable from this data"** — never imply a check ran clean when it
 Anchor to the **last complete day in the account's timezone** and name that date. Today is always
 partial, and a partial day makes a healthy account look like it collapsed. Use at least 30 complete
 days. **Recent days understate sales.** Amazon keeps attributing purchases to a click for days
-afterwards, and sales are gross ordered sales — before returns and cancellations. Leave the most
-recent days out of sales comparisons, or label them as still filling in, and say which.
+afterwards, and sales are gross ordered sales — before returns and cancellations. Leave the last 14
+complete days out of sales comparisons, or label them as still filling in, and say which — 14 days
+is the longest default attribution window (Sponsored Brands and Display), so sales inside it can
+still grow.
 
 **Rebuild every rate from summed totals** — ACOS is summed spend ÷ summed sales, never the average
 of campaign ACOS figures. **Say whether you quote ACOS (spend ÷ sales, lower is better) or ROAS

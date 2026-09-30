@@ -146,10 +146,10 @@ A break on a Google Import date points at an imported goal change.
 Zero revenue with conversions means no values pass. Either way, return on ad spend is meaningless —
 say so before anyone quotes it.
 
-**6. Cross-platform disagreement.** Microsoft and an analytics tool will not agree, and shouldn't be
-expected to — different attribution, windows, view-through and cross-device. Report the direction
-and size of the gap, never demand equality, and never add Microsoft's conversions to another
-platform's.
+**6. Cross-platform disagreement.** Microsoft and an analytics tool will not agree, and
+shouldn't be expected to — different attribution, windows, view-through and cross-device.
+Report the direction and size of the gap, never demand equality, and never add Microsoft's
+conversions to another platform's.
 
 **Verdict per check:** clean · problem, priced as the spend flowing through it · not checkable.
 "Clean" is a claim; only say it when the check ran.

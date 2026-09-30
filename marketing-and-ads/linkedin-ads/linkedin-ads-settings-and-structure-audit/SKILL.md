@@ -81,18 +81,18 @@ you have; campaign-per-day and creative-per-day rows look alike and produce diff
 Read the cost column by its key in `get-schema` — `costInLocalCurrency` or `costInUsd` — never by
 its label or format; both are labelled "Cost: Amount spend".
 
-The audit reads the **Campaigns** entity (objective, format, bid strategy, bid or cost cap amount,
-Audience Network and audience expansion settings, creative rotation, targeting criteria, daily and
-lifetime budget, status, schedule), the **Campaign groups** entity (budget, schedule, status), the
-**Creatives** entity (status per campaign), and **ad analytics** by campaign for the spend each
-defect is priced on.
+The audit reads the **Campaigns** entity (objective, format, `cost_type`,
+`optimization_target_type`, unit cost, Audience Network and audience expansion settings, creative
+rotation, targeting criteria, daily and lifetime budget, status, schedule), the **Campaign groups**
+entity (budget, schedule, status), the **Creatives** entity (status per campaign), and **ad
+analytics** by campaign for the spend each defect is priced on.
 
 ## C. Coverage verdict — say this out loud before querying
 
 | Column present | Live | Absent means |
 |---|---|---|
 | Objective + spend per campaign | Objective fit | "Not checkable from this data" |
-| Bid strategy + bid or cap amount | Bid holding back delivery | "Not checkable from this data" |
+| `cost_type`, `optimization_target_type` + unit cost | Bid holding back delivery | "Not checkable from this data" |
 | Audience Network / audience expansion settings | Those two checks | Say each wasn't checked |
 | Targeting criteria | Campaigns splitting one audience | "Not checkable from this data" |
 | Creatives with status per campaign | Single-creative campaigns | "Not checkable from this data" |

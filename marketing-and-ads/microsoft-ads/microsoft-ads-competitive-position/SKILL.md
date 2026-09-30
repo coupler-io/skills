@@ -37,8 +37,8 @@ available clicks it actually got.
 - **Where to defend, where to pull back, where money buys position.**
 
 **What this can't tell you, stated every run:** who the competitors are. Competitor names and
-domains aren't in the reporting data. This is the account's position in the auction, not a list of
-rivals.
+domains aren't in the reporting data. This is the account's position in the auction, not a
+list of rivals.
 
 **Read-only on your Microsoft Ads account.** It never changes a bid.
 
@@ -220,4 +220,5 @@ a second clause in the same block.
 - Your brand campaign lost 18 points of share to rank since early August with click cost flat —
   someone is bidding on your name. Want me to size what holding it back would cost?
 - You take the top spot on 70% of the impressions you get but only 25% of all top-of-page
-  impressions — the gap is budget. Want me to check which campaigns it's on?
+  impressions — budget or rank is limiting coverage, not position. Want me to split it into lost to
+  budget and lost to rank by campaign?

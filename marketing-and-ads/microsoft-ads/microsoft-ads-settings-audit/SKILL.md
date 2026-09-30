@@ -34,8 +34,8 @@ an error. It shows up as spend in the wrong place.
   cost per conversion.
 - **Location reach** — spend from people outside the target area.
 - **Bid strategies against conversion volume** — automated targets running on too little data.
-- **What changed and who changed it**, where change history is in the data, including imports from
-  Google.
+- **What changed and who changed it**, where change history is in the data, including imports
+  from Google.
 - **A verdict per setting** — fine, defect (priced), or not checkable.
 
 **Read-only on your Microsoft Ads account.** It never changes a setting.
@@ -77,11 +77,12 @@ keyword and search-query rows look alike and produce different totals.
 
 The audit reads the **Campaign performance report** (campaign type, network or ad distribution,
 budget name), bid strategy type from the **Keyword performance report** or a Custom report, monthly
-budgets from the **Budget summary report**, the **Geographic performance report** (location type —
-the User location report doesn't carry it),
-the **Audience performance report** (targeting setting), the **Ad extension detail report**, and the
-**Search campaign change history report** where present. Check 3's impression share comes from the
-**Campaign performance report with share performance statistics** — a separate report type.
+budgets from the **Budget summary report** (one row per date: take each campaign's latest complete
+date, never sum across dates), the **Geographic performance report** (location type — the User
+location report doesn't carry it), the **Audience performance report** (targeting setting), the
+**Ad extension detail report**, and the **Search campaign change history report** where present.
+Check 3's impression share comes from the **Campaign performance report with share performance
+statistics** — a separate report type.
 
 ## C. Coverage verdict — say this out loud before querying
 

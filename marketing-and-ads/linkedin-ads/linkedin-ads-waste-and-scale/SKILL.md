@@ -158,10 +158,10 @@ again. Size it as the spend in the weeks after the rise began. Route the fix to 
 facets — the same locations, job functions or titles, company lists — are bidding for the same
 people. Name them and propose consolidating into one.
 
-**Scale list.** Campaigns beating target whose Monday-to-Sunday spend reaches at least 95% of seven
-times their daily budget in most complete weeks (an inference — say so). **The net move:** freed
-spend = dead rows only, never too-early ones; destinations = scale campaigns. The total stays the
-same.
+**Scale list.** Campaigns beating target whose Monday-to-Sunday spend reaches at least 95% of
+seven times their daily budget in most complete weeks (an inference — say so). **The net
+move:** freed spend = dead rows only, never too-early ones; destinations = scale campaigns.
+The total stays the same.
 
 ## F. Deliver
 
@@ -212,8 +212,8 @@ protected is re-proposed.
   the Coupler wizard; name exactly which ones.
 - **Awareness objectives aren't judged on leads.** Each objective against its own result.
 - **Small numbers aren't trends.** On LinkedIn most weekly counts are small; use the floor.
-- **Consolidation is a proposal, not a finding of fault.** Separate campaigns can be deliberate —
-  ask.
+- **Consolidation is a proposal, not a finding of fault.** Separate campaigns can be
+  deliberate — ask.
 - **Judge against the account's own history first.** An industry benchmark is never a target and
   never fills a gap in the data.
 - **Never add LinkedIn's platform-reported conversions to another platform's.** Each platform claims

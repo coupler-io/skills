@@ -206,9 +206,11 @@ month doesn't re-ask the KPIs.
   Coupler.io dataflow so a check can run — that pulls more of your own data and touches nothing in
   LinkedIn Ads. Always offered, never silent. The user picks the source's metrics and dimensions in
   the Coupler wizard; name exactly which ones.
-- **Delivery by job title, seniority, industry or company size isn't in this connector.** If the
-  client asks, point at Campaign Manager's demographics report; for lead gen campaigns, the leads'
-  seniority mix comes from Sponsored leads form answers via
+- **Delivery by job title, seniority, industry, company size, country or region** comes from ad
+  analytics by single dimension, one member dimension per source, account-wide. If the client asks
+  and it isn't in the dataflow, offer the source; the user picks the dimension in the Coupler
+  wizard. Member values are approximate and sum to less than the account total. For lead gen, the
+  leads' seniority mix comes from Sponsored leads form answers via
   `linkedin-ads-lead-gen-form-performance`. Never estimate either.
 - **A miss is never hidden or softened into a win.** It's reported with its target bar.
 - **No benchmark stands in for a target.** Without targets, the comparison is last month, labelled.
@@ -239,7 +241,7 @@ month doesn't re-ask the KPIs.
 Exactly one, drawn from what this run found. Never a menu. Where the offer fired, it rides along as
 a second clause in the same block.
 
-- Cost per lead missed target by 18%, almost all from two campaigns whose frequency passed 6 — want
+- Cost per lead missed target by 18%, almost all from two campaigns whose frequency passed 5 — want
   me to add a costed fix for those two to next month's plan?
 - No targets are saved for this client, so I scored against last month — want to set the KPIs now so
   next month is scored properly?

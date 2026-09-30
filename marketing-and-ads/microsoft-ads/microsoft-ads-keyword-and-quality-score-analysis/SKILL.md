@@ -116,9 +116,9 @@ never mix them in one comparison. Prefer the `…Qualified` columns where presen
 you used.
 
 **Weight quality by impressions.** Impression-weighted score = Σ(score × impressions) ÷
-Σ(impressions), per campaign and for the account. A flat average lets a hundred keywords nobody
-searches outvote the one that spends. Keywords with no score (too little traffic) are left out and
-counted.
+Σ(impressions), per campaign and for the account. A flat average lets a hundred keywords
+nobody searches outvote the one that spends. Keywords with no score (too little traffic) are
+left out and counted.
 
 **The three parts are ratings, not numbers.** Microsoft rates expected click-through rate, ad
 relevance and landing page experience as below average, average or above average. Report the share
@@ -210,8 +210,8 @@ for the next run's comparison, parts found failing, **and the dataset and accoun
 - **Position is top and absolute-top impression rate.** Average position is deprecated and reports
   zero; never use it.
 - **Brand keywords score high and convert cheaply by nature.** Rank them separately from non-brand.
-- **Small numbers aren't trends.** Under about ten conversions, give the count, not the cost per
-  conversion.
+- **Small numbers aren't trends.** Under about ten conversions, give the count, not the cost
+  per conversion.
 - **Judge against the account's own history first.** An industry benchmark is never a target and
   never fills a gap in the data.
 - **Never add Microsoft's platform-reported conversions to another platform's.** Each platform
@@ -237,5 +237,5 @@ a second clause in the same block.
 
 - Forty percent of non-brand spend sits on keywords with below-average landing page experience, and
   they pay about a fifth more per click — want me to list the landing pages behind them?
-- Twelve converting queries aren't keywords yet and all beat your target — want them as an exact-
-  match list with suggested ad groups?
+- Twelve queries with ten or more conversions each aren't keywords yet and all beat your target —
+  want them as an exact-match list with suggested ad groups?

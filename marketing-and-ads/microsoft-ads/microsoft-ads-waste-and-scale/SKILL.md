@@ -220,8 +220,8 @@ account timezone.** The next run must not re-propose a protected query.
   not non-brand ones, and never negative your own brand terms.
 - **Small numbers aren't trends.** A query with one conversion at a great cost isn't a scale case;
   give the count.
-- **Shopping queries belong to the shopping skill.** Mixing them with Search queries compares two
-  auctions.
+- **Shopping queries belong to the shopping skill.** Mixing them with Search queries compares
+  two auctions.
 - **Judge against the account's own history first.** An industry benchmark is never a target and
   never fills a gap in the data.
 - **Never add Microsoft's platform-reported conversions to another platform's.** Each platform

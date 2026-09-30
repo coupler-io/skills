@@ -125,20 +125,20 @@ size of the fix.
 per conversion) − 1, capped at the platform's limits, rounded to 5%. Where an adjustment already
 exists, compare the proposed one to it rather than stacking on top.
 
-**Locations.** Split by location type first. Spend from people physically outside every target area,
-reached because they searched *about* the area, is a setting question — route to the settings audit
-unless the business wants that reach. Within the target area, rank regions and cities by the
-mismatch.
+**Locations.** Split by location type first. Spend from people physically outside every target
+area, reached because they searched *about* the area, is a setting question — route to the
+settings audit unless the business wants that reach. Within the target area, rank regions and
+cities by the mismatch.
 
 **Devices.** People often click on one device and convert on another, and reporting credits the
 device of the click only when the same person is recognised. Mobile cost per conversion is often
 overstated. Say so before proposing a large negative mobile adjustment; prefer a modest one.
 
-**Hours and days.** Look for runs of consecutive hours missing target together — an overnight block,
-a weekend — not single hours. A block past the floor missing target is a schedule candidate; a block
-beating target in a campaign whose daily data shows lost-to-budget share is where it should spend.
-Share columns don't exist at hourly grain — never pull a share-statistics report with the Hourly
-split.
+**Hours and days.** Look for runs of consecutive hours missing target together — an overnight
+block, a weekend — not single hours. A block past the floor missing target is a schedule
+candidate; a block beating target in a campaign whose daily data shows lost-to-budget share is
+where it should spend. Share columns don't exist at hourly grain — never pull a
+share-statistics report with the Hourly split.
 
 | What you see | Action |
 |---|---|

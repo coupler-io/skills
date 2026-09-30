@@ -33,8 +33,8 @@ different fixes, and the report doesn't tell you which.
   brand isn't counted as a win.
 - **The demand you're missing**, and whether budget or ad rank is causing it — because only one of
   those is fixed with money.
-- **The biggest movers ranked by money at stake**, each with the reason behind it, not just the
-  percentage.
+- **The biggest movers ranked by money at stake**, each with the reason behind it, not just
+  the percentage.
 - **Recommendations that each carry a number** — campaign named, figure attached, expected effect.
 
 **Read-only on your Microsoft Ads account.** It never changes a bid, a budget or a campaign.
@@ -123,25 +123,24 @@ counted for bidding) and "All conversions" (which adds goals excluded from biddi
 numbers; never mix them in one comparison. Prefer the `…Qualified` columns where present and name
 the one you used.
 
-**The column name tells you the unit.** Spend arrives as `Cost: Amount spend` and is money. A raw
-API field can arrive in a different scale, so read the schema rather than assuming, and say which
-you found. Confirm the magnitude on a known campaign before quoting it.
+**The column name tells you the unit.** Microsoft Ads columns arrive under their raw API names —
+spend is `Spend`, and it is money. Read the schema rather than assuming a label, and say which you
+found. Confirm the magnitude on a known campaign before quoting it.
 
 ## E. What to conclude
 
-**Split by campaign type before comparing anything.** The Microsoft Audience Network — the native
-and LinkedIn-profile display placements — sits far below Search on click-through rate; that's the
-format, not a failure. Shopping (Product ads) and Search compete for the same shoppers. Branded
-search flatters every efficiency figure, because that's demand you already had. Judge each type
-against its own history, not its neighbours, and split brand from non-brand where campaign names
-allow. **Use an explicit campaign list for the brand split, never a wildcard match on the word
-"brand"** — campaign names contain it in non-brand contexts and the match silently mis-buckets
-spend.
+**Split by campaign type before comparing anything.** The Microsoft Audience Network — the
+native and LinkedIn-profile display placements — sits far below Search on click-through rate;
+that's the format, not a failure. Shopping (Product ads) and Search compete for the same
+shoppers. Branded search flatters every efficiency figure, because that's demand you already
+had. Judge each type against its own history, not its neighbours, and split brand from
+non-brand where campaign names allow. **Use an explicit campaign list for the brand split,
+never a wildcard match on the word "brand"** — campaign names contain it in non-brand contexts
+and the match silently mis-buckets spend.
 
-**The demand you're missing.** Per Search campaign, report impression share, share lost to
-budget, and share lost to rank, then act on the split. Microsoft reports these directly, including
-the absolute-top and top variants and the exact-match impression share. Shopping campaigns get
-impression share and lost to budget only; Microsoft doesn't report lost to rank for them.
+**The demand you're missing.** Per Search and Shopping campaign, report impression share, share
+lost to budget, and share lost to rank, then act on the split. Microsoft reports these directly,
+including the absolute-top and top variants and the exact-match impression share.
 
 **Never sum or average impression share across dates.** These are daily ratios, so `AVG()` over a
 30-day window is wrong and `SUM()` is meaningless. Check the scale first (0–1 or 0–100) and convert
@@ -160,8 +159,8 @@ Quoting a raw average here is the single easiest way to hand someone a confident
 
 Before naming a bid fix, branch on the bid strategy — an automated strategy (Maximize conversions,
 Target CPA/ROAS, Maximize clicks) has no keyword bid to raise, so the lever is the cost or return
-target. The Audience Network and Shopping report impression share partially or not at all; say so
-rather than reading demand from spend shape.
+target. The Audience Network reports impression share partially or not at all; say so rather than
+reading demand from spend shape.
 
 **What changed.** Last complete week against the week before, last complete month against the month
 before, with exact dates. **Conversions arrive late, so recent weeks understate them** — use the

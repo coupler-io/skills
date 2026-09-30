@@ -27,8 +27,8 @@ a single catch-all product group bids the same on the best seller and the worst.
 
 **What you get back**
 
-- **Revenue concentration** — how much comes from the top products, and how exposed that makes the
-  account.
+- **Revenue concentration** — how much comes from the top products, and how exposed that makes
+  the account.
 - **Products and product groups ranked** by return, rebuilt from summed revenue and spend.
 - **Products spending without selling**, past the floor, with the spend.
 - **Product groups that never serve** — matched products but no impressions — and whether it's
@@ -79,7 +79,11 @@ This skill reads the **Product dimension performance report** (performance by pr
 item, title, brand, category, custom labels), the **Product partition performance report** (product
 groups), the **Product match count report** (how many products each group matches), and the
 **Product search query performance report**. The product attribute columns vary by feed; read the
-schema rather than assuming which exist.
+schema rather than assuming which exist. Impression share, lost to budget and lost to rank come from
+the **Product dimension** or **Product partition performance report with share performance
+statistics** — lost to rank is `ImpressionLostToRankPercent` there, not the campaign reports'
+`ImpressionLostToRankAggPercent`. Rebuild them from recovered eligible impressions; never average a
+share across rows.
 
 ## C. Coverage verdict — say this out loud before querying
 
@@ -90,6 +94,7 @@ schema rather than assuming which exist.
 | Product match counts | Never-served products | Say those can't be separated from not-matched |
 | Product search queries | Negatives | Skip them and say so |
 | Brand, category, custom labels | Grouped reads | Item level only |
+| Impression share, lost to budget, lost to rank | Whether a group is held back by budget or bid | Name the share-statistics report to add |
 
 **A missing column is one of three things, and they have different fixes.** Name which one you think
 it is rather than reporting the column as unavailable.
@@ -112,13 +117,12 @@ days, 60 for large catalogues — most products sell rarely.
 the total's. **Count one conversion basis and say which** — "Conversions" (goals counted for
 bidding) and "All conversions" (which adds goals excluded from bidding) are different numbers;
 never mix them in one comparison. Prefer the `…Qualified` columns where present and name the one
-you used. **Return is summed revenue ÷ summed spend** for any group of
-products — never the
+you used. **Return is summed revenue ÷ summed spend** for any group of products — never the
 average of each product's return.
 
 **Volume floor.** A product with no sales is spending without selling only once it has spent at
-least the target cost of one sale (revenue per order ÷ return target), or twice the account's cost
-per sale without a target, labelled. Below that it's too early; give the count.
+least twice the target cost of one sale (revenue per order ÷ return target), or twice the account's
+cost per sale without a target, labelled. Below that it's too early; give the count.
 
 **Revenue here is what Microsoft attributes.** It isn't store revenue and doesn't add to other
 platforms' revenue.
@@ -189,8 +193,8 @@ to keep regardless, negatives accepted, **and the dataset and account timezone.*
   Coupler.io dataflow so a check can run — that pulls more of your own data and touches nothing in
   Microsoft Ads. Always offered, never silent.
 - **Never average return across products.** Rebuild from summed revenue and spend.
-- **Microsoft's revenue isn't store revenue.** Don't reconcile it here; don't add it to other
-  platforms.
+- **Microsoft's revenue isn't store revenue.** Don't reconcile it here; don't add it to
+  other platforms.
 - **Small numbers aren't trends.** Most products sell rarely — use the floor.
 - **Judge against the account's own history first.** An industry benchmark is never a target and
   never fills a gap in the data.

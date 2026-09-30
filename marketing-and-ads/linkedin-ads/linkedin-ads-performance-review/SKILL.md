@@ -209,9 +209,11 @@ rows, **and the dataset and account timezone.** Every sibling reads this.
   Coupler.io dataflow so a check can run — that pulls more of your own data and touches nothing in
   LinkedIn Ads. Always offered, never silent. The user picks the source's metrics and dimensions in
   the Coupler wizard; name exactly which ones.
-- **Delivery by job title, seniority, job function, industry or company size isn't in this
-  connector.** LinkedIn shows it in Campaign Manager's demographics report. For lead gen campaigns,
-  the leads' own seniority and titles come from Sponsored leads form answers — route to
+- **Delivery by job title, seniority, job function, industry, company size, country or region**
+  comes from ad analytics by single dimension, one member dimension per source, and can't be crossed
+  with campaign. If it isn't in the dataflow, offer the source; the user picks the dimension in the
+  Coupler wizard. Member values are approximate and sum to less than the account total. For lead
+  gen, the leads' own seniority comes from Sponsored leads form answers via
   `linkedin-ads-lead-gen-form-performance`. Never infer either from campaign names.
 - **Clicks aren't traffic.** Quote landing page clicks for traffic and click cost; quote clicks only
   as engagement, labelled.
@@ -248,6 +250,6 @@ Exactly one, drawn from what this run found. Never a menu. Where the offer fired
 a second clause in the same block.
 
 - Cost per lead rose 31% while click cost held flat — frequency on the two biggest campaigns passed
-  6. Want me to check which creatives are wearing out?
+  5. Want me to check which creatives are wearing out?
 - Clicks rose 20% but landing page clicks didn't move — the gain is engagement, not traffic. Want me
   to see which creative is drawing the non-traffic clicks?

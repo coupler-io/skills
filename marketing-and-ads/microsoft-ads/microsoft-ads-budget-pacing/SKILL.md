@@ -46,8 +46,8 @@ can't find them.
 
 **This skill may need more than one dataset** — the Budget summary report carries each campaign's
 monthly budget and month-to-date spend, but impression share lost to budget lives on the Campaign
-performance report with share performance statistics. Add a call for each
-extra dataset the run actually needs, and say so rather than padding the budget in advance.
+performance report with share performance statistics. Add a call for each extra dataset the run
+actually needs, and say so rather than padding the budget in advance.
 
 **Already known is not re-derived.** The dataset, the month's budget, the budget level, the targets,
 the timezone — if saved context or this conversation has it, use it.
@@ -76,8 +76,11 @@ keyword and search-query rows look alike and produce different totals.
 Pacing reads three report types: the **Campaign performance report with share performance
 statistics** at daily grain (spend, impression share, lost to budget, lost to rank), the **Budget
 summary report** (per campaign: `MonthlyBudget`, `MonthToDateSpend`), and the plain **Campaign
-performance report** for `Budget name`. Check for **shared budgets** — a `Budget name` shared across
-campaigns means the budget sits above the campaign, and summing campaign budgets double-counts it.
+performance report** for `BudgetName`. Budget summary has one row per campaign per `Date`, and both
+figures repeat or accumulate down the rows: take each campaign's latest complete date and **never
+SUM them across dates**. It has no `BudgetName`, so join it to the Campaign performance report on
+`CampaignId`. Check for **shared budgets** — a `BudgetName` shared across campaigns means the budget
+sits above the campaign, and summing campaign budgets double-counts it.
 
 ## C. Coverage verdict — say this out loud before querying
 
@@ -87,7 +90,7 @@ campaigns means the budget sits above the campaign, and summing campaign budgets
 | Impression share lost to budget | Which campaigns are capped | Say "capped" can't be read from spend shape — a campaign spending its budget exactly may be capped or may just be done |
 | Impression share lost to rank | Whether more money would buy anything | Say a funding case can't be made without it |
 | Conversions + a cost target | Whether a capped campaign deserves the money | Capped campaigns get listed without a verdict |
-| Budget name / budget association | The right level to sum budgets at | Assume campaign-level and say so |
+| `BudgetName` (Campaign performance report) | The right level to sum budgets at | Assume campaign-level and say so |
 | Monthly budget (Budget summary report) | The platform ceiling | Say the ceiling can't be checked; never rebuild it from spend |
 
 **A missing column is one of three things, and they have different fixes.** Name which one you think
@@ -124,10 +127,10 @@ per campaign over the month.
   complete days, not the average since the 1st — **unless a budget or bid change landed inside that
   window**, in which case use the days since the change and say which window you used.
 - **Two ceilings, not one.** The monthly ceiling is each campaign's daily budget × days in the
-  month, read as `MonthlyBudget` from the Budget summary report and summed once per shared budget; a
-  single day usually stays under 2× the daily budget (Microsoft budget guide). Report the monthly
-  ceiling against the agreed budget — if the ceiling is below the budget, the account *can't* spend
-  it, and that's the finding.
+  month, read as `MonthlyBudget` on each campaign's latest complete date in the Budget summary
+  report and summed once per shared budget; a single day usually stays under 2× the daily budget
+  (Microsoft budget guide). Report the monthly ceiling against the agreed budget — if the ceiling
+  is below the budget, the account *can't* spend it, and that's the finding.
 - **Required run rate** = (budget − month-to-date spend) ÷ remaining days.
 - **Shared budgets** are summed once at the budget, not once per campaign.
 - **Never sum or average a share across rows or dates.** Shares are ratios. Check the scale first

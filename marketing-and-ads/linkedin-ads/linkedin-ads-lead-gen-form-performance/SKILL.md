@@ -16,16 +16,17 @@ metadata:
 
 # LinkedIn Ads Lead Gen Form Performance
 
-**Tells you which LinkedIn lead gen forms and campaigns produce leads at a cost worth paying, where
-people open the form and walk away, and — from the leads' own form answers — who the leads actually
-are.**
+**Tells you which LinkedIn lead gen forms and campaigns produce leads at a cost worth paying,
+where people open the form and walk away, and — from the leads' own form answers — who the
+leads actually are.**
 
 Lead gen forms are LinkedIn's cheapest result and its most misread one. The form opens pre-filled
 from the member's profile, so a lead takes one tap — which is why cost per lead looks good and why
 nobody can say whether the leads were worth it. The platform reports leads and form opens; it
 doesn't report who submitted. But the lead responses themselves carry the answers people gave:
-job title, company, seniority where the form asked for it. That's the only place in this connector
-where the audience shows up at all, and it's the closest LinkedIn data gets to lead quality.
+job title, company, seniority where the form asked for it. That's the closest LinkedIn data gets to
+lead quality — closer than the member dimensions in ad analytics, which show who the spend reached,
+not who submitted.
 
 **What you get back**
 
@@ -85,8 +86,9 @@ its label or format; both are labelled "Cost: Amount spend".
 
 This skill reads **ad analytics** by campaign and creative (spend, lead form opens, leads) and the
 **Sponsored leads** report (one row per submitted lead, with the form, campaign, submission date,
-test-lead flag where present, and the answers to each form question). Say which forms the Sponsored
-leads source covers — it's configured per form.
+test-lead flag where present, and the answers to each form question). Answer columns are named by
+the question label, and some hold names and emails. Say which forms the source covers — picking
+forms is optional, and a source with none picked covers every form.
 
 ## C. Coverage verdict — say this out loud before querying
 
@@ -113,9 +115,9 @@ Say **"not checkable from this data"** — never imply a check ran clean when it
 
 ## D. Compute
 
-Anchor to the **last complete day in the account's timezone** and name that date. Today is always
-partial, and a partial day makes a healthy account look like it collapsed. Use at least 30 complete
-days.
+Anchor to the **last complete day in the account's timezone** and name that date. Today is
+always partial, and a partial day makes a healthy account look like it collapsed. Use at least
+30 complete days.
 
 **Rebuild every rate from summed totals** — the average of several rows' cost per result is not the
 total's. **Count one result and say which** — website conversions (post-click, post-view, or both),
@@ -135,6 +137,10 @@ cause; use Sponsored leads for who-they-are and ad analytics for cost.
 into "other". Normalise free-text job titles into a small set of seniority and function groups, and
 say how you grouped them.
 
+**Personal data only inside aggregates.** Every query on Sponsored leads uses `GROUP BY`. A column
+that can hold a name, email or phone appears only inside an aggregate such as `COUNT(DISTINCT …)`,
+never selected on its own.
+
 ## E. What to conclude
 
 | What you see | Means | Action |
@@ -142,13 +148,14 @@ say how you grouped them.
 | Cheap cost per lead, junior or off-target titles | Cheap leads from the wrong people | Tighten targeting or add a qualifying question |
 | Low form completion | People open and walk away | Fewer questions, or a clearer offer above the form |
 | High completion, cost per lead rising | The form works; the audience or creative doesn't | Creative fatigue or targeting |
-| Many repeat submitters | The same people answering several forms | Count unique people; the lead total overstates reach |
+| Many repeat submitters | The same people answering several forms | Count unique people with `COUNT(DISTINCT` the email column`)`; the lead total overstates reach |
 | Test leads in the count | Inflated leads | Exclude and restate |
 | One form beats the others on seniority mix at similar cost | The better form | Move spend to it |
 
 **Seniority mix is the quality read available here.** Report the share of leads at manager level and
 above, or whatever level the account sells to, per form and campaign. It's what the form answers
-say, not verified data — state that.
+say, not verified data — state that. Member seniority from ad analytics by single dimension shows
+who the spend reached; set it beside the form mix, never in place of it.
 
 **Where a CRM is connected**, route lead-to-opportunity to the sales skill; don't join leads to the
 CRM here.

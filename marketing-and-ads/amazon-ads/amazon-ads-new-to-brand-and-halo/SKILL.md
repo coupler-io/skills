@@ -67,11 +67,12 @@ diagnose the connector.
 ## B. Find the data
 
 Locate the account's Amazon Ads data and **say which dataset you picked, and which connector it
-comes from**. Amazon Ads (Unified) is one custom report across Sponsored Products, Sponsored Brands,
-Sponsored Display, Sponsored TV and DSP, with an ad product column; the older Amazon Ads connector
-is one fixed report per ad product. Only its Sponsored Products metrics name the attribution window
-(sales14d, purchases7d); its Brands, Display and TV metrics and every Unified metric don't, so state
-that window from Amazon's documentation or ask. Datasets are often named after the client or the
+comes from**. Amazon Ads, the standard connector, is one fixed report per ad product; only its
+Sponsored Products metrics name the attribution window (sales7d, sales14d). Amazon Ads (Unified),
+enabled only on some accounts, is one custom report across Sponsored Products, Sponsored Brands,
+Sponsored Display, Sponsored TV and DSP, with an ad product column. Where no column names the
+window, use Amazon's defaults — 7 days for Sponsored Products, 14 for Sponsored Brands and Display —
+and confirm with the user only for anything else. Datasets are often named after the client or the
 marketplace rather than the platform. Say the ad products, marketplaces and grain you have —
 campaign-per-day, search-term and advertised-product rows look alike and produce different totals.
 Unified has no spend column: read the cost column from `get-schema` — Total cost, which may include
@@ -79,16 +80,16 @@ fees on DSP rows.
 
 This skill reads spend, orders and sales by ad product and campaign with the **new-to-brand**
 purchases and sales, **promoted** and **halo** sales, **detail page views**, **branded searches**
-and **add-to-cart** where the source carries them. Unified carries all of these across ad products;
-legacy carries new-to-brand on its Sponsored Brands, Display and TV reports, never Sponsored
-Products.
+and **add-to-cart** where the source carries them. Legacy carries new-to-brand on its Sponsored
+Brands, Display and TV reports, never Sponsored Products; Unified, where enabled, carries all of
+these across ad products.
 
 ## C. Coverage verdict — say this out loud before querying
 
 | Column present | Live | Absent means |
 |---|---|---|
-| New-to-brand orders and sales | New-customer read | Say it needs these columns; Unified carries them |
-| Promoted and halo sales | Halo share | On legacy SP, derive halo as `sales7d − attributedSalesSameSku7d`; otherwise "Not checkable from this data" |
+| New-to-brand orders and sales | New-customer read | Add them from the legacy SB, SD or TV Campaign report, or Unified where enabled |
+| Promoted and halo sales | Halo share | On legacy: halo = sales − `salesPromoted` (SB ad, ad group, campaign, targeting) or `salesClicks` − `salesPromotedClicks` (SD); `salesBrandHalo` (SD purchased product) and `salesOtherSku7d` (SP) give it directly. Otherwise "Not checkable from this data" |
 | Detail page views, branded searches, add-to-cart | Upper-funnel actions | Skip them |
 | Click-based and view-based sales | What's credited without a click | Say views may be in the total |
 | Ad product | The fair comparison | Nothing to compare |
@@ -99,8 +100,8 @@ it is rather than reporting the column as unavailable.
 | Why it's missing | How you can tell | The fix |
 |---|---|---|
 | The report type or ad product isn't in the dataflow | No search-term rows, no Sponsored Brands rows, no advertised-product rows | Add an Amazon Ads source with that report or ad product to the same dataflow. A dataflow takes unlimited sources |
-| The metric or dimension wasn't picked | The report is there but the column isn't — Unified metrics and dimensions are chosen in the source wizard | Edit the source and add it |
-| The legacy connector doesn't carry it | Legacy Amazon Ads dataset; the ask needs impression share or its rank, geography, device, audience segments or DSP | Add an Amazon Ads (Unified) source. Top-of-search share isn't one of these: legacy carries it on the SP Campaign, Placement and Targeting reports and SB Campaign |
+| The metric or dimension wasn't picked | The report is there but the column isn't — metrics (and, on Unified, dimensions) are chosen in the source wizard | Edit the source and add it |
+| The legacy connector doesn't carry it | Legacy Amazon Ads dataset; the ask needs impression share or its rank, geography, device, audience segments or DSP | Check legacy first: top-of-search share is on the SP Campaign, Placement and Targeting reports and SB Campaign. The rest needs Amazon Ads (Unified), enabled only on some accounts — offer it only where it is; otherwise say legacy can't answer this |
 | No Amazon Ads credential | No Amazon Ads source exists in any dataflow | The user connects Amazon Ads. That's a consent step for them, not a dead end |
 
 Say **"not checkable from this data"** — never imply a check ran clean when it didn't run.
@@ -110,8 +111,10 @@ Say **"not checkable from this data"** — never imply a check ran clean when it
 Anchor to the **last complete day in the account's timezone** and name that date. Today is always
 partial, and a partial day makes a healthy account look like it collapsed. Use at least 30 complete
 days. **Recent days understate sales.** Amazon keeps attributing purchases to a click for days
-afterwards, and sales are gross ordered sales — before returns and cancellations. Leave the most
-recent days out of sales comparisons, or label them as still filling in, and say which.
+afterwards, and sales are gross ordered sales — before returns and cancellations. Leave the last 14
+complete days out of sales comparisons, or label them as still filling in, and say which — 14 days
+is the longest default attribution window (Sponsored Brands and Display), so sales inside it can
+still grow.
 
 **Rebuild every rate from summed totals** — ACOS is summed spend ÷ summed sales, never the average
 of campaign ACOS figures. **Say whether you quote ACOS (spend ÷ sales, lower is better) or ROAS
@@ -218,7 +221,7 @@ Write back: the value of a new customer if the user gave one, the job each ad pr
 Exactly one, drawn from what this run found. Never a menu. Where the offer fired, it rides along as
 a second clause in the same block.
 
-- Sponsored Brands runs at 41% ACOS, but 68% of its orders are new to the brand against 19% on
-  Sponsored Products — do you know what a new customer is worth to you, so I can judge it properly?
+- Sponsored Brands runs at 41% ACOS, but 68% of its orders are new to the brand — do you know what a
+  new customer is worth to you, so I can judge it properly?
 - Most of Sponsored Display's sales are credited on views without a click — want me to show it on
   click-based sales alone?

@@ -69,19 +69,20 @@ diagnose the connector.
 ## B. Find the data
 
 Locate the account's Amazon Ads data and **say which dataset you picked, and which connector it
-comes from**. Amazon Ads (Unified) is one custom report across Sponsored Products, Sponsored Brands,
-Sponsored Display, Sponsored TV and DSP, with an ad product column; the older Amazon Ads connector
-is one fixed report per ad product. Only its Sponsored Products metrics name the attribution window
-(sales14d, purchases7d); its Brands, Display and TV metrics and every Unified metric don't, so state
-that window from Amazon's documentation or ask. Datasets are often named after the client or the
+comes from**. Amazon Ads, the standard connector, is one fixed report per ad product; only its
+Sponsored Products metrics name the attribution window (sales7d, sales14d). Amazon Ads (Unified),
+enabled only on some accounts, is one custom report across Sponsored Products, Sponsored Brands,
+Sponsored Display, Sponsored TV and DSP, with an ad product column. Where no column names the
+window, use Amazon's defaults — 7 days for Sponsored Products, 14 for Sponsored Brands and Display —
+and confirm with the user only for anything else. Datasets are often named after the client or the
 marketplace rather than the platform. Say the ad products, marketplaces and grain you have —
 campaign-per-day, search-term and advertised-product rows look alike and produce different totals.
 Unified has no spend column: read the cost column from `get-schema` — Total cost, which may include
 fees on DSP rows.
 
 This skill reads **targeting** rows — the keyword, ASIN, category or automatic group, its match
-type, current bid where present, spend, clicks, orders and sales. On Unified, the custom report with
-targeting, targeting match type and target bid; on legacy, the Targeting report per ad product.
+type, current bid where present, spend, clicks, orders and sales. On legacy, the Targeting report
+per ad product; on Unified, the custom report with targeting, targeting match type and target bid.
 
 ## C. Coverage verdict — say this out loud before querying
 
@@ -99,8 +100,8 @@ it is rather than reporting the column as unavailable.
 | Why it's missing | How you can tell | The fix |
 |---|---|---|
 | The report type or ad product isn't in the dataflow | No search-term rows, no Sponsored Brands rows, no advertised-product rows | Add an Amazon Ads source with that report or ad product to the same dataflow. A dataflow takes unlimited sources |
-| The metric or dimension wasn't picked | The report is there but the column isn't — Unified metrics and dimensions are chosen in the source wizard | Edit the source and add it |
-| The legacy connector doesn't carry it | Legacy Amazon Ads dataset; the ask needs impression share or its rank, geography, device, audience segments or DSP | Add an Amazon Ads (Unified) source. Top-of-search share isn't one of these: legacy carries it on the SP Campaign, Placement and Targeting reports and SB Campaign |
+| The metric or dimension wasn't picked | The report is there but the column isn't — metrics (and, on Unified, dimensions) are chosen in the source wizard | Edit the source and add it |
+| The legacy connector doesn't carry it | Legacy Amazon Ads dataset; the ask needs impression share or its rank, geography, device, audience segments or DSP | Check legacy first: top-of-search share is on the SP Campaign, Placement and Targeting reports and SB Campaign. The rest needs Amazon Ads (Unified), enabled only on some accounts — offer it only where it is; otherwise say legacy can't answer this |
 | No Amazon Ads credential | No Amazon Ads source exists in any dataflow | The user connects Amazon Ads. That's a consent step for them, not a dead end |
 
 Say **"not checkable from this data"** — never imply a check ran clean when it didn't run.
@@ -110,8 +111,10 @@ Say **"not checkable from this data"** — never imply a check ran clean when it
 Anchor to the **last complete day in the account's timezone** and name that date. Today is always
 partial, and a partial day makes a healthy account look like it collapsed. Use 30 to 60 complete
 days. **Recent days understate sales.** Amazon keeps attributing purchases to a click for days
-afterwards, and sales are gross ordered sales — before returns and cancellations. Leave the most
-recent days out of sales comparisons, or label them as still filling in, and say which.
+afterwards, and sales are gross ordered sales — before returns and cancellations. Leave the last 14
+complete days out of sales comparisons, or label them as still filling in, and say which — 14 days
+is the longest default attribution window (Sponsored Brands and Display), so sales inside it can
+still grow.
 
 **Rebuild every rate from summed totals** — ACOS is summed spend ÷ summed sales, never the average
 of campaign ACOS figures. **Say whether you quote ACOS (spend ÷ sales, lower is better) or ROAS
@@ -199,8 +202,8 @@ list, **and the dataset and account timezone.**
 - **Read-only means your ad account.** It may, with your agreement, add a report source to your
   Coupler.io dataflow so a check can run — that pulls more of your own data and touches nothing in
   Amazon Ads. Always offered, never silent.
-- **A bid can't fix a listing.** Low conversion at a fair bid is price, stock, reviews or the Buy
-  Box.
+- **A bid can't fix a listing.** Low conversion at a fair bid is price, stock, reviews or the
+  Buy Box.
 - **Change bids in steps.** Large jumps make the next reading hard to judge.
 - **Small numbers aren't trends.** Under the floor, use the ad group's numbers.
 - **Judge against the account's own history first.** An industry benchmark is never a target and
