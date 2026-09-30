@@ -21,8 +21,6 @@ metadata:
 **Checks how the Microsoft Ads account is configured and prices every setting that's costing it
 money — most expensive first.**
 
-**Source:** Microsoft Ads (Bing Ads)
-
 Most Microsoft Ads settings default in the platform's favour. Search campaigns start opted into
 syndicated partners; location targeting reaches people *interested in* a place as well as people in
 it; an audience list set to "target and bid" quietly narrows reach; and an account kept in sync with
@@ -77,10 +75,13 @@ inside a dataflow named for something else. The connector splits its data across
 a different grain — check which report type the rows come from and say so, because campaign-per-day,
 keyword and search-query rows look alike and produce different totals.
 
-The audit reads the **Campaign performance report** (campaign type, bid strategy type, network or ad
-distribution, budget), the **Geographic** or **User location performance report** (location type),
+The audit reads the **Campaign performance report** (campaign type, network or ad distribution,
+budget name), bid strategy type from the **Keyword performance report** or a Custom report, monthly
+budgets from the **Budget summary report**, the **Geographic performance report** (location type —
+the User location report doesn't carry it),
 the **Audience performance report** (targeting setting), the **Ad extension detail report**, and the
-**Search campaign change history report** where present.
+**Search campaign change history report** where present. Check 3's impression share comes from the
+**Campaign performance report with share performance statistics** — a separate report type.
 
 ## C. Coverage verdict — say this out loud before querying
 
@@ -92,6 +93,7 @@ the **Audience performance report** (targeting setting), the **Ad extension deta
 | Bid strategy type + conversions per campaign | Strategies starved of data | Say bid strategies weren't checked |
 | Change history | Who changed what, Google Import overwrites | Say import behaviour can't be seen from reporting |
 | Ad extension rows | Campaigns missing sitelinks and callouts | "Not checkable from this data" |
+| Impression share (share statistics report) | Lost reach from audience targeting | Say lost reach can't be priced |
 
 **Never checkable from reporting data, say so:** whether Google Import is scheduled and which items
 it syncs, auto-applied recommendation settings, ad rotation. Point at the account's import and
@@ -115,9 +117,10 @@ partial, and a partial day makes a healthy account look like it collapsed. Use t
 days so every defect is priced on a comparable month.
 
 **Rebuild every rate from summed totals** — the average of several rows' cost per conversion is not
-the total's. **Count one conversion basis and say which** — "Conversions" (the goals the account
-counts) and "All conversions" (which adds view-through and cross-device) are different numbers;
-never mix them in one comparison. Every defect is priced as **spend flowing through the setting** in
+the total's. **Count one conversion basis and say which** — "Conversions" (goals counted for
+bidding) and "All conversions" (which adds goals excluded from bidding) are different numbers;
+never mix them in one comparison. Prefer the `…Qualified` columns where present and name the one
+you used. Every defect is priced as **spend flowing through the setting** in
 that window, and,
 where conversions allow, the cost per conversion on that slice against the rest.
 

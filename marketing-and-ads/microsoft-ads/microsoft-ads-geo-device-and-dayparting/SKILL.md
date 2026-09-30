@@ -20,8 +20,6 @@ metadata:
 **Tells you where, on what device and at what hour Microsoft Ads spend earns — and what bid
 adjustment or schedule each deserves.**
 
-**Source:** Microsoft Ads (Bing Ads)
-
 Where and when an ad shows is where most accounts leave money on the table without seeing it,
 because each cut looks fine on its own. A region can take a quarter of spend at twice the cost per
 conversion; the hours after midnight can run all month and convert nothing; mobile can look
@@ -72,10 +70,10 @@ inside a dataflow named for something else. The connector splits its data across
 a different grain — check which report type the rows come from and say so, because campaign-per-day,
 keyword and search-query rows look alike and produce different totals.
 
-This skill reads the **Geographic performance report** (country, state, metro area, city, location
-type, and the location in the query), the **User location performance report** (where the searcher
-physically was), device type and device OS columns on the **Campaign performance report**, and any
-report pulled with **Hourly** as its period split.
+This skill reads the **Geographic performance report** (country, state, metro area, city, and
+location type — the only report with it), the **User location performance report** (where the
+searcher physically was, and the location in the query), device type and device OS columns on the
+**Campaign performance report**, and any report pulled with **Hourly** as its period split.
 
 ## C. Coverage verdict — say this out loud before querying
 
@@ -105,9 +103,10 @@ partial, and a partial day makes a healthy account look like it collapsed. Use 6
 days — hour and city rows are thin.
 
 **Rebuild every rate from summed totals** — the average of several rows' cost per conversion is not
-the total's. **Count one conversion basis and say which** — "Conversions" (the goals the account
-counts) and "All conversions" (which adds view-through and cross-device) are different numbers;
-never mix them in one comparison.
+the total's. **Count one conversion basis and say which** — "Conversions" (goals counted for
+bidding) and "All conversions" (which adds goals excluded from bidding) are different numbers;
+never mix them in one comparison. Prefer the `…Qualified` columns where present and name the one
+you used.
 
 **Hours are in the account's timezone**, not the viewer's. Name it on every hourly output. Aggregate
 hours across all weeks in the window before judging any single hour; a Tuesday at 3pm is one row
@@ -137,7 +136,9 @@ overstated. Say so before proposing a large negative mobile adjustment; prefer a
 
 **Hours and days.** Look for runs of consecutive hours missing target together — an overnight block,
 a weekend — not single hours. A block past the floor missing target is a schedule candidate; a block
-beating target with lost-to-budget share is where a budget-capped campaign should spend.
+beating target in a campaign whose daily data shows lost-to-budget share is where it should spend.
+Share columns don't exist at hourly grain — never pull a share-statistics report with the Hourly
+split.
 
 | What you see | Action |
 |---|---|

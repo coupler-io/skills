@@ -19,8 +19,6 @@ metadata:
 **Tells you where Amazon Ads spend lands by month end, which campaigns run out of budget before the
 day is done, and whether giving them more would earn it back.**
 
-**Source:** Amazon Ads (Unified)
-
 On Amazon, running out of budget has a price the account can't see: a Sponsored Products campaign
 that spends its daily budget by early afternoon is absent for the evening, when many shoppers buy.
 The budget sits at up to three levels — the campaign's daily budget, a portfolio cap across
@@ -70,14 +68,17 @@ diagnose the connector.
 Locate the account's Amazon Ads data and **say which dataset you picked, and which connector it
 comes from**. Amazon Ads (Unified) is one custom report across Sponsored Products, Sponsored Brands,
 Sponsored Display, Sponsored TV and DSP, with an ad product column; the older Amazon Ads connector
-is one fixed report per ad product, with the attribution window written into each metric name
-(sales14d, purchases7d). Datasets are often named after the client or the marketplace rather than
-the platform. Say the ad products, marketplaces and grain you have — campaign-per-day, search-term
-and advertised-product rows look alike and produce different totals.
+is one fixed report per ad product. Only its Sponsored Products metrics name the attribution window
+(sales14d, purchases7d); its Brands, Display and TV metrics and every Unified metric don't, so state
+that window from Amazon's documentation or ask. Datasets are often named after the client or the
+marketplace rather than the platform. Say the ad products, marketplaces and grain you have —
+campaign-per-day, search-term and advertised-product rows look alike and produce different totals.
+Unified has no spend column: read the cost column from `get-schema` — Total cost, which may include
+fees on DSP rows.
 
 Pacing reads spend at campaign-per-day grain, with **campaign budget amount**, **budget type**,
 **portfolio** and **delivery status** where the source carries them (Unified does; on legacy, budget
-amounts may be absent).
+amounts may be absent). Portfolio caps aren't in reporting data; ask for them.
 
 ## C. Coverage verdict — say this out loud before querying
 
@@ -96,7 +97,7 @@ it is rather than reporting the column as unavailable.
 |---|---|---|
 | The report type or ad product isn't in the dataflow | No search-term rows, no Sponsored Brands rows, no advertised-product rows | Add an Amazon Ads source with that report or ad product to the same dataflow. A dataflow takes unlimited sources |
 | The metric or dimension wasn't picked | The report is there but the column isn't — Unified metrics and dimensions are chosen in the source wizard | Edit the source and add it |
-| The legacy connector doesn't carry it | Legacy Amazon Ads dataset; the ask needs impression share, geography, device, audience segments or DSP | Add an Amazon Ads (Unified) source; the legacy connector has no such column |
+| The legacy connector doesn't carry it | Legacy Amazon Ads dataset; the ask needs impression share or its rank, geography, device, audience segments or DSP | Add an Amazon Ads (Unified) source. Top-of-search share isn't one of these: legacy carries it on the SP Campaign, Placement and Targeting reports and SB Campaign |
 | No Amazon Ads credential | No Amazon Ads source exists in any dataflow | The user connects Amazon Ads. That's a consent step for them, not a dead end |
 
 Say **"not checkable from this data"** — never imply a check ran clean when it didn't run.
@@ -118,11 +119,12 @@ partial, and a partial day makes a healthy account look like it collapsed.
 - **Required run rate** = (budget − month-to-date spend) ÷ remaining days.
 - **Binding level.** A portfolio cap limits its campaigns together; sum at the level the budget is
   set, never per campaign on top of the portfolio.
-- **Capped, inferred.** A campaign runs out of budget when daily spend reaches at least 95% of its
-  daily budget on most complete days. State the rule and that it's an inference.
-- Amazon can let a single day run above the daily budget and settle over the month. If spend behaves
-  differently from the budgets, check Amazon's current budget documentation rather than forcing the
-  model.
+- **Capped, inferred.** A campaign runs out of budget when its month-to-date average daily spend
+  reaches at least 95% of its daily budget. State the rule and that it's an inference.
+- Sponsored Products, Brands and Display can spend up to 2× the daily budget on one day (1.25× if
+  the account opted for that), and the daily budget is averaged over the month: the monthly ceiling
+  is daily budget × days in the month (Amazon Ads daily budgeting policy, checked 2026-09-30). Judge
+  capping on the month's average, never on a single day.
 - **Each marketplace bills in its own currency.** Never add US dollars to euros. Use the converted-
 currency metrics where the source has them and name the currency, or report per marketplace.
 
@@ -139,6 +141,8 @@ currency metrics where the source has them and name the currency, or report per 
 
 **Stock comes before budget.** Funding a campaign whose product is about to run out buys clicks on
 an unavailable listing. If product-level sales dropped to zero with spend continuing, say so first.
+Stock itself needs an Amazon Seller Central source, which needs its own Seller Central credential
+(GET_AFN_INVENTORY_DATA); offer it.
 
 ## G. Deliver
 

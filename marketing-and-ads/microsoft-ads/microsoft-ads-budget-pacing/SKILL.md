@@ -20,13 +20,11 @@ metadata:
 **Tells you where Microsoft Ads spend lands by month end, which campaigns are held back by budget,
 and whether more money would buy anything at all.**
 
-**Source:** Microsoft Ads (Bing Ads)
-
 A Microsoft Ads daily budget isn't a daily cap. On any single day a campaign can spend well above
 its
-daily budget, and the platform evens it out against a monthly ceiling of roughly the daily budget
-times 30.4 — so a mid-month look at yesterday's spend against the daily budget reads as overspend
-when it's the platform front-loading. Meanwhile the only campaigns worth giving more money are the
+daily budget, and the platform evens it out against a monthly ceiling of the daily budget times
+the days in the month — so a mid-month look at yesterday's spend against the daily budget reads as
+overspend when it's the platform front-loading. Meanwhile the only campaigns worth giving more money are the
 ones losing impression share to budget *while* hitting the cost target, and spend alone can't find
 them.
 
@@ -47,8 +45,9 @@ them.
 | Cold | locate the data → coverage verdict (speak) → one combined query = **3** |
 | Warm — dataset already known | coverage verdict (speak) → one combined query = **2** |
 
-**This skill may need more than one dataset** — the Budget summary report carries spend per budget,
-but impression share lost to budget lives on the Campaign performance report. Add a call for each
+**This skill may need more than one dataset** — the Budget summary report carries each campaign's
+monthly budget and month-to-date spend, but impression share lost to budget lives on the Campaign
+performance report with share performance statistics. Add a call for each
 extra dataset the run actually needs, and say so rather than padding the budget in advance.
 
 **Already known is not re-derived.** The dataset, the month's budget, the budget level, the targets,
@@ -75,10 +74,11 @@ inside a dataflow named for something else. The connector splits its data across
 a different grain — check which report type the rows come from and say so, because campaign-per-day,
 keyword and search-query rows look alike and produce different totals.
 
-Pacing reads two report types: the **Campaign performance report** at daily grain (spend,
-impression share, lost to budget, lost to rank) and, where present, the **Budget summary report**.
-Check for **shared budgets** — a `Budget name` shared across campaigns means the budget sits above
-the campaign, and summing campaign budgets double-counts it.
+Pacing reads three report types: the **Campaign performance report with share performance
+statistics** at daily grain (spend, impression share, lost to budget, lost to rank), the **Budget
+summary report** (per campaign: `MonthlyBudget`, `MonthToDateSpend`), and the plain **Campaign
+performance report** for `Budget name`. Check for **shared budgets** — a `Budget name` shared across
+campaigns means the budget sits above the campaign, and summing campaign budgets double-counts it.
 
 ## C. Coverage verdict — say this out loud before querying
 
@@ -89,6 +89,7 @@ the campaign, and summing campaign budgets double-counts it.
 | Impression share lost to rank | Whether more money would buy anything | Say a funding case can't be made without it |
 | Conversions + a cost target | Whether a capped campaign deserves the money | Capped campaigns get listed without a verdict |
 | Budget name / budget association | The right level to sum budgets at | Assume campaign-level and say so |
+| Monthly budget (Budget summary report) | The platform ceiling | Say the ceiling can't be checked; never rebuild it from spend |
 
 **A missing column is one of three things, and they have different fixes.** Name which one you think
 it is rather than reporting the column as unavailable.
@@ -123,18 +124,18 @@ per campaign over the month.
 - **Projection** = month-to-date spend + recent run rate × remaining days. Use the last seven
   complete days, not the average since the 1st — **unless a budget or bid change landed inside that
   window**, in which case use the days since the change and say which window you used.
-- **Two ceilings, not one.** The monthly ceiling is the sum of daily budgets × 30.4; a single day can
-  run well above one day's budget. Report the monthly ceiling against the agreed budget — if the
-  ceiling is below the budget, the account *can't* spend it, and that's the finding.
+- **Two ceilings, not one.** The monthly ceiling is each campaign's daily budget × days in the
+  month, read as `MonthlyBudget` from the Budget summary report and summed once per shared budget;
+  a single day usually stays under 2× the daily budget (Microsoft budget guide). Report the monthly
+  ceiling against the agreed budget — if the ceiling is below the budget, the account *can't* spend it, and that's the finding.
 - **Required run rate** = (budget − month-to-date spend) ÷ remaining days.
 - **Shared budgets** are summed once at the budget, not once per campaign.
-- **Never sum or average a share across rows or dates.** Shares are ratios. Recover the denominator
-per row first — eligible impressions = `impressions / impression share`, eligible clicks = `clicks /
-click share` — sum those and the numerators, then divide. Quoting a raw average share is the easiest
-way to hand someone a confident wrong number.
-
-Delivery rules have changed before. If the account's day-to-day spend behaves differently from the
-above, say so and check Microsoft's current budget documentation rather than forcing the model.
+- **Never sum or average a share across rows or dates.** Shares are ratios. Check the scale first
+(0–1 or 0–100) and convert to a fraction; skip rows where the share is empty or 0. Per row:
+eligible impressions = `impressions / impression share`, lost to budget = eligible × lost-to-budget
+share, lost to rank = eligible × lost-to-rank share, eligible clicks = `clicks / click share`. Sum
+each, then divide by summed eligible impressions (or eligible clicks). Quoting a raw average share
+is the easiest way to hand someone a confident wrong number.
 
 ## F. What to conclude
 
@@ -145,7 +146,7 @@ above, say so and check Microsoft's current budget documentation rather than for
 | Projected under, spend stepped down on a date | Delivery break — pause, disapproval, bid strategy change | Name the date. Route to the settings audit's change history |
 | Capped campaign beating the cost target | Real demand, money is the only constraint | Fund it. Size the extra spend from its lost-to-budget share at current click cost — an upper bound, returns diminish |
 | Capped campaign missing the cost target | Capped isn't a reason to fund | Fix efficiency first; don't pour money into it |
-| Ceiling below agreed budget | The account can't spend what was agreed | Raise daily budgets by the gap ÷ 30.4, on the capped campaigns that beat target |
+| Ceiling below agreed budget | The account can't spend what was agreed | Raise daily budgets by the gap ÷ days remaining including today, on the capped campaigns that beat target |
 
 **Automated bidding changes behaviour when the budget moves.** On Target CPA, Target ROAS or
 Maximize conversions campaigns, raise budget in steps of about 20%, three to four days apart — a

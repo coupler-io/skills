@@ -20,8 +20,6 @@ metadata:
 ACOS — the new customers they bring, the halo sales across the range, and the shopping behaviour
 they start — so they aren't cut for looking expensive next to Sponsored Products.**
 
-**Source:** Amazon Ads (Unified)
-
 Judged on ACOS alone, every upper-funnel Amazon ad product loses to Sponsored Products, and gets
 cut. That comparison is rigged: Sponsored Products mostly sells to shoppers already searching for
 the product, often existing customers, while Brands, Display and video reach people earlier. Amazon
@@ -71,15 +69,19 @@ diagnose the connector.
 Locate the account's Amazon Ads data and **say which dataset you picked, and which connector it
 comes from**. Amazon Ads (Unified) is one custom report across Sponsored Products, Sponsored Brands,
 Sponsored Display, Sponsored TV and DSP, with an ad product column; the older Amazon Ads connector
-is one fixed report per ad product, with the attribution window written into each metric name
-(sales14d, purchases7d). Datasets are often named after the client or the marketplace rather than
-the platform. Say the ad products, marketplaces and grain you have — campaign-per-day, search-term
-and advertised-product rows look alike and produce different totals.
+is one fixed report per ad product. Only its Sponsored Products metrics name the attribution window
+(sales14d, purchases7d); its Brands, Display and TV metrics and every Unified metric don't, so state
+that window from Amazon's documentation or ask. Datasets are often named after the client or the
+marketplace rather than the platform. Say the ad products, marketplaces and grain you have —
+campaign-per-day, search-term and advertised-product rows look alike and produce different totals.
+Unified has no spend column: read the cost column from `get-schema` — Total cost, which may include
+fees on DSP rows.
 
 This skill reads spend, orders and sales by ad product and campaign with the **new-to-brand**
 purchases and sales, **promoted** and **halo** sales, **detail page views**, **branded searches**
 and **add-to-cart** where the source carries them. Unified carries all of these across ad products;
-legacy carries new-to-brand on some Sponsored Brands and Display reports only.
+legacy carries new-to-brand on its Sponsored Brands, Display and TV reports, never Sponsored
+Products.
 
 ## C. Coverage verdict — say this out loud before querying
 
@@ -98,7 +100,7 @@ it is rather than reporting the column as unavailable.
 |---|---|---|
 | The report type or ad product isn't in the dataflow | No search-term rows, no Sponsored Brands rows, no advertised-product rows | Add an Amazon Ads source with that report or ad product to the same dataflow. A dataflow takes unlimited sources |
 | The metric or dimension wasn't picked | The report is there but the column isn't — Unified metrics and dimensions are chosen in the source wizard | Edit the source and add it |
-| The legacy connector doesn't carry it | Legacy Amazon Ads dataset; the ask needs impression share, geography, device, audience segments or DSP | Add an Amazon Ads (Unified) source; the legacy connector has no such column |
+| The legacy connector doesn't carry it | Legacy Amazon Ads dataset; the ask needs impression share or its rank, geography, device, audience segments or DSP | Add an Amazon Ads (Unified) source. Top-of-search share isn't one of these: legacy carries it on the SP Campaign, Placement and Targeting reports and SB Campaign |
 | No Amazon Ads credential | No Amazon Ads source exists in any dataflow | The user connects Amazon Ads. That's a consent step for them, not a dead end |
 
 Say **"not checkable from this data"** — never imply a check ran clean when it didn't run.
@@ -138,7 +140,7 @@ say it can't be judged. Never assume a customer value.
 | What you see | Means | Action |
 |---|---|---|
 | Brands ACOS high, new-to-brand share high | Buying new customers at a price | Judge on cost per new customer, not ACOS |
-| Brands ACOS high, new-to-brand share like Products | Paying more for the same buyers | Cut toward Products |
+| Brands ACOS high, new-to-brand share like Products (only where Products rows carry it; legacy never does) | Paying more for the same buyers | Cut toward Products |
 | Display sales mostly from views | Credit without clicks | Say so; judge on click-based sales too |
 | Branded searches up with upper-funnel spend | Demand being created | Report cost per branded search |
 | Halo share high on one product's ads | The ad sells the range | Keep; say which product it lifts |

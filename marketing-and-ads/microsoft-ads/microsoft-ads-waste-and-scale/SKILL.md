@@ -20,8 +20,6 @@ metadata:
 **Finds the Microsoft Ads spend that isn't earning, proves it's past the point of being early, and
 says where that money should go instead — as one budget-neutral move.**
 
-**Source:** Microsoft Ads (Bing Ads)
-
 Given a search terms export, most analyses name the cheapest cost-per-conversion row and the
 dearest zero-conversion row and stop. Both are usually noise. A search term with no conversions
 isn't waste until it has spent enough that a conversion was due; a keyword with a great cost per
@@ -78,7 +76,8 @@ a different grain — check which report type the rows come from and say so, bec
 keyword and search-query rows look alike and produce different totals.
 
 This skill reads the **Search query performance report** (search query, keyword, bid match type,
-delivered match type), the **Campaign performance report** for impression share, and where present
+delivered match type), the **Campaign performance report with share performance statistics** for
+impression share, and where present
 the **Publisher usage performance report** and the **Negative keyword conflict report**. Shopping
 queries live in the product search query report and belong to `microsoft-ads-shopping-and-product-
 performance`.
@@ -114,9 +113,10 @@ nothing about most of them. Leave the most recent few days out of conversion cou
 settled.
 
 **Rebuild every rate from summed totals** — the average of several rows' cost per conversion is not
-the total's. **Count one conversion basis and say which** — "Conversions" (the goals the account
-counts) and "All conversions" (which adds view-through and cross-device) are different numbers;
-never mix them in one comparison.
+the total's. **Count one conversion basis and say which** — "Conversions" (goals counted for
+bidding) and "All conversions" (which adds goals excluded from bidding) are different numbers;
+never mix them in one comparison. Prefer the `…Qualified` columns where present and name the one
+you used.
 
 **The significance floor.** A query or publisher with no conversions is waste only once it has spent
 at least **twice the cost target** (or, without a target, twice the account's cost per conversion,
@@ -144,8 +144,9 @@ negative,
 check it against every converting query** — a phrase negative on "cheap" blocks "cheap flights to
 Lisbon" if that converts. Show the collision check ran.
 
-**Loose matching is usually the cause.** Where bid match type is exact or phrase but delivered match
-type is broader, Microsoft is matching close variants; where most waste sits on broad keywords,
+**Loose matching is usually the cause.** Where an exact or phrase keyword's search query text
+differs from the keyword text, Microsoft is matching close variants (delivered match type won't show
+it); where most waste sits on broad keywords,
 tightening match type fixes more than a negative list does. Say which.
 
 **Self-blocked demand.** Every row in the negative keyword conflict report is a keyword the account
@@ -158,10 +159,12 @@ misses target, the move is at the campaign's network setting — route to the se
 
 **Scale list.** Campaigns beating target with meaningful impression share lost to budget, and
 keywords beating target inside them. **Never sum or average a share across rows or dates.** Shares
-are ratios. Recover the denominator
-per row first — eligible impressions = `impressions / impression share`, eligible clicks = `clicks /
-click share` — sum those and the numerators, then divide. Quoting a raw average share is the easiest
-way to hand someone a confident wrong number.
+are ratios. Check the scale first
+(0–1 or 0–100) and convert to a fraction; skip rows where the share is empty or 0. Per row:
+eligible impressions = `impressions / impression share`, lost to budget = eligible × lost-to-budget
+share, lost to rank = eligible × lost-to-rank share, eligible clicks = `clicks / click share`. Sum
+each, then divide by summed eligible impressions (or eligible clicks). Quoting a raw average share
+is the easiest way to hand someone a confident wrong number.
 
 **The net move.** Freed spend = confirmed waste only (never too-early rows). Destinations = scale
 campaigns, each up to the spend its lost-to-budget share implies at current click cost. The total

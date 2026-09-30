@@ -20,8 +20,6 @@ metadata:
 **Checks how the Amazon Ads account is set up and organised, and prices every setting and
 structural choice that's costing it money — most expensive first.**
 
-**Source:** Amazon Ads (Unified)
-
 Amazon accounts grow by addition — a campaign per launch, per promotion, per new idea — and the
 structure that results costs money quietly. The same keyword runs in three campaigns and bids
 against itself. Brand terms share a campaign with generic ones, so one budget and one bid serve two
@@ -72,10 +70,13 @@ diagnose the connector.
 Locate the account's Amazon Ads data and **say which dataset you picked, and which connector it
 comes from**. Amazon Ads (Unified) is one custom report across Sponsored Products, Sponsored Brands,
 Sponsored Display, Sponsored TV and DSP, with an ad product column; the older Amazon Ads connector
-is one fixed report per ad product, with the attribution window written into each metric name
-(sales14d, purchases7d). Datasets are often named after the client or the marketplace rather than
-the platform. Say the ad products, marketplaces and grain you have — campaign-per-day, search-term
-and advertised-product rows look alike and produce different totals.
+is one fixed report per ad product. Only its Sponsored Products metrics name the attribution window
+(sales14d, purchases7d); its Brands, Display and TV metrics and every Unified metric don't, so state
+that window from Amazon's documentation or ask. Datasets are often named after the client or the
+marketplace rather than the platform. Say the ad products, marketplaces and grain you have —
+campaign-per-day, search-term and advertised-product rows look alike and produce different totals.
+Unified has no spend column: read the cost column from `get-schema` — Total cost, which may include
+fees on DSP rows.
 
 The audit reads campaign and ad group rows with **bid strategy**, **budget type**, **portfolio**,
 **targeting type** (automatic or manual) and status; **targeting** rows with keyword or target text
@@ -86,7 +87,7 @@ ad group.
 
 | Column present | Live | Absent means |
 |---|---|---|
-| Bid strategy + placement adjustment | Effective top-of-search bid | "Not checkable from this data" |
+| Bid strategy + placement adjustment | Effective top-of-search bid | Adjustments aren't in reporting data; ask for them, else "not checkable from this data" |
 | Targeting text + match type + campaign | Self-competition | "Not checkable from this data" |
 | Search terms or targets + a brand list | Brand and non-brand mixing | Ask for the brand list |
 | Targeting type | Automatic against manual | "Not checkable from this data" |
@@ -102,7 +103,7 @@ it is rather than reporting the column as unavailable.
 |---|---|---|
 | The report type or ad product isn't in the dataflow | No search-term rows, no Sponsored Brands rows, no advertised-product rows | Add an Amazon Ads source with that report or ad product to the same dataflow. A dataflow takes unlimited sources |
 | The metric or dimension wasn't picked | The report is there but the column isn't — Unified metrics and dimensions are chosen in the source wizard | Edit the source and add it |
-| The legacy connector doesn't carry it | Legacy Amazon Ads dataset; the ask needs impression share, geography, device, audience segments or DSP | Add an Amazon Ads (Unified) source; the legacy connector has no such column |
+| The legacy connector doesn't carry it | Legacy Amazon Ads dataset; the ask needs impression share or its rank, geography, device, audience segments or DSP | Add an Amazon Ads (Unified) source. Top-of-search share isn't one of these: legacy carries it on the SP Campaign, Placement and Targeting reports and SB Campaign |
 | No Amazon Ads credential | No Amazon Ads source exists in any dataflow | The user connects Amazon Ads. That's a consent step for them, not a dead end |
 
 Say **"not checkable from this data"** — never imply a check ran clean when it didn't run.
@@ -123,12 +124,11 @@ windows; never compare or add them until the window matches.
 
 ## E. What to conclude — the checks
 
-**1. Effective top-of-search bid.** Under dynamic up and down, Amazon can raise a bid further at the
-top of search, and the placement adjustment multiplies on top. Compute the maximum effective bid at
-the top from the base bid, the strategy's allowance and the adjustment, and compare with what a
+**1. Effective top-of-search bid.** Under dynamic bids up and down, Amazon can raise a bid by up to
+100% (Amazon's dynamic bidding guide, checked 2026-09-30), and the placement adjustment multiplies
+on top: maximum effective bid = base bid × (1 + adjustment) × 2. Compare it with what a
 top-of-search click is worth to the campaign. Where the ceiling is well above that, the combination
-is the defect. Check Amazon's current documentation for the strategy's allowance rather than
-assuming it.
+is the defect.
 
 **2. Self-competition.** The same keyword text at the same match type, or the same ASIN target, live
 in more than one campaign. The account bids against itself and splits the data. Name each, the
@@ -199,7 +199,8 @@ dataset and account timezone.** Deliberate choices aren't flagged again.
 - **A default isn't a defect until it's priced.**
 - **Some duplication is deliberate.** Exact and broad of the same term in different campaigns can be
   a harvest set-up; ask.
-- **Check the strategy's allowance in Amazon's current docs.** It has changed before.
+- **The 100% up-and-down allowance is as of 2026-09-30.** It has changed before; give the date when
+  you quote it.
 - **Judge against the account's own history first.** An industry benchmark is never a target and
   never fills a gap in the data.
 - **Never add Amazon's attributed sales to another platform's.** Each platform claims the same

@@ -20,8 +20,6 @@ metadata:
 agreed,
 with misses explained honestly and next month's plan attached.**
 
-**Source:** Microsoft Ads (Bing Ads)
-
 A client report goes wrong in three ways, and none of them is the chart. It's scored against the
 wrong thing — an industry benchmark standing in for a target nobody set. It covers the wrong scope —
 a second client's account in the same dataflow, or last month's dates. Or it buries the miss, and
@@ -117,9 +115,10 @@ another. One query: the month, the prior month and the same month last year, acc
 level, on the agreed goal.
 
 **Rebuild every rate from summed totals** — the average of several rows' cost per conversion is not
-the total's. **Count one conversion basis and say which** — "Conversions" (the goals the account
-counts) and "All conversions" (which adds view-through and cross-device) are different numbers;
-never mix them in one comparison. Note month lengths — a 28-day month against a 31-day month is a
+the total's. **Count one conversion basis and say which** — "Conversions" (goals counted for
+bidding) and "All conversions" (which adds goals excluded from bidding) are different numbers;
+never mix them in one comparison. Prefer the `…Qualified` columns where present and name the one
+you used. Note month lengths — a 28-day month against a 31-day month is a
 built-in 10% drop in
 totals; compare daily averages where it matters and say so.
 

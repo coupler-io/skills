@@ -20,8 +20,6 @@ metadata:
 **Tells you which Microsoft Ads audiences earn their spend — remarketing, in-market, age and gender,
 and the LinkedIn profile cuts by company, industry and job function — and what bid each deserves.**
 
-**Source:** Microsoft Ads (Bing Ads)
-
 Microsoft Ads is the only search platform that reports performance by LinkedIn profile: the
 company, industry and job function of the person searching. For a B2B account that's the most
 valuable cut in the platform, and it's usually ignored because the rows are sparse and the report
@@ -111,9 +109,10 @@ days — segment rows are thin and a month rarely clears the
 floor.
 
 **Rebuild every rate from summed totals** — the average of several rows' cost per conversion is not
-the total's. **Count one conversion basis and say which** — "Conversions" (the goals the account
-counts) and "All conversions" (which adds view-through and cross-device) are different numbers;
-never mix them in one comparison.
+the total's. **Count one conversion basis and say which** — "Conversions" (goals counted for
+bidding) and "All conversions" (which adds goals excluded from bidding) are different numbers;
+never mix them in one comparison. Prefer the `…Qualified` columns where present and name the one
+you used.
 
 **Volume floor.** Don't give a segment a verdict or an adjustment under about ten conversions or
 under twice the target in spend. Mark it, give the count, move on.

@@ -20,8 +20,6 @@ metadata:
 **Tells you where on Amazon the ads earn — top of search, the rest of search, product pages — how
 much of the top of search the account wins, and what placement adjustments to set.**
 
-**Source:** Amazon Ads (Unified)
-
 A Sponsored Products click at the top of the first search page usually converts better and costs
 more than the same click lower down or on a product page, and the account can bid each placement
 up separately. Most accounts either leave the adjustments at zero or set them once and never
@@ -49,8 +47,9 @@ this data.
 | Warm — dataset already known | coverage verdict (speak) → one combined query = **2** |
 
 **This skill may need more than one dataset** — placement rows and share metrics can sit in
-different reports, and the legacy connector has placement but no share. Add a call for each extra
-dataset the run actually needs, and say so rather than padding the budget in advance.
+different reports, and the legacy connector has top-of-search share but no impression share or rank.
+Add a call for each extra dataset the run actually needs, and say so rather than padding the budget
+in advance.
 
 **Already known is not re-derived.** The dataset, the ACOS target, the brand term list, the timezone
 — if saved context or this conversation has it, use it.
@@ -74,23 +73,27 @@ diagnose the connector.
 Locate the account's Amazon Ads data and **say which dataset you picked, and which connector it
 comes from**. Amazon Ads (Unified) is one custom report across Sponsored Products, Sponsored Brands,
 Sponsored Display, Sponsored TV and DSP, with an ad product column; the older Amazon Ads connector
-is one fixed report per ad product, with the attribution window written into each metric name
-(sales14d, purchases7d). Datasets are often named after the client or the marketplace rather than
-the platform. Say the ad products, marketplaces and grain you have — campaign-per-day, search-term
-and advertised-product rows look alike and produce different totals.
+is one fixed report per ad product. Only its Sponsored Products metrics name the attribution window
+(sales14d, purchases7d); its Brands, Display and TV metrics and every Unified metric don't, so state
+that window from Amazon's documentation or ask. Datasets are often named after the client or the
+marketplace rather than the platform. Say the ad products, marketplaces and grain you have —
+campaign-per-day, search-term and advertised-product rows look alike and produce different totals.
+Unified has no spend column: read the cost column from `get-schema` — Total cost, which may include
+fees on DSP rows.
 
 This skill reads **placement** rows — on legacy, the Placement report for Sponsored Products; on
-Unified, the placement name or classification dimension — and, on Unified only, **impression
-share**, **top-of-search impression share** and **impression share rank**.
+Unified, the placement name or classification dimension — and **top-of-search impression share**
+(legacy SP Campaign, Placement and Targeting reports and SB Campaign, or Unified), plus, on Unified
+only, **impression share** and **impression share rank**.
 
 ## C. Coverage verdict — say this out loud before querying
 
 | Column present | Live | Absent means |
 |---|---|---|
 | Placement + spend + clicks + orders + sales | Placement comparison | "Not checkable from this data" |
-| Current placement adjustment | Change against today | Adjustments proposed from zero |
-| Top-of-search impression share | Share of the top of search | Say share needs the Unified connector |
-| Impression share rank | Position against others | Skip it |
+| Current placement adjustment | Change against today | Not in reporting data; ask for it — never propose from zero |
+| Top-of-search impression share | Share of the top of search | Add it: legacy SP Placement or Campaign report, or Unified |
+| Impression share rank | Position against others | Unified only; skip it |
 | A weekly date | Share slipping over time | Snapshot only |
 
 **A missing column is one of three things, and they have different fixes.** Name which one you think
@@ -100,7 +103,7 @@ it is rather than reporting the column as unavailable.
 |---|---|---|
 | The report type or ad product isn't in the dataflow | No search-term rows, no Sponsored Brands rows, no advertised-product rows | Add an Amazon Ads source with that report or ad product to the same dataflow. A dataflow takes unlimited sources |
 | The metric or dimension wasn't picked | The report is there but the column isn't — Unified metrics and dimensions are chosen in the source wizard | Edit the source and add it |
-| The legacy connector doesn't carry it | Legacy Amazon Ads dataset; the ask needs impression share, geography, device, audience segments or DSP | Add an Amazon Ads (Unified) source; the legacy connector has no such column |
+| The legacy connector doesn't carry it | Legacy Amazon Ads dataset; the ask needs impression share or its rank, geography, device, audience segments or DSP | Add an Amazon Ads (Unified) source. Top-of-search share isn't one of these: legacy carries it on the SP Campaign, Placement and Targeting reports and SB Campaign |
 | No Amazon Ads credential | No Amazon Ads source exists in any dataflow | The user connects Amazon Ads. That's a consent step for them, not a dead end |
 
 Say **"not checkable from this data"** — never imply a check ran clean when it didn't run.
@@ -121,18 +124,21 @@ one attribution window, and either promoted-product sales or all attributed sale
 and click-based or including views. Sponsored Products and Sponsored Brands can report on different
 windows; never compare or add them until the window matches.
 
-**Never average share across rows or dates.** Recover eligible top-of-search impressions per row —
-top-of-search impressions ÷ top-of-search share — sum, then divide. A raw average share is a
-confident wrong number.
+**Never average share across rows or dates.** Weight top-of-search share only with the impressions
+on Top of Search placement rows: those impressions ÷ share gives eligible impressions per row; sum,
+then divide. Without a placement split, report each campaign's share per period unaggregated. Never
+average impression share rank; report the latest value. A raw average share is a confident wrong
+number.
 
 **Volume floor.** No adjustment on a placement under about ten orders in the window.
 
 ## E. What to conclude
 
-**Placement adjustment sizing.** For top of search against the campaign's other placements: revenue
-per click at top ÷ revenue per click elsewhere − 1 is how much more a top click is worth. If the top
-click's cost is below that premium, an adjustment up to it pays; above it, bring it down. Round to
-the nearest 10% and say it's a starting point from the account's own numbers.
+**Placement adjustment sizing.** For top of search against the campaign's other placements: value
+premium = revenue per click at top ÷ revenue per click elsewhere − 1; cost premium = cost per click
+at top ÷ cost per click elsewhere − 1. While the cost premium is below the value premium, raising
+the adjustment pays; above it, bring it down. Round to the nearest 10% and say it's a starting point
+from the account's own numbers.
 
 | What you see | Means | Action |
 |---|---|---|
@@ -195,7 +201,8 @@ the next comparison, **and the dataset and account timezone.**
   Coupler.io dataflow so a check can run — that pulls more of your own data and touches nothing in
   Amazon Ads. Always offered, never silent.
 - **Never name who took the share.** It isn't in this data.
-- **Never average shares.** Recover eligible impressions first.
+- **Never average shares or rank.** Weight share by Top of Search placement impressions, or leave it
+  unaggregated.
 - **Placement adjustments multiply the bid.** Change one, and the effective bid at the top changes
   with it — read them together.
 - **Judge against the account's own history first.** An industry benchmark is never a target and

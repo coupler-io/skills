@@ -20,8 +20,6 @@ metadata:
 moves money on them — which window, which sales, which currency — and where two numbers that look
 alike aren't.**
 
-**Source:** Amazon Ads (Unified)
-
 Amazon doesn't have a tracking tag to break, so its numbers look solid. The problems are
 definitional. Sponsored Products and Sponsored Brands can report on different attribution windows,
 so their ACOS figures aren't comparable. Some sales columns count only the product advertised;
@@ -74,24 +72,28 @@ diagnose the connector.
 Locate the account's Amazon Ads data and **say which dataset you picked, and which connector it
 comes from**. Amazon Ads (Unified) is one custom report across Sponsored Products, Sponsored Brands,
 Sponsored Display, Sponsored TV and DSP, with an ad product column; the older Amazon Ads connector
-is one fixed report per ad product, with the attribution window written into each metric name
-(sales14d, purchases7d). Datasets are often named after the client or the marketplace rather than
-the platform. Say the ad products, marketplaces and grain you have — campaign-per-day, search-term
-and advertised-product rows look alike and produce different totals.
+is one fixed report per ad product. Only its Sponsored Products metrics name the attribution window
+(sales14d, purchases7d); its Brands, Display and TV metrics and every Unified metric don't, so state
+that window from Amazon's documentation or ask. Datasets are often named after the client or the
+marketplace rather than the platform. Say the ad products, marketplaces and grain you have —
+campaign-per-day, search-term and advertised-product rows look alike and produce different totals.
+Unified has no spend column: read the cost column from `get-schema` — Total cost, which may include
+fees on DSP rows.
 
-The audit reads the **schema first** — metric names and labels say which window and sales basis a
-column is — then spend, orders and sales by ad product, marketplace and day. Where an **Amazon
-Seller Central** dataset is connected, it reads total sales by day and marketplace separately.
+The audit reads the **schema first** — metric names and labels say which sales basis a column is,
+and on legacy Sponsored Products its window — then spend, orders and sales by ad product,
+marketplace and day. Where an **Amazon Seller Central** dataset is connected, it reads total sales
+by day and marketplace separately.
 
 ## C. Coverage verdict — say this out loud before querying
 
 | Column present | Live | Absent means |
 |---|---|---|
-| Sales columns with window in the name (legacy) or a stated window (Unified) | Window check | Say the window is unknown and ask |
+| Sales columns with window in the name (legacy Sponsored Products only) | Window check | The window isn't in the data; state it from Amazon's documentation or ask |
 | Promoted, halo, from-clicks, from-views variants | Sales basis check | Say which single column exists and what it probably includes |
 | Marketplace + currency | Currency check | Say marketplaces can't be told apart |
 | Repeated snapshots | Restatement check | "Not checkable from this data" |
-| Seller Central total sales | Ad share of total | "Not checkable from this data" |
+| Seller Central total sales | Ad share of total | Offer to add an Amazon Seller Central source, which needs its own Seller Central credential (Orders report) |
 | Invalid clicks and impressions | Traffic quality | Skip it |
 
 **A missing column is one of three things, and they have different fixes.** Name which one you think
@@ -101,7 +103,7 @@ it is rather than reporting the column as unavailable.
 |---|---|---|
 | The report type or ad product isn't in the dataflow | No search-term rows, no Sponsored Brands rows, no advertised-product rows | Add an Amazon Ads source with that report or ad product to the same dataflow. A dataflow takes unlimited sources |
 | The metric or dimension wasn't picked | The report is there but the column isn't — Unified metrics and dimensions are chosen in the source wizard | Edit the source and add it |
-| The legacy connector doesn't carry it | Legacy Amazon Ads dataset; the ask needs impression share, geography, device, audience segments or DSP | Add an Amazon Ads (Unified) source; the legacy connector has no such column |
+| The legacy connector doesn't carry it | Legacy Amazon Ads dataset; the ask needs impression share or its rank, geography, device, audience segments or DSP | Add an Amazon Ads (Unified) source. Top-of-search share isn't one of these: legacy carries it on the SP Campaign, Placement and Targeting reports and SB Campaign |
 | No Amazon Ads credential | No Amazon Ads source exists in any dataflow | The user connects Amazon Ads. That's a consent step for them, not a dead end |
 
 Say **"not checkable from this data"** — never imply a check ran clean when it didn't run.
@@ -113,9 +115,11 @@ partial, and a partial day makes a healthy account look like it collapsed. Use 6
 
 ## E. What to conclude — six checks
 
-**1. Windows.** List every sales and orders column in use with its window. On legacy, the window is
-in the name — 1, 7, 14 or 30 days. Flag any comparison, total or ranking that mixes windows. The
-fix is picking one window for comparisons; say which each ad product supports.
+**1. Windows.** List every sales and orders column in use with its window. On legacy Sponsored
+Products the window is in the name — 1, 7, 14 or 30 days. Legacy Brands, Display and TV columns and
+all Unified columns carry none; take the window from Amazon's documentation or ask, and say which.
+Flag any comparison, total or ranking that mixes windows. The fix is picking one window for
+comparisons; say which each ad product supports.
 
 **2. Sales basis.** For each ad product, which column is the headline — promoted only, halo
 included, views included. Size the difference: halo included ÷ promoted only, views included ÷

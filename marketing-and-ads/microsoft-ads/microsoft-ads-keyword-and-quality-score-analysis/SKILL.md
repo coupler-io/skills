@@ -20,8 +20,6 @@ metadata:
 **Tells you which Microsoft Ads keywords earn their money, which are paying too much for the same
 clicks, and what to fix to bring the price down.**
 
-**Source:** Microsoft Ads (Bing Ads)
-
 Quality score is the most quoted and least usable number in paid search. An account average of 7
 says nothing, because a low score on a keyword nobody searches costs nothing and a middling score on
 the biggest spender costs a lot. What matters is quality weighted by where the money goes, which of
@@ -93,8 +91,7 @@ performance report**.
 | Quality score | The weighted quality read | Say quality can't be read. The ranking still runs |
 | Expected CTR, ad relevance, landing page experience | Which part is failing | Say the fix can't be pointed |
 | Historical quality score by date | Whether quality moved | Current snapshot only; no trend |
-| Delivered match type | Close-variant share | Say match-type behaviour isn't visible |
-| Search query rows | New keyword candidates | Skip that part and say so |
+| Search query rows | New keyword candidates, close-variant share | Skip both and say so |
 
 **A missing column is one of three things, and they have different fixes.** Name which one you think
 it is rather than reporting the column as unavailable.
@@ -115,9 +112,10 @@ days; quality moves slowly and keyword conversions are
 sparse.
 
 **Rebuild every rate from summed totals** — the average of several rows' cost per conversion is not
-the total's. **Count one conversion basis and say which** — "Conversions" (the goals the account
-counts) and "All conversions" (which adds view-through and cross-device) are different numbers;
-never mix them in one comparison.
+the total's. **Count one conversion basis and say which** — "Conversions" (goals counted for
+bidding) and "All conversions" (which adds goals excluded from bidding) are different numbers;
+never mix them in one comparison. Prefer the `…Qualified` columns where present and name the one
+you used.
 
 **Weight quality by impressions.** Impression-weighted score = Σ(score × impressions) ÷
 Σ(impressions), per campaign and for the account. A flat average lets a hundred keywords nobody
@@ -140,14 +138,14 @@ half the target on two.
 | What you see | Means | Action |
 |---|---|---|
 | Beats target, lost to budget in its campaign | Worth more money | Route to budget pacing to fund the campaign |
-| Beats target, low position | Worth a higher bid | Raise the bid, or the target on automated bidding |
+| Beats target, low top or absolute-top impression rate | Worth a higher bid | Raise the bid, or the target on automated bidding |
 | Misses target, low quality, high click cost | Paying for low quality | Fix the failing part before touching the bid |
 | Misses target, good quality | The traffic doesn't convert | Landing page or offer; or it's waste — route to waste and scale |
 | High spend, no score | Too new or too little traffic | Leave it; give the count |
 
 **What low quality costs.** From the account's own rows, give average click cost by quality band
-(1–4, 5–6, 7–10), clicks-weighted. If low bands pay more for similar positions, that premium times
-their clicks is the price of low quality in this account. It's the account's evidence, not a
+(1–4, 5–6, 7–10), clicks-weighted. If low bands pay more at similar top impression rates, that
+premium times their clicks is the price of low quality in this account. It's the account's evidence, not a
 published rule; say so.
 
 **Point the fix at the failing part.**
@@ -158,8 +156,9 @@ published rule; say so.
 | Ad relevance | The ad group holds keywords with different intents | Split the ad group |
 | Landing page experience | The page doesn't match, or it's slow | A page that answers the query |
 
-**Match type in practice.** For exact and phrase keywords, the share of clicks whose delivered match
-type is broader than bid. For broad keywords, conversion rate against the account's exact keywords.
+**Match type in practice.** For exact and phrase keywords, the share of clicks from Search query
+rows whose query text differs from the keyword text — delivered match type won't show close
+variants. For broad keywords, conversion rate against the account's exact keywords.
 Converting search queries that aren't keywords yet → propose each as an exact keyword in the ad
 group it came from, with the query's own cost per conversion.
 
@@ -181,7 +180,7 @@ denominator beside it. The visual replaces the prose it illustrates; don't say t
 | Keyword ranking | Contribution bars in conversions, cost per conversion beside each, target on the label line |
 | Quality bands | Average click cost by quality band with clicks beside each band |
 | Failing parts | Share of spend below average for each of the three parts |
-| Match type | Bid against delivered match type share for exact and phrase keywords |
+| Match type | Close-variant click share for exact and phrase keywords |
 
 ## G. Offer to build it out
 
@@ -210,6 +209,8 @@ for the next run's comparison, parts found failing, **and the dataset and accoun
   Microsoft Ads. Always offered, never silent.
 - **Never average quality scores unweighted.** It's the most common way to hand someone a
   meaningless number.
+- **Position is top and absolute-top impression rate.** Average position is deprecated and reports
+  zero; never use it.
 - **Brand keywords score high and convert cheaply by nature.** Rank them separately from non-brand.
 - **Small numbers aren't trends.** Under about ten conversions, give the count, not the cost per
   conversion.

@@ -20,8 +20,6 @@ metadata:
 **Tells you whether the Microsoft Ads conversion numbers can be trusted before anyone moves money on
 them — and, where they can't, how much spend the problem touches.**
 
-**Source:** Microsoft Ads (Bing Ads)
-
 Every cost and return figure in the account is only as good as the goals behind it, and nothing in
 the reporting says when a goal broke. A UET goal that stops firing looks like a bad week. Two goals
 counting the same thank-you page look like a great month. An account built with Google Import can
@@ -129,9 +127,10 @@ event goal on the same thank-you page, or a goal imported from Google beside a n
 headline double-counts. Size it: conversions from the duplicate ÷ headline conversions.
 
 **2. How loose the headline is.** All conversions ÷ Conversions, and view-through ÷ Conversions.
-A wide gap means the account can claim buyers who never clicked. If bidding optimises on a goal
-set that includes micro-conversions (page views, scroll, add to cart), cost per conversion is
-flattered — say what the cost per conversion is on the business goal alone.
+All conversions adds goals excluded from bidding, so that gap is those goals; view-through (Audience
+Network only) is buyers who never clicked. Prefer the `…Qualified` columns where present and name
+the one you used. If bidding optimises on a goal set that includes micro-conversions (page views,
+scroll, add to cart), cost per conversion is flattered — say what the cost per conversion is on the business goal alone.
 
 **3. Spend with no tracking.** Campaigns with spend and zero conversions across a window long enough
 that some were due. Report that spend as a share of the account. Separate "no conversions because

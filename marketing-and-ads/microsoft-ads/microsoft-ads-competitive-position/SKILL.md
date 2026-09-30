@@ -21,8 +21,6 @@ metadata:
 it wins, how often it shows at the top, how much of the clicking market it takes — and where
 competitors are pushing it out.**
 
-**Source:** Microsoft Ads (Bing Ads)
-
 "How do we compare to competitors" usually gets answered with an industry benchmark, which says
 nothing about this account's auctions. The account's own position is already in the data: share of
 eligible impressions won, the share lost to budget (the account stepping out itself) against the
@@ -113,11 +111,15 @@ Anchor to the **last complete day in the account's timezone** and name that date
 partial, and a partial day makes a healthy account look like it collapsed. Use at least eight
 complete weeks so slippage has a before and after.
 
-**Never sum or average a share across rows or dates.** Shares are ratios. Recover the denominator
-per row first — eligible impressions = `impressions / impression share`, eligible clicks = `clicks /
-click share` — sum those and the numerators, then divide. Quoting a raw average share is the easiest
-way to hand someone a confident wrong number. For top-of-page share, recover eligible top
-impressions the same way.
+**Never sum or average a share across rows or dates.** Shares are ratios. Check the scale first
+(0–1 or 0–100) and convert to a fraction; skip rows where the share is empty or 0. Per row:
+eligible impressions = `impressions / impression share`, lost to budget = eligible × lost-to-budget
+share, lost to rank = eligible × lost-to-rank share, eligible clicks = `clicks / click share`. Sum
+each, then divide by summed eligible impressions (or eligible clicks). Quoting a raw average share
+is the easiest way to hand someone a confident wrong number. Top impression share: top impressions
+= impressions × top impression rate, eligible top = top impressions ÷ top impression share, then
+the same (absolute top likewise). Top and absolute-top rates are impression-weighted: Σ(impressions
+× rate) ÷ Σ impressions.
 
 **Rate and share are different questions.** *Top impression rate* = of **your** impressions, how
 many showed at the top. *Top impression share* = of **all** top-of-page impressions available, how

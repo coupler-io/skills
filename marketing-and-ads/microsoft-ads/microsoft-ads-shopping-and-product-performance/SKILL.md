@@ -20,8 +20,6 @@ metadata:
 **Tells you which products Microsoft Shopping campaigns make money on, which ones spend without
 selling, which never show at all — and what to change in the product groups.**
 
-**Source:** Microsoft Ads (Bing Ads)
-
 Shopping campaigns report at the campaign level by default, and the campaign total hides the only
 thing that matters: a handful of products earn most of the revenue, a long tail spends a little each
 and sells nothing, and a set of products in the feed never serve at all. Structure makes it worse —
@@ -112,9 +110,10 @@ days, 60 for large catalogues — most products sell
 rarely.
 
 **Rebuild every rate from summed totals** — the average of several rows' cost per conversion is not
-the total's. **Count one conversion basis and say which** — "Conversions" (the goals the account
-counts) and "All conversions" (which adds view-through and cross-device) are different numbers;
-never mix them in one comparison. **Return is summed revenue ÷ summed spend** for any group of
+the total's. **Count one conversion basis and say which** — "Conversions" (goals counted for
+bidding) and "All conversions" (which adds goals excluded from bidding) are different numbers;
+never mix them in one comparison. Prefer the `…Qualified` columns where present and name the one
+you used. **Return is summed revenue ÷ summed spend** for any group of
 products — never the
 average of each product's return.
 

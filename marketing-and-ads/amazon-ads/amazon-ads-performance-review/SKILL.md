@@ -19,8 +19,6 @@ metadata:
 **Tells you what the Amazon Ads account did, why it changed, and what to do about it — with a number
 behind every recommendation.**
 
-**Source:** Amazon Ads (Unified)
-
 The account-level ACOS is the most misleading figure in Amazon Ads. It blends Sponsored Products,
 which catch shoppers already searching, with Sponsored Brands and Display, which reach people
 earlier and on longer attribution windows. It counts halo sales — other products from the brand —
@@ -72,10 +70,13 @@ diagnose the connector.
 Locate the account's Amazon Ads data and **say which dataset you picked, and which connector it
 comes from**. Amazon Ads (Unified) is one custom report across Sponsored Products, Sponsored Brands,
 Sponsored Display, Sponsored TV and DSP, with an ad product column; the older Amazon Ads connector
-is one fixed report per ad product, with the attribution window written into each metric name
-(sales14d, purchases7d). Datasets are often named after the client or the marketplace rather than
-the platform. Say the ad products, marketplaces and grain you have — campaign-per-day, search-term
-and advertised-product rows look alike and produce different totals.
+is one fixed report per ad product. Only its Sponsored Products metrics name the attribution window
+(sales14d, purchases7d); its Brands, Display and TV metrics and every Unified metric don't, so state
+that window from Amazon's documentation or ask. Datasets are often named after the client or the
+marketplace rather than the platform. Say the ad products, marketplaces and grain you have —
+campaign-per-day, search-term and advertised-product rows look alike and produce different totals.
+Unified has no spend column: read the cost column from `get-schema` — Total cost, which may include
+fees on DSP rows.
 
 A review runs at campaign-per-day grain: on Unified, the custom report with ad product, campaign
 and date; on legacy, the Campaign report for each ad product the account runs.
@@ -98,7 +99,7 @@ it is rather than reporting the column as unavailable.
 |---|---|---|
 | The report type or ad product isn't in the dataflow | No search-term rows, no Sponsored Brands rows, no advertised-product rows | Add an Amazon Ads source with that report or ad product to the same dataflow. A dataflow takes unlimited sources |
 | The metric or dimension wasn't picked | The report is there but the column isn't — Unified metrics and dimensions are chosen in the source wizard | Edit the source and add it |
-| The legacy connector doesn't carry it | Legacy Amazon Ads dataset; the ask needs impression share, geography, device, audience segments or DSP | Add an Amazon Ads (Unified) source; the legacy connector has no such column |
+| The legacy connector doesn't carry it | Legacy Amazon Ads dataset; the ask needs impression share or its rank, geography, device, audience segments or DSP | Add an Amazon Ads (Unified) source. Top-of-search share isn't one of these: legacy carries it on the SP Campaign, Placement and Targeting reports and SB Campaign |
 | No Amazon Ads credential | No Amazon Ads source exists in any dataflow | The user connects Amazon Ads. That's a consent step for them, not a dead end |
 
 Say **"not checkable from this data"** — never imply a check ran clean when it didn't run.
@@ -207,8 +208,9 @@ sibling reads this.
 - **Read-only means your ad account.** It may, with your agreement, add a report source to your
   Coupler.io dataflow so a check can run — that pulls more of your own data and touches nothing in
   Amazon Ads. Always offered, never silent.
-- **Attributed sales aren't total sales.** Share of total sales, and TACoS, need Seller Central data
-  beside this; don't estimate them.
+- **Attributed sales aren't total sales.** Share of total sales, and TACoS, need an Amazon Seller
+  Central source, which needs its own Seller Central credential (Orders report) — offer it; don't
+  estimate them.
 - **Small numbers aren't trends.** Under about ten orders, give counts.
 - **Sharp one-day breaks are settings or stock, not markets.** Ask what changed.
 - **Judge against the account's own history first.** An industry benchmark is never a target and

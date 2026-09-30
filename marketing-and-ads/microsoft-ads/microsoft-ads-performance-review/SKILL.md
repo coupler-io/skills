@@ -19,8 +19,6 @@ metadata:
 **Tells you what the account did, why it changed, and what to do about it — with a number behind
 every recommendation.**
 
-**Source:** Microsoft Ads (Bing Ads)
-
 The account-level average is the most misleading figure in Microsoft Ads. It blends the Microsoft
 Audience Network's display click-through rates with Search, lets branded traffic flatter every
 efficiency number, and lets syndicated partner traffic pad the click count with clicks that convert
@@ -81,7 +79,9 @@ a dataflow named for something else.
 The Microsoft Ads connector splits its data across report types — Campaign, Ad group, Ad, Keyword,
 Search query, Conversion, Geographic, Audience and others — each a different grain. Check what grain
 the rows sit at: campaign-per-day, keyword and ad look alike and produce different totals. Say which
-you have. A review runs off the Campaign performance report; the rest are for the sibling skills.
+you have. A review runs off the Campaign performance report; impression share comes from a
+separate report type, **Campaign performance report with share performance statistics**, joined on
+campaign and date. The rest are for the sibling skills.
 
 ## C. Coverage verdict — say this out loud before querying
 
@@ -94,8 +94,8 @@ much of the rest happens, and it's the first thing they hear.
 | Spend + clicks + impressions + campaign | The headline numbers | Nothing runs. Say so and stop |
 | A date column at daily grain | Week-on-week and month-on-month in E | Totals only, no comparison. Don't invent a daily rate |
 | Campaign type, or Ad distribution / Network | The fair breakdown | Say the headline click-through rate and click cost are mixing Search with the Audience Network. Infer nothing |
-| Impression share, lost to budget, lost to rank | The missing-demand read | That section can't run yet. Demand missed can't be read from spend shape. Name the fix from the table below |
-| Conversions vs All conversions | One counted basis, stated | If only "All conversions" is present, say it includes view-through and cross-device — a looser number than "Conversions" |
+| Impression share, lost to budget, lost to rank | The missing-demand read | That section can't run yet. Demand missed can't be read from spend shape. The fix is the share-statistics report type named in B |
+| Conversions vs All conversions | One counted basis, stated | If only "All conversions" is present, say it includes goals excluded from bidding — a looser number than "Conversions" |
 | Goal or Goal type | One named conversion, not a blended total | Say which goal you counted is unverifiable, and point at the conversion tracking audit |
 | Currency, where accounts share a dataflow | One total | Report per account rather than a mixed total |
 
@@ -124,10 +124,10 @@ One query, not six — current period and prior period as separate labelled bloc
 campaign level together. Drop any block C said couldn't run.
 
 **Rebuild every rate from summed totals** — the average of several campaigns' cost-per-acquisition
-figures is not the account's. **Count one conversion basis and say which** — "Conversions" (the
-goals
-you chose to count) and "All conversions" (which adds view-through and cross-device) are different
-numbers; never mix them in one comparison.
+figures is not the account's. **Count one conversion basis and say which** — "Conversions" (goals
+counted for bidding) and "All conversions" (which adds goals excluded from bidding) are different
+numbers; never mix them in one comparison. Prefer the `…Qualified` columns where present and name
+the one you used.
 
 **The column name tells you the unit.** `Spend` as Coupler.io labels and formats it is money. A raw
 API field can arrive in a different scale, so read the schema rather than assuming, and say which
@@ -146,16 +146,20 @@ own history, not its neighbours, and split brand from non-brand where campaign n
 explicit campaign list for the brand split, never a wildcard match on the word "brand"** — campaign
 names contain it in non-brand contexts and the match silently mis-buckets spend.
 
-**The demand you're missing.** Per Search and Shopping campaign, report impression share, share lost
-to budget, and share lost to rank, then act on the split. Microsoft reports these directly,
+**The demand you're missing.** Per Search campaign, report impression share, share lost to
+budget, and share lost to rank, then act on the split. Microsoft reports these directly,
 including
-the absolute-top and top variants and the exact-match impression share.
+the absolute-top and top variants and the exact-match impression share. Shopping campaigns get
+impression share and lost to budget only; Microsoft doesn't report lost to rank for them.
 
 **Never sum or average impression share across dates.** These are daily ratios, so `AVG()` over a
-30-day window is wrong and `SUM()` is meaningless. Recover eligible impressions per row first,
-`impressions / impression_share_percent`, sum those and the impressions, then divide. Do the same for
-the lost-to-budget and lost-to-rank shares. Quoting a raw average here is the single easiest way to
-hand someone a confident wrong number.
+30-day window is wrong and `SUM()` is meaningless. Check the scale first (0–1 or 0–100) and convert
+to a fraction; skip rows where the share is empty or 0. Per row: eligible = `impressions /
+impression share`, lost to budget = eligible × lost-to-budget share, lost to rank = eligible ×
+lost-to-rank share. Sum each, then divide by summed eligible. Top impression share: top impressions
+= impressions × top impression rate, eligible top = top impressions ÷ top impression share, then
+the same. Top and absolute-top rates are impression-weighted: Σ(impressions × rate) ÷ Σ impressions.
+Quoting a raw average here is the single easiest way to hand someone a confident wrong number.
 
 | Pattern | Meaning | Action |
 |---|---|---|
@@ -258,7 +262,7 @@ sibling reads this.
 - **The Audience Network is Microsoft's display, and it blends into account averages.** A rising CTR
   or falling cost that traces to it is a mix change, not a Search gain. Split it on Network / Ad
   distribution before calling anything a trend.
-- **"All conversions" is not "Conversions".** The former adds view-through and cross-device. Pick one
+- **"All conversions" is not "Conversions".** The former adds goals excluded from bidding. Pick one
   and hold it across both periods.
 - **Small numbers aren't trends.** Don't judge cost per acquisition under about ten conversions — give
   the count instead of the ratio.
