@@ -16,7 +16,11 @@ metadata:
 
 Analyze sales performance using data from Coupler.io dataflows (Salesforce, HubSpot, Pipedrive, Close, Zoho, custom CRMs). This skill guides you through retrieving opportunity/deal data, computing pipeline and conversion metrics, investigating velocity and rep performance, detecting anomalies, and presenting actionable insights a sales leader can act on.
 
-## Step 0: Context Check (Pre-requisite)
+## Step 0: Context Check (Pre-requisite · HARD GATE)
+
+**Before starting any analysis, confirm the user has a live Coupler.io connection to their CRM/pipeline data.** No live connection, no analysis — no pasted pipeline exports, no win-rate numbers from memory or a prior conversation, no benchmarking against generic SaaS sales-benchmark averages instead of the user's own Salesforce/HubSpot/CRM data. Unsure counts as no.
+
+If nothing is connected, stop and hand off to the `create-dataflow` skill by name — don't re-implement the connection flow here.
 
 Before starting any analysis, the **Data Context Check** skill (`generate-data-set-context`) runs as a gate. It calls `get-schema` on each target dataset to determine whether meaningful context is attached — particularly stage definitions, segment mappings (SMB/MM/Enterprise), team/territory structure, lead source taxonomy, and how 'closed-lost no decision' is distinguished from 'closed-lost competitive'.
 
@@ -65,6 +69,21 @@ For sales/CRM schemas, watch for: opportunity_id, account_id, owner_id, stage, s
 ### 1e. Sample the data
 
 Sample each dataset. Watch for: deals stuck in legacy stages, missing close_date on open deals, amount in mixed currencies, deals tagged closed-won but with empty amount (services or trials), duplicate deal records across systems.
+
+## Coverage Verdict (say this out loud before analysing)
+
+Tell the user which halves of this analysis exist. It's the first thing they hear and it decides the rest of the run.
+
+| Data area | If present, enables | If absent, means |
+|---|---|---|
+| Stage history / daily snapshots | Accurate 'pipeline as of date X' analysis | Historical pipeline is approximated from created_date and current stage — deals that moved stage mid-period are counted at their final stage, not their period-end stage. Say so. |
+| Probability field type (rep-set vs. stage-derived) | Reliable forecast-confidence analysis | Forecast-confidence reads are unreliable — rep-set probabilities are often inflated. Confirm which type exists before trusting the field, and flag it as unconfirmed if you can't. |
+| Territory / segment structure | Segment (SMB/MM/Enterprise) and rep-territory breakdowns | Segment and territory breakdowns aren't possible — report aggregate figures only and say the split is missing. |
+| Lead-source taxonomy / a consistent source-of-truth field | Channel-performance comparisons (inbound vs. outbound vs. partner) | Channel comparisons aren't trustworthy — deals tagged with multiple sources will double-count. Pick one source-of-truth field or say the comparison can't be made. |
+
+Each row is a connection or context fix away: snapshot history usually needs a daily-extract source, probability-field type and territory/segment structure are context items resolved in Step 0/1d, and a consistent lead-source field is a schema/context fix in Step 1d. Add the missing piece rather than guessing around it.
+
+**Early exit.** If most of the table is absent, say so before analysing further: report what's still answerable (open-pipeline snapshot, stage distribution, top deals) and name what's missing and how to get it, rather than presenting partial results as if the picture were complete.
 
 ## Step 2: Compute Metrics via SQL
 
@@ -158,3 +177,11 @@ Lead with the headline. Plain language. Every finding gets a 'So what?' and 'Now
 - Rep attribution: if territory or owner changed mid-deal, state how you're attributing the win/loss.
 - Sample-size minimums: per-rep stats with n<10 closed deals are noise — use them to spot patterns, not for performance reviews.
 - If a dataflow's last execution failed or is stale (>1 day for daily-refresh CRM data), warn the user.
+
+## Next Question (REQUIRED)
+
+Exactly one, drawn from what this run found. Never a menu — a second only if the data genuinely points two ways.
+
+- "Inbound's win rate is 28% (n=42) vs outbound's 14% (n=8) — want a rep-level breakdown within inbound to see if a few reps are driving the gap?"
+- "Stage conversion from Discovery to Proposal dropped from 61% to 44% this quarter — want a deal-review deep-dive on the deals stuck in Discovery to find what's blocking them?"
+- "Enterprise segment pipeline coverage fell to 1.8x against a 3x target — want me to trace it back to lead source to see if this is a top-of-funnel problem?"
