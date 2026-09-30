@@ -57,6 +57,8 @@ The mirror image of defect 2, and easier to miss because the text reads helpfull
 
 The same applies to recommending a connector or report type. One at `access.level: dev` or behind a `feature_flag` is invisible to most accounts, so a fix that tells the user to add it is a fix they cannot perform. Name the generally available option first and mark the gated one as available only where enabled.
 
+A conditional fix must say how the assistant can tell whether the condition holds. "Offer it only where it is available" with no observable test gets guessed.
+
 ### 4. Non-additive metrics aggregated
 
 Ratio metrics and de-duplicated counts cannot be summed or averaged across rows:
@@ -101,12 +103,15 @@ Look for "see the documentation", "ask", or an unsized "recent", "some" or "a fe
 |---|---|
 | `name` | Exactly the folder slug, which is also how siblings cross-reference it |
 | `metadata.category` | One of the categories already in `skills-index.json`, not a new invention |
-| `metadata.sources` | The integration's `name` from `get-integration`, verbatim, or `[]` for connector-agnostic skills |
+| `metadata.sources` | The integration's `name` from `get-integration`, verbatim, for every connector the body handles, or `[]` for connector-agnostic skills. The Skills page filters on exact match, so a missing connector hides the skill from its users |
 | `metadata.version` | `1.0.0` for a new skill. Do not adopt a sibling's version to look consistent |
+| Body of a domain skill | No MCP tool names. Describe the action ("read the schema"), because the same skill runs in clients whose tools differ. Capability skills are exempt |
 
 ### 11. Cross-references that do not resolve
 
 Every `` `skill-name` `` in prose or a Related-skills table must match a real folder. Check across the whole repo, not just the pack — capability skills are referenced from domain skills by bare name.
+
+A handoff to another skill must read as one: say to load it and what to run in it, not just "compose" its name. If the skill lives in a different plugin, the handoff has to survive it not being installed.
 
 ### 12. Registration and merge mechanics
 
