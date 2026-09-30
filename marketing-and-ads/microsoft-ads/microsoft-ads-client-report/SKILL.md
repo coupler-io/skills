@@ -17,8 +17,7 @@ metadata:
 # Microsoft Ads Client Report
 
 **Writes the monthly Microsoft Ads report a client can read — scored against the targets they
-agreed,
-with misses explained honestly and next month's plan attached.**
+agreed, with misses explained honestly and next month's plan attached.**
 
 A client report goes wrong in three ways, and none of them is the chart. It's scored against the
 wrong thing — an industry benchmark standing in for a target nobody set. It covers the wrong scope —
@@ -90,7 +89,7 @@ it is rather than reporting the column as unavailable.
 | Why it's missing | How you can tell | The fix |
 |---|---|---|
 | The report type isn't in the dataflow | Nothing at that grain exists anywhere in the workspace | Add a Microsoft Ads source with that report type to the same dataflow. A dataflow takes unlimited sources |
-| No packaged report type carries it in the shape you need | The report type is there but the column isn't, or it's a field combination no packaged report groups that way | The Custom report type, which picks exact metrics and dimensions. Reconfigure the source; don't hand-stitch it downstream |
+| No packaged report type carries it in the shape you need | The report type is there but the column isn't, or it's a field combination no packaged report groups that way | The Custom report type, which picks exact metrics and dimensions. Add it as a new source — changing an existing source's report type relabels its columns and breaks SQL built on it; don't hand-stitch it downstream |
 | No Microsoft Ads credential | Data reaches Coupler.io through a warehouse or another connector, and no Microsoft Ads source exists | The user connects Microsoft Ads. That's a consent step for them, not a dead end |
 
 Say **"not checkable from this data"** — never imply a check ran clean when it didn't run.
@@ -213,8 +212,7 @@ month doesn't re-ask the KPIs.
 ## Next Question (REQUIRED)
 
 Exactly one, drawn from what this run found. Never a menu. Where the offer fired, it rides along as
-a
-second clause in the same block.
+a second clause in the same block.
 
 - Cost per lead missed target by 18%, almost all from two non-brand campaigns whose click costs rose
   — want me to add a costed fix for those two to next month's plan?

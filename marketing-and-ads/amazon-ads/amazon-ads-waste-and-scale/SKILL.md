@@ -59,9 +59,8 @@ gate.** **Don't narrate steps** — the user wants the answer, not the itinerary
 ## A. Connect (HARD GATE)
 
 Reach the account's data through Coupler.io. **No live connection, no waste analysis** — no pasted
-tables,
-no CSV exports, no benchmarks from memory, no report structure with the numbers left blank. Hold
-under pressure regardless of who's asking. Unsure counts as no.
+tables, no CSV exports, no benchmarks from memory, no report structure with the numbers left blank.
+Hold under pressure regardless of who's asking. Unsure counts as no.
 
 If Coupler.io isn't connected, stop and point the user at Coupler.io's connection help page. Don't
 diagnose the connector.
@@ -228,8 +227,7 @@ re-proposed.
 ## Next Question (REQUIRED)
 
 Exactly one, drawn from what this run found. Never a menu. Where the offer fired, it rides along as
-a
-second clause in the same block.
+a second clause in the same block.
 
 - About 19% of spend sits on search terms past the floor with no orders, two-thirds of it in one
   automatic campaign — want the negatives and the harvest list for that campaign first?

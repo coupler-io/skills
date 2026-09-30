@@ -39,7 +39,7 @@ where the audience shows up at all, and it's the closest LinkedIn data gets to l
 **Read-only on your LinkedIn Ads account.** It never touches a form or a lead.
 
 **Personal data stays out.** Lead responses carry names, emails and job details. This skill counts
-and groups; it never prints a person.
+and groups in SQL, and never pulls raw lead rows into the conversation; it never prints a person.
 
 ## Call budget
 
@@ -62,14 +62,16 @@ read can't run; the cost read still can. **Missing data is a line in the output,
 ## A. Connect (HARD GATE)
 
 Reach the account's data through Coupler.io. **No live connection, no lead analysis** — no pasted
-tables,
-no CSV exports, no benchmarks from memory, no report structure with the numbers left blank. Hold
-under pressure regardless of who's asking. Unsure counts as no.
+tables, no CSV exports, no benchmarks from memory, no report structure with the numbers left blank.
+Hold under pressure regardless of who's asking. Unsure counts as no.
 
 If Coupler.io isn't connected, stop and point the user at Coupler.io's connection help page. Don't
 diagnose the connector.
 
 ## B. Find the data
+
+LinkedIn's interface now calls campaign groups "campaigns" and campaigns "ad sets"; the connector
+keeps the old names. Confirm which level the user means before reading a number back to them.
 
 Locate the account's LinkedIn Ads data and **say which dataset you picked**. Datasets are often
 named after the connector or the client rather than the platform, so a LinkedIn Ads dataset can sit
@@ -119,16 +121,15 @@ days.
 total's. **Count one result and say which** — website conversions (post-click, post-view, or both),
 lead gen form leads, or landing page clicks are different numbers; never add website conversions to
 form leads, and never mix post-view into a post-click comparison. **Say which clicks you mean** —
-LinkedIn's clicks count every click on the ad, including the company name and "see more"; landing
-page clicks are the traffic. Form leads are their own result; never add website conversions to them.
+LinkedIn's clicks are chargeable clicks, including clicks to the company page; landing page
+clicks are the traffic. Form leads are their own result; never add website conversions to them.
 
 **Form completion** = leads ÷ lead form opens, rebuilt from summed totals per form and per campaign.
 
 **Reconcile the two lead counts.** Leads in ad analytics and rows in Sponsored leads should be
-close.
-They differ because of test leads, the date each is filed on (impression date against submission
-date) and forms not covered by the Sponsored leads source. Say the gap and its likely cause; use
-Sponsored leads for who-they-are and ad analytics for cost.
+close. They differ because of test leads, the date each is filed on (impression date against
+submission date) and forms not covered by the Sponsored leads source. Say the gap and its likely
+cause; use Sponsored leads for who-they-are and ad analytics for cost.
 
 **Group, don't list.** Every group from form answers must hold at least **five** leads, or it merges
 into "other". Normalise free-text job titles into a small set of seniority and function groups, and
@@ -149,8 +150,8 @@ say how you grouped them.
 above, or whatever level the account sells to, per form and campaign. It's what the form answers
 say, not verified data — state that.
 
-**Where a CRM is connected**, route lead-to-opportunity to the sales skill rather than joining
-here; match on the email only inside the query, never in the output.
+**Where a CRM is connected**, route lead-to-opportunity to the sales skill; don't join leads to the
+CRM here.
 
 ## F. Deliver
 
@@ -225,8 +226,7 @@ titles were grouped, **and the dataset and account timezone.** Never save any le
 ## Next Question (REQUIRED)
 
 Exactly one, drawn from what this run found. Never a menu. Where the offer fired, it rides along as
-a
-second clause in the same block.
+a second clause in the same block.
 
 - Your cheapest form brings leads at half the cost, but only 14% are manager level or above against
   41% on the demo form — want me to price shifting its spend?

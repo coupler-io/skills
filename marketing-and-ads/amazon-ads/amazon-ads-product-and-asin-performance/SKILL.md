@@ -59,9 +59,8 @@ narrate steps** — the user wants the answer, not the itinerary.
 ## A. Connect (HARD GATE)
 
 Reach the account's data through Coupler.io. **No live connection, no product analysis** — no pasted
-tables,
-no CSV exports, no benchmarks from memory, no report structure with the numbers left blank. Hold
-under pressure regardless of who's asking. Unsure counts as no.
+tables, no CSV exports, no benchmarks from memory, no report structure with the numbers left blank.
+Hold under pressure regardless of who's asking. Unsure counts as no.
 
 If Coupler.io isn't connected, stop and point the user at Coupler.io's connection help page. Don't
 diagnose the connector.
@@ -82,7 +81,7 @@ fees on DSP rows.
 This skill reads **advertised product** rows (ASIN, SKU, spend, clicks, orders, sales, promoted and
 halo sales) and **purchased product** rows (the ASIN bought after an ad click, when it differs from
 the one advertised). On Unified, the advertised product and converted product dimensions; on
-legacy, the Advertised products and Purchased product reports per ad product.
+legacy, the SP and SD advertised product reports and the SP, SB and SD purchased product reports.
 
 ## C. Coverage verdict — say this out loud before querying
 
@@ -117,9 +116,8 @@ Say **"not checkable from this data"** — never imply a check ran clean when it
 Anchor to the **last complete day in the account's timezone** and name that date. Today is always
 partial, and a partial day makes a healthy account look like it collapsed. Use at least 30 complete
 days. **Recent days understate sales.** Amazon keeps attributing purchases to a click for days
-afterwards,
-and sales are gross ordered sales — before returns and cancellations. Leave the most recent days out
-of sales comparisons, or label them as still filling in, and say which.
+afterwards, and sales are gross ordered sales — before returns and cancellations. Leave the most
+recent days out of sales comparisons, or label them as still filling in, and say which.
 
 **Rebuild every rate from summed totals** — ACOS is summed spend ÷ summed sales, never the average
 of campaign ACOS figures. **Say whether you quote ACOS (spend ÷ sales, lower is better) or ROAS
@@ -217,8 +215,7 @@ ACOS target, **and the dataset and account timezone.**
 ## Next Question (REQUIRED)
 
 Exactly one, drawn from what this run found. Never a menu. Where the offer fired, it rides along as
-a
-second clause in the same block.
+a second clause in the same block.
 
 - Your top product's conversion rate halved on the 9th with click cost flat — that's the listing,
   not the ads. Want me to see whether its ad spend kept running while it wasn't selling?

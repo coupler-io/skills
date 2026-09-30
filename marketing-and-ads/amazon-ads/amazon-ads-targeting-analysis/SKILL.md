@@ -110,9 +110,8 @@ Say **"not checkable from this data"** — never imply a check ran clean when it
 Anchor to the **last complete day in the account's timezone** and name that date. Today is always
 partial, and a partial day makes a healthy account look like it collapsed. Use 30 to 60 complete
 days. **Recent days understate sales.** Amazon keeps attributing purchases to a click for days
-afterwards,
-and sales are gross ordered sales — before returns and cancellations. Leave the most recent days out
-of sales comparisons, or label them as still filling in, and say which.
+afterwards, and sales are gross ordered sales — before returns and cancellations. Leave the most
+recent days out of sales comparisons, or label them as still filling in, and say which.
 
 **Rebuild every rate from summed totals** — ACOS is summed spend ÷ summed sales, never the average
 of campaign ACOS figures. **Say whether you quote ACOS (spend ÷ sales, lower is better) or ROAS
@@ -225,8 +224,7 @@ list, **and the dataset and account timezone.**
 ## Next Question (REQUIRED)
 
 Exactly one, drawn from what this run found. Never a menu. Where the offer fired, it rides along as
-a
-second clause in the same block.
+a second clause in the same block.
 
 - Twelve exact keywords beat your ACOS target on bids well under what a click is worth to them —
   want the bid change list?

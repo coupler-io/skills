@@ -105,7 +105,7 @@ it is rather than reporting the column as unavailable.
 | Why it's missing | How you can tell | The fix |
 |---|---|---|
 | The report type isn't in the dataflow | Nothing at that grain exists anywhere in the workspace | Add a Microsoft Ads source with that report type to the same dataflow. A dataflow takes unlimited sources |
-| No packaged report type carries it in the shape you need | The report type is there but the column isn't, or it's a field combination no packaged report groups that way | The Custom report type, which picks exact metrics and dimensions. Reconfigure the source; don't hand-stitch it downstream |
+| No packaged report type carries it in the shape you need | The report type is there but the column isn't, or it's a field combination no packaged report groups that way | The Custom report type, which picks exact metrics and dimensions. Add it as a new source — changing an existing source's report type relabels its columns and breaks SQL built on it; don't hand-stitch it downstream |
 | No Microsoft Ads credential | Data reaches Coupler.io through a warehouse or another connector, and no Microsoft Ads source exists | The user connects Microsoft Ads. That's a consent step for them, not a dead end |
 
 Say **"not checkable from this data"** — never imply a check ran clean when it didn't run.
@@ -140,9 +140,9 @@ campaign has quietly shrunk it — price the lost reach as the campaign's impres
 against its prior period.
 
 **4. Bid strategy against conversion volume.** Campaigns on Target CPA, Target ROAS or Maximize
-conversions with few conversions in 30 days. Compare each against Microsoft's current published
-minimum for that strategy — check the figure; it changes — and flag those below it with their
-spend.
+conversions with few conversions in 30 days. These strategies stop optimising below 30
+conversions in 30 days (Microsoft budget and bid strategies guide); flag campaigns below it with
+their spend.
 
 **5. Budgets.** Campaigns capped daily by a shared budget their siblings drain. Route sizing to
 budget pacing; here just flag it.
@@ -226,8 +226,7 @@ account timezone.** Deliberate settings aren't flagged again.
 ## Next Question (REQUIRED)
 
 Exactly one, drawn from what this run found. Never a menu. Where the offer fired, it rides along as
-a
-second clause in the same block.
+a second clause in the same block.
 
 - Syndicated partners took 22% of Search spend at nearly twice your target cost per conversion —
   want me to break that down by publisher before you switch the setting off?

@@ -76,10 +76,9 @@ Unified has no spend column: read the cost column from `get-schema` — Total co
 fees on DSP rows.
 
 The report reads spend, orders and sales by ad product and campaign at daily grain, for the
-reporting month, the
-month before and, where present, the same month last year. Where several clients' accounts share a
-dataflow, filter to the client's advertiser accounts and marketplaces explicitly — never by name
-match.
+reporting month, the month before and, where present, the same month last year. Where several
+clients' accounts share a dataflow, filter to the client's advertiser accounts and marketplaces
+explicitly — never by name match.
 
 ## C. Coverage verdict — say this out loud before querying
 
@@ -190,8 +189,7 @@ client file or deck when it's going out as an attachment.
 ## I. Save what you learned
 
 Write back: the client's KPIs and targets, the accounts in scope by ID, the sales basis and window,
-the
-report shape and any wording the client prefers, **and the dataset and account timezone.** Next
+the report shape and any wording the client prefers, **and the dataset and account timezone.** Next
 month doesn't re-ask the KPIs.
 
 ## Rules & Edge Cases
@@ -228,8 +226,7 @@ month doesn't re-ask the KPIs.
 ## Next Question (REQUIRED)
 
 Exactly one, drawn from what this run found. Never a menu. Where the offer fired, it rides along as
-a
-second clause in the same block.
+a second clause in the same block.
 
 - ACOS missed target by 4 points, almost all from one product whose conversion rate fell after a
   price change — want me to add a costed fix for it to next month's plan?

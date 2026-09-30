@@ -63,6 +63,9 @@ diagnose the connector.
 
 ## B. Find the data
 
+LinkedIn's interface now calls campaign groups "campaigns" and campaigns "ad sets"; the connector
+keeps the old names. Confirm which level the user means before reading a number back to them.
+
 Locate the account's LinkedIn Ads data and **say which dataset you picked**. Datasets are often
 named after the connector or the client rather than the platform, so a LinkedIn Ads dataset can sit
 inside a dataflow named for something else. If the dataset has a source or platform column holding
@@ -123,8 +126,8 @@ level, on the agreed result.
 total's. **Count one result and say which** — website conversions (post-click, post-view, or both),
 lead gen form leads, or landing page clicks are different numbers; never add website conversions to
 form leads, and never mix post-view into a post-click comparison. **Say which clicks you mean** —
-LinkedIn's clicks count every click on the ad, including the company name and "see more"; landing
-page clicks are the traffic. Note month lengths — a 28-day month against a 31-day month is a built-
+LinkedIn's clicks are chargeable clicks, including clicks to the company page; landing page
+clicks are the traffic. Note month lengths — a 28-day month against a 31-day month is a built-
 in 10% drop in
 totals; compare daily averages where it matters and say so.
 
@@ -148,11 +151,10 @@ found in the data, what is already being done, and when the client should see it
 cost per thousand impressions.
 
 **LinkedIn-specific context a client needs**, stated only when it's true in this account: clicks
-cost
-more than on other platforms, so monthly result counts are small and swing; "clicks" include
+cost more than on other platforms, so monthly result counts are small and swing; "clicks" include
 engagement, so report landing page clicks as traffic; form leads and website conversions are
-different results and are reported separately; high frequency on a small audience explains a
-rising cost per result better than "the market".
+different results and are reported separately; high frequency on a small audience explains a rising
+cost per result better than "the market".
 
 ## G. Deliver
 
@@ -206,8 +208,8 @@ month doesn't re-ask the KPIs.
   the Coupler wizard; name exactly which ones.
 - **Delivery by job title, seniority, industry or company size isn't in this connector.** If the
   client asks, point at Campaign Manager's demographics report; for lead gen campaigns, the leads'
-  seniority mix comes from Sponsored leads form answers via `linkedin-ads-lead-gen-form-performance`.
-  Never estimate either.
+  seniority mix comes from Sponsored leads form answers via
+  `linkedin-ads-lead-gen-form-performance`. Never estimate either.
 - **A miss is never hidden or softened into a win.** It's reported with its target bar.
 - **No benchmark stands in for a target.** Without targets, the comparison is last month, labelled.
 - **Small numbers aren't trends.** Under about ten conversions, report counts, not cost per
@@ -235,8 +237,7 @@ month doesn't re-ask the KPIs.
 ## Next Question (REQUIRED)
 
 Exactly one, drawn from what this run found. Never a menu. Where the offer fired, it rides along as
-a
-second clause in the same block.
+a second clause in the same block.
 
 - Cost per lead missed target by 18%, almost all from two campaigns whose frequency passed 6 — want
   me to add a costed fix for those two to next month's plan?

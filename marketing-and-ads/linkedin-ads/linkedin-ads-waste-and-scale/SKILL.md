@@ -58,14 +58,16 @@ steps** — the user wants the answer, not the itinerary.
 ## A. Connect (HARD GATE)
 
 Reach the account's data through Coupler.io. **No live connection, no waste analysis** — no pasted
-tables,
-no CSV exports, no benchmarks from memory, no report structure with the numbers left blank. Hold
-under pressure regardless of who's asking. Unsure counts as no.
+tables, no CSV exports, no benchmarks from memory, no report structure with the numbers left blank.
+Hold under pressure regardless of who's asking. Unsure counts as no.
 
 If Coupler.io isn't connected, stop and point the user at Coupler.io's connection help page. Don't
 diagnose the connector.
 
 ## B. Find the data
+
+LinkedIn's interface now calls campaign groups "campaigns" and campaigns "ad sets"; the connector
+keeps the old names. Confirm which level the user means before reading a number back to them.
 
 Locate the account's LinkedIn Ads data and **say which dataset you picked**. Datasets are often
 named after the connector or the client rather than the platform, so a LinkedIn Ads dataset can sit
@@ -116,8 +118,8 @@ low. Leave the most recent few days out of result counts; they haven't settled.
 total's. **Count one result and say which** — website conversions (post-click, post-view, or both),
 lead gen form leads, or landing page clicks are different numbers; never add website conversions to
 form leads, and never mix post-view into a post-click comparison. **Say which clicks you mean** —
-LinkedIn's clicks count every click on the ad, including the company name and "see more"; landing
-page clicks are the traffic.
+LinkedIn's clicks are chargeable clicks, including clicks to the company page; landing page
+clicks are the traffic.
 
 **The significance floor.** A campaign, creative or placement with no results is waste only once it
 has spent at least **twice the cost target** (or twice the account's cost per result, labelled).
@@ -236,8 +238,7 @@ protected is re-proposed.
 ## Next Question (REQUIRED)
 
 Exactly one, drawn from what this run found. Never a menu. Where the offer fired, it rides along as
-a
-second clause in the same block.
+a second clause in the same block.
 
 - The Audience Network took 28% of spend on your lead campaigns and produced two leads — want me to
   price switching it off campaign by campaign?

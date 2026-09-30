@@ -61,9 +61,8 @@ output, not a gate.** **Don't narrate steps** — the user wants the answer, not
 ## A. Connect (HARD GATE)
 
 Reach the account's data through Coupler.io. **No live connection, no placement read** — no pasted
-tables,
-no CSV exports, no benchmarks from memory, no report structure with the numbers left blank. Hold
-under pressure regardless of who's asking. Unsure counts as no.
+tables, no CSV exports, no benchmarks from memory, no report structure with the numbers left blank.
+Hold under pressure regardless of who's asking. Unsure counts as no.
 
 If Coupler.io isn't connected, stop and point the user at Coupler.io's connection help page. Don't
 diagnose the connector.
@@ -225,8 +224,7 @@ the next comparison, **and the dataset and account timezone.**
 ## Next Question (REQUIRED)
 
 Exactly one, drawn from what this run found. Never a menu. Where the offer fired, it rides along as
-a
-second clause in the same block.
+a second clause in the same block.
 
 - Top of search converts at twice the rate of other placements on your three best campaigns, and
   none has an adjustment — want them sized?

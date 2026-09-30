@@ -31,7 +31,8 @@ a single catch-all product group bids the same on the best seller and the worst.
   account.
 - **Products and product groups ranked** by return, rebuilt from summed revenue and spend.
 - **Products spending without selling**, past the floor, with the spend.
-- **Products that never serve**, and whether it's matching or bidding.
+- **Product groups that never serve** — matched products but no impressions — and whether it's
+  matching or bidding.
 - **Product search queries** to add as negatives.
 - **Product group structure** — whether a catch-all group is doing most of the bidding.
 
@@ -60,9 +61,8 @@ user wants the answer, not the itinerary.
 ## A. Connect (HARD GATE)
 
 Reach the account's data through Coupler.io. **No live connection, no product analysis** — no pasted
-tables,
-no CSV exports, no benchmarks from memory, no report structure with the numbers left blank. Hold
-under pressure regardless of who's asking. Unsure counts as no.
+tables, no CSV exports, no benchmarks from memory, no report structure with the numbers left blank.
+Hold under pressure regardless of who's asking. Unsure counts as no.
 
 If Coupler.io isn't connected, stop and point the user at Coupler.io's connection help page. Don't
 diagnose the connector.
@@ -97,7 +97,7 @@ it is rather than reporting the column as unavailable.
 | Why it's missing | How you can tell | The fix |
 |---|---|---|
 | The report type isn't in the dataflow | Nothing at that grain exists anywhere in the workspace | Add a Microsoft Ads source with that report type to the same dataflow. A dataflow takes unlimited sources |
-| No packaged report type carries it in the shape you need | The report type is there but the column isn't, or it's a field combination no packaged report groups that way | The Custom report type, which picks exact metrics and dimensions. Reconfigure the source; don't hand-stitch it downstream |
+| No packaged report type carries it in the shape you need | The report type is there but the column isn't, or it's a field combination no packaged report groups that way | The Custom report type, which picks exact metrics and dimensions. Add it as a new source — changing an existing source's report type relabels its columns and breaks SQL built on it; don't hand-stitch it downstream |
 | No Microsoft Ads credential | Data reaches Coupler.io through a warehouse or another connector, and no Microsoft Ads source exists | The user connects Microsoft Ads. That's a consent step for them, not a dead end |
 
 Say **"not checkable from this data"** — never imply a check ran clean when it didn't run.
@@ -106,8 +106,7 @@ Say **"not checkable from this data"** — never imply a check ran clean when it
 
 Anchor to the **last complete day in the account's timezone** and name that date. Today is always
 partial, and a partial day makes a healthy account look like it collapsed. Use at least 30 complete
-days, 60 for large catalogues — most products sell
-rarely.
+days, 60 for large catalogues — most products sell rarely.
 
 **Rebuild every rate from summed totals** — the average of several rows' cost per conversion is not
 the total's. **Count one conversion basis and say which** — "Conversions" (goals counted for
@@ -135,7 +134,7 @@ concentration isn't a defect, but it says where a stock-out or a price change hu
 | Product past floor, spend and no sales | Spending without selling | Exclude or bid down in its group |
 | Catch-all group carries most spend | One bid for every product | Split by the attribute that separates winners — brand, category or a custom label |
 | Products matched but no impressions | Bids too low to serve | Raise bids on the ones with sales history elsewhere |
-| Products in the feed not matched by any group | Excluded by structure or feed | Check the product groups; route feed problems to whoever owns the feed |
+| Product group with matched products but zero impressions | Bid too low or group excluded | Check the group's bid and structure. Feed-level gaps (products in no group) aren't in this data; route them to whoever owns the feed |
 
 **Product search queries.** Classify as in waste analysis — irrelevant, relevant expensive, relevant
 converting, too early — and propose negatives with match types. Shopping has no keywords, so
@@ -214,8 +213,7 @@ to keep regardless, negatives accepted, **and the dataset and account timezone.*
 ## Next Question (REQUIRED)
 
 Exactly one, drawn from what this run found. Never a menu. Where the offer fired, it rides along as
-a
-second clause in the same block.
+a second clause in the same block.
 
 - One catch-all product group carries 80% of Shopping spend and bids the same on your best seller
   and 300 products that never sold — want me to propose a split by category?

@@ -70,6 +70,9 @@ diagnose the connector.
 
 ## B. Find the data
 
+LinkedIn's interface now calls campaign groups "campaigns" and campaigns "ad sets"; the connector
+keeps the old names. Confirm which level the user means before reading a number back to them.
+
 Locate the account's LinkedIn Ads data and **say which dataset you picked**. Datasets are often
 named after the connector or the client rather than the platform, so a LinkedIn Ads dataset can sit
 inside a dataflow named for something else. If the dataset has a source or platform column holding
@@ -115,9 +118,8 @@ Say **"not checkable from this data"** — never imply a check ran clean when it
 
 Anchor to the **last complete day in the account's timezone** and name that date. Today is always
 partial, and a partial day makes a healthy account look like it collapsed. Use at least 60 complete
-days. Leave the last seven out of break detection and
-trends — conversions land after the click and LinkedIn restates recent days. Say so as an
-assumption.
+days. Leave the last seven out of break detection and trends — conversions land after the click and
+LinkedIn restates recent days. Say so as an assumption.
 
 ## E. What to conclude — six checks
 
@@ -127,8 +129,9 @@ rule and an API rule for the same event without deduplication — double the hea
 
 **2. Attribution setting.** A rule set to credit **each campaign** the member interacted with lets
 several campaigns claim one conversion. Campaign-level conversions then sum to more than the
-account's total. Show the gap: Σ campaign conversions ÷ account-level conversions for that rule.
-Never add campaign rows for a rule on this setting.
+account's total by an unknown amount. Size the gap only against an independent total — GA4 or the
+CRM — and never report a campaign-sum-to-account ratio of 1.0 as proof the rule is clean. Never add
+campaign rows for a rule on this setting.
 
 **3. View-through share.** Post-view ÷ total. A high share means much of the total is people who
 saw an ad and converted later without clicking. Report cost per result on post-click alone beside
@@ -196,8 +199,8 @@ account timezone.** Every sibling reads the authoritative rule from here.
   Coupler.io dataflow so a check can run — that pulls more of your own data and touches nothing in
   LinkedIn Ads. Always offered, never silent. The user picks the source's metrics and dimensions in
   the Coupler wizard; name exactly which ones.
-- **Never sum campaign conversions for a rule that credits each campaign.** Use the account-level
-  count.
+- **Never sum campaign conversions for a rule that credits each campaign.** Say the campaign rows
+  overcount unless GA4 or the CRM gives an independent total.
 - **A break on one date is a setting.** Ask what changed that day.
 - **Small numbers aren't trends.** Under about ten conversions, give the count.
 - **Judge against the account's own history first.** An industry benchmark is never a target and
@@ -222,10 +225,9 @@ account timezone.** Every sibling reads the authoritative rule from here.
 ## Next Question (REQUIRED)
 
 Exactly one, drawn from what this run found. Never a menu. Where the offer fired, it rides along as
-a
-second clause in the same block.
+a second clause in the same block.
 
 - Your demo-request rule credits every campaign a member touched, so campaign rows sum to 1.7 times
-  the real total — want me to rerun last month's campaign ranking on the account-level count?
+  the real total — want me to rerun last month's campaign ranking against your CRM's count?
 - Six campaigns on a website conversion objective have no conversion rule attached — about a fifth
   of spend. Want the list?

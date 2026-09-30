@@ -23,8 +23,8 @@ in common, and what the next round should look like.**
 LinkedIn runs more formats than any other ad platform — single image, video, carousel, document,
 text, spotlight, conversation and message ads, thought leader posts — and each one's numbers mean
 something different. A document ad's clicks are mostly page turns; a video's early numbers are
-views, not visits; a carousel's result sits on one card of five. Rank them together on click-through
-rate and the ranking says more about format than about creative.
+views, not visits; a carousel's result sits on one of several cards. Rank them together on
+click-through rate and the ranking says more about format than about creative.
 
 **What you get back**
 
@@ -71,6 +71,9 @@ diagnose the connector.
 
 ## B. Find the data
 
+LinkedIn's interface now calls campaign groups "campaigns" and campaigns "ad sets"; the connector
+keeps the old names. Confirm which level the user means before reading a number back to them.
+
 Locate the account's LinkedIn Ads data and **say which dataset you picked**. Datasets are often
 named after the connector or the client rather than the platform, so a LinkedIn Ads dataset can sit
 inside a dataflow named for something else. If the dataset has a source or platform column holding
@@ -113,15 +116,14 @@ Say **"not checkable from this data"** — never imply a check ran clean when it
 
 Anchor to the **last complete day in the account's timezone** and name that date. Today is always
 partial, and a partial day makes a healthy account look like it collapsed. Use at least 30 complete
-days, and only creatives that ran for at least seven of
-them.
+days, and only creatives that ran for at least seven of them.
 
 **Rebuild every rate from summed totals** — the average of several rows' cost per result is not the
 total's. **Count one result and say which** — website conversions (post-click, post-view, or both),
 lead gen form leads, or landing page clicks are different numbers; never add website conversions to
 form leads, and never mix post-view into a post-click comparison. **Say which clicks you mean** —
-LinkedIn's clicks count every click on the ad, including the company name and "see more"; landing
-page clicks are the traffic.
+LinkedIn's clicks are chargeable clicks, including clicks to the company page; landing page
+clicks are the traffic.
 
 **Volume floor.** No verdict under about 5,000 impressions or under twice the target in spend.
 Mark those creatives; don't rank them.
@@ -227,8 +229,7 @@ Write back: winning formats and traits found, creatives the user said to keep, t
 ## Next Question (REQUIRED)
 
 Exactly one, drawn from what this run found. Never a menu. Where the offer fired, it rides along as
-a
-second clause in the same block.
+a second clause in the same block.
 
 - Your two best videos lose half their viewers before 25% — the hook works and the middle doesn't.
   Want me to compare them against the one that holds?

@@ -38,7 +38,8 @@ filling in. Every one of these produces a clean-looking number that's wrong to c
 
 **Read-only on your Amazon Ads account.** It never changes anything.
 
-**Run this first.** Every sibling reads the sales basis and window this skill writes back.
+**Run this first when the sales numbers are doubted.** Every sibling reads the sales basis and
+window this skill writes back.
 
 ## Call budget
 
@@ -213,8 +214,7 @@ restatement period if measured, **and the dataset and account timezone.** Every 
 ## Next Question (REQUIRED)
 
 Exactly one, drawn from what this run found. Never a menu. Where the offer fired, it rides along as
-a
-second clause in the same block.
+a second clause in the same block.
 
 - Your dashboard ranks Sponsored Products on 7-day sales beside Sponsored Brands on 14-day — Brands
   looks 20% better than it is by comparison. Want me to rerun the comparison on one window?

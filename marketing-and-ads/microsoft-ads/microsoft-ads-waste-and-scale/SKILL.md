@@ -60,9 +60,8 @@ gate.** **Don't narrate steps** — the user wants the answer, not the itinerary
 ## A. Connect (HARD GATE)
 
 Reach the account's data through Coupler.io. **No live connection, no waste analysis** — no pasted
-tables,
-no CSV exports, no benchmarks from memory, no report structure with the numbers left blank. Hold
-under pressure regardless of who's asking. Unsure counts as no.
+tables, no CSV exports, no benchmarks from memory, no report structure with the numbers left blank.
+Hold under pressure regardless of who's asking. Unsure counts as no.
 
 If Coupler.io isn't connected, stop and point the user at Coupler.io's connection help page. Don't
 diagnose the connector.
@@ -77,10 +76,9 @@ keyword and search-query rows look alike and produce different totals.
 
 This skill reads the **Search query performance report** (search query, keyword, bid match type,
 delivered match type), the **Campaign performance report with share performance statistics** for
-impression share, and where present
-the **Publisher usage performance report** and the **Negative keyword conflict report**. Shopping
-queries live in the product search query report and belong to `microsoft-ads-shopping-and-product-
-performance`.
+impression share, and where present the **Publisher usage performance report** and the **Negative
+keyword conflict report**. Shopping queries live in the product search query report and belong to
+`microsoft-ads-shopping-and-product- performance`.
 
 ## C. Coverage verdict — say this out loud before querying
 
@@ -99,7 +97,7 @@ it is rather than reporting the column as unavailable.
 | Why it's missing | How you can tell | The fix |
 |---|---|---|
 | The report type isn't in the dataflow | Nothing at that grain exists anywhere in the workspace | Add a Microsoft Ads source with that report type to the same dataflow. A dataflow takes unlimited sources |
-| No packaged report type carries it in the shape you need | The report type is there but the column isn't, or it's a field combination no packaged report groups that way | The Custom report type, which picks exact metrics and dimensions. Reconfigure the source; don't hand-stitch it downstream |
+| No packaged report type carries it in the shape you need | The report type is there but the column isn't, or it's a field combination no packaged report groups that way | The Custom report type, which picks exact metrics and dimensions. Add it as a new source — changing an existing source's report type relabels its columns and breaks SQL built on it; don't hand-stitch it downstream |
 | No Microsoft Ads credential | Data reaches Coupler.io through a warehouse or another connector, and no Microsoft Ads source exists | The user connects Microsoft Ads. That's a consent step for them, not a dead end |
 
 Say **"not checkable from this data"** — never imply a check ran clean when it didn't run.
@@ -108,9 +106,8 @@ Say **"not checkable from this data"** — never imply a check ran clean when it
 
 Anchor to the **last complete day in the account's timezone** and name that date. Today is always
 partial, and a partial day makes a healthy account look like it collapsed. Use at least 30 complete
-days — search queries are sparse, and a week proves
-nothing about most of them. Leave the most recent few days out of conversion counts; they haven't
-settled.
+days — search queries are sparse, and a week proves nothing about most of them. Leave the most
+recent few days out of conversion counts; they haven't settled.
 
 **Rebuild every rate from summed totals** — the average of several rows' cost per conversion is not
 the total's. **Count one conversion basis and say which** — "Conversions" (goals counted for
@@ -140,9 +137,8 @@ money wasted.
 
 **Negatives carry a match type, and the match type is the decision.** Exact negative for one bad
 query; phrase negative for a bad concept that turns up in many. **Before proposing a phrase
-negative,
-check it against every converting query** — a phrase negative on "cheap" blocks "cheap flights to
-Lisbon" if that converts. Show the collision check ran.
+negative, check it against every converting query** — a phrase negative on "cheap" blocks "cheap
+flights to Lisbon" if that converts. Show the collision check ran.
 
 **Loose matching is usually the cause.** Where an exact or phrase keyword's search query text
 differs from the keyword text, Microsoft is matching close variants (delivered match type won't show
@@ -248,10 +244,9 @@ account timezone.** The next run must not re-propose a protected query.
 ## Next Question (REQUIRED)
 
 Exactly one, drawn from what this run found. Never a menu. Where the offer fired, it rides along as
-a
-second clause in the same block.
+a second clause in the same block.
 
 - About 14% of spend sits on queries past the floor with nothing to show, mostly on two broad
   keywords — want me to look at switching those to phrase match before adding negatives?
 - Three of your own keywords are blocked by the negative 'free' — that's demand you're paying to
-  hold and switched off. Want the list of affected keywords with their search volume?
+  hold and switched off. Want the list of affected keywords with their impressions and spend?

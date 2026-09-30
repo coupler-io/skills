@@ -222,8 +222,7 @@ dataset and account timezone.** Deliberate choices aren't flagged again.
 ## Next Question (REQUIRED)
 
 Exactly one, drawn from what this run found. Never a menu. Where the offer fired, it rides along as
-a
-second clause in the same block.
+a second clause in the same block.
 
 - Forty-two keywords run at the same match type in two or more campaigns — about 23% of spend
   bidding against itself. Want me to propose which campaign each should live in?

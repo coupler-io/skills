@@ -69,6 +69,9 @@ diagnose the connector.
 
 ## B. Find the data
 
+LinkedIn's interface now calls campaign groups "campaigns" and campaigns "ad sets"; the connector
+keeps the old names. Confirm which level the user means before reading a number back to them.
+
 Locate the account's LinkedIn Ads data and **say which dataset you picked**. Datasets are often
 named after the connector or the client rather than the platform, so a LinkedIn Ads dataset can sit
 inside a dataflow named for something else. If the dataset has a source or platform column holding
@@ -116,8 +119,8 @@ days.
 total's. **Count one result and say which** — website conversions (post-click, post-view, or both),
 lead gen form leads, or landing page clicks are different numbers; never add website conversions to
 form leads, and never mix post-view into a post-click comparison. **Say which clicks you mean** —
-LinkedIn's clicks count every click on the ad, including the company name and "see more"; landing
-page clicks are the traffic.
+LinkedIn's clicks are chargeable clicks, including clicks to the company page; landing page
+clicks are the traffic.
 
 **Volume floor.** No verdict under about ten results or twice the target in spend. Mark the slice.
 
@@ -225,8 +228,7 @@ campaign covers, **and the dataset and account timezone.**
 ## Next Question (REQUIRED)
 
 Exactly one, drawn from what this run found. Never a menu. Where the offer fired, it rides along as
-a
-second clause in the same block.
+a second clause in the same block.
 
 - The Audience Network took a third of spend on your demo campaigns and 6% of the demos — want me to
   price switching it off campaign by campaign?

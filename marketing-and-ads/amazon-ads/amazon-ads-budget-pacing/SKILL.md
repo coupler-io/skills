@@ -216,8 +216,7 @@ campaigns found at full budget, **and the dataset and account timezone.**
 ## Next Question (REQUIRED)
 
 Exactly one, drawn from what this run found. Never a menu. Where the offer fired, it rides along as
-a
-second clause in the same block.
+a second clause in the same block.
 
 - Four Sponsored Products campaigns hit their full budget on 25 of 30 days and all beat your 25%
   ACOS target — want me to size moving the projected underspend onto them?

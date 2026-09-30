@@ -65,6 +65,9 @@ diagnose the connector.
 
 ## B. Find the data
 
+LinkedIn's interface now calls campaign groups "campaigns" and campaigns "ad sets"; the connector
+keeps the old names. Confirm which level the user means before reading a number back to them.
+
 Locate the account's LinkedIn Ads data and **say which dataset you picked**. Datasets are often
 named after the connector or the client rather than the platform, so a LinkedIn Ads dataset can sit
 inside a dataflow named for something else. If the dataset has a source or platform column holding
@@ -217,8 +220,7 @@ full budget, end dates, **and the dataset and account timezone.**
 ## Next Question (REQUIRED)
 
 Exactly one, drawn from what this run found. Never a menu. Where the offer fired, it rides along as
-a
-second clause in the same block.
+a second clause in the same block.
 
 - You'll land about 18% under budget, and two lead-gen campaigns sit at their full daily budget
   while beating your cost per lead — want me to size moving the gap onto them?

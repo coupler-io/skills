@@ -19,8 +19,8 @@ metadata:
 **Tells you what the LinkedIn Ads account did, why it changed, and what to do about it — with a
 number behind every recommendation.**
 
-LinkedIn's headline numbers mislead in their own ways. "Clicks" counts every click on the ad —
-the company name, "see more", the profile — so click-through rate looks healthy while landing page
+LinkedIn's headline numbers mislead in their own ways. "Clicks" counts chargeable clicks,
+including clicks to the company page — so click-through rate looks healthy while landing page
 traffic is thin. Lead gen form leads and website conversions are different results that the account
 total adds together. The LinkedIn Audience Network quietly blends cheaper off-platform impressions
 into the average. And because clicks cost several times what they cost elsewhere, monthly result
@@ -64,6 +64,9 @@ If Coupler.io isn't connected, stop and point the user at Coupler.io's connectio
 diagnose the connector.
 
 ## B. Find the data
+
+LinkedIn's interface now calls campaign groups "campaigns" and campaigns "ad sets"; the connector
+keeps the old names. Confirm which level the user means before reading a number back to them.
 
 Locate the account's LinkedIn Ads data and **say which dataset you picked**. Datasets are often
 named after the connector or the client rather than the platform, so a LinkedIn Ads dataset can sit
@@ -118,8 +121,8 @@ level together.
 total's. **Count one result and say which** — website conversions (post-click, post-view, or both),
 lead gen form leads, or landing page clicks are different numbers; never add website conversions to
 form leads, and never mix post-view into a post-click comparison. **Say which clicks you mean** —
-LinkedIn's clicks count every click on the ad, including the company name and "see more"; landing
-page clicks are the traffic.
+LinkedIn's clicks are chargeable clicks, including clicks to the company page; landing page
+clicks are the traffic.
 
 **Never sum reach across days, campaigns or creatives.** Approximate member reach counts unique
 people, and the same person appears in every row they were reached in. Pull reach at the grain and
@@ -242,8 +245,7 @@ rows, **and the dataset and account timezone.** Every sibling reads this.
 ## Next Question (REQUIRED)
 
 Exactly one, drawn from what this run found. Never a menu. Where the offer fired, it rides along as
-a
-second clause in the same block.
+a second clause in the same block.
 
 - Cost per lead rose 31% while click cost held flat — frequency on the two biggest campaigns passed
   6. Want me to check which creatives are wearing out?

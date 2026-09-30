@@ -63,9 +63,8 @@ can't run; the earning ranking still can. **Missing data is a line in the output
 ## A. Connect (HARD GATE)
 
 Reach the account's data through Coupler.io. **No live connection, no keyword analysis** — no pasted
-tables,
-no CSV exports, no benchmarks from memory, no report structure with the numbers left blank. Hold
-under pressure regardless of who's asking. Unsure counts as no.
+tables, no CSV exports, no benchmarks from memory, no report structure with the numbers left blank.
+Hold under pressure regardless of who's asking. Unsure counts as no.
 
 If Coupler.io isn't connected, stop and point the user at Coupler.io's connection help page. Don't
 diagnose the connector.
@@ -99,7 +98,7 @@ it is rather than reporting the column as unavailable.
 | Why it's missing | How you can tell | The fix |
 |---|---|---|
 | The report type isn't in the dataflow | Nothing at that grain exists anywhere in the workspace | Add a Microsoft Ads source with that report type to the same dataflow. A dataflow takes unlimited sources |
-| No packaged report type carries it in the shape you need | The report type is there but the column isn't, or it's a field combination no packaged report groups that way | The Custom report type, which picks exact metrics and dimensions. Reconfigure the source; don't hand-stitch it downstream |
+| No packaged report type carries it in the shape you need | The report type is there but the column isn't, or it's a field combination no packaged report groups that way | The Custom report type, which picks exact metrics and dimensions. Add it as a new source — changing an existing source's report type relabels its columns and breaks SQL built on it; don't hand-stitch it downstream |
 | No Microsoft Ads credential | Data reaches Coupler.io through a warehouse or another connector, and no Microsoft Ads source exists | The user connects Microsoft Ads. That's a consent step for them, not a dead end |
 
 Say **"not checkable from this data"** — never imply a check ran clean when it didn't run.
@@ -108,8 +107,7 @@ Say **"not checkable from this data"** — never imply a check ran clean when it
 
 Anchor to the **last complete day in the account's timezone** and name that date. Today is always
 partial, and a partial day makes a healthy account look like it collapsed. Use 30 to 90 complete
-days; quality moves slowly and keyword conversions are
-sparse.
+days; quality moves slowly and keyword conversions are sparse.
 
 **Rebuild every rate from summed totals** — the average of several rows' cost per conversion is not
 the total's. **Count one conversion basis and say which** — "Conversions" (goals counted for
@@ -145,8 +143,8 @@ half the target on two.
 
 **What low quality costs.** From the account's own rows, give average click cost by quality band
 (1–4, 5–6, 7–10), clicks-weighted. If low bands pay more at similar top impression rates, that
-premium times their clicks is the price of low quality in this account. It's the account's evidence, not a
-published rule; say so.
+premium times their clicks is the price of low quality in this account. It's the account's evidence,
+not a published rule; say so.
 
 **Point the fix at the failing part.**
 
@@ -235,8 +233,7 @@ for the next run's comparison, parts found failing, **and the dataset and accoun
 ## Next Question (REQUIRED)
 
 Exactly one, drawn from what this run found. Never a menu. Where the offer fired, it rides along as
-a
-second clause in the same block.
+a second clause in the same block.
 
 - Forty percent of non-brand spend sits on keywords with below-average landing page experience, and
   they pay about a fifth more per click — want me to list the landing pages behind them?

@@ -21,12 +21,11 @@ metadata:
 and whether more money would buy anything at all.**
 
 A Microsoft Ads daily budget isn't a daily cap. On any single day a campaign can spend well above
-its
-daily budget, and the platform evens it out against a monthly ceiling of the daily budget times
+its daily budget, and the platform evens it out against a monthly ceiling of the daily budget times
 the days in the month — so a mid-month look at yesterday's spend against the daily budget reads as
-overspend when it's the platform front-loading. Meanwhile the only campaigns worth giving more money are the
-ones losing impression share to budget *while* hitting the cost target, and spend alone can't find
-them.
+overspend when it's the platform front-loading. Meanwhile the only campaigns worth giving more money
+are the ones losing impression share to budget *while* hitting the cost target, and spend alone
+can't find them.
 
 **What you get back**
 
@@ -97,7 +96,7 @@ it is rather than reporting the column as unavailable.
 | Why it's missing | How you can tell | The fix |
 |---|---|---|
 | The report type isn't in the dataflow | Nothing at that grain exists anywhere in the workspace | Add a Microsoft Ads source with that report type to the same dataflow. A dataflow takes unlimited sources |
-| No packaged report type carries it in the shape you need | The report type is there but the column isn't, or it's a field combination no packaged report groups that way | The Custom report type, which picks exact metrics and dimensions. Reconfigure the source; don't hand-stitch it downstream |
+| No packaged report type carries it in the shape you need | The report type is there but the column isn't, or it's a field combination no packaged report groups that way | The Custom report type, which picks exact metrics and dimensions. Add it as a new source — changing an existing source's report type relabels its columns and breaks SQL built on it; don't hand-stitch it downstream |
 | No Microsoft Ads credential | Data reaches Coupler.io through a warehouse or another connector, and no Microsoft Ads source exists | The user connects Microsoft Ads. That's a consent step for them, not a dead end |
 
 Say **"not checkable from this data"** — never imply a check ran clean when it didn't run.
@@ -125,9 +124,10 @@ per campaign over the month.
   complete days, not the average since the 1st — **unless a budget or bid change landed inside that
   window**, in which case use the days since the change and say which window you used.
 - **Two ceilings, not one.** The monthly ceiling is each campaign's daily budget × days in the
-  month, read as `MonthlyBudget` from the Budget summary report and summed once per shared budget;
-  a single day usually stays under 2× the daily budget (Microsoft budget guide). Report the monthly
-  ceiling against the agreed budget — if the ceiling is below the budget, the account *can't* spend it, and that's the finding.
+  month, read as `MonthlyBudget` from the Budget summary report and summed once per shared budget; a
+  single day usually stays under 2× the daily budget (Microsoft budget guide). Report the monthly
+  ceiling against the agreed budget — if the ceiling is below the budget, the account *can't* spend
+  it, and that's the finding.
 - **Required run rate** = (budget − month-to-date spend) ÷ remaining days.
 - **Shared budgets** are summed once at the budget, not once per campaign.
 - **Never sum or average a share across rows or dates.** Shares are ratios. Check the scale first
@@ -147,10 +147,6 @@ is the easiest way to hand someone a confident wrong number.
 | Capped campaign beating the cost target | Real demand, money is the only constraint | Fund it. Size the extra spend from its lost-to-budget share at current click cost — an upper bound, returns diminish |
 | Capped campaign missing the cost target | Capped isn't a reason to fund | Fix efficiency first; don't pour money into it |
 | Ceiling below agreed budget | The account can't spend what was agreed | Raise daily budgets by the gap ÷ days remaining including today, on the capped campaigns that beat target |
-
-**Automated bidding changes behaviour when the budget moves.** On Target CPA, Target ROAS or
-Maximize conversions campaigns, raise budget in steps of about 20%, three to four days apart — a
-jump resets how the strategy spends.
 
 **Money moved between campaigns is reallocation, not new budget.** When projected over on one
 campaign and capped on another, propose the move first; it lands on budget without asking anyone
@@ -234,8 +230,7 @@ closing block.
 ## Next Question (REQUIRED)
 
 Exactly one, drawn from what this run found. Never a menu. Where the offer fired, it rides along as
-a
-second clause in the same block.
+a second clause in the same block.
 
 - You'll land about 12% under budget, and two Search campaigns are losing a third of their demand to
   budget while beating your cost target — want me to size moving the underspend onto them?

@@ -63,14 +63,16 @@ narrate steps** — the user wants the answer, not the itinerary.
 ## A. Connect (HARD GATE)
 
 Reach the account's data through Coupler.io. **No live connection, no fatigue read** — no pasted
-tables,
-no CSV exports, no benchmarks from memory, no report structure with the numbers left blank. Hold
-under pressure regardless of who's asking. Unsure counts as no.
+tables, no CSV exports, no benchmarks from memory, no report structure with the numbers left blank.
+Hold under pressure regardless of who's asking. Unsure counts as no.
 
 If Coupler.io isn't connected, stop and point the user at Coupler.io's connection help page. Don't
 diagnose the connector.
 
 ## B. Find the data
+
+LinkedIn's interface now calls campaign groups "campaigns" and campaigns "ad sets"; the connector
+keeps the old names. Confirm which level the user means before reading a number back to them.
 
 Locate the account's LinkedIn Ads data and **say which dataset you picked**. Datasets are often
 named after the connector or the client rather than the platform, so a LinkedIn Ads dataset can sit
@@ -113,15 +115,14 @@ Say **"not checkable from this data"** — never imply a check ran clean when it
 
 Anchor to the **last complete day in the account's timezone** and name that date. Today is always
 partial, and a partial day makes a healthy account look like it collapsed. Use at least eight
-complete weeks. Weeks run Monday to Sunday in the account's
-timezone.
+complete weeks. Weeks run Monday to Sunday in the account's timezone.
 
 **Rebuild every rate from summed totals** — the average of several rows' cost per result is not the
 total's. **Count one result and say which** — website conversions (post-click, post-view, or both),
 lead gen form leads, or landing page clicks are different numbers; never add website conversions to
 form leads, and never mix post-view into a post-click comparison. **Say which clicks you mean** —
-LinkedIn's clicks count every click on the ad, including the company name and "see more"; landing
-page clicks are the traffic.
+LinkedIn's clicks are chargeable clicks, including clicks to the company page; landing page
+clicks are the traffic.
 
 **Never sum reach across days, campaigns or creatives.** Approximate member reach counts unique
 people, and the same person appears in every row they were reached in. Pull reach at the grain and
@@ -145,7 +146,7 @@ widening the audience. If one creative decays while its siblings hold, it's that
 | What you see | Means | Action |
 |---|---|---|
 | Frequency up, click-through down, CPM up, one creative | That creative is worn | Refresh it; queue by weeks left |
-| Frequency up on all creatives in a campaign | The audience is saturated | Widen targeting or add audience expansion |
+| Frequency up on all creatives in a campaign | The audience is saturated | Widen targeting, or add audience expansion where targeting isn't deliberately tight |
 | Click-through down, frequency flat | Creative lost relevance, not repetition | New angle, not a variation |
 | Cost per result up, click-through flat | Not fatigue — conversion rate or tracking | Performance review or tracking audit |
 | New creative decays within two weeks | Audience too small for the rotation | Fewer campaigns on the same audience |
@@ -225,8 +226,7 @@ Write back: useful creative life measured, the production number, campaigns foun
 ## Next Question (REQUIRED)
 
 Exactly one, drawn from what this run found. Never a menu. Where the offer fired, it rides along as
-a
-second clause in the same block.
+a second clause in the same block.
 
 - Frequency passed 7 on every creative in the demo campaign at once — that's the audience, not the
   ads. Want me to check what widening it would change?

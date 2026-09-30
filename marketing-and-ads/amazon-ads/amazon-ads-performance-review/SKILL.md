@@ -239,8 +239,7 @@ sibling reads this.
 ## Next Question (REQUIRED)
 
 Exactly one, drawn from what this run found. Never a menu. Where the offer fired, it rides along as
-a
-second clause in the same block.
+a second clause in the same block.
 
 - ACOS rose from 24% to 31% with click cost flat — almost all of it is one product whose conversion
   rate halved on the 11th. Want me to check whether it lost the Buy Box or went out of stock?

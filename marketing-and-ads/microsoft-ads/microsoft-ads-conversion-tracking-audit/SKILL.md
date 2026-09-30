@@ -100,7 +100,7 @@ it is rather than reporting the column as unavailable.
 | Why it's missing | How you can tell | The fix |
 |---|---|---|
 | The report type isn't in the dataflow | Nothing at that grain exists anywhere in the workspace | Add a Microsoft Ads source with that report type to the same dataflow. A dataflow takes unlimited sources |
-| No packaged report type carries it in the shape you need | The report type is there but the column isn't, or it's a field combination no packaged report groups that way | The Custom report type, which picks exact metrics and dimensions. Reconfigure the source; don't hand-stitch it downstream |
+| No packaged report type carries it in the shape you need | The report type is there but the column isn't, or it's a field combination no packaged report groups that way | The Custom report type, which picks exact metrics and dimensions. Add it as a new source — changing an existing source's report type relabels its columns and breaks SQL built on it; don't hand-stitch it downstream |
 | No Microsoft Ads credential | Data reaches Coupler.io through a warehouse or another connector, and no Microsoft Ads source exists | The user connects Microsoft Ads. That's a consent step for them, not a dead end |
 
 Say **"not checkable from this data"** — never imply a check ran clean when it didn't run.
@@ -126,11 +126,12 @@ business outcome. If more than one goal records the same action — a destinatio
 event goal on the same thank-you page, or a goal imported from Google beside a native one — the
 headline double-counts. Size it: conversions from the duplicate ÷ headline conversions.
 
-**2. How loose the headline is.** All conversions ÷ Conversions, and view-through ÷ Conversions.
-All conversions adds goals excluded from bidding, so that gap is those goals; view-through (Audience
+**2. How loose the headline is.** All conversions ÷ Conversions, and view-through ÷ Conversions. All
+conversions adds goals excluded from bidding, so that gap is those goals; view-through (Audience
 Network only) is buyers who never clicked. Prefer the `…Qualified` columns where present and name
 the one you used. If bidding optimises on a goal set that includes micro-conversions (page views,
-scroll, add to cart), cost per conversion is flattered — say what the cost per conversion is on the business goal alone.
+scroll, add to cart), cost per conversion is flattered — say what the cost per conversion is on the
+business goal alone.
 
 **3. Spend with no tracking.** Campaigns with spend and zero conversions across a window long enough
 that some were due. Report that spend as a share of the account. Separate "no conversions because
@@ -223,8 +224,7 @@ goals to ignore and why, dated breaks, the measured or assumed conversion lag, w
 ## Next Question (REQUIRED)
 
 Exactly one, drawn from what this run found. Never a menu. Where the offer fired, it rides along as
-a
-second clause in the same block.
+a second clause in the same block.
 
 - Two goals are both counting the purchase page, so the headline is about 40% too high — want me to
   rerun last month's performance on the purchase goal alone?

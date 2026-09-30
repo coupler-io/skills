@@ -24,8 +24,8 @@ competitors are pushing it out.**
 "How do we compare to competitors" usually gets answered with an industry benchmark, which says
 nothing about this account's auctions. The account's own position is already in the data: share of
 eligible impressions won, the share lost to budget (the account stepping out itself) against the
-share lost to rank (someone else winning), how often it takes the top of the page, and — a number
-Microsoft reports that most platforms don't — the share of available clicks it actually got.
+share lost to rank (someone else winning), how often it takes the top of the page, and the share of
+available clicks it actually got.
 
 **What you get back**
 
@@ -37,8 +37,8 @@ Microsoft reports that most platforms don't — the share of available clicks it
 - **Where to defend, where to pull back, where money buys position.**
 
 **What this can't tell you, stated every run:** who the competitors are. Competitor names and
-domains
-aren't in the reporting data. This is the account's position in the auction, not a list of rivals.
+domains aren't in the reporting data. This is the account's position in the auction, not a list of
+rivals.
 
 **Read-only on your Microsoft Ads account.** It never changes a bid.
 
@@ -63,9 +63,8 @@ say so and name the report that carries them. **Missing data is a line in the ou
 ## A. Connect (HARD GATE)
 
 Reach the account's data through Coupler.io. **No live connection, no position read** — no pasted
-tables,
-no CSV exports, no benchmarks from memory, no report structure with the numbers left blank. Hold
-under pressure regardless of who's asking. Unsure counts as no.
+tables, no CSV exports, no benchmarks from memory, no report structure with the numbers left blank.
+Hold under pressure regardless of who's asking. Unsure counts as no.
 
 If Coupler.io isn't connected, stop and point the user at Coupler.io's connection help page. Don't
 diagnose the connector.
@@ -80,8 +79,8 @@ keyword and search-query rows look alike and produce different totals.
 
 This skill reads the **Share of voice report**, or any performance report pulled **with share
 performance statistics** (campaign, ad group, account): impression share, lost to budget, lost to
-rank, exact match impression share, top and absolute top impression share and rate, click share,
-and the **top vs other** split.
+rank, exact match impression share, top and absolute top impression share and rate, and click
+share. The **top vs other** split isn't on these reports; it comes from a plain performance report.
 
 ## C. Coverage verdict — say this out loud before querying
 
@@ -100,7 +99,7 @@ it is rather than reporting the column as unavailable.
 | Why it's missing | How you can tell | The fix |
 |---|---|---|
 | The report type isn't in the dataflow | Nothing at that grain exists anywhere in the workspace | Add a Microsoft Ads source with that report type to the same dataflow. A dataflow takes unlimited sources |
-| No packaged report type carries it in the shape you need | The report type is there but the column isn't, or it's a field combination no packaged report groups that way | The Custom report type, which picks exact metrics and dimensions. Reconfigure the source; don't hand-stitch it downstream |
+| No packaged report type carries it in the shape you need | The report type is there but the column isn't, or it's a field combination no packaged report groups that way | The Custom report type, which picks exact metrics and dimensions. Add it as a new source — changing an existing source's report type relabels its columns and breaks SQL built on it; don't hand-stitch it downstream |
 | No Microsoft Ads credential | Data reaches Coupler.io through a warehouse or another connector, and no Microsoft Ads source exists | The user connects Microsoft Ads. That's a consent step for them, not a dead end |
 
 Say **"not checkable from this data"** — never imply a check ran clean when it didn't run.
@@ -216,8 +215,7 @@ for the next run's slippage comparison, **and the dataset and account timezone.*
 ## Next Question (REQUIRED)
 
 Exactly one, drawn from what this run found. Never a menu. Where the offer fired, it rides along as
-a
-second clause in the same block.
+a second clause in the same block.
 
 - Your brand campaign lost 18 points of share to rank since early August with click cost flat —
   someone is bidding on your name. Want me to size what holding it back would cost?

@@ -88,7 +88,7 @@ Products.
 | Column present | Live | Absent means |
 |---|---|---|
 | New-to-brand orders and sales | New-customer read | Say it needs these columns; Unified carries them |
-| Promoted and halo sales | Halo share | "Not checkable from this data" |
+| Promoted and halo sales | Halo share | On legacy SP, derive halo as `sales7d − attributedSalesSameSku7d`; otherwise "Not checkable from this data" |
 | Detail page views, branded searches, add-to-cart | Upper-funnel actions | Skip them |
 | Click-based and view-based sales | What's credited without a click | Say views may be in the total |
 | Ad product | The fair comparison | Nothing to compare |
@@ -110,9 +110,8 @@ Say **"not checkable from this data"** — never imply a check ran clean when it
 Anchor to the **last complete day in the account's timezone** and name that date. Today is always
 partial, and a partial day makes a healthy account look like it collapsed. Use at least 30 complete
 days. **Recent days understate sales.** Amazon keeps attributing purchases to a click for days
-afterwards,
-and sales are gross ordered sales — before returns and cancellations. Leave the most recent days out
-of sales comparisons, or label them as still filling in, and say which.
+afterwards, and sales are gross ordered sales — before returns and cancellations. Leave the most
+recent days out of sales comparisons, or label them as still filling in, and say which.
 
 **Rebuild every rate from summed totals** — ACOS is summed spend ÷ summed sales, never the average
 of campaign ACOS figures. **Say whether you quote ACOS (spend ÷ sales, lower is better) or ROAS
@@ -217,8 +216,7 @@ Write back: the value of a new customer if the user gave one, the job each ad pr
 ## Next Question (REQUIRED)
 
 Exactly one, drawn from what this run found. Never a menu. Where the offer fired, it rides along as
-a
-second clause in the same block.
+a second clause in the same block.
 
 - Sponsored Brands runs at 41% ACOS, but 68% of its orders are new to the brand against 19% on
   Sponsored Products — do you know what a new customer is worth to you, so I can judge it properly?
