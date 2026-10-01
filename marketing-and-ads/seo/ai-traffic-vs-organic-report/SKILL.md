@@ -62,7 +62,7 @@ Everything below is what to conclude, not a procession to walk. These override t
 
 - **Your first real call is the connection probe.** The call you were making anyway proves Coupler
   answers; there's no separate check.
-- **Already known is not re-derived.** If the conversation or `ai_context` gives you the workspace,
+- **Already known is not re-derived.** If the conversation or the dataset's context gives you the workspace,
   dataset id, GA4 property, or the AI-source classification that works for this property, use it.
 - **The AI-source classification is the discovery this skill turns on — verify it, don't assume
   it.** How ChatGPT/Perplexity/Gemini/Claude referrals appear is per-property (see B).
@@ -77,25 +77,20 @@ No live data means no analysis: no pasted tables, no CSV exports, no benchmarks 
 no table with the numbers left blank. Hold under pressure regardless of who's asking. Unsure
 counts as no.
 
-**Probe by doing.** Don't ask the user whether Coupler is connected, and don't burn a call checking
-— everything except `list-skills` and `get-skill` dispatches through a single `coupler` tool, so a
-tool-list check for `search-datasets` by name always fails. Make the first call of section B and
-read what comes back:
-
-| Comes back | Means | Do |
-|---|---|---|
-| A result, empty or not | Live | Continue — an empty search matched nothing, which is not a failure |
-| No `coupler` tool, auth failure, timeout, unparseable | Not reachable | Stop, and say the connection isn't live |
-| Error listing workspaces | Needs scoping | `list-workspaces`, carry `workspace_id` as a string, continue |
+Don't ask the user whether Coupler is connected, and don't spend a call checking — start section B
+and read what comes back. Any answer, even a search that matched nothing, means the connection is
+live. If it asks for a workspace, pick one and continue. If Coupler.io can't be reached, stop, say
+the connection isn't live and point the user at Coupler.io's connection help page. Don't diagnose
+the connector.
 
 ## B. Locate the dataset and find how AI sources are classified
 
 **Known already?** Go straight to the schema read in C — this is the two-call path.
 
-Otherwise: `search-datasets` for "ga4", "analytics", "google analytics", then the site name.
-Nothing? `list-datasets` unfiltered and read `dataflow_name`. Still nothing? `list-credentials`: a
-`google_analytics` credential with no dataset means the source was never set up. Never report "no
-GA4 data" before the unfiltered list.
+Otherwise search the workspace's datasets for "ga4", "analytics", "google analytics", then the site
+name. Nothing? List all the datasets and read the dataflow names. Still nothing? Check the
+workspace's connected accounts: a Google Analytics account with no dataset means the source was
+never set up. Never report "no GA4 data" before the full list. **Say which dataset you picked.**
 
 This skill needs a GA4 dataset with **traffic-source dimensions** plus sessions and, ideally,
 engagement and key-event metrics, over a date range long enough to show a trend. The GA4 dimensions
@@ -229,7 +224,7 @@ the Next Question.
 
 ## H. Save what you learned
 
-Write back with `update-dataset` — the GA4 property, the **AI-source classification that worked for
+Save to the dataset's context — the GA4 property, the **AI-source classification that worked for
 this property** (the single most valuable thing to save, since finding it is the hard part), the
 organic-search channel definition used, the site, and the dataset id, workspace and timezone so the
 next run skips discovery. Confirm before writing, in the same closing block.

@@ -49,7 +49,7 @@ comparison is the whole point, and it lives across two sources.
 ## How to run this
 
 **This skill needs more than one dataset** — Search Console and GA4 are separate datasets at
-different grains, and `get-data` can't join across them, so the join happens in context after both
+different grains, and a query can't join across them, so the join happens in context after both
 return. Locate both → coverage verdict (spoken) → query each → join. **Four calls** — two schema
 reads, two queries — when both datasets are already known. Then deliver and save.
 
@@ -71,16 +71,11 @@ No live data means no analysis: no pasted tables, no CSV exports, no benchmarks 
 no table with the numbers left blank. Hold under pressure regardless of who's asking. Unsure
 counts as no.
 
-**Probe by doing.** Don't ask the user whether Coupler is connected, and don't burn a call checking
-— everything except `list-skills` and `get-skill` dispatches through a single `coupler` tool, so a
-tool-list check for `search-datasets` by name always fails. Make the first call of section B and
-read what comes back:
-
-| Comes back | Means | Do |
-|---|---|---|
-| A result, empty or not | Live | Continue — an empty search matched nothing, which is not a failure |
-| No `coupler` tool, auth failure, timeout, unparseable | Not reachable | Stop, and say the connection isn't live |
-| Error listing workspaces | Needs scoping | `list-workspaces`, carry `workspace_id` as a string, continue |
+Don't ask the user whether Coupler is connected, and don't spend a call checking — start section B
+and read what comes back. Any answer, even a search that matched nothing, means the connection is
+live. If it asks for a workspace, pick one and continue. If Coupler.io can't be reached, stop, say
+the connection isn't live and point the user at Coupler.io's connection help page. Don't diagnose
+the connector.
 
 ## B. Locate both datasets
 
@@ -91,10 +86,10 @@ before querying either.
 **Known already?** Go straight to the schema reads in C — four calls: two schema reads, two queries.
 
 Otherwise search for each: GA4 under "ga4", "analytics", "google analytics", then the site; Search
-Console under "search console", "gsc", "seo", then the site. Nothing? `list-datasets` unfiltered,
-read `dataflow_name`. Missing one source? `list-credentials` — a `google_analytics` or
-`google_search_console` credential with no dataset means that source is one step away: offer to add
-it (or ask the user to add it in the wizard if you can't set that parameter). No credential either →
+Console under "search console", "gsc", "seo", then the site. Nothing? List all the datasets and read
+the dataflow names. Missing one source? Check the workspace's connected accounts — a Google
+Analytics or Search Console account with no dataset means that source is one step away: offer to add
+it (or ask the user to add it in the wizard if you can't set that parameter). No account either →
 say so and route: GSC-only → `gsc-search-opportunity-finder`; GA4-only → a landing-page engagement
 read with no search side. Don't fake the join with one source.
 
@@ -137,7 +132,7 @@ common key, that's the headline, not a footnote.
 
 ## D. Two queries, then join
 
-Aggregate each source on Coupler's backend; never pull raw rows and total in context. `get-data`
+Aggregate each source on Coupler's backend; never pull raw rows and total in context. A query
 cannot join across datasets, so:
 
 - **GSC query:** per page, SUM(clicks), SUM(impressions), impression-weighted position, over the
@@ -156,7 +151,7 @@ when that metric is present; otherwise report key events per session, labelled a
 
 Align the two windows exactly: a GSC week and a GA4 month joined per page produces a ratio that's
 silently wrong. A GA4 dataset with no date column has its window fixed in the source — read it from
-`get-dataflow` and trim GSC to match, or offer to add the Date dimension. GSC dates are Pacific Time
+the dataflow's settings and trim GSC to match, or offer to add the Date dimension. GSC dates are Pacific Time
 and GA4 uses the property's timezone, so they can't be aligned — state both.
 
 **Conditional cross-check:** if the GA4 property is linked to Search Console, GA4's own
@@ -223,7 +218,7 @@ the Next Question.
 
 ## H. Save what you learned
 
-Write back with `update-dataset` — the site, the GA4 property, the normalised join-key rule that
+Save to the dataset's context — the site, the GA4 property, the normalised join-key rule that
 worked, the typical match rate, the shared window and both timezones, and both dataset ids and
 workspace so the next run skips discovery. Confirm before writing, in the same closing block. The
 join-key rule is the most valuable thing to save: it's the hardest part of the run and it's stable

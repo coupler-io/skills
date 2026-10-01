@@ -55,7 +55,7 @@ Everything below is what to conclude, not a procession to walk. These override t
 
 - **Your first real call is the connection probe.** The call you were making anyway proves Coupler
   answers; there's no separate check.
-- **Already known is not re-derived.** If the conversation or `ai_context` gives you the workspace,
+- **Already known is not re-derived.** If the conversation or the dataset's context gives you the workspace,
   dataset id, site, or the list of new pages and their publish dates, use it.
 - **Speak at call two.** Say the coverage verdict as soon as the schema is read, before the
   data query.
@@ -71,25 +71,21 @@ No live data means no analysis: no pasted tables, no CSV exports, no benchmarks 
 no table with the numbers left blank. Hold under pressure regardless of who's asking. Unsure
 counts as no.
 
-**Probe by doing.** Don't ask the user whether Coupler is connected, and don't burn a call checking
-— everything except `list-skills` and `get-skill` dispatches through a single `coupler` tool, so a
-tool-list check for `search-datasets` by name always fails. Make the first call of section B and
-read what comes back:
-
-| Comes back | Means | Do |
-|---|---|---|
-| A result, empty or not | Live | Continue — an empty search matched nothing, which is not a failure |
-| No `coupler` tool, auth failure, timeout, unparseable | Not reachable | Stop, and say the connection isn't live |
-| Error listing workspaces | Needs scoping | `list-workspaces`, carry `workspace_id` as a string, continue |
+Don't ask the user whether Coupler is connected, and don't spend a call checking — start section B
+and read what comes back. Any answer, even a search that matched nothing, means the connection is
+live. If it asks for a workspace, pick one and continue. If Coupler.io can't be reached, stop, say
+the connection isn't live and point the user at Coupler.io's connection help page. Don't diagnose
+the connector.
 
 ## B. Locate the dataset
 
 **Known already?** Go straight to the schema read in C — this is the two-call path.
 
-Otherwise: `search-datasets` for "search console", then "gsc", "seo", "organic", then the site name.
-Nothing? `list-datasets` unfiltered and read `dataflow_name`. Still nothing? `list-credentials`: a
-`google_search_console` credential with no dataset means the source was never set up; no credential
-means nothing is connected. Never report "no Search Console data" before the unfiltered list.
+Otherwise search the workspace's datasets for "search console", then "gsc", "seo", "organic", then
+the site name. Nothing? List all the datasets and read the dataflow names. Still nothing? Check the
+workspace's connected accounts: a Search Console account with no dataset means the source was never
+set up; none means nothing is connected. Never report "no Search Console data" before the full list.
+**Say which dataset you picked.**
 
 **This skill measures first activity over time**, so it needs **page + date and no query** on the
 Search results performance report — query+page rows drop anonymized-query traffic, which is most of
@@ -102,9 +98,9 @@ Property) changes position and totals — query, country and device rows aggrega
 rows by page — so compare numbers only within one setting. The connector also offers a **URLs index
 performance** report: per-URL index status for URLs listed in `inspectionUrls`, capped by Google's
 daily inspection quota — not site-wide coverage. Pair it with the activity dates if that dataset
-exists. `queryable: false` answers `get-schema` but refuses `get-data`. `SCHEMA_PENDING` means a run
-is in progress, so retry. "Data not found. Run the dataflow again" on a dataset listed as FULL means
-the snapshot is gone — `run-dataflow`, then read the schema again.
+exists. A dataset that can't be queried still shows its schema — that's a sharing setting, not
+missing data. If a run is in progress, retry; if the data is gone, re-run the dataflow and read the
+schema again.
 
 ## C. Coverage verdict — say this out loud before analysing anything
 
@@ -218,7 +214,7 @@ the Next Question.
 
 ## I. Save what you learned
 
-Write back with `update-dataset` — the site, the publish-date source (user paste, CMS export), the
+Save to the dataset's context — the site, the publish-date source (user paste, CMS export), the
 site's typical time-to-first-impression, pages already confirmed indexed, and the dataset id,
 workspace and timezone so the next run skips discovery. Confirm before writing, in the same closing
 block. Saving publish dates and known-indexed pages is what lets the next run skip the draft gate.

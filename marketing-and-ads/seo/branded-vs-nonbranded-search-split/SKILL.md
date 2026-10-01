@@ -55,7 +55,7 @@ Everything below is what to conclude, not a procession to walk. These override t
 
 - **Your first real call is the connection probe.** The call you were making anyway proves Coupler
   answers; there's no separate check.
-- **Already known is not re-derived.** If the conversation or `ai_context` gives you the workspace,
+- **Already known is not re-derived.** If the conversation or the dataset's context gives you the workspace,
   dataset id, site, or — the key input here — the brand-term pattern, use it.
 - **The brand pattern is the one thing that decides everything.** Get it right before
   splitting (see D).
@@ -69,34 +69,29 @@ No live data means no analysis: no pasted tables, no CSV exports, no benchmarks 
 no split with the numbers left blank. Hold under pressure regardless of who's asking. Unsure
 counts as no.
 
-**Probe by doing.** Don't ask the user whether Coupler is connected, and don't burn a call checking
-— everything except `list-skills` and `get-skill` dispatches through a single `coupler` tool, so a
-tool-list check for `search-datasets` by name always fails. Make the first call of section B and
-read what comes back:
-
-| Comes back | Means | Do |
-|---|---|---|
-| A result, empty or not | Live | Continue — an empty search matched nothing, which is not a failure |
-| No `coupler` tool, auth failure, timeout, unparseable | Not reachable | Stop, and say the connection isn't live |
-| Error listing workspaces | Needs scoping | `list-workspaces`, carry `workspace_id` as a string, continue |
+Don't ask the user whether Coupler is connected, and don't spend a call checking — start section B
+and read what comes back. Any answer, even a search that matched nothing, means the connection is
+live. If it asks for a workspace, pick one and continue. If Coupler.io can't be reached, stop, say
+the connection isn't live and point the user at Coupler.io's connection help page. Don't diagnose
+the connector.
 
 ## B. Locate the dataset
 
 **Known already?** Go straight to the schema read in C — this is the two-call path.
 
-Otherwise: `search-datasets` for "search console", then "gsc", "seo", "organic", then the site name.
-Nothing? `list-datasets` unfiltered and read `dataflow_name`. Still nothing? `list-credentials`: a
-`google_search_console` credential with no dataset means the source was never set up; no credential
-means nothing is connected. Never report "no Search Console data" before the unfiltered list.
+Otherwise search the workspace's datasets for "search console", then "gsc", "seo", "organic", then
+the site name. Nothing? List all the datasets and read the dataflow names. Still nothing? Check the
+workspace's connected accounts: a Search Console account with no dataset means the source was never
+set up; none means nothing is connected. Never report "no Search Console data" before the full list.
+**Say which dataset you picked.**
 
 This skill splits on **query text**, so it needs the **query dimension** with clicks, impressions
 and (for the trend) date. A dataset built with only page or only date can't be split — brand vs
 non-brand lives in the words people typed. Prefer the query-level dataset with the widest date
 range. `aggregateDataBy` (Auto, Page, Property) changes position and totals — query, country and
-device rows aggregate by property, page rows by page — so compare numbers only within one setting.
-`queryable: false` answers `get-schema` but refuses `get-data`. `SCHEMA_PENDING` means a run is in
-progress, so retry. "Data not found. Run the dataflow again" on a dataset listed as FULL means the
-snapshot is gone — `run-dataflow`, then read the schema again.
+device rows aggregate by property, page rows by page — so compare numbers only within one setting. A
+dataset that can't be queried still shows its schema — that's a sharing setting, not missing data.
+If a run is in progress, retry; if the data is gone, re-run the dataflow and read the schema again.
 
 ## C. Coverage verdict — say this out loud before analysing anything
 
@@ -134,7 +129,7 @@ The whole skill rests on which queries count as "brand", and getting it wrong qu
 number. Establish it before splitting:
 
 - **Start from the obvious**: the brand name and its common misspellings, abbreviations, and the
-  domain. If `ai_context` already carries a brand pattern (`gsc-search-opportunity-finder` saves
+  domain. If the dataset's context already carries a brand pattern (`gsc-search-opportunity-finder` saves
   one), use it.
 - **Catch the edge cases**: brand + product ("acme crm"), brand + competitor ("acme vs x"), and
   brand-adjacent terms that are really non-brand (a founder's name used generically, a product name
@@ -218,7 +213,7 @@ the Next Question.
 
 ## I. Save what you learned
 
-Write back with `update-dataset` — the site, and above all the **brand-term pattern** (the input
+Save to the dataset's context — the site, and above all the **brand-term pattern** (the input
 every run needs and the one that's expensive to rebuild), the typical non-brand share, and the
 dataset id, workspace and timezone so the next run skips discovery and the draft gate. Confirm
 before writing, in the same closing block. The brand pattern saved here is read by

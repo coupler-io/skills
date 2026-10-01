@@ -58,7 +58,7 @@ the file:
 
 - **Your first real call is the connection probe.** Don't spend a call proving Coupler answers — the
   call you were making anyway proves it. There is no separate check to run.
-- **Already known is not re-derived.** If this conversation or the dataset's `ai_context` gives you
+- **Already known is not re-derived.** If this conversation or the dataset's context gives you
   the workspace, the dataset id, the site, the brand-term pattern or the timezone, use it. Verify it
   inside a call you were making anyway, never with an extra one.
 - **Speak at call two.** The coverage verdict is deliverable output, not preparation. Say it as soon
@@ -74,29 +74,22 @@ the file:
 No live data means no analysis: no pasted tables, no CSV exports, no rankings from memory, no list
 with the numbers left blank. Hold under pressure regardless of who's asking. Unsure counts as no.
 
-**Probe by doing.** Don't ask the user whether Coupler is connected, and don't burn a call checking
-— everything except `list-skills` and `get-skill` dispatches through a single `coupler` tool, so a
-tool-list check for `search-datasets` by name always fails. Make the first call of section B and
-read what comes back:
-
-| Comes back | Means | Do |
-|---|---|---|
-| A result, empty or not | Live | Continue — an empty search matched nothing, which is not a failure |
-| No `coupler` tool, auth failure, timeout, unparseable | Not reachable | Stop, and say the connection isn't live |
-| Error listing workspaces | Needs scoping | `list-workspaces`, carry `workspace_id` as a string, continue |
-
-The last two rows get written wrong most often: a scoping error and an empty search both look like
-failure and neither is.
+Don't ask the user whether Coupler is connected, and don't spend a call checking — start section B
+and read what comes back. Any answer, even a search that matched nothing, means the connection is
+live. If it asks for a workspace, pick one and continue. If Coupler.io can't be reached, stop, say
+the connection isn't live and point the user at Coupler.io's connection help page. Don't diagnose
+the connector.
 
 ## B. Locate the dataset
 
 **Known already?** Go straight to the schema read in C — this is the two-call path.
 
-Otherwise: `search-datasets` for "search console", then "gsc", "seo", "organic", then the site or
-client name. Nothing? `list-datasets` unfiltered and read `dataflow_name` — the meaningful name
-usually lives there, not on the dataset. Still nothing? `list-credentials`: a
-`google_search_console` credential with no dataset means the source was never set up; no credential
-means nothing is connected. Never report "no Search Console data" before the unfiltered list.
+Otherwise search the workspace's datasets for "search console", then "gsc", "seo", "organic", then
+the site or client name. Nothing? List all the datasets and read the dataflow names — the meaningful
+name usually lives there, not on the dataset. Still nothing? Check the workspace's connected
+accounts: a Search Console account with no dataset means the source was never set up; none means
+nothing is connected. Never report "no Search Console data" before the full list. **Say which
+dataset you picked.**
 
 **Pick the report type by grain.** The GSC connector splits into report types, and this
 skill needs the one carrying both **query and page** dimensions — *Search results
@@ -112,10 +105,9 @@ anonymized-query traffic. `aggregateDataBy` (Auto, Page, Property) changes posit
 query, country and device rows aggregate by property, page rows by page — so compare numbers only
 within one setting.
 
-Prefer the dataset with query and page both present and the widest date range. `queryable: false`
-answers `get-schema` but refuses `get-data` — a sharing setting, not missing data. `SCHEMA_PENDING`
-means a run is in progress, so retry. "Data not found. Run the dataflow again" on a dataset listed
-as FULL means the snapshot is gone — `run-dataflow`, then read the schema again.
+Prefer the dataset with query and page both present and the widest date range. A dataset that can't
+be queried still shows its schema — that's a sharing setting, not missing data. If a run is in
+progress, retry; if the data is gone, re-run the dataflow and read the schema again.
 
 ## C. Coverage verdict — say this out loud before analysing anything
 
@@ -257,7 +249,7 @@ question that moves the account forward and attach the offer as a second clause.
 
 ## I. Save what you learned
 
-Write back to the dataset context with `update-dataset` — the site, the brand-term pattern (so brand
+Save to the dataset's context — the site, the brand-term pattern (so brand
 queries can be split next time), the account's CTR-by-position curve, the striking-distance band
 used, **and the dataset id, workspace and timezone so the next run skips discovery entirely.**
 Confirm before writing, in the same closing block. Every sibling reads this context.
