@@ -99,7 +99,7 @@
     {
       "name": "shopify-store-performance",
       "path": "ecommerce/shopify/shopify-store-performance",
-      "category": "Data analysis",
+      "category": "ecommerce",
       "sources": [
         "Shopify"
       ],
@@ -119,6 +119,116 @@
       ],
       "short_description": "",
       "description": "Use this skill when the user wants to analyze financial performance, review P&L health, monitor MRR/ARR, investigate margin or cost trends, build a finance report, check cash flow or runway, or answer questions about their accounting/billing data. Triggers include 'how is revenue trending', 'gross margin', 'MRR breakdown', 'churn impact on ARR', 'why did costs go up', 'operating expenses', 'cash runway', 'P&L review', 'EBITDA', 'cost per acquisition trend', 'pull my QuickBooks numbers', 'finance report'."
+    },
+    {
+      "name": "amazon-ads-attribution-and-metrics-audit",
+      "path": "marketing-and-ads/amazon-ads/amazon-ads-attribution-and-metrics-audit",
+      "category": "marketing-and-ads",
+      "sources": [
+        "Amazon Ads",
+        "Amazon Ads (Unified)"
+      ],
+      "short_description": "Whether Amazon Ads sales and ACOS are comparable and trustworthy — windows, halo and views, currency, restatement, ad share of total sales.",
+      "description": "Use for \"can I trust my Amazon ACOS\", \"why don't my Amazon Ads sales match Seller Central\", \"which attribution window does Amazon use\", \"are my Amazon ad sales including halo\", \"why is my Amazon Sponsored Display ROAS so high\", \"are my Amazon numbers comparable across ad products\", or \"my Amazon sales keep changing\" — and whenever someone doubts their Amazon Ads numbers, even without the word \"audit\". Run before trusting any ACOS or ROAS comparison. Amazon Ads only."
+    },
+    {
+      "name": "amazon-ads-budget-pacing",
+      "path": "marketing-and-ads/amazon-ads/amazon-ads-budget-pacing",
+      "category": "marketing-and-ads",
+      "sources": [
+        "Amazon Ads",
+        "Amazon Ads (Unified)"
+      ],
+      "short_description": "Where Amazon Ads spend lands by month end, which campaigns run out of budget early, portfolio caps, and whether more money would pay back.",
+      "description": "Use for \"am I on track with my Amazon Ads budget\", \"will I overspend on Amazon this month\", \"which Amazon campaigns run out of budget\", \"how much should I spend a day on Amazon Ads\", \"we underspent on Amazon and I don't know why\", \"is my Amazon portfolio budget capping me\", or a mid-month Amazon Ads spend check — even when the user never says \"pacing\". Also use when someone needs to know whether more budget on an Amazon campaign would earn it back. Amazon Ads only."
+    },
+    {
+      "name": "amazon-ads-client-report",
+      "path": "marketing-and-ads/amazon-ads/amazon-ads-client-report",
+      "category": "marketing-and-ads",
+      "sources": [
+        "Amazon Ads",
+        "Amazon Ads (Unified)"
+      ],
+      "short_description": "The monthly Amazon Ads report a client can read — scored against agreed targets, misses explained honestly, next month's plan attached.",
+      "description": "Use when someone asks for a monthly Amazon Ads report for a client, wants the Amazon section of a client deck built, needs last month's Amazon Ads performance written up, asks for an end-of-month Amazon PPC report, asks \"what do I tell the client about Amazon\", or asks how to present an Amazon ACOS target they missed — even when they never say the word \"report\". For agencies and in-house teams reporting upward. Amazon Ads only."
+    },
+    {
+      "name": "amazon-ads-new-to-brand-and-halo",
+      "path": "marketing-and-ads/amazon-ads/amazon-ads-new-to-brand-and-halo",
+      "category": "marketing-and-ads",
+      "sources": [
+        "Amazon Ads",
+        "Amazon Ads (Unified)"
+      ],
+      "short_description": "What Amazon Sponsored Brands, Display, TV and DSP buy beyond ACOS — new-to-brand customers, halo sales, branded searches.",
+      "description": "Use for \"are Amazon Sponsored Brands worth it\", \"is Amazon Sponsored Display working\", \"how many new customers do my Amazon ads bring\", \"what's my Amazon new-to-brand rate\", \"are my Amazon ads selling my other products\", \"is Amazon DSP worth the money\", or \"why does my Amazon Brands ACOS look so bad\" — even when the user never says \"new to brand\". Covers what upper-funnel Amazon ads are worth beyond ACOS. Amazon Ads only."
+    },
+    {
+      "name": "amazon-ads-performance-review",
+      "path": "marketing-and-ads/amazon-ads/amazon-ads-performance-review",
+      "category": "marketing-and-ads",
+      "sources": [
+        "Amazon Ads",
+        "Amazon Ads (Unified)"
+      ],
+      "short_description": "The Amazon Ads baseline read — what the account did, why ACOS moved, split by ad product, and what to do, with a number on each.",
+      "description": "Use for \"how are my Amazon ads doing\", \"why did my Amazon ACOS go up\", \"which Amazon campaigns improved this month\", \"what happened to my Amazon Ads last week\", \"is my Amazon ad spend working\", \"why did my Amazon ROAS drop\", or a weekly or monthly Amazon Ads account check — even when the user never says \"review\". Also use when someone wants to know what changed in the Amazon account and why, or needs the baseline read before deciding anything else. Amazon Ads only."
+    },
+    {
+      "name": "amazon-ads-placement-and-search-share",
+      "path": "marketing-and-ads/amazon-ads/amazon-ads-placement-and-search-share",
+      "category": "marketing-and-ads",
+      "sources": [
+        "Amazon Ads",
+        "Amazon Ads (Unified)"
+      ],
+      "short_description": "Where on Amazon the ads earn — top of search, rest of search, product pages — placement adjustments sized, and top-of-search share.",
+      "description": "Use for \"is top of search worth it on Amazon\", \"what placement adjustments should I set on Amazon\", \"how are my Amazon product page placements doing\", \"am I winning top of search on Amazon\", \"what's my Amazon impression share\", \"is someone bidding on my brand on Amazon\", or \"where are my Amazon ads showing\" — even when the user never says \"placement\". Covers top of search, rest of search and product pages, and the share of the top of search the account wins. Amazon Ads only."
+    },
+    {
+      "name": "amazon-ads-product-and-asin-performance",
+      "path": "marketing-and-ads/amazon-ads/amazon-ads-product-and-asin-performance",
+      "category": "marketing-and-ads",
+      "sources": [
+        "Amazon Ads",
+        "Amazon Ads (Unified)"
+      ],
+      "short_description": "Which advertised Amazon products earn their spend, which spend without selling, what shoppers buy instead, and when it's the listing.",
+      "description": "Use for \"which products sell through my Amazon ads\", \"which ASINs should I stop advertising on Amazon\", \"what's my ACOS by product on Amazon\", \"why did ACOS jump on one Amazon product\", \"what do shoppers buy after clicking my Amazon ads\", \"which Amazon products are worth more ad spend\", or \"is it my Amazon listing or my ads\" — even when the user never says \"ASIN\". Covers advertised products, halo sales and listing problems the ads can't fix. Amazon Ads only."
+    },
+    {
+      "name": "amazon-ads-settings-and-structure-audit",
+      "path": "marketing-and-ads/amazon-ads/amazon-ads-settings-and-structure-audit",
+      "category": "marketing-and-ads",
+      "sources": [
+        "Amazon Ads",
+        "Amazon Ads (Unified)"
+      ],
+      "short_description": "Prices every Amazon Ads setting and structural choice costing money — effective top-of-search bids, self-competition, brand mixing, crowded ad groups.",
+      "description": "Use for \"audit my Amazon Ads account\", \"is my Amazon PPC set up right\", \"I inherited this Amazon Ads account, what's wrong with it\", \"are my Amazon campaigns competing with each other\", \"should I use dynamic bids up and down on Amazon\", \"should brand and generic be separate on Amazon\", or \"how should I structure my Amazon campaigns\" — even when the user never says \"settings\". Covers bid strategy against placement adjustments, self-competition, brand mixing, automatic against manual, and crowded ad groups, each priced. Amazon Ads only."
+    },
+    {
+      "name": "amazon-ads-targeting-analysis",
+      "path": "marketing-and-ads/amazon-ads/amazon-ads-targeting-analysis",
+      "category": "marketing-and-ads",
+      "sources": [
+        "Amazon Ads",
+        "Amazon Ads (Unified)"
+      ],
+      "short_description": "Which Amazon keywords and product targets earn, what each should bid from its own revenue per click, and how match types and auto groups compare.",
+      "description": "Use for \"which Amazon keywords make money\", \"what should my Amazon bids be\", \"is exact or broad match better on Amazon\", \"how are my Amazon auto campaigns doing\", \"which Amazon product targets work\", \"should I target competitor ASINs on Amazon\", or \"why is my Amazon cost per click so high\" — even when the user never says \"targeting\". This is the earning view: which Amazon keywords and targets deserve more and what each should bid. For search terms to cut, use the waste skill. Amazon Ads only."
+    },
+    {
+      "name": "amazon-ads-waste-and-scale",
+      "path": "marketing-and-ads/amazon-ads/amazon-ads-waste-and-scale",
+      "category": "marketing-and-ads",
+      "sources": [
+        "Amazon Ads",
+        "Amazon Ads (Unified)"
+      ],
+      "short_description": "Finds Amazon search terms and product matches spending without selling, builds safe negatives, harvests winners, and moves the money.",
+      "description": "Use for \"where am I wasting money on Amazon Ads\", \"find me negative keywords for Amazon\", \"Amazon search term report analysis\", \"which Amazon search terms should I harvest\", \"which Amazon campaigns should I scale\", \"clean up my Amazon PPC\", \"which Amazon keywords should I pause\", or \"what do I cut on Amazon and where does the money go\" — even without the words \"waste\" or \"scale\". Also use when someone wants a budget-neutral reallocation for the Amazon Ads account. Amazon Ads only."
     },
     {
       "name": "facebook-ads-audience-analysis",
@@ -311,6 +421,106 @@
       "description": "Use for \"where am I wasting money on Google Ads\", \"which keywords should I pause\", \"find me negative keywords\", \"search terms report analysis\", \"which campaigns should I scale\", \"clean up my Google Ads account\", \"what should I cut and where should the money go\" — even without the words \"waste\" or \"scale\". Also use when someone wants a budget-neutral reallocation proposal for the account. Google Ads only."
     },
     {
+      "name": "linkedin-ads-budget-pacing",
+      "path": "marketing-and-ads/linkedin-ads/linkedin-ads-budget-pacing",
+      "category": "marketing-and-ads",
+      "sources": [
+        "LinkedIn Ads"
+      ],
+      "short_description": "Where LinkedIn Ads spend lands by month end, which campaigns spend their full budget, and why the underspenders can't spend.",
+      "description": "Use for \"am I on track with my LinkedIn Ads budget\", \"will I overspend on LinkedIn this month\", \"how much should I spend a day on LinkedIn Ads\", \"which LinkedIn campaigns are budget-limited\", \"why won't my LinkedIn campaign spend\", \"we underspent on LinkedIn and I don't know why\", or a mid-month LinkedIn Ads spend check — even when the user never says \"pacing\". Also use when someone needs to know whether more budget on a LinkedIn campaign would buy anything. LinkedIn Ads only."
+    },
+    {
+      "name": "linkedin-ads-client-report",
+      "path": "marketing-and-ads/linkedin-ads/linkedin-ads-client-report",
+      "category": "marketing-and-ads",
+      "sources": [
+        "LinkedIn Ads"
+      ],
+      "short_description": "The monthly LinkedIn Ads report a client can read — scored against agreed targets, misses explained honestly, next month's plan attached.",
+      "description": "Use when someone asks for a monthly LinkedIn Ads report for a client, wants the LinkedIn section of a client deck built, needs last month's LinkedIn Ads performance written up, asks for an end-of-month LinkedIn Ads report, asks \"what do I tell the client about LinkedIn\", or asks how to present a LinkedIn Ads target they missed — even when they never say the word \"report\". For agencies and in-house teams reporting upward. LinkedIn Ads only."
+    },
+    {
+      "name": "linkedin-ads-conversion-tracking-audit",
+      "path": "marketing-and-ads/linkedin-ads/linkedin-ads-conversion-tracking-audit",
+      "category": "marketing-and-ads",
+      "sources": [
+        "LinkedIn Ads"
+      ],
+      "short_description": "Whether LinkedIn Ads conversions can be trusted — rules, attribution overcount, view-through share, untracked spend, dated breaks.",
+      "description": "Use for \"can I trust my LinkedIn Ads conversion numbers\", \"is my LinkedIn Insight Tag working\", \"audit my LinkedIn conversion tracking\", \"why do LinkedIn and Analytics disagree\", \"are my LinkedIn conversions double-counted\", \"my LinkedIn conversions dropped overnight\", \"how much of my LinkedIn spend has no tracking\" — and whenever someone doubts their LinkedIn Ads numbers, even without the word \"audit\". Run before trusting any cost or return conclusion about the account. LinkedIn Ads only."
+    },
+    {
+      "name": "linkedin-ads-creative-analysis",
+      "path": "marketing-and-ads/linkedin-ads/linkedin-ads-creative-analysis",
+      "category": "marketing-and-ads",
+      "sources": [
+        "LinkedIn Ads"
+      ],
+      "short_description": "Which LinkedIn Ads creatives win within their own format, what winners share, and a brief for the next round.",
+      "description": "Use for \"which LinkedIn ads are working\", \"which LinkedIn creative should I put money behind\", \"what should my next LinkedIn ads look like\", \"is my LinkedIn video hook working\", \"which LinkedIn carousel card gets the clicks\", \"are document ads worth it on LinkedIn\", or \"what do my best LinkedIn ads have in common\" — even when the user never says \"creative\". This is the which-ads-win read; for which winning LinkedIn ads are wearing out, use the fatigue skill instead. LinkedIn Ads only."
+    },
+    {
+      "name": "linkedin-ads-creative-fatigue",
+      "path": "marketing-and-ads/linkedin-ads/linkedin-ads-creative-fatigue",
+      "category": "marketing-and-ads",
+      "sources": [
+        "LinkedIn Ads"
+      ],
+      "short_description": "Which LinkedIn Ads creatives are wearing out, roughly how long each has left, whether it's the audience, and how many new creatives a month.",
+      "description": "Use for \"are my LinkedIn ads burning out\", \"my LinkedIn click-through rate is dropping\", \"my LinkedIn frequency is too high\", \"how long before I need new LinkedIn ads\", \"which LinkedIn creatives should I refresh\", \"how much new creative do I need for LinkedIn a month\", or \"this LinkedIn ad used to work\" — even when the user never says \"fatigue\". This is the how-long-has-it-left read; for which LinkedIn creative wins in the first place, use the creative analysis skill. LinkedIn Ads only."
+    },
+    {
+      "name": "linkedin-ads-lead-gen-form-performance",
+      "path": "marketing-and-ads/linkedin-ads/linkedin-ads-lead-gen-form-performance",
+      "category": "marketing-and-ads",
+      "sources": [
+        "LinkedIn Ads"
+      ],
+      "short_description": "Which LinkedIn lead gen forms earn their leads — cost per lead, form completion, and who the leads are from their own answers, never as individuals.",
+      "description": "Use for \"how are my LinkedIn lead gen forms doing\", \"what's my LinkedIn cost per lead\", \"are my LinkedIn leads any good\", \"who is filling in my LinkedIn forms\", \"why do people open my LinkedIn form and not submit\", \"which LinkedIn lead form works best\", or \"are my LinkedIn leads the right seniority\" — even when the user only says \"LinkedIn leads\". Covers lead cost, form completion and who the leads are from their own form answers. LinkedIn Ads only."
+    },
+    {
+      "name": "linkedin-ads-performance-review",
+      "path": "marketing-and-ads/linkedin-ads/linkedin-ads-performance-review",
+      "category": "marketing-and-ads",
+      "sources": [
+        "LinkedIn Ads"
+      ],
+      "short_description": "The LinkedIn Ads baseline read — what the account did, why it changed, reach and frequency, and what to do, with a number on each.",
+      "description": "Use for \"how are my LinkedIn Ads doing\", \"why did my LinkedIn cost per lead go up\", \"which LinkedIn campaigns improved this month\", \"what happened to my LinkedIn Ads last week\", \"is my LinkedIn spend working\", or a weekly or monthly LinkedIn Ads account check — even when the user never says \"review\". Also use when someone wants to know what changed in the LinkedIn account and why, or needs the baseline read before deciding anything else. LinkedIn Ads only."
+    },
+    {
+      "name": "linkedin-ads-placement-and-device",
+      "path": "marketing-and-ads/linkedin-ads/linkedin-ads-placement-and-device",
+      "category": "marketing-and-ads",
+      "sources": [
+        "LinkedIn Ads"
+      ],
+      "short_description": "What LinkedIn Ads spend earns on LinkedIn against the Audience Network, by placement and device, with what to switch off.",
+      "description": "Use for \"is the LinkedIn Audience Network worth it\", \"should I turn off LinkedIn Audience Network\", \"where are my LinkedIn ads showing\", \"is mobile or desktop converting on LinkedIn\", \"which LinkedIn placements work\", or \"where is my LinkedIn budget actually going\" — even when the user never says \"placement\". Covers on-LinkedIn against off-LinkedIn delivery, placements and devices, and what each is worth. LinkedIn Ads only."
+    },
+    {
+      "name": "linkedin-ads-settings-and-structure-audit",
+      "path": "marketing-and-ads/linkedin-ads/linkedin-ads-settings-and-structure-audit",
+      "category": "marketing-and-ads",
+      "sources": [
+        "LinkedIn Ads"
+      ],
+      "short_description": "Prices every LinkedIn Ads setting and structural choice costing money — objectives, bids, Audience Network, expansion, overlapping campaigns.",
+      "description": "Use for \"audit my LinkedIn Ads settings\", \"is my LinkedIn account set up right\", \"I inherited this LinkedIn Ads account, what's wrong with it\", \"should LinkedIn audience expansion be on\", \"are my LinkedIn campaigns competing with each other\", \"is my LinkedIn cost cap too low\", \"should I consolidate my LinkedIn campaigns\", or \"new client LinkedIn account review\" — even when the user never says \"settings\". Covers objectives, bid strategies, Audience Network, audience expansion, overlapping campaigns and creative rotation, each priced in the spend flowing through it. LinkedIn Ads only."
+    },
+    {
+      "name": "linkedin-ads-waste-and-scale",
+      "path": "marketing-and-ads/linkedin-ads/linkedin-ads-waste-and-scale",
+      "category": "marketing-and-ads",
+      "sources": [
+        "LinkedIn Ads"
+      ],
+      "short_description": "Finds LinkedIn Ads spend past the point of being early with nothing to show — campaigns, creatives, Audience Network, saturation — and moves it.",
+      "description": "Use for \"where am I wasting money on LinkedIn Ads\", \"which LinkedIn campaigns should I pause\", \"what should I turn off on LinkedIn\", \"which LinkedIn campaigns should I scale\", \"is the LinkedIn Audience Network wasting my money\", \"clean up my LinkedIn Ads account\", or \"what do I cut on LinkedIn and where does the money go\" — even without the words \"waste\" or \"scale\". Also use when someone wants a budget-neutral reallocation proposal for the LinkedIn Ads account. LinkedIn Ads only."
+    },
+    {
       "name": "marketing-analytics",
       "path": "marketing-and-ads/marketing-analytics",
       "category": "marketing-and-ads",
@@ -322,6 +532,116 @@
       ],
       "short_description": "",
       "description": "Analyze marketing performance data using Coupler.io MCP tools (list-dataflows, get-schema, get-data). Use when the user asks to pull or analyze data from Coupler.io dataflows/data sets, generate marketing performance reports, understand campaign ROI, or investigate changes in business metrics. Make sure to use this skill whenever the user mentions Coupler.io data, marketing dashboards, channel comparisons, campaign analysis, or asks questions like \"why did conversions drop\", \"which channel has best ROI\", \"where should I spend more\", \"what's working\", \"show me my marketing numbers\", \"pull my latest data\", even if they don't explicitly say \"marketing analytics\". For deep paid-ads-only analysis (per-platform ad efficiency, budget pacing, brand vs non-brand, ad fatigue), use the ppc-analytics skill instead — this skill owns the cross-channel view."
+    },
+    {
+      "name": "microsoft-ads-audience-analysis",
+      "path": "marketing-and-ads/microsoft-ads/microsoft-ads-audience-analysis",
+      "category": "marketing-and-ads",
+      "sources": [
+        "Microsoft Ads (Bing Ads)"
+      ],
+      "short_description": "Which Microsoft Ads audiences earn their spend — lists, age and gender, and LinkedIn profile cuts by industry and job function — with bid adjustments.",
+      "description": "Use for \"which audiences are working on Microsoft Ads\", \"is LinkedIn profile targeting worth it on Bing\", \"which industries or job functions convert on Microsoft Ads\", \"is remarketing worth it on Bing\", \"which age group should I bid up on Microsoft Ads\", \"are my in-market audiences earning their spend on Bing\", or \"should my Bing audiences be bid only\" — even when the user never says \"audience\". This is the who-converts read, including the LinkedIn profile cuts no other search platform reports. Microsoft Ads (Bing) only."
+    },
+    {
+      "name": "microsoft-ads-budget-pacing",
+      "path": "marketing-and-ads/microsoft-ads/microsoft-ads-budget-pacing",
+      "category": "marketing-and-ads",
+      "sources": [
+        "Microsoft Ads (Bing Ads)"
+      ],
+      "short_description": "Where Microsoft Ads spend lands by month end, which campaigns are capped by budget, and whether more money would buy anything.",
+      "description": "Use for \"am I on track with my Microsoft Ads budget\", \"will I overspend on Bing this month\", \"how much should I spend a day on Microsoft Ads\", \"which Bing campaigns are capped by budget\", \"we underspent on Microsoft Ads and I don't know why\", \"where should I move Bing budget\", or a mid-month Microsoft Ads spend check — even when the user never says \"pacing\". Also use when someone needs to know whether adding budget to a Microsoft Ads campaign would do anything at all. Microsoft Ads (Bing) only."
+    },
+    {
+      "name": "microsoft-ads-client-report",
+      "path": "marketing-and-ads/microsoft-ads/microsoft-ads-client-report",
+      "category": "marketing-and-ads",
+      "sources": [
+        "Microsoft Ads (Bing Ads)"
+      ],
+      "short_description": "The monthly Microsoft Ads report a client can read — scored against agreed targets, misses explained honestly, next month's plan attached.",
+      "description": "Use when someone asks for a monthly Microsoft Ads report for a client, wants the Bing section of a client deck built, needs last month's Microsoft Ads performance written up, asks for an end-of-month Bing Ads report, asks \"what do I tell the client about Bing\", or asks how to present a Microsoft Ads target they missed — even when they never say the word \"report\". For agencies and in-house teams reporting upward. Microsoft Ads (Bing) only."
+    },
+    {
+      "name": "microsoft-ads-competitive-position",
+      "path": "marketing-and-ads/microsoft-ads/microsoft-ads-competitive-position",
+      "category": "marketing-and-ads",
+      "sources": [
+        "Microsoft Ads (Bing Ads)"
+      ],
+      "short_description": "The Microsoft Ads account's position in the auction — share won, lost to budget or rank, top of page, click share — and where to defend.",
+      "description": "Use for \"how do I stack up against competitors on Bing\", \"what's my share of voice on Microsoft Ads\", \"am I showing at the top of the page on Bing\", \"am I losing Microsoft Ads auctions to competitors\", \"why is my Bing click share falling\", \"is someone bidding on my brand on Bing\", \"which Microsoft Ads keywords am I being outranked on\" — even when the user never says \"competition\". This is the account's own position in the auction — share won, top-of-page, click share — not a list of who it's up against. Microsoft Ads (Bing) only."
+    },
+    {
+      "name": "microsoft-ads-conversion-tracking-audit",
+      "path": "marketing-and-ads/microsoft-ads/microsoft-ads-conversion-tracking-audit",
+      "category": "marketing-and-ads",
+      "sources": [
+        "Microsoft Ads (Bing Ads)"
+      ],
+      "short_description": "Whether Microsoft Ads conversions can be trusted — goals counting, double counts, untracked spend, dated breaks — before anyone moves money.",
+      "description": "Use for \"can I trust my Microsoft Ads conversion numbers\", \"audit my Bing conversion tracking\", \"is my UET tag working\", \"why do Microsoft Ads and Analytics disagree\", \"are my Bing conversions double-counted\", \"my Microsoft Ads conversions dropped overnight\", \"how much of my Bing spend has no tracking\" — and whenever someone doubts their Microsoft Ads numbers, even without the word \"audit\". Run before trusting any cost or return conclusion about the account. Microsoft Ads (Bing) only."
+    },
+    {
+      "name": "microsoft-ads-geo-device-and-dayparting",
+      "path": "marketing-and-ads/microsoft-ads/microsoft-ads-geo-device-and-dayparting",
+      "category": "marketing-and-ads",
+      "sources": [
+        "Microsoft Ads (Bing Ads)"
+      ],
+      "short_description": "Where, on what device and at what hour Microsoft Ads spend earns — share of spend against share of results, with adjustments sized.",
+      "description": "Use for \"which locations work on Microsoft Ads\", \"is my Bing traffic coming from outside my area\", \"is mobile or desktop converting on Bing\", \"what time of day should my Microsoft Ads run\", \"should I set a Bing ad schedule\", \"which cities or regions should I bid up on Microsoft Ads\", or \"where is my Bing budget actually going\" — even when the user never says \"geo\" or \"dayparting\". Covers where, on what device and when the ads are shown, and what each is worth. Microsoft Ads (Bing) only."
+    },
+    {
+      "name": "microsoft-ads-keyword-and-quality-score-analysis",
+      "path": "marketing-and-ads/microsoft-ads/microsoft-ads-keyword-and-quality-score-analysis",
+      "category": "marketing-and-ads",
+      "sources": [
+        "Microsoft Ads (Bing Ads)"
+      ],
+      "short_description": "Which Microsoft Ads keywords earn their money, quality weighted by spend, which part of quality is failing, and what low quality costs.",
+      "description": "Use for \"which Microsoft Ads keywords make money\", \"my Bing quality score dropped\", \"should I use exact or broad match on Bing\", \"which Bing keywords are worth more budget\", \"why is my Microsoft Ads cost per click so high\", \"find me new keywords for Microsoft Ads\" — even when the user never says \"keyword\". This is the earning view: which Microsoft Ads keywords deserve more money and which are overcharging for the same clicks. For the cutting view, use microsoft-ads-waste-and-scale instead. Microsoft Ads (Bing) only."
+    },
+    {
+      "name": "microsoft-ads-performance-review",
+      "path": "marketing-and-ads/microsoft-ads/microsoft-ads-performance-review",
+      "category": "marketing-and-ads",
+      "sources": [
+        "Microsoft Ads (Bing Ads)"
+      ],
+      "short_description": "The Microsoft Ads baseline read — what the account did, why it changed, the demand it is missing, and what to do, with a number on each.",
+      "description": "Use for \"how are my Microsoft Ads doing\", \"how are my Bing Ads doing\", \"why did my Bing cost per lead go up\", \"which Microsoft Ads campaigns improved this month\", \"am I losing impression share on Bing\", \"what happened to my Microsoft Ads last week\", or a weekly or monthly account check — even when the user never says \"review\". Also use when someone wants to know what changed in the account and why, or needs the baseline read before deciding anything else. Microsoft Ads (Bing) only."
+    },
+    {
+      "name": "microsoft-ads-settings-audit",
+      "path": "marketing-and-ads/microsoft-ads/microsoft-ads-settings-audit",
+      "category": "marketing-and-ads",
+      "sources": [
+        "Microsoft Ads (Bing Ads)"
+      ],
+      "short_description": "Prices every Microsoft Ads setting that costs money — syndication, location intent, audience setting, bid strategies, Google Import overwrites.",
+      "description": "Use for \"audit my Microsoft Ads settings\", \"is my Bing account set up right\", \"I inherited this Microsoft Ads account, what's wrong with it\", \"is Google Import overwriting my Bing campaigns\", \"why is my Bing traffic showing outside my area\", \"should I be on the Microsoft Audience Network\", \"check my Microsoft Ads campaign settings\", \"new client Bing account review\" — even when the user never says \"settings\". Covers network and syndication, location intent, audience targeting setting, bid strategies, Google Import and change history, each priced in the spend flowing through it. Microsoft Ads (Bing) only."
+    },
+    {
+      "name": "microsoft-ads-shopping-and-product-performance",
+      "path": "marketing-and-ads/microsoft-ads/microsoft-ads-shopping-and-product-performance",
+      "category": "marketing-and-ads",
+      "sources": [
+        "Microsoft Ads (Bing Ads)"
+      ],
+      "short_description": "Which products Microsoft Shopping makes money on, which spend without selling or never serve, and how to restructure the product groups.",
+      "description": "Use for \"how are my Microsoft Shopping campaigns doing\", \"which products sell on Bing\", \"which products should I stop advertising on Microsoft Ads\", \"why aren't my products showing on Bing\", \"what's my ROAS by product on Microsoft Ads\", \"which Bing product searches should I add as negatives\", or \"are my Bing product groups set up right\" — even when the user only says \"Bing Shopping\" or \"product ads\". Microsoft Ads (Bing) only, for accounts running Shopping or product ads."
+    },
+    {
+      "name": "microsoft-ads-waste-and-scale",
+      "path": "marketing-and-ads/microsoft-ads/microsoft-ads-waste-and-scale",
+      "category": "marketing-and-ads",
+      "sources": [
+        "Microsoft Ads (Bing Ads)"
+      ],
+      "short_description": "Finds Microsoft Ads spend past the point of being early with nothing to show, builds safe negatives, and moves the money to capped campaigns.",
+      "description": "Use for \"where am I wasting money on Microsoft Ads\", \"which Bing keywords should I pause\", \"find me negative keywords for Bing\", \"Microsoft Ads search terms report analysis\", \"which Bing publishers should I exclude\", \"which Microsoft Ads campaigns should I scale\", \"clean up my Bing Ads account\", \"what should I cut on Microsoft Ads and where should the money go\" — even without the words \"waste\" or \"scale\". Also use when someone wants a budget-neutral reallocation proposal for the Microsoft Ads account. Microsoft Ads (Bing) only."
     },
     {
       "name": "ppc-analytics",
