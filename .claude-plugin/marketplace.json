@@ -5,7 +5,7 @@
   },
   "metadata": {
     "description": "Coupler.io-authored Claude Code skills and plugins for business analytics by function (finance, sales, ecommerce, marketing & ads) plus shared capability skills and utilities",
-    "version": "1.6.0"
+    "version": "1.7.0"
   },
   "plugins": [
     {
@@ -111,7 +111,14 @@
         "./marketing-and-ads/amazon-ads/amazon-ads-new-to-brand-and-halo",
         "./marketing-and-ads/amazon-ads/amazon-ads-attribution-and-metrics-audit",
         "./marketing-and-ads/amazon-ads/amazon-ads-settings-and-structure-audit",
-        "./marketing-and-ads/amazon-ads/amazon-ads-client-report"
+        "./marketing-and-ads/amazon-ads/amazon-ads-client-report",
+        "./marketing-and-ads/seo/gsc-search-opportunity-finder",
+        "./marketing-and-ads/seo/content-decay-detector",
+        "./marketing-and-ads/seo/gsc-ga4-landing-page-performance",
+        "./marketing-and-ads/seo/gsc-country-device-performance",
+        "./marketing-and-ads/seo/branded-vs-nonbranded-search-split",
+        "./marketing-and-ads/seo/new-page-indexation-tracker",
+        "./marketing-and-ads/seo/ai-traffic-vs-organic-report"
       ]
     },
     {
