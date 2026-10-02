@@ -655,6 +655,77 @@
       "description": "Analyze paid-ads (PPC) performance over the ad data connected in your Coupler.io workspace — spend, impressions, clicks, CTR, CPC, CPM, conversions, CPA, ROAS — with per-platform funnel traces, an efficiency-first comparison table, brand vs non-brand splits, budget pacing, and a weekly PPC review. Use this skill when the user asks \"how are my ads performing\", \"weekly PPC report\", \"why did CPA spike\", \"ROAS by platform\", \"Facebook vs Google Ads\", \"compare Meta and Google\", \"am I overspending my ad budget\", \"which campaigns should I scale or pause\", \"ad fatigue check\", \"blended CAC\". Facebook Ads + Google Ads are first-class; other ad platforms best-effort. It never silently sums platform-reported conversions across platforms — attribution double-counts; it reports per platform and computes blended CAC from an independent source when one exists. Paid-ads deep dives only: for cross-channel marketing (email, social, SEO) use marketing-analytics; report formatting composes report-generation."
     },
     {
+      "name": "ai-traffic-vs-organic-report",
+      "path": "marketing-and-ads/seo/ai-traffic-vs-organic-report",
+      "category": "marketing-and-ads",
+      "sources": [
+        "Google Analytics 4 (GA4)"
+      ],
+      "short_description": "",
+      "description": "Shows how much traffic answer engines like ChatGPT, Perplexity, Gemini and Claude send your site, and how it compares to normal organic search, from live GA4 data in your Coupler.io workspace — sessions, engagement, key events and revenue from AI referrals against organic, and whether AI is growing or replacing search. Use for \"how much traffic does my site get from ChatGPT\", \"are AI answer engines sending me visitors\", \"AI referral vs organic search traffic\", \"am I getting AEO traffic to my site\", \"how is answer engine optimization doing for us\", \"should I invest in GEO\", \"are my AI referrals converting\" — even when the user says \"ranking in AI answers\" or \"GEO check\". Important: this measures traffic AI engines already send you, not whether you appear in their answers — citation data isn't in Coupler's GA4 or GSC connectors. GA4 only."
+    },
+    {
+      "name": "branded-vs-nonbranded-search-split",
+      "path": "marketing-and-ads/seo/branded-vs-nonbranded-search-split",
+      "category": "marketing-and-ads",
+      "sources": [
+        "Google Search Console"
+      ],
+      "short_description": "",
+      "description": "Splits your organic search into brand and non-brand and tells you which is really growing, from live Google Search Console data in your Coupler.io workspace — clicks, impressions, CTR and position for people searching your name versus people finding you cold, the non-brand share and its trend, and new non-brand queries coming in. Use for \"is my SEO growth real or just brand\", \"brand vs non-brand organic search\", \"how much of my search traffic is people searching my name\", \"is my non-brand search traffic growing\", \"am I reaching new audiences in organic search\", \"split my organic search by brand\" — even when the user never says \"branded\". This is the is-it-real-demand view: whether search growth is new reach or just people who already know you. For the full opportunity list use gsc-search-opportunity-finder. Google Search Console only."
+    },
+    {
+      "name": "content-decay-detector",
+      "path": "marketing-and-ads/seo/content-decay-detector",
+      "category": "marketing-and-ads",
+      "sources": [
+        "Google Search Console"
+      ],
+      "short_description": "",
+      "description": "Finds pages that are quietly losing organic traffic over time, from live Google Search Console data in your Coupler.io workspace — which pages are down on clicks, whether it's a ranking slip or fewer people searching, and which are worth updating first. Use for \"which of my pages are losing search traffic\", \"what content is decaying\", \"which blog posts should I refresh\", \"why is my organic search traffic sliding\", \"which pages dropped in Google since last quarter\", \"find pages that need updating for SEO\" — even when the user never says \"decay\". This is the losing-ground view: pages that used to do better and why. For pages that never ranked well in the first place use gsc-search-opportunity-finder. A sudden site-wide drop isn't decay — this skill flags it rather than diagnosing it. Google Search Console only."
+    },
+    {
+      "name": "gsc-country-device-performance",
+      "path": "marketing-and-ads/seo/gsc-country-device-performance",
+      "category": "marketing-and-ads",
+      "sources": [
+        "Google Search Console"
+      ],
+      "short_description": "",
+      "description": "Breaks organic search performance down by country and device, from live Google Search Console data in your Coupler.io workspace — clicks, impressions, click-through rate and average position by market and by phone/desktop/tablet, against the site's own average. Use for \"how does my organic search do by country\", \"which markets underperform in search\", \"is mobile or desktop better for my search traffic\", \"where am I losing search clicks by device\", \"should I localise for SEO\", \"which countries rank worse than my site average\" — even when the user never says \"country\" or \"device\". This is the where-and-on-what view: which markets and devices earn their impressions and which lag the site. For query-level opportunities use gsc-search-opportunity-finder; for what traffic does after landing use gsc-ga4-landing-page-performance. Google Search Console only."
+    },
+    {
+      "name": "gsc-ga4-landing-page-performance",
+      "path": "marketing-and-ads/seo/gsc-ga4-landing-page-performance",
+      "category": "marketing-and-ads",
+      "sources": [
+        "Google Search Console",
+        "Google Analytics 4 (GA4)"
+      ],
+      "short_description": "",
+      "description": "Joins Google Search Console and GA4 to show which landing pages bring organic traffic and what that traffic does once it lands, from live data in your Coupler.io workspace — search clicks and rankings next to engagement, key events and revenue, per page. Use for \"does my organic search traffic convert\", \"which landing pages actually make money from SEO\", \"which SEO pages are worth the effort\", \"my rankings are up but sales aren't\", \"which pages get search clicks but no conversions\", \"landing page SEO report\" — even when the user never says \"landing page\". This is the search-to-outcome view: the page ranks, gets clicked, then what. For search-side only use gsc-search-opportunity-finder; for AI-referral traffic use ai-traffic-vs-organic-report. Needs GA4 and Search Console."
+    },
+    {
+      "name": "gsc-search-opportunity-finder",
+      "path": "marketing-and-ads/seo/gsc-search-opportunity-finder",
+      "category": "marketing-and-ads",
+      "sources": [
+        "Google Search Console"
+      ],
+      "short_description": "",
+      "description": "Finds the clicks you're leaving on the table in Google Search, from live Search Console data in your Coupler.io workspace — queries ranking just off page one, pages that get seen but not clicked, and pages quietly competing with each other for the same query. Use for \"which keywords are close to page one on my site\", \"striking distance keyword report\", \"which of my pages get search impressions but no clicks\", \"find my organic CTR gaps\", \"are my pages cannibalizing each other in search\", \"where are my quick SEO wins\", \"what should I optimize for organic search next\" — even when the user never says \"opportunity\". The earning view: which search positions are worth acting on and what the action is. For pages losing traffic they used to have, use content-decay-detector. Google Search Console only."
+    },
+    {
+      "name": "new-page-indexation-tracker",
+      "path": "marketing-and-ads/seo/new-page-indexation-tracker",
+      "category": "marketing-and-ads",
+      "sources": [
+        "Google Search Console"
+      ],
+      "short_description": "",
+      "description": "Tracks how long new pages take to get picked up by Google and start earning traffic, from live Google Search Console data in your Coupler.io workspace — days from publish to first impression, to first click, to a settled ranking, and which pages have gone nowhere. Use for \"are my new pages getting indexed by Google\", \"how long until new content ranks in search\", \"which of my pages is Google ignoring\", \"did my new posts get picked up in search\", \"why isn't my new page showing up in Google\", \"how fast does my content start ranking\" — even when the user never says \"indexation\". This is the did-it-get-seen view: whether the publishing pipeline is reaching Google and how quickly. For pages that once ranked and are slipping use content-decay-detector. Google Search Console only."
+    },
+    {
       "name": "tiktok-ads-audience-analysis",
       "path": "marketing-and-ads/tiktok-ads/tiktok-ads-audience-analysis",
       "category": "marketing-and-ads",
