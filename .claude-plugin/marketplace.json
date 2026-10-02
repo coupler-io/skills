@@ -118,7 +118,8 @@
         "./marketing-and-ads/seo/gsc-country-device-performance",
         "./marketing-and-ads/seo/branded-vs-nonbranded-search-split",
         "./marketing-and-ads/seo/new-page-indexation-tracker",
-        "./marketing-and-ads/seo/ai-traffic-vs-organic-report"
+        "./marketing-and-ads/seo/ai-traffic-vs-organic-report",
+        "./marketing-and-ads/geo/ai-citation-to-revenue-funnel"
       ]
     },
     {
