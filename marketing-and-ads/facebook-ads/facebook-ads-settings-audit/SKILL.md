@@ -47,7 +47,8 @@ one combined query. **Two calls** when it is known.
 
 Overriding rules: never spend a call proving the connection works; speak at the coverage read;
 coverage prunes the run, so do not chase settings the data does not carry; missing data is a line in
-the write-up, not a gate; don't narrate steps.
+the write-up, not a gate; don't narrate steps; render rankings, trends and splits as inline visuals
+in the message rather than offering to make them.
 
 ## A. Connect to Coupler.io (HARD GATE)
 
@@ -147,17 +148,47 @@ spend running through defective settings, count of defects by category, spend bl
 issues · Context = coverage, what was read from settings and what was inferred · Recommendations = the
 priced defect list in order, each with its fix.
 
+### Inline visuals (REQUIRED)
+
+**Render these in the message itself. They are not an offer and not a follow-up** — a ranking, a
+trend or a split of a total delivered as prose is a defect in this skill's output.
+
+Scale bars from zero. Put the unit and the scale maximum on a label line above the visual. Cap at
+eight rows and roll the rest into `Other (n)`. Mark rows under the volume floor rather than drawing
+them to scale, and never bar a rate without its denominator in the row. **The visual replaces the
+prose it would have taken** — one sentence of interpretation underneath, never a restatement of the
+rows.
+
+Forms: unicode bar (`█`, scaled to the largest row) for rankings and splits; sparkline
+(`▁▂▃▄▅▆▇█`, first and last values labelled) for five or more periods; mermaid for structure only,
+never for quantity.
+
+| Whenever the run produced | Render |
+|---|---|
+| Three or more defects with spend attached | Unicode bar of spend running through each defect, most expensive first, the fix named in the row |
+| Spend concentrated in one setting state | Unicode bar splitting total spend by state — Advantage+ on, off, mixed — against the stated account total |
+| Delivery issues blocking spend | Two-row unicode bar of blocked against delivering spend |
+
+**Render nothing** when there is a single figure, fewer than three comparable rows, an early exit,
+or a coverage table dominated by "not checkable". A two-row bar trains the reader to skip the
+visuals on the runs that have eight.
+
 ## G. Offer to build it out (CONDITIONAL)
+
+**The inline visuals above are not optional and are not this section's business.** This section
+covers only what *leaves the conversation* — a written record, a brief, a document, a pack. It
+**stays silent unless the run produced something a document carries better than the message already
+did.**
 
 | Found | Worth making | Why |
 |---|---|---|
-| Six or more defects with spend attached | A priced defect table for the account file | It will be worked through over days, not read once |
-| An inherited or new account audit | A written account review document | It is a handover artefact by nature and it will be forwarded |
-| Spend concentrated in one defect category | A split of spend by setting state | One picture makes the case that a list does not |
+| Six or more defects that will be worked through over days | A priced defect table for the account file | It is worked through, not read once |
+| An inherited or newly taken-over account | A written account review document | It is a handover artefact by nature and it will be forwarded |
 
-**Stay silent when** the account is clean, there is one defect, or "not checkable" dominates coverage.
-One thing, named by what it contains and who it is for. If it is the client-facing version they want,
-route to `facebook-ads-client-report`. Never build it unasked.
+**Stay silent when** the account is clean, there is one defect, "not checkable" dominates coverage,
+or the inline visuals above already carried the finding. One thing, named by what it contains and
+who it is for — never a menu. If it is the client-facing version they want, route to
+`facebook-ads-client-report`. Never build it unasked; never delay the answer to make it.
 
 ## H. Save what you learned
 

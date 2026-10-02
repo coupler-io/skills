@@ -41,7 +41,8 @@ destination costs twice. This skill will not give you one list without the other
 → one combined query. **Two calls** when the dataset is known.
 
 Overriding rules: never spend a call proving the connection works; speak at the coverage read;
-missing data is a line in the write-up, not a gate; don't narrate steps.
+missing data is a line in the write-up, not a gate; don't narrate steps; render rankings, trends and
+splits as inline visuals in the message rather than offering to make them.
 
 ## A. Connect to Coupler.io (HARD GATE)
 
@@ -143,16 +144,46 @@ freed, redeployed, net, and the projected change in results · Context = the tar
 the significance floor, lines excluded for learning · Recommendations = the paired cut and scale
 lines, each with its number and its ceiling.
 
+### Inline visuals (REQUIRED)
+
+**Render these in the message itself. They are not an offer and not a follow-up** — a ranking, a
+trend or a split of a total delivered as prose is a defect in this skill's output.
+
+Scale bars from zero. Put the unit and the scale maximum on a label line above the visual. Cap at
+eight rows and roll the rest into `Other (n)`. Mark rows under the volume floor rather than drawing
+them to scale, and never bar a rate without its denominator in the row. **The visual replaces the
+prose it would have taken** — one sentence of interpretation underneath, never a restatement of the
+rows.
+
+Forms: unicode bar (`█`, scaled to the largest row) for rankings and splits; sparkline
+(`▁▂▃▄▅▆▇█`, first and last values labelled) for five or more periods; mermaid for structure only,
+never for quantity.
+
+| Whenever the run produced | Render |
+|---|---|
+| A cost-per-result spread across four or more lines | Unicode bar, ranked, with the target stated on the label line and every row past it marked, results count in each row — **the target line is the argument** |
+| A reallocation across three or more lines | Two unicode bars of the same total — before, then after — in the same line order |
+| Freed spend and where it goes | Unicode bar splitting the freed total across its destinations, with the net figure written out |
+
+**Render nothing** when there is a single figure, fewer than three comparable rows, an early exit,
+or a coverage table dominated by "not checkable". A two-row bar trains the reader to skip the
+visuals on the runs that have eight.
+
 ## H. Offer to build it out (CONDITIONAL)
+
+**The inline visuals above are not optional and are not this section's business.** This section
+covers only what *leaves the conversation* — a written record, a brief, a document, a pack. It
+**stays silent unless the run produced something a document carries better than the message already
+did.**
 
 | Found | Worth making | Why |
 |---|---|---|
-| A reallocation across four or more lines | A before-and-after spend split | It is a split of a total, which is what charts do best |
 | A cut list going to someone who will action it later | A written record with the numbers and the reasoning | It has to survive being forwarded, and the reasoning is what stops it being half-actioned |
-| A cost-per-result distribution with a clear tail | A ranked bar with the target line marked | The target line is the argument |
 
-**Stay silent when** the list is one or two lines, or the target was a substitute and everything is
-provisional. One thing, named by what it contains and who it is for. Never build it unasked.
+**Stay silent when** the list is one or two lines, the target was a substitute and everything is
+provisional, or the inline visuals above already carried the finding. One thing, named by what it
+contains and who it is for — never a menu. Never build it unasked; never delay the answer to make
+it.
 
 ## I. Save what you learned
 

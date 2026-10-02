@@ -43,7 +43,8 @@ is "not working" when the real answer is that there are too many of them.
 → one combined query. **Two calls** when the dataset is known.
 
 Overriding rules: never spend a call proving the connection works; speak at the coverage read;
-missing data is a line in the write-up, not a gate; don't narrate steps.
+missing data is a line in the write-up, not a gate; don't narrate steps; render rankings, trends and
+splits as inline visuals in the message rather than offering to make them.
 
 ## A. Connect to Coupler.io (HARD GATE)
 
@@ -139,16 +140,46 @@ Key Metrics = ad set count, budget per ad set, median weekly events, spend at ri
 Context = coverage, what is inferred rather than evidenced, the fifty-event threshold as Meta's
 guidance rather than a law · Recommendations = the consolidation lines with combined events after.
 
+### Inline visuals (REQUIRED)
+
+**Render these in the message itself. They are not an offer and not a follow-up** — a ranking, a
+trend or a split of a total delivered as prose is a defect in this skill's output.
+
+Scale bars from zero. Put the unit and the scale maximum on a label line above the visual. Cap at
+eight rows and roll the rest into `Other (n)`. Mark rows under the volume floor rather than drawing
+them to scale, and never bar a rate without its denominator in the row. **The visual replaces the
+prose it would have taken** — one sentence of interpretation underneath, never a restatement of the
+rows.
+
+Forms: unicode bar (`█`, scaled to the largest row) for rankings and splits; sparkline
+(`▁▂▃▄▅▆▇█`, first and last values labelled) for five or more periods; mermaid for structure only,
+never for quantity.
+
+| Whenever the run produced | Render |
+|---|---|
+| Weekly events across four or more ad sets | Unicode bar of weekly events with the fifty-event threshold stated on the label line and every row below it marked — **the threshold line is the entire argument** |
+| A spend split between learning and stable ad sets | Two-row unicode bar with both figures and the share |
+| A reset ledger covering five or more days | Sparkline of daily spend with the edit dates named beneath it — the correlation is only visible on a timeline |
+| A consolidation proposal | Unicode bar of events per ad set before and after, in the same order |
+
+**Render nothing** when there is a single figure, fewer than three comparable rows, an early exit,
+or a coverage table dominated by "not checkable". A two-row bar trains the reader to skip the
+visuals on the runs that have eight.
+
 ## G. Offer to build it out (CONDITIONAL)
+
+**The inline visuals above are not optional and are not this section's business.** This section
+covers only what *leaves the conversation* — a written record, a brief, a document, a pack. It
+**stays silent unless the run produced something a document carries better than the message already
+did.**
 
 | Found | Worth making | Why |
 |---|---|---|
-| Weekly events across eight or more ad sets | A ranked bar with the fifty-event line marked | The threshold line is the entire argument |
-| A dated reset ledger | A daily spend series with edits marked | The correlation is only visible on a timeline |
-| A consolidation proposal going to whoever will action it | A written record with before and after events | It has to survive being forwarded, and the arithmetic is the persuasion |
+| A consolidation proposal going to whoever will action it | A written record with before-and-after events | It has to survive being forwarded, and the arithmetic is the persuasion |
 
-**Stay silent when** the structure is fine, there is one finding, or "not checkable" dominates.
-One thing, named by what it contains and who it is for. Never build it unasked.
+**Stay silent when** the structure is fine, there is one finding, "not checkable" dominates, or the
+inline visuals above already carried the finding. One thing, named by what it contains and who it is
+for — never a menu. Never build it unasked; never delay the answer to make it.
 
 ## H. Save what you learned
 
