@@ -341,6 +341,25 @@
       "description": "Use for \"where am I wasting money on Meta\", \"which ad sets should I pause\", \"what should I turn off\", \"which campaigns should I scale\", \"clean up my Facebook account\", \"what do I cut and where does the money go\" — even without the words \"waste\" or \"scale\". Also use when someone wants a budget-neutral reallocation proposal for the account. Meta / Facebook Ads only."
     },
     {
+      "name": "ai-citation-to-revenue-funnel",
+      "path": "marketing-and-ads/geo/ai-citation-to-revenue-funnel",
+      "category": "marketing-and-ads",
+      "sources": [
+        "Peec AI",
+        "Google Analytics 4 (GA4)",
+        "Google Search Console",
+        "Shopify",
+        "WooCommerce",
+        "HubSpot",
+        "Pipedrive",
+        "Salesforce",
+        "Stripe",
+        "Paddle"
+      ],
+      "short_description": "Follows the pages AI engines cite to AI-referred, organic, referral and direct sessions, Search Console clicks and impressions, your GA4 key events, and the orders, deals or payments behind them.",
+      "description": "Use for \"which of our pages do ChatGPT, Perplexity or Gemini cite\", \"does our AI search visibility bring traffic, signups or sales\", \"is our Peec visibility worth anything\", \"which AI-cited pages or products make us money\", \"GEO funnel\", \"AI search to revenue\", or when someone uploads Peec AI (or Profound, Otterly, Scrunch and similar) citation exports and wants them tied to results — even when they never say \"funnel\". Follows your cited URLs to AI-referred, organic, referral and direct sessions in GA4, Search Console clicks and impressions, the GA4 key events you choose, and the business outcome — orders, won deals or payments from Shopify, WooCommerce, HubSpot, Pipedrive, Salesforce, Stripe and similar — and names the stage where the chain breaks. Runs on Coupler.io; missing sources are offered and connected. For AI-referral traffic against organic with no citation data, use ai-traffic-vs-organic-report."
+    },
+    {
       "name": "google-ads-budget-pacing",
       "path": "marketing-and-ads/google-ads/google-ads-budget-pacing",
       "category": "marketing-and-ads",
