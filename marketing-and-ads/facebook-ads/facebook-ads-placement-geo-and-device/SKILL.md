@@ -44,7 +44,8 @@ apart.
 → one combined query. **Two calls** when the dataset is known.
 
 Overriding rules: never spend a call proving the connection works; speak at the coverage read;
-missing data is a line in the write-up, not a gate; don't narrate steps.
+missing data is a line in the write-up, not a gate; don't narrate steps; render rankings, trends and
+splits as inline visuals in the message rather than offering to make them.
 
 ## A. Connect to Coupler.io (HARD GATE)
 
@@ -143,17 +144,47 @@ Key Metrics = cost per result and share of spend for each placement, the top and
 device split · Context = coverage, volume floors, the dayparting limit, which timezone the hourly read
 uses · Recommendations = exclusions with the learning caveat attached, ranked by money.
 
+### Inline visuals (REQUIRED)
+
+**Render these in the message itself. They are not an offer and not a follow-up** — a ranking, a
+trend or a split of a total delivered as prose is a defect in this skill's output.
+
+Scale bars from zero. Put the unit and the scale maximum on a label line above the visual. Cap at
+eight rows and roll the rest into `Other (n)`. Mark rows under the volume floor rather than drawing
+them to scale, and never bar a rate without its denominator in the row. **The visual replaces the
+prose it would have taken** — one sentence of interpretation underneath, never a restatement of the
+rows.
+
+Forms: unicode bar (`█`, scaled to the largest row) for rankings and splits; sparkline
+(`▁▂▃▄▅▆▇█`, first and last values labelled) for five or more periods; mermaid for structure only,
+never for quantity.
+
+| Whenever the run produced | Render |
+|---|---|
+| Three or more placements above the floor | Two unicode bars in the same placement order — cost per result, then share of spend. **The mismatch between the two bars is the entire finding**, and it is invisible in prose |
+| An hour-of-day or weekday pattern with five or more points | Sparkline across the cycle with the timezone named on the label line |
+| Three or more markets above the floor | Unicode bar of cost per result by market, results count in each row |
+| A device split | Two-row unicode bar of share of spend, cost per result in each row |
+
+**Render nothing** when there is a single figure, fewer than three comparable rows, an early exit,
+or a coverage table dominated by "not checkable". A two-row bar trains the reader to skip the
+visuals on the runs that have eight.
+
 ## G. Offer to build it out (CONDITIONAL)
+
+**The inline visuals above are not optional and are not this section's business.** This section
+covers only what *leaves the conversation* — a written record, a brief, a document, a pack. It
+**stays silent unless the run produced something a document carries better than the message already
+did.**
 
 | Found | Worth making | Why |
 |---|---|---|
-| Four or more placements with different cost per result | A ranked bar with share of spend alongside | Two quantities per placement is exactly what a chart carries and prose does not |
-| A clear hour-of-day or weekday curve | The curve, with the account average marked | A curve is a shape |
-| A geographic spread across several markets | A market comparison table or map | Reads faster than a list |
-| Exclusion recommendations going to whoever will action them | A written record with the caveats | The learning caveat must travel with the recommendation or it will be ignored |
+| Exclusion recommendations going to whoever will action them | A written record with the learning caveat attached to each exclusion | The caveat must travel with the recommendation or the exclusion gets made blind |
 
-**Stay silent when** one placement dominates, cells are below the floor, or "not checkable" dominates
-coverage. One thing, named by what it contains and who it is for. Never build it unasked.
+**Stay silent when** one placement dominates, cells are below the floor, "not checkable" dominates
+coverage, or the inline visuals above already carried the finding. One thing, named by what it
+contains and who it is for — never a menu. Never build it unasked; never delay the answer to make
+it.
 
 ## H. Save what you learned
 
