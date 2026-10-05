@@ -3,6 +3,7 @@
 !/.gitignore
 !/.gitattributes
 !/README.md
+!/LICENSE
 !/.claude-plugin/
 !/.github/
 !/.github/**
