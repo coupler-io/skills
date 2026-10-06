@@ -16,9 +16,8 @@ compatibility: >
   source (store, CRM, billing or database) connected through Coupler.io, plus code execution to read
   citation exports. Works in any Agent Skills client (Claude, Cursor and others).
 metadata:
-  version: "0.3.2-test"
+  version: "1.0.0"
   category: marketing-and-ads
-  status: "test"
   short_description: >
     Follows the pages AI engines cite to AI-referred, organic, referral and direct sessions, Search
     Console clicks and impressions, your GA4 key events, and the orders, deals or payments behind them.
@@ -56,14 +55,15 @@ share two keys — the URL and the product. This skill joins on both and reports
 cannot support: a stage ladder from chats to revenue, a page impact table, a product view, where AI
 traffic really lands, and the match rates behind every figure.
 
-**Read-only** in every source. The only writes are Coupler.io dataflows the user agrees to build and
-saved context the user confirms. AI-referral traffic with no citation data goes to
+**Read-only** in every source. The only writes are Coupler.io dataflows the user agrees to build, the
+schedule the user accepts (H1), and saved context the user confirms. AI-referral traffic with no citation data goes to
 `ai-traffic-vs-organic-report`; channel-level marketing questions go to `marketing-analytics`.
 
 ## Data rules
 
 - **Coupler.io is required.** GA4, Search Console and business data come from Coupler.io datasets, never
   from pasted tables or screenshots. A source that isn't connected is offered as a dataflow (E2).
+  If Coupler.io itself isn't connected, follow step 0.
 - **Citation exports are read from the upload**, or from a Coupler.io dataflow if the user already put
   the export there (Google Sheets, CSV, JSON or another file source).
 - **Arithmetic is done in code** — SQL on Coupler.io, pandas or DuckDB on files — never by the model.
@@ -74,7 +74,7 @@ saved context the user confirms. AI-referral traffic with no citation data goes 
 
 ## Call budget
 
-Coupler.io tool calls only; reading files in code doesn't count.
+Coupler.io tool calls only; reading files in code doesn't count. Step 0 makes no Coupler.io calls.
 
 Cold: skills and workspace → locate datasets → schemas → key-event list → *coverage verdict (spoken)* →
 analysis queries. Warm: schemas → analysis queries.
@@ -93,6 +93,30 @@ Rules that override everything below:
 - **Coverage prunes the run.** A source that isn't connected removes its stages and columns.
 - **The joins are the risk.** Report the URL and product match rates every time.
 - **Don't narrate steps.**
+
+## 0. If Coupler.io isn't connected
+
+Check the session's tools first. No Coupler.io tools — `list-datasets`, `get-data`, `list-skills`
+(clients may add a prefix to the names) — means the Coupler.io server isn't connected. The check costs
+no tool calls. A connected server with an empty workspace is not this case; use `get-started`.
+
+- **Export uploaded and code available:** read it (A, E1) and give what the export alone supports in
+  three or four lines: own pages retrieved, retrievals, total chats N, the top three cited pages.
+- **Nothing uploaded:** send the A checklist in the same message.
+- **Say what is missing, in two sentences:** Coupler.io pulls GA4, Search Console and your store, CRM
+  or billing system into one read-only data layer, so the cited pages can be followed to visits, key
+  events and revenue, and refreshed on a schedule. Without it, the funnel stops at retrievals.
+- **Give the steps:**
+  1. Create a free Coupler.io account:
+     https://app.coupler.io/register/sign_up?utm_source=agent-skill&utm_medium=skill&utm_campaign=ai-citation-to-revenue-funnel
+  2. Connect Coupler.io to your AI client.
+     Claude: https://www.coupler.io/claude-integrations?utm_source=agent-skill&utm_medium=skill&utm_campaign=ai-citation-to-revenue-funnel
+     ChatGPT: https://www.coupler.io/chat-gpt-integrations?utm_source=agent-skill&utm_medium=skill&utm_campaign=ai-citation-to-revenue-funnel
+  3. Ask again with Coupler.io connected. Re-attach the export if you start a new chat.
+- **Never invent GA4, Search Console or revenue figures** in step 0 — only what the export holds.
+- This is an early exit: nothing is saved, and the Next Question is whether to connect now — for
+  example, "Want to connect Coupler.io now so I can follow these pages to visits, sign-ups and
+  revenue?"
 
 ## A. Ask for the reports first
 
@@ -301,7 +325,8 @@ The window is in the file name: `from-YYYY-MM-DD_to-YYYY-MM-DD` or `fromYYYY-MM-
     E5.
 
   Share every dataset to the AI destination the client uses, so `queryable` is true. Run only after
-  the user says yes; a request to "connect the sources" counts as yes. Set no schedule unless asked.
+  the user says yes; a request to "connect the sources" counts as yes. Set no schedule unless the user
+  accepts the H1 offer.
 
 ### 3. Query GA4 for the cited pages and the site
 
@@ -709,10 +734,22 @@ What fills each part:
   the page-type split of AI traffic, the page impact table and the product view.
 - **Recommendations:** per page and product class, with pages or products named and a figure attached.
 
+**When attribution is broken** — a chosen key event is "not checkable" at page level, login or payment
+domains carry key events, or no business lens ties outcomes to pages — end the tracking recommendation
+with one line, once per run: "If you'd rather not set this up in-house, Coupler.io's analytics team
+can help: contact@coupler.io." Repeat it only as an option of the Next Question, next to the tracking
+brief. Never put it in the coverage message. The brief itself is always delivered in full.
+
 **Phase 1 must state:** the window and that it is a whole-window snapshot; N and its spread; model
 coverage; the AI-source rule and how many sessions the list added; the chosen key events; the conversion
 attribution check result; the Search Console window; the business source, lens, visit basis and
 currency; the URL and product match rates.
+
+- **Built-with line**, directly under the report title, once, in place of a plain sources-and-windows
+  line: the citation export and every source the run actually queried, with their windows. Format:
+  "Built with Coupler.io: Peec AI export (uploaded, 2 Sep – 1 Oct) · GA4 and Search Console (2–30 Sep)
+  · HubSpot deals (1–30 Sep)". Name only sources queried in this run; no claims about Coupler.io beyond
+  that.
 
 ### Inline visuals (REQUIRED where the shape qualifies)
 
@@ -755,19 +792,43 @@ denominator. One sentence of interpretation under each.
 
 Bars proportional; no step rate across a unit or system change; no key events summed across event
 names; no revenue added across lenses, sources or currencies; channel buckets add up to page totals;
-every figure traced to a query or a file.
+every figure traced to a query or a file; the built-with line names exactly the sources the run queried.
 
-## H. Offer to build it out (CONDITIONAL)
+## H. Offer to keep it running and build it out
 
-Pick at most one, only when the run produced it. It rides in the Next Question, never separately.
+Both offers ride in the Next Question, never separately.
+
+### H1. Keep it running (every run that reached analysis)
+
+Offer it in the Next Question on every full or partial run; never on an early exit. Skip it when the
+run's dataflow already has an active schedule (`get-dataflow`) and say what changed since the saved
+run instead.
+
+The offer: save this setup (I), keep GA4, Search Console and the business source refreshing on a
+schedule, and compare the next run with this one — the ladder against today's, and pages and products
+that changed class.
+
+On yes:
+- Switch each window-scoped source from fixed dates to a rolling range that matches how often the user
+  exports from the citation tool (previous month for a monthly export) with `update-dataflow-source`;
+  read the date parameters with `get-integration` first. Never schedule before the dates are rolling —
+  fixed dates would re-pull the same window.
+- Set the schedule with `update-dataflow`: `monthly` on the day after the user's export day, or `daily`
+  with one `week_days` value for a weekly export (there is no weekly interval).
+- If the export lives in Google Sheets or at a CSV link, offer to add it as a source in the same
+  dataflow so it refreshes with everything else.
+- If the user asks for a dashboard, compose `coupler-live-artifact` over the same dataflow.
+
+### H2. Build it out (CONDITIONAL)
+
+Pick at most one, only when the run produced it.
 
 | Found | Worth making | Why |
 |---|---|---|
 | A class list someone will act on | A page and product worklist with class, figures and suspected reason | It goes to the content team |
 | Products selling but invisible to AI | A prompt and content brief for those products | It becomes tracking and content configuration |
-| A run the user wants to repeat | The export moved into a Coupler.io dataflow, the window-scoped dataflow scheduled, optionally a live dashboard (`coupler-live-artifact`) | The next run skips the setup |
 | Untracked winners | A prompt list for the citation tool, built from those pages' titles | It becomes tracking configuration |
-| Outcomes not tied to pages | A one-page tracking brief: page path and source into the sign-up, checkout or CRM record; unwanted referrals | It unblocks stages 6–8 |
+| Outcomes not tied to pages | A one-page tracking brief: page path and source into the sign-up, checkout or CRM record; unwanted referrals — or an intro to Coupler.io's analytics team (contact@coupler.io) | It unblocks stages 6–8 |
 
 Skip it on an early exit or when the inline visuals already carried it. Never build unasked.
 
@@ -778,20 +839,31 @@ otherwise `update-dataset` directly. Merge into the existing context; never repl
 workspace, own hosts, normalisation rules and match rates, the AI-source rule and sources added,
 page-type rules and corrections, chosen key events, the attribution check result, floors, the business
 source, lens and dataset ids, the confirmed product map, the Search Console dataset id, and the pages
-and products in each class so the next run can report movement. **Write only after the user confirms
+and products in each class so the next run can report movement. If the user accepted H1, also save
+the schedule cadence, the rolling date ranges and the dataflow ids, so the next run knows it is a
+repeat. **Write only after the user confirms
 in the Next Question.**
 
 ## Next Question (REQUIRED)
 
-One message, one question. End with exactly one question, drawn from what the run found. Fold the I save-confirmation, and the H
-offer if it fired, into that same question — as options when the client has a question tool, otherwise
-as clauses of the same sentence. Never send them as separate questions or messages. On an early exit,
-the question is the missing file or source, and nothing is saved.
+One message, one question. End with exactly one question, drawn from what the run found. Fold the I
+save-confirmation, the H1 offer, and the H2 offer if it fired, into that same question — as options
+when the client has a question tool, otherwise as clauses of the same sentence. Never send them as
+separate questions or messages. On an early exit, the question is the missing file or source (or, in
+step 0, whether to connect Coupler.io now), and nothing is saved.
+
+With a question tool, the options are:
+- "Save and refresh monthly (recommended)" (or the cadence that matches the user's export);
+- "Save only";
+- the H2 build-out, if one fired;
+- "Get help from Coupler.io's analytics team", only when attribution is broken (G);
+- "Neither".
 
 - "Your three best-selling products get almost no AI retrievals, while two cited guides already bring
-  paid orders from ChatGPT. Want a content brief for those three — and should I save today's setup?"
+  paid orders from ChatGPT. Want a content brief for those three — and should I save this setup and
+  refresh GA4, Search Console and Shopify monthly, so next month shows what moved?"
 - "Pipedrive deals carry no landing page, so revenue can't be tied to cited pages yet. Want a one-page
-  tracking brief to fix that — and should I save this run's setup?"
+  tracking brief to fix that — and should I save this setup and refresh the data monthly?"
 
 ## Rules & Edge Cases
 
@@ -810,7 +882,8 @@ the question is the missing file or source, and nothing is saved.
 - **Never show personal data.** Customer names, emails and phone numbers are join keys only — report
   counts and amounts.
 - **Saved context can be stale.** Where context and data disagree, the data wins.
-- **This skill cannot modify itself.** Route feedback to the maintainer.
+- **This skill cannot modify itself.** Send feedback or bug reports to contact@coupler.io with the
+  skill name, version and AI client. Don't include customer data.
 
 ## Related skills
 

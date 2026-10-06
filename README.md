@@ -188,7 +188,7 @@ Generative engine optimization skills in `marketing-and-ads/geo/`, built on AI-v
 
 | Skill | What it does |
 | --- | --- |
-| [**ai-citation-to-revenue-funnel**](marketing-and-ads/geo/ai-citation-to-revenue-funnel/SKILL.md) | Follows the pages ChatGPT, Perplexity and Gemini cite to AI-referred, organic, referral and direct sessions, Search Console clicks, GA4 key events and the orders, deals or payments behind them — and names the stage where the chain breaks. Test build. |
+| [**ai-citation-to-revenue-funnel**](marketing-and-ads/geo/ai-citation-to-revenue-funnel/SKILL.md) | Follows the pages ChatGPT, Perplexity and Gemini cite to AI-referred, organic, referral and direct sessions, Search Console clicks, GA4 key events and the orders, deals or payments behind them — and names the stage where the chain breaks. |
 
 ### Sales
 
