@@ -2,20 +2,19 @@
 name: content-refresh-impact
 description: >
   Checks whether the pages you updated actually won back search traffic, from live Google Search
-  Console data in your Coupler.io workspace with refresh dates from WordPress or from you — clicks,
+  Console data in your Coupler.io workspace with the refresh dates you give it — clicks,
   impressions and position before and after each update, measured against how the rest of the site
   moved over the same weeks, so a site-wide lift isn't credited to the refresh. Use for "did our
   content refresh work", "did updating those blog posts help", "which page updates recovered
   traffic", "is refreshing old content worth it", "what happened after we rewrote these pages",
   "should we keep updating old posts" — even when the user never says "refresh". This is the
   did-it-work view after an update. For which pages need refreshing in the first place use
-  content-decay-detector. Needs Google Search Console; WordPress optional.
+  content-decay-detector. Google Search Console only.
 metadata:
   version: 1.0.0
   category: marketing-and-ads
   sources:
     - Google Search Console
-    - Wordpress
 ---
 
 # Content Refresh Impact
@@ -42,13 +41,12 @@ over windows that give Google time to notice.
 - **What tends to work here** — if refreshes are labelled by type, which type moves the needle on
   this site.
 
-**Read-only.** It reads Search Console and WordPress and reports back. It changes nothing.
+**Read-only.** It reads Search Console and reports back. It changes nothing.
 
 ## How to run this
 
 **Three calls to a spoken answer:** locate the dataset → read the schema and say the coverage
-verdict out loud → one combined query. **Four** when refresh dates come from a WordPress dataset —
-that's a second source, said rather than hidden. **Two** when everything is known. Then read,
+verdict out loud → one combined query. **Two** when everything is known. Then read,
 deliver, save.
 
 These override the rest of the file:
@@ -82,16 +80,12 @@ It needs history from at least 28 days before the earliest refresh in scope; the
 **Refresh dates, in this order:**
 
 1. **Saved context** — a refresh list from an earlier run.
-2. **WordPress** — a dataset on the Pages or Posts entity carries each item's last-modified date and
-   link; Page revisions carries every saved revision. Read the schema; field names come from there.
-   Note what WordPress can't tell you: **a modified date moves for a typo fix too.** Revisions show
-   every save. Neither separates a real refresh from a small edit. The WordPress source has its own
-   start date — check the earliest publish date in the dataset; if old posts are missing, refreshed
-   evergreen posts are missing with them, so offer to widen it before building the list. Match
-   WordPress links to Search Console pages on the URL normalised the same way on both sides — same
-   scheme, no trailing slash, no query string, no fragment — and report how many matched.
-3. **The user** — a list of URLs and the date each went live updated. A CMS export or a pasted list
-   is fine as the *input list*; the traffic still comes from live Search Console.
+2. **The user** — a list of URLs and the date each went live updated. A CMS export or a pasted list
+   is fine as the *input list*; the traffic still comes from live Search Console. A CMS export's
+   last-modified date moves for a typo fix too — it doesn't separate a real refresh from a small edit.
+
+Match the list to Search Console pages on the URL normalised the same way on both sides — same
+scheme, no trailing slash, no query string, no fragment — and report how many matched.
 
 A dataset that can't be queried still shows its schema — that's a sharing setting, not missing data.
 
@@ -116,8 +110,8 @@ widen the dataflow, stop.
 Batch into **one** message before the query:
 
 - **The refresh list.** URL, refresh date, and — if the user knows it — the type (rewrite, new
-  section, title and meta only, consolidation, internal links). If dates came from WordPress, show the
-  list and ask the user to strike small edits. One confirmation now beats a report built on typo
+  section, title and meta only, consolidation, internal links). If dates came from a CMS export of
+  modified dates, show the list and ask the user to strike small edits. One confirmation now beats a report built on typo
   fixes.
 - **The windows, stated:**
   - **Before:** the 28 days ending the day before the refresh.

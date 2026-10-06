@@ -9,14 +9,12 @@ description: >
   Google", "how fast does my content start ranking" — even when the user never says "indexation".
   This is the did-it-get-seen view: whether the publishing pipeline is reaching Google and how
   quickly — and, for pages that went nowhere, Google's own index status for each. For pages that
-  once ranked and are slipping use content-decay-detector. Needs Google Search Console; WordPress
-  optional for publish dates.
+  once ranked and are slipping use content-decay-detector. Google Search Console only.
 metadata:
   version: 1.1.0
   category: marketing-and-ads
   sources:
     - Google Search Console
-    - Wordpress
 ---
 
 # New Page Indexation Tracker
@@ -54,8 +52,8 @@ the raw export doesn't do.
 
 **Three calls to a spoken answer:** locate the dataset → read the schema and say the coverage
 verdict out loud → one combined query. **Two calls** when the dataset is already known. Add one call
-for each extra dataset the run actually uses — publish dates from WordPress, index status from a URL
-inspection dataset — and say so rather than padding the budget. Then read, deliver, save.
+when the run reads a URL inspection dataset for index status, and say so rather than padding the
+budget. Then read, deliver, save.
 
 Everything below is what to conclude, not a procession to walk. These override the rest of the file:
 
@@ -67,8 +65,7 @@ Everything below is what to conclude, not a procession to walk. These override t
   data query.
 - **Coverage prunes the run.** Without a date dimension and enough history, there's no time-to-X to
   measure — say so before querying.
-- **Publish dates come from WordPress when it's connected, otherwise from the user.** GSC doesn't
-  store them.
+- **Publish dates are the one input this skill may need from the user.** GSC doesn't store them.
 - **Missing data is a line in the output, not a gate.**
 - **Don't narrate steps.**
 
@@ -113,12 +110,6 @@ columns. Three limits to state whenever it's used: it inspects only the URLs lis
 site; Google caps inspections per property per day, so keep lists to the pages that need it; and it
 is a snapshot of today, not a history.
 
-**Publish dates — WordPress.** A dataset on the Posts or Pages entity carries each item's publish
-date and link. Search for "wordpress" and the site name. Read the schema for the field names, and join
-on the URL normalised the same way on both sides — same scheme, no trailing slash, no query string.
-Report the match rate. The WordPress source has its own start date; if the dataset's earliest
-publish date is after the window start, pages published before it are missing — widen it.
-
 A dataset that can't be queried still shows its schema — that's a sharing setting, not
 missing data. If a run is in progress, retry; if the data is gone, re-run the dataflow and read the
 schema again.
@@ -135,7 +126,6 @@ and the honest limit below matters — GSC shows first *activity*, not the exact
 | Clicks by date | First-click date | Impression timing only |
 | Position by date | Settled-ranking date | No ranking-stabilisation read |
 | A URLs index performance dataset | Google's index verdict per stuck page | Index status inferred from activity — say so |
-| A WordPress posts or pages dataset | Publish dates without asking | Ask the user for them once, in D |
 
 State the dataset's `searchResultsType` (web, image, video, news) in the verdict, and never mix
 datasets of different search types in one analysis.
@@ -148,9 +138,9 @@ The honest limits, both properties of GSC not this account:
 - **The window caps the measurement.** If the dataset starts after a page went live, its true
   first-impression may predate the data — mark those pages "first activity on or before {window
   start}", never a precise day.
-- **Publish dates come from WordPress or the user, not GSC.** Without them, the skill can still show
-  each page's first-activity date, but not the *gap* from publish. Ask for them once, in the draft
-  gate, rather than guessing.
+- **Publish dates come from the user (a paste or a CMS export), not GSC.** Without them, the skill
+  can still show each page's first-activity date, but not the *gap* from publish. Ask for publish
+  dates once, in the draft gate, rather than guessing.
 
 Say **"not checkable from this data"** — never "clean".
 
@@ -160,8 +150,7 @@ Say **"not checkable from this data"** — never "clean".
 ## D. Draft, then confirm (the one gate this skill keeps)
 
 Unlike the other GSC skills, this one has an input GSC can't supply: **which pages are "new", and
-when they were published.** If WordPress is connected, take the pages published in the window from
-it and show the list rather than asking for one. Otherwise batch that into one message before the write-up — the list of pages to
+when they were published.** Batch that into one message before the write-up — the list of pages to
 track and their publish dates (or an offer to take the newest pages by first-activity date as a
 fallback, clearly labelled as approximate). The fallback supports time-to-first-click and settling
 only — it makes publish → first impression zero by construction, and it can't list went-nowhere
@@ -252,8 +241,7 @@ the Next Question.
 
 ## I. Save what you learned
 
-Save to the dataset's context — the site, the publish-date source (WordPress, user paste, CMS
-export), the site's typical time-to-first-impression, pages already confirmed indexed, each stuck
+Save to the dataset's context — the site, the publish-date source (user paste, CMS export), the site's typical time-to-first-impression, pages already confirmed indexed, each stuck
 page's last coverage state and the date it was read, and the dataset ids,
 workspace and timezone so the next run skips discovery. Confirm before writing, in the same closing
 block. Saving publish dates and known-indexed pages is what lets the next run skip the draft gate.
@@ -266,8 +254,8 @@ block. Saving publish dates and known-indexed pages is what lets the next run sk
   no impression yet. Don't overclaim precision Google doesn't give.
 - **The window caps the measurement.** Pages whose first activity predates the dataset get "on or
   before {window start}", never a precise gap.
-- **Publish dates come from outside GSC.** WordPress first, then ask once; never invent them, and
-  label any first-activity fallback as approximate.
+- **Publish dates come from outside GSC.** Ask once; never invent them, and label any first-activity
+  fallback as approximate.
 - **Inspection is a snapshot of listed URLs.** Never present it as site-wide coverage or as a history,
   and keep inspection lists short — Google caps them per day.
 - **GSC freshness lag applies.** Recent days are provisional; say which data state the
