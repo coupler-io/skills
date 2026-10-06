@@ -170,7 +170,7 @@ Ten Amazon-only skills in `marketing-and-ads/amazon-ads/`, built on the standard
 
 #### SEO deep dives
 
-Seven organic-search skills in `marketing-and-ads/seo/`, built on Google Search Console and GA4. Same shape as the ad packs — each owns a single question and routes to its siblings rather than duplicating them.
+Twelve organic-search skills in `marketing-and-ads/seo/`, built on Google Search Console, with GA4 and Google Ads where a question needs them. Same shape as the ad packs — each owns a single question and routes to its siblings rather than duplicating them.
 
 | Skill | What it does |
 | --- | --- |
@@ -181,6 +181,11 @@ Seven organic-search skills in `marketing-and-ads/seo/`, built on Google Search 
 | [**branded-vs-nonbranded-search-split**](marketing-and-ads/seo/branded-vs-nonbranded-search-split/SKILL.md) | Whether search growth is new reach or just people who already know you — brand vs non-brand share, trend, and new non-brand queries. |
 | [**new-page-indexation-tracker**](marketing-and-ads/seo/new-page-indexation-tracker/SKILL.md) | Whether new pages get seen — days from publish to first impression, first click and a settled ranking, and which pages went nowhere. |
 | [**ai-traffic-vs-organic-report**](marketing-and-ads/seo/ai-traffic-vs-organic-report/SKILL.md) | Traffic from ChatGPT, Perplexity, Gemini and Claude against organic search — sessions, engagement, conversions, revenue. Measures referrals, not citations. GA4 only. |
+| [**organic-traffic-drop-diagnosis**](marketing-and-ads/seo/organic-traffic-drop-diagnosis/SKILL.md) | Why organic traffic dropped suddenly — the break date, the lost clicks split by section, page, country, device and brand, and the most likely cause with the one check to run first. GA4 optional. |
+| [**content-refresh-impact**](marketing-and-ads/seo/content-refresh-impact/SKILL.md) | Whether updated pages won back search traffic — before and after each refresh, net of how the rest of the site moved, with a verdict per page. Refresh dates from you. |
+| [**topic-cluster-performance**](marketing-and-ads/seo/topic-cluster-performance/SKILL.md) | Search traffic by topic instead of page — share of clicks against share of pages, trend, and how much each topic rests on one URL. Topics from a saved rule, URL folders or your patterns. |
+| [**paid-vs-organic-search-overlap**](marketing-and-ads/seo/paid-vs-organic-search-overlap/SKILL.md) | Google Ads search terms against Search Console queries — spend on searches you already rank for, paid covering gaps, brand on its own line, and a holdout test plan. Needs Google Ads and GSC. |
+| [**seo-client-report**](marketing-and-ads/seo/seo-client-report/SKILL.md) | The monthly SEO report a client reads — KPIs against target, last month and last year, non-brand separated from brand, wins, misses and recommendations. GA4 optional. |
 
 #### GEO deep dives
 
@@ -295,14 +300,14 @@ Each business function is its own plugin, so you install only what you need. Ava
 | `coupler-finance` | finance-analytics |
 | `coupler-sales` | sales-analytics |
 | `coupler-ecommerce` | ecom-analytics |
-| `coupler-marketing-ads` | marketing-analytics, ppc-analytics, + the 8 Google Ads, 11 Meta / Facebook Ads, 11 TikTok Ads, 11 Microsoft Ads, 10 LinkedIn Ads and 10 Amazon Ads deep dives, + the 7 SEO skills and 1 GEO skill |
+| `coupler-marketing-ads` | marketing-analytics, ppc-analytics, + the 8 Google Ads, 11 Meta / Facebook Ads, 11 TikTok Ads, 11 Microsoft Ads, 10 LinkedIn Ads and 10 Amazon Ads deep dives, + the 12 SEO skills and 1 GEO skill |
 | `coupler-capability` | get-started, create-dataflow, google-ads-custom-gaql, generate-data-set-context, refine-prompt, report-generation |
 | `coupler-utilities` | coupler-live-artifact |
 | `humanizer` | humanizer (+ `/humanize` command) |
 
 Plugin skills are namespaced by their plugin, so they can be invoked explicitly as `/coupler-finance:finance-analytics`. Most of them are model-invoked too — Claude reaches for them when the request matches their description. If the install summary says `Run /reload-plugins to activate.`, run that.
 
-**Install only the plugin you need.** Every skill's description stays in context for the whole session, so a plugin's cost scales with how many skills it carries. `coupler-marketing-ads` bundles 71 and adds roughly 13k tokens to every session; the single-skill plugins add a few hundred. Check any plugin before installing it:
+**Install only the plugin you need.** Every skill's description stays in context for the whole session, so a plugin's cost scales with how many skills it carries. `coupler-marketing-ads` bundles 76 and adds roughly 14k tokens to every session; the single-skill plugins add a few hundred. Check any plugin before installing it:
 
 ```
 claude plugin details coupler-marketing-ads@coupler-io-skills

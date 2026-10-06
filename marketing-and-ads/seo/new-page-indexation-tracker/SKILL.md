@@ -8,10 +8,10 @@ description: >
   Google ignoring", "did my new posts get picked up in search", "why isn't my new page showing up in
   Google", "how fast does my content start ranking" — even when the user never says "indexation".
   This is the did-it-get-seen view: whether the publishing pipeline is reaching Google and how
-  quickly. For pages that once ranked and are slipping use content-decay-detector. Google Search
-  Console only.
+  quickly — and, for pages that went nowhere, Google's own index status for each. For pages that
+  once ranked and are slipping use content-decay-detector. Google Search Console only.
 metadata:
-  version: 1.0.0
+  version: 1.1.0
   category: marketing-and-ads
   sources:
     - Google Search Console
@@ -40,6 +40,9 @@ the raw export doesn't do.
   means an indexing or quality problem, not slow ranking.
 - **The typical curve for this site** — what "normal" looks like here, so a slow page can be judged
   against the site's own pace rather than a guess.
+- **Google's verdict on the stuck pages** — for pages that went nowhere, whether Google has them
+  indexed, excluded them, or picked a different URL as the canonical, read from Search Console's URL
+  inspection. This turns "probably not indexed" into a stated reason.
 - **A coverage statement** — what the data can date and what it can't, since Search Console shows
   first activity but not the exact index date. Estimates are labelled as estimates.
 
@@ -48,8 +51,9 @@ the raw export doesn't do.
 ## How to run this
 
 **Three calls to a spoken answer:** locate the dataset → read the schema and say the coverage
-verdict out loud → one combined query. **Two calls** when the dataset is already known. Then read,
-deliver, save.
+verdict out loud → one combined query. **Two calls** when the dataset is already known. Add one call
+when the run reads a URL inspection dataset for index status, and say so rather than padding the
+budget. Then read, deliver, save.
 
 Everything below is what to conclude, not a procession to walk. These override the rest of the file:
 
@@ -90,15 +94,23 @@ set up; none means nothing is connected. Never report "no Search Console data" b
 **This skill measures first activity over time**, so it needs **page + date and no query** on the
 Search results performance report — query+page rows drop anonymized-query traffic, which is most of
 a new page's first impressions, so first-seen dates come out late. Only query+page exists → say so,
-and offer to add a page+date source (or ask the user to add it in the wizard if you can't set that
-parameter). It needs enough history to hold each page's first-ever impression: the connector's
+and offer to add a page+date source — dimensions are set when the source is added; only dimension
+filters are wizard-only, so hand those to the user. It needs enough history to hold each page's first-ever impression: the connector's
 default start date is 60 days ago, and a window that starts after the pages went live can't see an
 earlier first impression — flag that, and widen the start date. `aggregateDataBy` (Auto, Page,
 Property) changes position and totals — query, country and device rows aggregate by property, page
-rows by page — so compare numbers only within one setting. The connector also offers a **URLs index
-performance** report: per-URL index status for URLs listed in `inspectionUrls`, capped by Google's
-daily inspection quota — not site-wide coverage. Pair it with the activity dates if that dataset
-exists. A dataset that can't be queried still shows its schema — that's a sharing setting, not
+rows by page — so compare numbers only within one setting.
+
+**Index status — the URLs index performance report.** The same connector has a second report type
+that runs Google's URL inspection on the URLs listed in `inspectionUrls`. Search for a dataset
+built on it. It returns, per URL, Google's verdict, its coverage state (for example indexed,
+crawled but not indexed, discovered but not indexed, excluded by noindex), the last crawl time, and
+the canonical Google chose next to the one the page declares — read the schema for the exact
+columns. Three limits to state whenever it's used: it inspects only the URLs listed, not the whole
+site; Google caps inspections per property per day, so keep lists to the pages that need it; and it
+is a snapshot of today, not a history.
+
+A dataset that can't be queried still shows its schema — that's a sharing setting, not
 missing data. If a run is in progress, retry; if the data is gone, re-run the dataflow and read the
 schema again.
 
@@ -113,7 +125,7 @@ and the honest limit below matters — GSC shows first *activity*, not the exact
 | Impressions by date | First-impression date (indexed proxy) | Can't tell if a page was ever seen |
 | Clicks by date | First-click date | Impression timing only |
 | Position by date | Settled-ranking date | No ranking-stabilisation read |
-| A URLs index performance dataset | Direct index-status pairing | Activity-dates only, inferred index status |
+| A URLs index performance dataset | Google's index verdict per stuck page | Index status inferred from activity — say so |
 
 State the dataset's `searchResultsType` (web, image, video, news) in the verdict, and never mix
 datasets of different search types in one analysis.
@@ -169,12 +181,27 @@ first impression within 6 days; these three are past 30 with nothing" is the fin
 own pace is the baseline, never an industry figure. The house rule holds here too.
 
 **The went-nowhere list is the headline.** Pages on the user's list with no rows at all, published
-well beyond the site's normal first-impression window, aren't ranking slowly — they're likely not
-indexed, or indexed and judged too thin to surface. Separate the two honestly: zero impressions
-after a long time points at indexing or quality — offer to add a URLs index performance source with
-those URLs in `inspectionUrls` (or ask the user to add it in the wizard if you can't set that
-parameter), or a content look; some impressions but no clicks is a ranking/relevance problem, a
-different skill (`gsc-search-opportunity-finder`).
+well beyond the site's normal first-impression window, aren't ranking slowly — something is stopping them.
+Some impressions but no clicks is a different problem — ranking and relevance, a different skill
+(`gsc-search-opportunity-finder`).
+
+**Ask Google rather than guess.** If a URLs index performance dataset covers the went-nowhere pages,
+read it. If not, offer to add one with exactly those URLs in `inspectionUrls` — the URL list is set
+when the source is added, so you can do it; if the connector's setup notes list it as a manual step,
+give the user the list to paste in the wizard instead — a short list, not the site. Then sort the pages by
+what Google says:
+
+| Google's coverage state | What it means | What to do |
+|---|---|---|
+| Indexed, no impressions | Google has it and shows it to nobody | Search demand or relevance — check what the page targets |
+| Crawled, not indexed | Google read it and chose not to keep it | Usually thin or duplicate content — a content job |
+| Discovered, not indexed | Google knows the URL and hasn't crawled it yet | Internal links and sitemap — a discovery job |
+| Excluded by noindex, robots, or a redirect | The site told Google to skip it | Almost always a mistake on a new page — fix first |
+| Google-selected canonical ≠ the page's own | Google treats it as a copy of another URL | Name the URL Google picked; that page is getting the credit |
+| URL unknown to Google | Never found | Sitemap and internal links |
+
+The coverage state is Google's word and is reported as measured. Why a page was judged thin is still
+judgement.
 
 Confirmed vs suspected: the first-activity dates are measured; *why* a page went nowhere (not
 indexed vs thin content vs no search demand) is judgement — name the likely cause and that it needs
@@ -214,8 +241,8 @@ the Next Question.
 
 ## I. Save what you learned
 
-Save to the dataset's context — the site, the publish-date source (user paste, CMS export), the
-site's typical time-to-first-impression, pages already confirmed indexed, and the dataset id,
+Save to the dataset's context — the site, the publish-date source (user paste, CMS export), the site's typical time-to-first-impression, pages already confirmed indexed, each stuck
+page's last coverage state and the date it was read, and the dataset ids,
 workspace and timezone so the next run skips discovery. Confirm before writing, in the same closing
 block. Saving publish dates and known-indexed pages is what lets the next run skip the draft gate.
 
@@ -229,6 +256,8 @@ block. Saving publish dates and known-indexed pages is what lets the next run sk
   before {window start}", never a precise gap.
 - **Publish dates come from outside GSC.** Ask once; never invent them, and label any first-activity
   fallback as approximate.
+- **Inspection is a snapshot of listed URLs.** Never present it as site-wide coverage or as a history,
+  and keep inspection lists short — Google caps them per day.
 - **GSC freshness lag applies.** Recent days are provisional; say which data state the
   dataset reads.
 - Saved context can be stale and applies only to the dataset it was read from. Where context and
@@ -245,6 +274,8 @@ block. Saving publish dates and known-indexed pages is what lets the next run sk
 | The gap is by market or device rather than by query or page | `gsc-country-device-performance` |
 | The question is whether search growth is new reach or people already searching your name | `branded-vs-nonbranded-search-split` |
 | The question is traffic from ChatGPT, Perplexity, Gemini or Claude rather than Google | `ai-traffic-vs-organic-report` |
+| Older pages were updated and the question is whether the update worked | `content-refresh-impact` |
+| Established pages lost traffic on a single date | `organic-traffic-drop-diagnosis` |
 | Organic search is one channel among several being compared | `marketing-analytics` |
 
 ## Next Question (REQUIRED)
@@ -252,8 +283,10 @@ block. Saving publish dates and known-indexed pages is what lets the next run sk
 Exactly one, drawn from what this run found. Never a menu. Where section H fired, the artifact offer
 rides along as a second clause in the same block.
 
-- A went-nowhere list of pages with zero impressions → "These pages never got seen — likely an
-  indexing or content issue, not slow ranking. Want me to check whether they even have search demand
-  to rank for? — `gsc-search-opportunity-finder`."
+- Stuck pages Google crawled but didn't index → "Six of the eight stuck pages were crawled and not
+  indexed — Google read them and passed. Want me to check which of them overlap with pages that
+  already rank? — `gsc-search-opportunity-finder`, cannibalisation view."
+- A went-nowhere list with no index data yet → "These pages never got seen. Want me to add a URL
+  inspection source for just those eight, so we know whether Google has them at all?"
 - Pages indexed fast but not converting the traffic → "They got picked up quickly and rank, but the
   traffic isn't converting. Want the landing-page read? — `gsc-ga4-landing-page-performance`."
