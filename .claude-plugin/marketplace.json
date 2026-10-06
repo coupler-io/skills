@@ -119,6 +119,11 @@
         "./marketing-and-ads/seo/branded-vs-nonbranded-search-split",
         "./marketing-and-ads/seo/new-page-indexation-tracker",
         "./marketing-and-ads/seo/ai-traffic-vs-organic-report",
+        "./marketing-and-ads/seo/organic-traffic-drop-diagnosis",
+        "./marketing-and-ads/seo/content-refresh-impact",
+        "./marketing-and-ads/seo/topic-cluster-performance",
+        "./marketing-and-ads/seo/paid-vs-organic-search-overlap",
+        "./marketing-and-ads/seo/seo-client-report",
         "./marketing-and-ads/geo/ai-citation-to-revenue-funnel"
       ]
     },
