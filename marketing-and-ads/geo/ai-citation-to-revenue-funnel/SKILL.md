@@ -70,7 +70,7 @@ schedule the user accepts (H1), and saved context the user confirms. AI-referral
   No code execution in the client: offer to load the export into Coupler.io and run everything in SQL.
 - **Missing sources lower the coverage and are stated.** They are never filled with benchmarks.
 - **Composed skills** (`report-generation`, `create-dataflow`, `get-started`) are loaded from
-  Coupler.io with `list-skills` / `get-skill`. With several Coupler.io workspaces, ask which one once.
+  Coupler.io's skill library. With several Coupler.io workspaces, ask which one once.
 
 ## Call budget
 
@@ -96,9 +96,9 @@ Rules that override everything below:
 
 ## 0. If Coupler.io isn't connected
 
-Check the session's tools first. No Coupler.io tools — `list-datasets`, `get-data`, `list-skills`
-(clients may add a prefix to the names) — means the Coupler.io server isn't connected. The check costs
-no tool calls. A connected server with an empty workspace is not this case; use `get-started`.
+Check whether Coupler.io is among the session's connected tools. If it isn't, the Coupler.io server
+isn't connected. The check costs no tool calls. A connected server with an empty workspace is not this
+case; use `get-started`.
 
 - **Export uploaded and code available:** read it (A, E1) and give what the export alone supports in
   three or four lines: own pages retrieved, retrievals, total chats N, the top three cited pages.
@@ -155,8 +155,8 @@ gives. Don't wait for the missing ones — continue to the source check, unless 
 ### Then check Coupler.io sources
 
 In the same message, one line per source: connected, can connect (a credential with no dataflow), or
-missing — and what it adds. Find business sources with `list-credentials` and `list-datasets` (systems
-and names in E5); read the schema of up to
+missing — and what it adds. Find business sources among the workspace's connected accounts and
+datasets (systems and names in E5); read the schema of up to
 three candidate business datasets — names suggesting customers, payments, signups or deals — and say
 which were checked.
 
@@ -309,7 +309,7 @@ The window is in the file name: `from-YYYY-MM-DD_to-YYYY-MM-DD` or `fromYYYY-MM-
   today, query through yesterday and state the one-day gap. Search Console's last 2–3 days and the
   export's last 7 days are provisional. GA4 reports in the property's timezone.
 - **Check the period of existing datasets before using them.** A dataset with a date column is filtered
-  to the window. A dataset with no date column is fixed to a range — read it with `get-dataflow` — and
+  to the window. A dataset with no date column is fixed to a range — read it from the dataflow's settings — and
   is used only if that range equals the window. A monthly or weekly dataset is used only if its period
   equals the window. Otherwise offer a window-scoped dataflow (inside a B question); if the user
   declines, use the nearest period and state the mismatch in days next to every figure.
@@ -324,7 +324,7 @@ The window is in the file name: `from-YYYY-MM-DD_to-YYYY-MM-DD` or `fromYYYY-MM-
   - Business: the reports listed for that system in
     E5.
 
-  Share every dataset to the AI destination the client uses, so `queryable` is true. Run only after
+  Share every dataset to the AI destination the client uses, so it can be queried. Run only after
   the user says yes; a request to "connect the sources" counts as yes. Set no schedule unless the user
   accepts the H1 offer.
 
@@ -801,8 +801,7 @@ Both offers ride in the Next Question, never separately.
 ### H1. Keep it running (every run that reached analysis)
 
 Offer it in the Next Question on every full or partial run; never on an early exit. Skip it when the
-run's dataflow already has an active schedule (`get-dataflow`) and say what changed since the saved
-run instead.
+run's dataflow already has an active schedule, and say what changed since the saved run instead.
 
 The offer: save this setup (I), keep GA4, Search Console and the business source refreshing on a
 schedule, and compare the next run with this one — the ladder against today's, and pages and products
@@ -810,11 +809,10 @@ that changed class.
 
 On yes:
 - Switch each window-scoped source from fixed dates to a rolling range that matches how often the user
-  exports from the citation tool (previous month for a monthly export) with `update-dataflow-source`;
-  read the date parameters with `get-integration` first. Never schedule before the dates are rolling —
-  fixed dates would re-pull the same window.
-- Set the schedule with `update-dataflow`: `monthly` on the day after the user's export day, or `daily`
-  with one `week_days` value for a weekly export (there is no weekly interval).
+  exports from the citation tool (previous month for a monthly export). Never schedule before the dates
+  are rolling — fixed dates would re-pull the same window.
+- Schedule the refresh to match the export: monthly on the day after the user's export day, or once a
+  week on the day after a weekly export.
 - If the export lives in Google Sheets or at a CSV link, offer to add it as a source in the same
   dataflow so it refreshes with everything else.
 - If the user asks for a dashboard, compose `coupler-live-artifact` over the same dataflow.
@@ -835,7 +833,7 @@ Skip it on an early exit or when the inline visuals already carried it. Never bu
 ## I. Save what you learned
 
 Prepare a write-back to the **GA4 dataset** — compose `generate-data-set-context` if available,
-otherwise `update-dataset` directly. Merge into the existing context; never replace it. Include the
+otherwise save it to the dataset's context directly. Merge into the existing context; never replace it. Include the
 workspace, own hosts, normalisation rules and match rates, the AI-source rule and sources added,
 page-type rules and corrections, chosen key events, the attribution check result, floors, the business
 source, lens and dataset ids, the confirmed product map, the Search Console dataset id, and the pages
@@ -887,7 +885,7 @@ With a question tool, the options are:
 
 ## Related skills
 
-Load them from Coupler.io with `get-skill`. The library grows — search `list-skills` with a few keywords
+Load them from Coupler.io's skill library. The library grows — search it with a few keywords
 (`ga4`, `search console`, `seo`, the business system) before routing elsewhere.
 
 | Go here instead, or compose, when | Skill |
