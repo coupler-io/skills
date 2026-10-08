@@ -15,7 +15,7 @@ import yaml
 REPO_ROOT = Path(__file__).resolve().parent.parent.parent
 DEFAULT_OUTPUT = REPO_ROOT / "skills-index.json"
 SKILL_FILENAME = "SKILL.md"
-SKIP_DIR_NAMES = {".git", "node_modules", "__pycache__"}
+SKIP_DIR_NAMES = {".git", "node_modules", "__pycache__", ".agents", ".claude"}
 
 
 def parse_frontmatter(path: Path) -> dict[str, Any]:
