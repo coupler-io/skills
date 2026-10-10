@@ -221,7 +221,7 @@ the horizon**, and say the ranking basis in the output.
 
 | Pattern | Meaning | Action |
 |---|---|---|
-| Order-by date already passed | **A stock-out is now unavoidable.** Report the residual gap | Expedite, or plan the gap: pause ads on it, hide the listing, push the substitute |
+| Order-by date already passed | The safety-buffer reorder date is late; a stock-out is not necessarily unavoidable. Compute the residual gap and check inbound stock | Reorder if delivery still precedes depletion; otherwise evaluate expediting or planning the uncovered gap |
 | Order-by date is today or this week | Order now; nothing else buys time | Reorder, with units and cost |
 | Below the reorder point, incoming covers the gap in time | Handled | Say so and stop — a flagged item with stock arriving is noise |
 | Below the reorder point, incoming arrives after the stock-out date | Partly handled | Report the gap in days and the revenue in it |
@@ -232,6 +232,12 @@ the horizon**, and say the ranking basis in the output.
 **Incoming stock is the check that stops false alarms.** An item under its reorder point with a
 purchase order landing before it runs dry does not belong on a reorder list. Compare the arrival
 against the stock-out date, not against today.
+
+**A missed buffer date is not a depletion date.** With 120 available units, sales of 10 units/day,
+a 10-day lead time and a 30-unit reorder buffer, the order-by offset is (120 − 130) ÷ 10 = −1 day.
+The recommended date passed yesterday, but an order placed today still arrives in 10 days before
+sellable stock runs out in 12 days. The residual gap is zero under this constant-velocity model.
+Report the reduced buffer separately from an uncovered stock-out gap; neither date is a guarantee.
 
 **Velocity is the weakest number in the run and everything dated rests on it.** Say the window. Three
 things break it, and each one has a direction:

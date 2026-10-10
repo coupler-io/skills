@@ -212,10 +212,12 @@ billing cycle, not a decision to come back, and a store with subscriptions will 
 that is mostly mechanical. Where a selling plan or subscription marker exists, report the two
 populations separately; where it doesn't, say the repeat rate is unseparated and may be inflated.
 
-**Identity is weaker than it looks, and it always understates retention.** Guest checkout without a
-customer id, one person using two email addresses, and a customer merged after the fact all split one
-customer into several first-timers. Count and report the unattributable orders as a coverage line
-rather than dropping them silently, and note that the true repeat rate is at least the figure given.
+**Identity is weaker than it looks, and the bias can go either way.** Splitting one person's purchases
+across identifiers can understate retention. Excluding unidentified buyers can overstate it if those
+buyers are less likely to repeat; erroneous identity merges can also overstate it. Count and report
+unattributable orders as a coverage line rather than dropping them silently. Do not call the observed
+rate a lower bound without evidence about the missing population. For example, one identified repeat
+buyer plus nine unidentified one-time buyers gives 100% among identified buyers but 10% overall.
 
 **Small cohorts are not signal.** Under about 30 customers a cohort's retention rate moves several
 points on one person. Show the cohort size in every cell, and where a cut produces cells below the
@@ -326,9 +328,9 @@ closing ask, not two.**
   as something only this skill can do — the differentiators are UTM granularity, discount status and
   the crosses.
 - **Subscriptions inflate repeat rate mechanically.** See F.
-- **Identity gaps understate retention, never overstate it.** Guest checkout and duplicate emails both
-  split one customer into several. Report the coverage, and say the true figure is at least the one
-  given.
+- **Identity gaps do not establish a lower bound.** Split identities can understate retention;
+  excluding unidentified buyers or incorrectly merging identities can overstate it. Report coverage
+  and the identifiable population, and leave the bias direction unknown unless evidence establishes it.
 - **First-visit attribution is the store's own model.** It is not GA4's and it will not match it. Say
   whose model produced the source, and don't reconcile the two here.
 - **Journeys can be mid-assembly.** Where a readiness flag exists and is false, those orders have
