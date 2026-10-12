@@ -1,0 +1,23 @@
+capability/create-dataflow/SKILL.md
+  a8cc7af26126d6ce 35,142,145-146,150-155,159,162,169
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.8",
+  "base_commit_sha": "f4a789fd590f57455ee4c09d8536bcf46bd8df9d",
+  "prompts": {
+    "a8cc7af26126d6ce": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "21c62f39-e180-461f-81b2-0085b9e393a2",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Peter Laczko <peter.laczko@railsware.com>",
+      "messages": [],
+      "total_additions": 17,
+      "total_deletions": 5,
+      "accepted_lines": 13,
+      "overriden_lines": 0
+    }
+  }
+}
