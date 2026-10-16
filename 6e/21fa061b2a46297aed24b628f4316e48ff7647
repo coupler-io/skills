@@ -1,0 +1,9 @@
+capability/create-dataflow/SKILL.md
+  a8cc7af26126d6ce 35,116,142,144-155,159,162,169
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.4",
+  "base_commit_sha": "6e21fa061b2a46297aed24b628f4316e48ff7647",
+  "prompts": {}
+}
