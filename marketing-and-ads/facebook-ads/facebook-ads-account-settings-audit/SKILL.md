@@ -18,6 +18,8 @@ metadata:
 
 # Facebook Ads Account Settings Audit
 
+Finds the Meta ads settings quietly wasting money, like the wrong optimisation goal or Advantage+ toggles, and shows what each one costs. Facebook Ads Account Settings Audit is a Coupler.io AI agent skill that works with live data from Facebook Ads (Meta Ads).
+
 **Finds the toggles nobody chose, and prices each one in the spend running through it.**
 
 Most of what governs a Meta account was never decided. Advantage+ options arrive switched on, audience

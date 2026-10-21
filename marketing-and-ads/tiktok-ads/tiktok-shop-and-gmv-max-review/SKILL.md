@@ -17,6 +17,8 @@ metadata:
 
 # TikTok Shop and GMV Max Review
 
+Shows what GMV Max and your TikTok Shop ads bring in, which products sell, and whether GMV Max beats running campaigns yourself. TikTok Shop and GMV Max Review is a Coupler.io AI agent skill that works with live data from TikTok Ads.
+
 **Tells you what GMV Max is actually buying, whether it is taking sales your other campaigns were already making, and which products are carrying it.**
 
 GMV Max hands almost every lever to TikTok. You set a store, a target and a budget, and the system

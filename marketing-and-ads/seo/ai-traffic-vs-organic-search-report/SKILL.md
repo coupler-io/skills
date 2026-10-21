@@ -21,6 +21,8 @@ metadata:
 
 # AI Traffic vs Organic Search Report
 
+Shows how much traffic ChatGPT, Perplexity and Gemini send your site and how it compares with Google organic search. AI Traffic vs Organic Search Report is a Coupler.io AI agent skill that works with live data from Google Analytics 4 (GA4).
+
 **Shows how much traffic answer engines send your site, how it compares to normal search, and
 whether it's growing.**
 

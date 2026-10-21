@@ -17,6 +17,8 @@ metadata:
 
 # LinkedIn Ads Performance Report
 
+Shows what changed in your LinkedIn Ads, why your cost per lead moved, and what to do about it next. LinkedIn Ads Performance Report is a Coupler.io AI agent skill that works with live data from LinkedIn Ads.
+
 **Tells you what the LinkedIn Ads account did, why it changed, and what to do about it — with a
 number behind every recommendation.**
 

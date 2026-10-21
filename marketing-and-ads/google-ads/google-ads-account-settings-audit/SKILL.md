@@ -18,6 +18,8 @@ metadata:
 
 # Google Ads Account Settings Audit
 
+Finds the Google Ads settings quietly wasting money, like search partners and Display expansion, and shows what each one costs you. Google Ads Account Settings Audit is a Coupler.io AI agent skill that works with live data from Google Ads.
+
 **Finds the configuration defects that cost money quietly, and puts a spend figure on each one.**
 
 Most of these settings default in Google's favour and never announce themselves. Search partners

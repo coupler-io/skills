@@ -15,6 +15,8 @@ metadata:
 
 # Finance Analytics
 
+Shows your P&L, MRR, margins and cash runway, pulled straight from your accounting and billing tools. Finance Analytics is a Coupler.io AI agent skill that works with live data from QuickBooks, Xero, Oracle NetSuite, Stripe, and Sage.
+
 Analyze financial performance using data from Coupler.io dataflows (QuickBooks, Xero, Stripe, NetSuite, Sage, billing systems). This skill guides you through retrieving accounting and revenue data, computing P&L, margin, subscription, and cash metrics, detecting anomalies, and presenting actionable insights a finance lead can act on.
 
 ## Step 0: Context Check (Pre-requisite · HARD GATE)

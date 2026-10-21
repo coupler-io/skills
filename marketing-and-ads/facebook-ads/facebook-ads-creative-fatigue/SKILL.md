@@ -17,6 +17,8 @@ metadata:
 
 # Facebook Ads Creative Fatigue
 
+Shows which Meta ads are wearing out, how long each one has left, and how many new ads you need each month. Facebook Ads Creative Fatigue is a Coupler.io AI agent skill that works with live data from Facebook Ads (Meta Ads).
+
 **Tells you which ads are dying, how long they have left, and how much new creative you need to keep up.**
 
 Fatigue is the most predictable expense in paid social and the one people plan for least. An ad does

@@ -18,6 +18,8 @@ metadata:
 
 # LinkedIn Ads Conversion Tracking Audit
 
+Checks whether you can trust your LinkedIn Ads conversion numbers before you move budget, including double counting and untracked spend. LinkedIn Ads Conversion Tracking Audit is a Coupler.io AI agent skill that works with live data from LinkedIn Ads.
+
 **Tells you whether the LinkedIn Ads conversion numbers can be trusted before anyone moves money on
 them — and, where they can't, how much spend the problem touches.**
 

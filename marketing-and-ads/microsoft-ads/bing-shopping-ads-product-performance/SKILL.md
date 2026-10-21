@@ -18,6 +18,8 @@ metadata:
 
 # Microsoft Bing Shopping Ads Product Performance
 
+Shows which products make money in Microsoft Shopping, which ones spend without selling, and how to regroup them. Microsoft Bing Shopping Ads Product Performance is a Coupler.io AI agent skill that works with live data from Microsoft Ads (Bing Ads).
+
 **Tells you which products Microsoft Shopping campaigns make money on, which ones spend without
 selling, which never show at all — and what to change in the product groups.**
 

@@ -17,6 +17,8 @@ metadata:
 
 # Google Ads Keyword and Quality Score Analysis
 
+Shows which Google Ads keywords make money, where a low Quality Score is pushing up your cost per click, and what to fix first. Google Ads Keyword and Quality Score Analysis is a Coupler.io AI agent skill that works with live data from Google Ads.
+
 **Shows which keywords deserve more money, and which are quietly overcharging you for the same
 clicks.**
 

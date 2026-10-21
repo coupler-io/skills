@@ -19,6 +19,8 @@ metadata:
 
 # Amazon Ads Account Settings and Structure Audit
 
+Finds the Amazon Ads settings and campaign setups wasting money, like campaigns bidding against each other, and what each one costs. Amazon Ads Account Settings and Structure Audit is a Coupler.io AI agent skill that works with live data from Amazon Ads and Amazon Ads (Unified).
+
 **Checks how the Amazon Ads account is set up and organised, and prices every setting and
 structural choice that's costing it money — most expensive first.**
 

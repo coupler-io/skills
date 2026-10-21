@@ -21,6 +21,8 @@ metadata:
 
 # Content Decay Analysis
 
+Finds pages that are losing Google traffic, tells you whether rankings or demand dropped, and which pages to refresh first. Content Decay Analysis is a Coupler.io AI agent skill that works with live data from Google Search Console.
+
 **Finds pages that are slowly losing traffic, and tells you which ones are worth updating.**
 
 Decay is easy to miss because it's slow. A page that lost 40% of its clicks over six months never

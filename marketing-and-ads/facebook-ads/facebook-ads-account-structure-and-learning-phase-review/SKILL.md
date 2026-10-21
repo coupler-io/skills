@@ -17,6 +17,8 @@ metadata:
 
 # Facebook Ads Account Structure and Learning Phase Review
 
+Shows why your Meta ad sets are stuck in the learning phase and which ones to merge so they can get out of it. Facebook Ads Account Structure and Learning Phase Review is a Coupler.io AI agent skill that works with live data from Facebook Ads (Meta Ads).
+
 **Tells you whether the account is cut into too many pieces to work, and what that is costing you.**
 
 Meta needs roughly fifty optimisation events per ad set per week to deliver stably. An account split

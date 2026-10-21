@@ -17,6 +17,8 @@ metadata:
 
 # TikTok Ads Creative Fatigue and Refresh Cadence
 
+Shows which TikTok videos are wearing out, how long each one has left, and how many new videos to shoot each month. TikTok Ads Creative Fatigue and Refresh Cadence is a Coupler.io AI agent skill that works with live data from TikTok Ads.
+
 **Tells you which videos are dying, how long they have left, and how many new ones a month this account needs to keep up.**
 
 Creative burns out faster on TikTok than anywhere else, and almost nobody plans for it as a recurring

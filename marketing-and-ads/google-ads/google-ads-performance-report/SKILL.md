@@ -17,6 +17,8 @@ metadata:
 
 # Google Ads Performance Report
 
+Shows what changed in your Google Ads account, why it changed, and what to do about it next. Google Ads Performance Report is a Coupler.io AI agent skill that works with live data from Google Ads.
+
 **Tells you what the account did, why it changed, and what to do about it — with a number behind
 every recommendation.**
 

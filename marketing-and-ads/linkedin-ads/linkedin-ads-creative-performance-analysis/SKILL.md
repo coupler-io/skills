@@ -18,6 +18,8 @@ metadata:
 
 # LinkedIn Ads Creative Performance Analysis
 
+Shows which LinkedIn ads win within each format, what the winners have in common, and what to make next. LinkedIn Ads Creative Performance Analysis is a Coupler.io AI agent skill that works with live data from LinkedIn Ads.
+
 **Tells you which LinkedIn Ads creatives win, judged within their own format, what the winners have
 in common, and what the next round should look like.**
 

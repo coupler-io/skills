@@ -18,6 +18,8 @@ metadata:
 
 # LinkedIn Ads Wasted Spend and Scaling
 
+Finds the LinkedIn campaigns and ads spending without results and shows where to move that money instead. LinkedIn Ads Wasted Spend and Scaling is a Coupler.io AI agent skill that works with live data from LinkedIn Ads.
+
 **Finds the LinkedIn Ads spend that isn't earning, proves it's past the point of being early, and
 says where that money should go instead — as one budget-neutral move.**
 

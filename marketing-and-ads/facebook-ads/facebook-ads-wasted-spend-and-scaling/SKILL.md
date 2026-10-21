@@ -16,6 +16,8 @@ metadata:
 
 # Facebook Ads Wasted Spend and Scaling
 
+Finds the Meta campaigns and ad sets spending without results and shows where to move that money instead. Facebook Ads Wasted Spend and Scaling is a Coupler.io AI agent skill that works with live data from Facebook Ads (Meta Ads).
+
 **Gives you the cut list and the paired scale list, so the money moves rather than just leaves.**
 
 Cutting is the easy half and it is where most audits stop. But an account that pauses £3,000 of poor

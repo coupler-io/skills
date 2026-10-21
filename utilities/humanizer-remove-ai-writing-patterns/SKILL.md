@@ -17,6 +17,8 @@ metadata:
 
 # Humanizer: Remove AI Writing Patterns
 
+Strips AI writing patterns from any draft, like blog posts, emails and docs, and puts a human voice back in. Humanizer: Remove AI Writing Patterns is a Coupler.io AI agent skill.
+
 Strip AI writing patterns. Add human voice. Based on Wikipedia's "Signs of AI writing" catalog maintained by WikiProject AI Cleanup.
 
 ## When to activate

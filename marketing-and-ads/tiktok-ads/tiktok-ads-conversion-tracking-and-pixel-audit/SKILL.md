@@ -17,6 +17,8 @@ metadata:
 
 # TikTok Ads Conversion Tracking and Pixel Audit
 
+Checks whether you can trust TikTok's conversion numbers before you move budget, including double counting and spend with no tracking. TikTok Ads Conversion Tracking and Pixel Audit is a Coupler.io AI agent skill that works with live data from TikTok Ads.
+
 **Tells you whether you can trust your TikTok conversion numbers before you move budget on them.**
 
 TikTok's conversion reporting fails quietly and in ways that look like performance. The account

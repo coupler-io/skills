@@ -18,6 +18,8 @@ metadata:
 
 # Amazon Ads Budget Pacing
 
+Shows where your Amazon Ads spend will land by month end and which campaigns run out of budget too early. Amazon Ads Budget Pacing is a Coupler.io AI agent skill that works with live data from Amazon Ads and Amazon Ads (Unified).
+
 **Tells you where Amazon Ads spend lands by month end, which campaigns run out of budget before the
 day is done, and whether giving them more would earn it back.**
 

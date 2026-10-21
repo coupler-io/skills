@@ -18,6 +18,8 @@ metadata:
 
 # Microsoft Bing Ads Budget Pacing
 
+Shows where your Microsoft Ads spend will land by month end and which campaigns would get more conversions with more budget. Microsoft Bing Ads Budget Pacing is a Coupler.io AI agent skill that works with live data from Microsoft Ads (Bing Ads).
+
 **Tells you where Microsoft Ads spend lands by month end, which campaigns are held back by budget,
 and whether more money would buy anything at all.**
 

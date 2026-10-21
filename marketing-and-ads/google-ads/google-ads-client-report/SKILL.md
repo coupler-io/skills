@@ -17,6 +17,8 @@ metadata:
 
 # Google Ads Client Report
 
+Writes your monthly Google Ads report for a client, measured against the targets you agreed, with misses explained and next month's plan. Google Ads Client Report is a Coupler.io AI agent skill that works with live data from Google Ads.
+
 **Builds the report a client reads at month end — the kind that survives scrutiny.**
 
 Two failure modes bracket this job. A report that lists metrics without judgement makes the client do

@@ -18,6 +18,8 @@ metadata:
 
 # Amazon Ads Performance Report
 
+Shows what changed in your Amazon Ads, why your ACOS moved, and what to do about it next. Amazon Ads Performance Report is a Coupler.io AI agent skill that works with live data from Amazon Ads and Amazon Ads (Unified).
+
 **Tells you what the Amazon Ads account did, why it changed, and what to do about it — with a number
 behind every recommendation.**
 

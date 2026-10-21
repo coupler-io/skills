@@ -16,6 +16,8 @@ metadata:
 
 # TikTok Ads Client Report
 
+Writes your monthly TikTok ads report for a client, measured against the targets you agreed, with misses explained and next month's plan. TikTok Ads Client Report is a Coupler.io AI agent skill that works with live data from TikTok Ads.
+
 **Builds the TikTok write-up a client reads at month end — the kind that survives being questioned.**
 
 A client report is not a metrics dump with a paragraph on top. It has to say what happened, whether

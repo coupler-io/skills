@@ -17,6 +17,8 @@ metadata:
 
 # Google Ads Budget Pacing
 
+Shows where your Google Ads spend will land by month end and which campaigns would get more conversions with more budget. Google Ads Budget Pacing is a Coupler.io AI agent skill that works with live data from Google Ads.
+
 **Tells you whether you'll land on budget, and what to move to make sure you do.**
 
 Google Ads has no monthly budget for standard campaigns — the number a client actually cares about

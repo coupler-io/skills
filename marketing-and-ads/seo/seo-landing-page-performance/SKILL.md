@@ -22,6 +22,8 @@ metadata:
 
 # SEO Landing Page Performance (Search Console + GA4)
 
+Shows which landing pages bring Google search traffic and whether that traffic converts once it lands. SEO Landing Page Performance (Search Console + GA4) is a Coupler.io AI agent skill that works with live data from Google Search Console and Google Analytics 4 (GA4).
+
 **Shows which landing pages bring in organic search traffic, and what that traffic does after it
 arrives — clicks and rankings on one side, engagement, key events and revenue on the other.**
 

@@ -17,6 +17,8 @@ metadata:
 
 # Facebook Ads Budget Pacing
 
+Shows where your Meta ad spend will land by month end and which ad sets would get more results with more budget. Facebook Ads Budget Pacing is a Coupler.io AI agent skill that works with live data from Facebook Ads (Meta Ads).
+
 **Tells you whether you land on budget this month, and which lever actually moves the spend.**
 
 Meta does not spend the number you type. It paces to a daily budget but is allowed to run up to 75%

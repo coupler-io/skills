@@ -17,6 +17,8 @@ metadata:
 
 # TikTok Ads Placement, Location and Device Breakdown
 
+Shows which TikTok placements, countries and devices bring results, and which ones to switch off. TikTok Ads Placement, Location and Device Breakdown is a Coupler.io AI agent skill that works with live data from TikTok Ads.
+
 **Tells you where and when your money is actually going, and what each of those places is worth.**
 
 Automatic placement is on by default and it is not neutral. It buys the cheapest impressions

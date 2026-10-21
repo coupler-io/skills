@@ -16,6 +16,8 @@ metadata:
 
 # TikTok Ads Performance Report
 
+Shows what changed in your TikTok ads, why your cost per result moved, and what to do about it next. TikTok Ads Performance Report is a Coupler.io AI agent skill that works with live data from TikTok Ads.
+
 **Tells you what moved in the account, which campaigns moved it, and how much of the change each one caused.**
 
 TikTok Ads Manager shows you the totals and leaves the arithmetic to you. Cost per result rose 18% —

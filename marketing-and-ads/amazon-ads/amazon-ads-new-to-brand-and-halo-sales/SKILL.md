@@ -18,6 +18,8 @@ metadata:
 
 # Amazon Ads New-to-Brand and Halo Sales
 
+Shows what Sponsored Brands, Display and DSP bring in beyond ACOS, like first-time customers and more searches for your brand. Amazon Ads New-to-Brand and Halo Sales is a Coupler.io AI agent skill that works with live data from Amazon Ads and Amazon Ads (Unified).
+
 **Tells you what Sponsored Brands, Sponsored Display, Sponsored TV and DSP are worth beyond their
 ACOS — the new customers they bring, the halo sales across the range, and the shopping behaviour
 they start — so they aren't cut for looking expensive next to Sponsored Products.**

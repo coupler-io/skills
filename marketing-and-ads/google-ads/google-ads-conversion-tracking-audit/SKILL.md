@@ -17,6 +17,8 @@ metadata:
 
 # Google Ads Conversion Tracking Audit
 
+Checks whether you can trust your Google Ads conversion numbers before you move budget, including double counting and untracked spend. Google Ads Conversion Tracking Audit is a Coupler.io AI agent skill that works with live data from Google Ads.
+
 **Tells you whether you can trust your Google Ads conversion numbers — before you move budget on
 them.**
 

@@ -21,6 +21,8 @@ metadata:
 
 # Google Search Console Keyword Opportunities
 
+Finds search queries sitting just off page one and pages that get seen but not clicked, so you know what to optimise next. Google Search Console Keyword Opportunities is a Coupler.io AI agent skill that works with live data from Google Search Console.
+
 **Finds where you can get more organic clicks from Google, and tells you what to change to
 get them.**
 

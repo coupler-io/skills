@@ -19,6 +19,8 @@ metadata:
 
 # LinkedIn Ads Account Settings and Structure Audit
 
+Finds the LinkedIn Ads settings and campaign setups wasting money, and shows what each one is costing you. LinkedIn Ads Account Settings and Structure Audit is a Coupler.io AI agent skill that works with live data from LinkedIn Ads.
+
 **Checks how the LinkedIn Ads account is set up and organised, and prices every setting and
 structural choice that's costing it money — most expensive first.**
 

@@ -10,6 +10,8 @@ metadata:
 
 # Live Dashboard from Coupler.io Data
 
+Builds a live dashboard over your Coupler.io data that you can reopen every morning and that refreshes on a schedule. Live Dashboard from Coupler.io Data is a Coupler.io AI agent skill.
+
 A live artifact is a self-contained HTML page registered with Cowork that persists across sessions and re-fetches data from MCP connectors every time it opens. This skill covers the specific pitfalls of wiring one to a Coupler.io dataflow. Most generic widget guidance (CDN allowlist, sandboxing) lives in Cowork's `create_artifact` tool description — read that first. This skill captures the Coupler-specific traps that cost real time the first time someone hits them.
 
 ## When to use

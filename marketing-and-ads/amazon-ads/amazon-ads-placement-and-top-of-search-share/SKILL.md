@@ -19,6 +19,8 @@ metadata:
 
 # Amazon Ads Placement and Top-of-Search Share
 
+Shows whether your Amazon ads sell better at the top of search or on product pages, and how to set your placement bids. Amazon Ads Placement and Top-of-Search Share is a Coupler.io AI agent skill that works with live data from Amazon Ads and Amazon Ads (Unified).
+
 **Tells you where on Amazon the ads earn — top of search, the rest of search, product pages — how
 much of the top of search the account wins, and what placement adjustments to set.**
 

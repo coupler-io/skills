@@ -19,6 +19,8 @@ metadata:
 
 # Amazon Ads Keyword and Product Targeting
 
+Shows which Amazon keywords and product targets make money and what each one should bid. Amazon Ads Keyword and Product Targeting is a Coupler.io AI agent skill that works with live data from Amazon Ads and Amazon Ads (Unified).
+
 **Tells you which Amazon Ads keywords and product targets earn their money, what each one should
 bid, and which match types and automatic targeting groups are doing the work.**
 

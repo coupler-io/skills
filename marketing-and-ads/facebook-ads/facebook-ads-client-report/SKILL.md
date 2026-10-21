@@ -17,6 +17,8 @@ metadata:
 
 # Facebook Ads Client Report
 
+Writes your monthly Meta ads report for a client, measured against the targets you agreed, with misses explained and next month's plan. Facebook Ads Client Report is a Coupler.io AI agent skill that works with live data from Facebook Ads (Meta Ads).
+
 **Builds the Meta report a client reads at month end — the kind that survives scrutiny.**
 
 A client report is not an analysis with nicer formatting. It is a document that has to hold up when

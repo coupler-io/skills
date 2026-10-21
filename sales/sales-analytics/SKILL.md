@@ -15,6 +15,8 @@ metadata:
 
 # Sales Pipeline Analytics
 
+Shows your pipeline health, win rates and rep performance, pulled straight from your CRM. Sales Pipeline Analytics is a Coupler.io AI agent skill that works with live data from Salesforce, HubSpot, Pipedrive, Close.com, and Zoho CRM.
+
 Analyze sales performance using data from Coupler.io dataflows (Salesforce, HubSpot, Pipedrive, Close, Zoho, custom CRMs). This skill guides you through retrieving opportunity/deal data, computing pipeline and conversion metrics, investigating velocity and rep performance, detecting anomalies, and presenting actionable insights a sales leader can act on.
 
 ## Step 0: Context Check (Pre-requisite · HARD GATE)

@@ -97,6 +97,8 @@ Look for "see the documentation", "ask", or an unsized "recent", "some" or "a fe
 
 `[Source tag: X]` lines duplicating `metadata.sources`, or a version restated in prose. Frontmatter is the single source; the body should not repeat it.
 
+One exception: the intro paragraph under the H1 (see the convention table in item 10). It repeats frontmatter on purpose, because it is what the GitHub page shows.
+
 ### 10. Convention drift
 
 | Field | Rule |
@@ -105,6 +107,7 @@ Look for "see the documentation", "ask", or an unsized "recent", "some" or "a fe
 | `metadata.category` | One of the categories already in `skills-index.json`, not a new invention |
 | `metadata.sources` | The integration's `name` from `get-integration`, verbatim, for every connector the body handles, or `[]` for connector-agnostic skills. The Skills page filters on exact match, so a missing connector hides the skill from its users |
 | `metadata.version` | `1.0.0` for a new skill. Do not adopt a sibling's version to look consistent |
+| Intro under the H1 | `metadata.short_description`, then `<title> is a Coupler.io AI agent skill that works with live data from <sources>.` Leave out the "works with" clause when `sources` is `[]`. It matches the website's skill cards and gives the GitHub page readable copy. A soft requirement: flag a missing or stale intro as a nitpick |
 | Body of a domain skill | No MCP tool names, response field names or status strings. Describe the action ("read the schema", "the dataset's context", "if a run is in progress, retry"), because the same skill runs in clients whose tools differ and the names can change. Capability skills are exempt |
 
 ### 11. Cross-references that do not resolve

@@ -18,6 +18,8 @@ metadata:
 
 # LinkedIn Ads Creative Fatigue
 
+Shows which LinkedIn ads are wearing out, how long each one has left, and how many new ads you need each month. LinkedIn Ads Creative Fatigue is a Coupler.io AI agent skill that works with live data from LinkedIn Ads.
+
 **Tells you which LinkedIn Ads creatives are wearing out, roughly how long each has left, and how
 much new creative the account needs a month to keep up.**
 

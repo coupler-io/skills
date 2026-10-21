@@ -18,6 +18,8 @@ metadata:
 
 # Shopify Customer Retention and LTV
 
+Shows which campaigns, first products and first-order discounts bring Shopify customers who come back and buy again. Shopify Customer Retention and LTV is a Coupler.io AI agent skill that works with live data from Shopify.
+
 **Tells you which campaign and which first offer bought customers who came back — at a granularity
 Shopify's cohort report stops short of, on a window that makes cohorts of different ages actually
 comparable.**

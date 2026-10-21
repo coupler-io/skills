@@ -18,6 +18,8 @@ metadata:
 
 # Microsoft Bing Ads Audience Targeting Analysis
 
+Shows which Microsoft Ads audiences bring results, including LinkedIn job and industry targeting, and how to set your bids. Microsoft Bing Ads Audience Targeting Analysis is a Coupler.io AI agent skill that works with live data from Microsoft Ads (Bing Ads).
+
 **Tells you which Microsoft Ads audiences earn their spend — remarketing, in-market, age and gender,
 and the LinkedIn profile cuts by company, industry and job function — and what bid each deserves.**
 
