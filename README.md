@@ -19,6 +19,7 @@ Ready-to-use AI agent skills for marketing, PPC, sales, finance, ecommerce, and 
 - [Coupler.io MCP](#couplerio-mcp-tools)
 - [Skill frontmatter](#skill-frontmatter)
 - [Contributing](#contributing-and-development)
+- [License](#license)
 
 ## What can you do with Coupler.io skills?
 
@@ -277,6 +278,8 @@ The skill uses Coupler.io MCP tools to discover datasets, inspect schemas, query
 Skills define **how to analyze** your data.
 Coupler.io MCP provides **access to the data and tools** needed to perform the analysis.
 
+Skills work in all popular AI tools, such as Claude, ChatGPT, and Cursor. Any AI assistant connected to the Coupler.io MCP server can load them, even without installing the plugins.
+
 ---
 
 ## Installation
@@ -415,3 +418,7 @@ Both descriptions land in `skills-index.json`, which is what the API and the MCP
 ## Contributing and development
 
 The machine-readable catalog is `skills-index.json`. **Do not edit it by hand** — it is generated from `SKILL.md` frontmatter. Change the skill files, then run `python .github/scripts/generate_skill_index.py`, or let the GitHub Action regenerate it on merge to `main`.
+
+## License
+
+Released under the [MIT License](LICENSE).
