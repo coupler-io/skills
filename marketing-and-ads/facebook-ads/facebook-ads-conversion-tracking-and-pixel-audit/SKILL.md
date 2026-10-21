@@ -17,6 +17,8 @@ metadata:
 
 # Facebook Ads Conversion Tracking and Pixel Audit
 
+Checks whether you can trust Meta's conversion numbers before you move budget, including double counting and spend with no tracking. Facebook Ads Conversion Tracking and Pixel Audit is a Coupler.io AI agent skill that works with live data from Facebook Ads (Meta Ads).
+
 **Tells you whether you can trust your Meta conversion numbers — before you move budget on them.**
 
 Meta's reported conversions are the least reliable number in the account and they fail quietly. A

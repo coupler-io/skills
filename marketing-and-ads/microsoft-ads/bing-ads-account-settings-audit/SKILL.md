@@ -19,6 +19,8 @@ metadata:
 
 # Microsoft Bing Ads Account Settings Audit
 
+Finds the Microsoft Ads settings quietly wasting money, like search partners and settings carried over from Google, and what each costs. Microsoft Bing Ads Account Settings Audit is a Coupler.io AI agent skill that works with live data from Microsoft Ads (Bing Ads).
+
 **Checks how the Microsoft Ads account is configured and prices every setting that's costing it
 money — most expensive first.**
 

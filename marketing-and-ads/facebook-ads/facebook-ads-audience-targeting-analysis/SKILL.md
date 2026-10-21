@@ -17,6 +17,8 @@ metadata:
 
 # Facebook Ads Audience Targeting Analysis
 
+Shows which Meta audiences bring results and which ones are paying to reach the same people twice. Facebook Ads Audience Targeting Analysis is a Coupler.io AI agent skill that works with live data from Facebook Ads (Meta Ads).
+
 **Tells you which audiences earn their spend, and which ones you are paying twice to reach.**
 
 Meta will not tell you which audience a result came from. There is no audience column in the

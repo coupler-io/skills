@@ -21,6 +21,8 @@ metadata:
 
 # PPC Performance Across Ad Platforms
 
+Compares your ad platforms side by side on spend, CPA and ROAS without double counting conversions. PPC Performance Across Ad Platforms is a Coupler.io AI agent skill that works with live data from Facebook Ads (Meta Ads) and Google Ads.
+
 Analyze paid-ads performance across whatever ad platforms the user has connected — answering plain-language questions about ad spend, delivery, and return with grounded numbers computed from their own data. Built for marketing agencies and eCommerce businesses (business owners and marketing managers): agencies care most about cross-channel comparison and cost efficiency; eCommerce cares most about ROAS and revenue. The senior-analyst outcome: a per-platform read of the paid funnel, an efficiency-ranked platform comparison, budget pacing against plan, and an honest treatment of attribution — never a naively blended number.
 
 ## Step 0 — Context Check (pre-requisite · HARD GATE)

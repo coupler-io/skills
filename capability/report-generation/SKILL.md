@@ -10,6 +10,8 @@ metadata:
 
 # Business Report Writer
 
+Turns your analysis into a report people can act on, and checks the math, units and claims before it goes out. Business Report Writer is a Coupler.io AI agent skill.
+
 Produce a structured, decision-ready report from analysis output, then validate it before delivery. The skill has two phases: **Phase 1 drafts the report**, **Phase 2 checks it**. Run both, in order, every time. The skill is industry-agnostic — it formats and verifies findings; it does not generate data or analysis. The data and analysis come from the domain bundle loaded alongside (e.g. `marketing-analytics`, `ecom-analytics`, `finance-analytics`, `sales-analytics`).
 
 ## When to use this skill

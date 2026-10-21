@@ -17,6 +17,8 @@ metadata:
 
 # LinkedIn Ads Client Report
 
+Writes your monthly LinkedIn Ads report for a client, measured against the targets you agreed, with misses explained and next month's plan. LinkedIn Ads Client Report is a Coupler.io AI agent skill that works with live data from LinkedIn Ads.
+
 **Writes the monthly LinkedIn Ads report a client can read — scored against the targets they agreed,
 with misses explained honestly and next month's plan attached.**
 

@@ -17,6 +17,8 @@ metadata:
 
 # LinkedIn Lead Gen Form Performance
 
+Shows which LinkedIn lead gen forms bring good leads at a fair cost and where people drop off before submitting. LinkedIn Lead Gen Form Performance is a Coupler.io AI agent skill that works with live data from LinkedIn Ads.
+
 **Tells you which LinkedIn lead gen forms and campaigns produce leads at a cost worth paying,
 where people open the form and walk away, and — from the leads' own form answers — who the
 leads actually are.**

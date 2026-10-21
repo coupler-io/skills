@@ -17,6 +17,8 @@ metadata:
 
 # TikTok Ads Creative Performance Analysis
 
+Shows which of your TikTok videos win, what the winners have in common, and what to shoot next. TikTok Ads Creative Performance Analysis is a Coupler.io AI agent skill that works with live data from TikTok Ads.
+
 **Tells you which videos are earning their spend, where the losing ones lose people, and what the next round should be.**
 
 On TikTok the creative is the targeting. Delivery is decided far more by whether a video holds

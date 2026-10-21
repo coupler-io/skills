@@ -18,6 +18,8 @@ metadata:
 
 # Microsoft Bing Ads Wasted Spend and Scaling
 
+Finds Microsoft Ads search terms that spend without converting, builds your negative keyword list, and shows where to move the money. Microsoft Bing Ads Wasted Spend and Scaling is a Coupler.io AI agent skill that works with live data from Microsoft Ads (Bing Ads).
+
 **Finds the Microsoft Ads spend that isn't earning, proves it's past the point of being early, and
 says where that money should go instead — as one budget-neutral move.**
 

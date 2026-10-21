@@ -21,6 +21,8 @@ metadata:
 
 # Google Search Console Country and Device Performance
 
+Shows how your Google search clicks and rankings differ by country and device, and which markets fall behind. Google Search Console Country and Device Performance is a Coupler.io AI agent skill that works with live data from Google Search Console.
+
 **Shows how your organic search performs by country and by device, and where each one lags the rest
 of the site.**
 

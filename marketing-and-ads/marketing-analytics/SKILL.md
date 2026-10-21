@@ -21,6 +21,8 @@ metadata:
 
 # Marketing Performance Analytics
 
+Shows which marketing channels and campaigns bring results, what changed, and where to spend more. Marketing Performance Analytics is a Coupler.io AI agent skill that works with live data from Google Ads, Facebook Ads (Meta Ads), LinkedIn Ads, and Google Analytics 4 (GA4).
+
 Analyze marketing performance across channels using data from Coupler.io dataflows. This skill guides you through retrieving data, computing key metrics, detecting anomalies, and presenting actionable insights — all in language a marketing manager can act on.
 
 ## Step 0: Connect (HARD GATE)

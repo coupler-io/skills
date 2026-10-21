@@ -16,6 +16,8 @@ metadata:
 
 # TikTok Ads Budget Pacing
 
+Shows where your TikTok ad spend will land by month end and which ad groups would get more results with more budget. TikTok Ads Budget Pacing is a Coupler.io AI agent skill that works with live data from TikTok Ads.
+
 **Tells you where the month ends if nothing changes, what to spend a day to land on plan, and which ad groups will not take more money however much you give them.**
 
 Underspend on TikTok almost never looks like underspend. The budget is set, the campaigns are active,

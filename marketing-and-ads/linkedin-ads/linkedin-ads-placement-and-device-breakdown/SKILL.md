@@ -17,6 +17,8 @@ metadata:
 
 # LinkedIn Ads Placement and Device Breakdown
 
+Shows whether your LinkedIn ads do better on LinkedIn itself or the Audience Network, by device, and what to switch off. LinkedIn Ads Placement and Device Breakdown is a Coupler.io AI agent skill that works with live data from LinkedIn Ads.
+
 **Tells you what LinkedIn Ads spend earns on LinkedIn against off it on the Audience Network, by
 placement and by device — and what to switch off or shift.**
 

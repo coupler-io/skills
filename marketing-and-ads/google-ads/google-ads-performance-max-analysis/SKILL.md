@@ -17,6 +17,8 @@ metadata:
 
 # Google Ads Performance Max (PMax) Analysis
 
+Shows what Performance Max spends your money on, how much of it is your own brand traffic, and whether it's worth keeping. Google Ads Performance Max (PMax) Analysis is a Coupler.io AI agent skill that works with live data from Google Ads.
+
 **Gets as far inside Performance Max as the data honestly allows, and tells you exactly where that
 stops.**
 

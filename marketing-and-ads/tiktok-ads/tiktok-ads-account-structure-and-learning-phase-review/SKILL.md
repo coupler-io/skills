@@ -17,6 +17,8 @@ metadata:
 
 # TikTok Ads Account Structure and Learning Phase Review
 
+Shows why your TikTok ad groups are stuck in the learning phase and which ones to merge so they can get out of it. TikTok Ads Account Structure and Learning Phase Review is a Coupler.io AI agent skill that works with live data from TikTok Ads.
+
 **Tells you whether the account is split into more ad groups than its budget can feed, and prices what that costs in delivery.**
 
 The most expensive mistake in a TikTok account is almost always structural and almost never visible.

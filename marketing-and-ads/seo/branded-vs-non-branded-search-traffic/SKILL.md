@@ -21,6 +21,8 @@ metadata:
 
 # Branded vs Non-Branded Search Traffic
 
+Splits your Google search traffic into people searching your brand and people finding you for the first time, and shows which is growing. Branded vs Non-Branded Search Traffic is a Coupler.io AI agent skill that works with live data from Google Search Console.
+
 **Splits your organic search into people searching your name and people finding you cold — and tells
 you which one is actually growing.**
 

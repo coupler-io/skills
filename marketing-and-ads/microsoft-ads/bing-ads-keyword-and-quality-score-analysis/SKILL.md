@@ -18,6 +18,8 @@ metadata:
 
 # Microsoft Bing Ads Keyword and Quality Score Analysis
 
+Shows which Microsoft Ads keywords make money, where a low Quality Score is pushing up your cost per click, and what to fix first. Microsoft Bing Ads Keyword and Quality Score Analysis is a Coupler.io AI agent skill that works with live data from Microsoft Ads (Bing Ads).
+
 **Tells you which Microsoft Ads keywords earn their money, which are paying too much for the same
 clicks, and what to fix to bring the price down.**
 

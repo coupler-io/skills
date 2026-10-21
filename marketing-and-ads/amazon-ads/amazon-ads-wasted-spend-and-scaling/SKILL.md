@@ -19,6 +19,8 @@ metadata:
 
 # Amazon Ads Wasted Spend and Scaling
 
+Finds Amazon search terms that spend without selling, builds your negative keyword list, and moves the money to terms that sell. Amazon Ads Wasted Spend and Scaling is a Coupler.io AI agent skill that works with live data from Amazon Ads and Amazon Ads (Unified).
+
 **Finds the Amazon Ads search terms and targets spending without selling, builds safe negatives,
 harvests the winners into their own targeting, and moves the money — as one budget-neutral plan.**
 

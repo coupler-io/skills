@@ -18,6 +18,8 @@ metadata:
 
 # Microsoft Bing Ads Impression Share and Auction Insights
 
+Shows how much of the Bing auction you win, where you lose to budget or ad rank, and which campaigns to defend. Microsoft Bing Ads Impression Share and Auction Insights is a Coupler.io AI agent skill that works with live data from Microsoft Ads (Bing Ads).
+
 **Tells you where the Microsoft Ads account stands in the auction — how much of the available demand
 it wins, how often it shows at the top, how much of the clicking market it takes — and where
 competitors are pushing it out.**

@@ -17,6 +17,8 @@ metadata:
 
 # Shopify Inventory Report and Stockout Forecast
 
+Shows what in your Shopify store will sell out, when you need to reorder, and how much cash is sitting in dead stock. Shopify Inventory Report and Stockout Forecast is a Coupler.io AI agent skill that works with live data from Shopify.
+
 **Turns Shopify's stock numbers into a date you have to order by and a figure for what happens if you
 don't — with anything already too late to save flagged as such.**
 

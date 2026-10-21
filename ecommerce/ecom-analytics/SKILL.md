@@ -16,6 +16,8 @@ metadata:
 
 # Ecommerce Analytics
 
+Puts your store sales next to sessions, ad spend and email to show blended ROAS and conversion rate, on any store platform. Ecommerce Analytics is a Coupler.io AI agent skill that works with live data from Shopify, WooCommerce, Adobe Commerce (Magento), Google Analytics 4 (GA4), Stripe, and Klaviyo.
+
 Analyze e-commerce performance using data from Coupler.io dataflows (Shopify, WooCommerce, BigCommerce, Magento, GA4, Stripe, Klaviyo, etc.). This skill guides you through retrieving order/session data, computing funnel and revenue metrics, detecting anomalies, and presenting actionable insights an ecom operator can act on.
 
 ## Step 0: Context Check (Pre-requisite · HARD GATE)

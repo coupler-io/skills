@@ -17,6 +17,8 @@ metadata:
 
 # Shopify Product and Variant Performance
 
+Shows which products and variants in your store sell, which make money, and which to reorder, drop or mark down. Shopify Product and Variant Performance is a Coupler.io AI agent skill that works with live data from Shopify.
+
 **Tells you which products and variants earn their place in the catalogue — ranked by money, with
 margin on the right cost basis, and with the stock-out distortion called out instead of buried.**
 

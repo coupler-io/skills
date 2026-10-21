@@ -18,6 +18,8 @@ metadata:
 
 # Microsoft Bing Ads Location, Device and Dayparting
 
+Shows which locations, devices and hours bring your Microsoft Ads results, and how to adjust your bids for each. Microsoft Bing Ads Location, Device and Dayparting is a Coupler.io AI agent skill that works with live data from Microsoft Ads (Bing Ads).
+
 **Tells you where, on what device and at what hour Microsoft Ads spend earns — and what bid
 adjustment or schedule each deserves.**
 

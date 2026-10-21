@@ -17,6 +17,8 @@ metadata:
 
 # Facebook Ads Placement, Location and Device Breakdown
 
+Shows which Meta placements, countries and devices bring results, and which ones to switch off. Facebook Ads Placement, Location and Device Breakdown is a Coupler.io AI agent skill that works with live data from Facebook Ads (Meta Ads).
+
 **Tells you where your Meta budget is actually going, and which of those places is worth it.**
 
 Automatic placements are a delivery decision Meta makes on your behalf, and it optimises for cheap

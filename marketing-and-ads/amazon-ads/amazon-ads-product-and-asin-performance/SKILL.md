@@ -18,6 +18,8 @@ metadata:
 
 # Amazon Ads Product and ASIN Performance
 
+Shows which advertised Amazon products earn back their ad spend and which ones spend without selling. Amazon Ads Product and ASIN Performance is a Coupler.io AI agent skill that works with live data from Amazon Ads and Amazon Ads (Unified).
+
 **Tells you which advertised products earn their ad spend, which spend without selling, what
 shoppers buy instead after clicking an ad, and where the problem is the listing rather than
 the ads.**

@@ -17,6 +17,8 @@ metadata:
 
 # LinkedIn Ads Budget Pacing
 
+Shows where your LinkedIn Ads spend will land by month end and why some campaigns can't spend their budget. LinkedIn Ads Budget Pacing is a Coupler.io AI agent skill that works with live data from LinkedIn Ads.
+
 **Tells you where LinkedIn Ads spend lands by month end, which campaigns are spending everything
 they're allowed, and why the ones that underspend can't.**
 

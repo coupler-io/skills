@@ -21,6 +21,8 @@ metadata:
 
 # New Page Indexing Tracker
 
+Tracks how long your new pages take to show up in Google and get their first clicks, and flags the ones Google is ignoring. New Page Indexing Tracker is a Coupler.io AI agent skill that works with live data from Google Search Console.
+
 **Shows how long your new pages take to get seen by Google and start earning traffic — and which
 ones never do.**
 

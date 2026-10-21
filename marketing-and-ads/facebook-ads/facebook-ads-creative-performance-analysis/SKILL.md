@@ -17,6 +17,8 @@ metadata:
 
 # Facebook Ads Creative Performance Analysis
 
+Shows which of your Meta ads win, what the winners have in common, and what to make in the next round. Facebook Ads Creative Performance Analysis is a Coupler.io AI agent skill that works with live data from Facebook Ads (Meta Ads).
+
 **Tells you which ads are earning their spend, and what the next round should look like.**
 
 On Meta the creative is the targeting. But the metrics that make an ad look good are not the ones that

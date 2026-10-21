@@ -11,6 +11,8 @@ metadata:
 
 # Google Ads Custom Query (GAQL) Source
 
+Pulls Google Ads data that standard reports leave out, like hourly figures or product-level Shopping data, with a custom query. Google Ads Custom Query (GAQL) Source is a Coupler.io AI agent skill that works with live data from Google Ads.
+
 You configure Custom GAQL sources on Coupler.io dataflows. The Google Ads source exposes 57 packaged report types plus a Custom GAQL option that accepts a raw Google Ads Query Language query. Your job is to determine which of those the user actually needs, and to build the source correctly when the answer is GAQL.
 
 Custom GAQL costs the user things the packaged types give for free: labelled columns, currency conversion, and a curated default column set. Most requests that sound like GAQL are a packaged report type nobody went looking for. Step 2 exists to catch that.

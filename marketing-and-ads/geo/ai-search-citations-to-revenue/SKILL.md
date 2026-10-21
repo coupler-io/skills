@@ -35,6 +35,8 @@ metadata:
 
 # AI Search Citations to Revenue
 
+Follows the pages AI assistants cite through to traffic, signups and sales, and shows where the chain breaks. AI Search Citations to Revenue is a Coupler.io AI agent skill that works with live data from Peec AI, Google Analytics 4 (GA4), Google Search Console, Shopify, WooCommerce, HubSpot, Pipedrive, Salesforce, Stripe, and Paddle.
+
 **Shows which of your pages and products AI engines cite, what traffic those pages get from AI
 assistants, Google, referrals and direct visits, whether those visits trigger your key events and turn
 into paid orders or won deals — and at which stage the chain breaks.**

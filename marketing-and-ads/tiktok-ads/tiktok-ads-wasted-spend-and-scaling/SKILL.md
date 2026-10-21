@@ -17,6 +17,8 @@ metadata:
 
 # TikTok Ads Wasted Spend and Scaling
 
+Finds the TikTok campaigns and ad groups spending without results and shows where to move that money instead. TikTok Ads Wasted Spend and Scaling is a Coupler.io AI agent skill that works with live data from TikTok Ads.
+
 **Tells you what to turn off, what to fund with the money, and what the swap is worth — as one decision, because it is one decision.**
 
 Cutting and scaling get treated as two jobs and they are not. Nobody who asks "what should I pause"

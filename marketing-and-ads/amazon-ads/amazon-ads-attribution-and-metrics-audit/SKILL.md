@@ -18,6 +18,8 @@ metadata:
 
 # Amazon Ads Attribution and Metrics Audit
 
+Checks whether your Amazon Ads sales and ACOS can be trusted and compared before you use them to move budget. Amazon Ads Attribution and Metrics Audit is a Coupler.io AI agent skill that works with live data from Amazon Ads and Amazon Ads (Unified).
+
 **Tells you whether the Amazon Ads sales and ACOS figures can be compared and trusted before anyone
 moves money on them — which window, which sales, which currency — and where two numbers that look
 alike aren't.**

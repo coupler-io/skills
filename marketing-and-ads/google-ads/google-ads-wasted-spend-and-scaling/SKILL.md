@@ -17,6 +17,8 @@ metadata:
 
 # Google Ads Wasted Spend and Scaling
 
+Finds Google Ads search terms that spend without converting, builds your negative keyword list, and shows where to move the money. Google Ads Wasted Spend and Scaling is a Coupler.io AI agent skill that works with live data from Google Ads.
+
 **Produces the two lists that change an account: what to stop paying for, and where that money should
 go instead.**
 

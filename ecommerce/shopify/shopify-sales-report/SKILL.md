@@ -17,6 +17,8 @@ metadata:
 
 # Shopify Sales Report
 
+Shows how your Shopify store did and whether a change in revenue came from orders, order value or refunds. Shopify Sales Report is a Coupler.io AI agent skill that works with live data from Shopify.
+
 **Tells you what the store sold, what moved, and which of the three reasons behind it you're looking
 at — before anyone spends money reacting to the wrong one.**
 

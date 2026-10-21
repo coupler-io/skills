@@ -16,6 +16,8 @@ metadata:
 
 # Facebook Ads Performance Report
 
+Shows what changed in your Meta ads, why your cost per result moved, and what to do about it next. Facebook Ads Performance Report is a Coupler.io AI agent skill that works with live data from Facebook Ads (Meta Ads).
+
 **Tells you what actually moved in the Meta account this period, and which campaigns moved it.**
 
 Meta's own reporting shows you a number and a percentage next to it. What it doesn't show is which

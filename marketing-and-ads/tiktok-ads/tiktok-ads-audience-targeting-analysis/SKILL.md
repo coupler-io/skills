@@ -17,6 +17,8 @@ metadata:
 
 # TikTok Ads Audience Targeting Analysis
 
+Shows which TikTok audiences bring results and whether your targeting does better than simply going broad. TikTok Ads Audience Targeting Analysis is a Coupler.io AI agent skill that works with live data from TikTok Ads.
+
 **Tells you which audiences earn their spend on TikTok, and whether your targeting is doing any work the creative was not already doing.**
 
 TikTok is the one major platform where the honest answer to "which audience should I target" is often
