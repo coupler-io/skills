@@ -349,9 +349,9 @@ Every sibling in the pack reads this. **One closing ask, not two.**
 | The question is whether the store moved at all | `shopify-sales-report` |
 | The question is sell-through, stock cover, inventory value or the cash in dead stock | `shopify-inventory-report-and-stockout-forecast` |
 | The question is which customers buy, repeat rate or cohort value | `shopify-customer-retention-and-ltv` |
-| Return rate by product or restock-versus-writeoff is the subject | `shopify-refunds-and-returns` *(queued)* |
-| Discount depth or promo quality by product is the subject | `shopify-discount-performance` *(queued)* |
-| Product performance by country or market is the subject | `shopify-geo-and-market-performance` *(queued)* |
+| Return rate by product or restock-versus-writeoff is the subject | `shopify-refunds-and-returns-report` |
+| Discount depth or promo quality by product is the subject | `shopify-discount-code-performance` |
+| Product performance by country or market is the subject | `shopify-sales-by-country-and-market` |
 | A broad multi-source ecommerce read is wanted rather than this decision | `ecom-analytics` |
 
 ## Next Question (REQUIRED)

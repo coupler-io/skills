@@ -5,7 +5,7 @@
   },
   "metadata": {
     "description": "Coupler.io-authored Claude Code skills and plugins for business analytics by function (finance, sales, ecommerce, marketing & ads) plus shared capability skills and utilities",
-    "version": "1.7.0"
+    "version": "1.8.0"
   },
   "plugins": [
     {
@@ -39,7 +39,15 @@
         "./ecommerce/shopify/shopify-sales-report",
         "./ecommerce/shopify/shopify-product-and-variant-performance",
         "./ecommerce/shopify/shopify-inventory-report-and-stockout-forecast",
-        "./ecommerce/shopify/shopify-customer-retention-and-ltv"
+        "./ecommerce/shopify/shopify-customer-retention-and-ltv",
+        "./ecommerce/shopify/shopify-discount-code-performance",
+        "./ecommerce/shopify/shopify-refunds-and-returns-report",
+        "./ecommerce/shopify/shopify-sales-by-country-and-market",
+        "./ecommerce/klaviyo/klaviyo-flow-performance-vs-benchmarks",
+        "./ecommerce/klaviyo/klaviyo-email-deliverability-check",
+        "./ecommerce/klaviyo/klaviyo-revenue-share-of-shopify-sales",
+        "./ecommerce/gorgias/gorgias-support-tickets-per-order",
+        "./ecommerce/cin7/cin7-reorder-point-and-stock-cover"
       ]
     },
     {
