@@ -2,7 +2,7 @@
 name: skill-review
 description: "Use this skill when reviewing a Coupler.io skill before merge, auditing an existing one, or checking a pack of skills for accuracy. Triggers include: 'review this skill', 'check this SKILL.md', 'is this skill accurate', 'review PR #N in the skills repo', 'audit the <platform> pack', or any request to check what a skill claims about a Coupler.io connector or an ad platform. Checks factual accuracy against live tools and repo conventions; it does not judge domain expertise."
 metadata:
-  version: 1.0.0
+  version: 1.1.0
   category: utilities
   sources: []
 ---
@@ -49,11 +49,15 @@ A Coupler.io dataflow accepts unlimited sources, and most connectors expose far 
 
 **Check an absence claim against every variant, not the first one that matches.** Options are often scoped to one report type through `dependsOn`, and connectors ship variants of the same report with different dimensions and columns. A report that lacks the field can sit next to one that has it. Search for the field across every report type and every option list before accepting "not in this connector".
 
+**Check that the route is complete, not just that one exists.** A skill can name the right fix and still understate it. `paid-vs-organic-search-overlap` (#33) offered per-action conversions through one Custom GAQL source, but a breakdown by conversion action can't carry cost, so cost per conversion by action takes the existing report plus a second source, joined on search term. When the fix needs another source and a join, the skill has to say both steps, or the model builds the first one, finds no cost and stops.
+
 ### 3. Fixes the assistant cannot perform
 
 The mirror image of defect 2, and easier to miss because the text reads helpfully. A skill that says "unhide the column in the dataset step" is naming an action no MCP tool exposes. A skill that says "add the audience dimension" on a connector whose dimensions sit in `mcp_excluded_params` is naming an action the assistant cannot take.
 
 **Every recommended fix must be either executable by the assistant or explicitly handed to the user.** "Say it can be added" and "offer to add it" are different instructions, and which one is correct depends on `mcp_excluded_params` for that connector. Check before you rewrite either into the other.
+
+**A missing column has two layers; check both.** Whether the column is fetched is set by the source's columns parameter, which the assistant can change unless it sits in `mcp_excluded_params`. Whether it is visible is set in the dataset step, which only the user can change. `shopify-sales-by-country-and-market` (#40) called Customer order index "not checkable" when it is in the Orders entity's default columns and shown by default. The fix covers both cases: offer to add it to the source, and if it is fetched but hidden, ask the user to unhide it.
 
 The same applies to recommending a connector or report type. One at `access.level: dev` or behind a `feature_flag` is invisible to most accounts, so a fix that tells the user to add it is a fix they cannot perform. Name the generally available option first and mark the gated one as available only where enabled.
 
@@ -81,17 +85,21 @@ Ad platforms change faster than skills do. Two from real reviews: a reviewer nea
 
 Treat every platform number — attribution windows, budget flexibility, learning thresholds, metric availability — as unverified until sourced. **Verify or delete.** Do not soften into a hedge; a hedged wrong fact is still wrong.
 
-### 7. Column names carried over from a sibling pack
+### 7. Column names and meanings carried over from a sibling pack
 
 Packs are built by copying an existing one, and the copy keeps the source platform's column labels. A label that is right for one connector names a column that does not exist in the next: a connector with a `transformations/` folder gets friendly labels, one without it gets raw API names.
 
 Check every column the skill names against `get-schema` or the connector's own transformations or importer field lists, never against the sibling it was copied from.
+
+**The same goes for what a column means.** `shopify-product-and-variant-performance` told the model that the cost column in Shopify's Orders with activities is cost at the time of sale, because it sits on dated sale rows. The importer reads it from `variant.inventoryItem.unitCost`, the item's current cost. #40 copied the claim into two more skills before review caught it. When a skill says what a column holds (historical or current, gross or net, per row or repeated), check what the importer actually reads into it, not what its neighbours suggest.
 
 ### 8. Facts deferred to the model at runtime
 
 "Take the window from the platform's documentation or ask." "Leave the most recent days out." The skill names a fact it needs and does not state it, so each run recalls its own value and sibling skills disagree. The agent has no web access at runtime, so "check the docs" means "recall".
 
 Look for "see the documentation", "ask", or an unsized "recent", "some" or "a few" standing in for a value. The fix is the value itself, stated once per pack, with a note on when to override it.
+
+**Except where the right value depends on the business.** A volume floor that suits one market or industry is meaningless in another, so a fixed number is as wrong as a missing one. For those the fix is a procedure: if no value is saved for the dataset, suggest one from the data, confirm it with the user in the same message as the coverage verdict, and save it. A method is not such a value. A break rule or a threshold multiple is defined in the skill, because asking a user how far below baseline counts as a break gets a guess. Found across the SEO pack in #33, where every skill said "a volume floor stated" and none gave one.
 
 ### 9. Redundant metadata in the body
 
