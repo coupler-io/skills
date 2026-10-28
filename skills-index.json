@@ -58,6 +58,17 @@
       "description": "Use this skill to produce a structured business report from analysis output and validate it before delivery — turning metrics, findings, and recommendations into a scannable, decision-ready document, then sanity-checking arithmetic, units, claims, and consistency. Industry-agnostic; works for marketing, ecom, finance, sales, or any analytics output. Compose with a domain bundle (e.g., ecom-analytics + report-generation) for domain-flavored reports. Triggers include 'write a report', 'summarize this analysis', 'put this in a report format', 'create a TL;DR', 'monthly business review', 'weekly performance report', 'executive summary', 'structured update on …', 'turn this into a report', 'sanity-check these numbers', 'validate this analysis', 'does this add up', 'review this for accuracy'."
     },
     {
+      "name": "cin7-reorder-point-and-stock-cover",
+      "path": "ecommerce/cin7/cin7-reorder-point-and-stock-cover",
+      "category": "ecommerce",
+      "sources": [
+        "Cin7"
+      ],
+      "title": "Cin7 Reorder Point and Stock Cover",
+      "short_description": "Finds which SKUs to reorder and by when, from your real sales rate and supplier lead times, with safety stock at a service level you choose.",
+      "description": "Use for \"when should we reorder in Cin7\", \"what's our reorder point for each SKU\", \"how many weeks of stock do we have in Cin7\", \"what will run out before the next delivery\", \"is our Cin7 reorder level set right\", \"how much safety stock do we need\", or \"what do we need to order this week\" — even when the user never says \"reorder point\". Use when the decision is what to order, how much, and by when, per SKU and location. Cin7 Core only."
+    },
+    {
       "name": "ecom-analytics",
       "path": "ecommerce/ecom-analytics",
       "category": "ecommerce",
@@ -74,6 +85,52 @@
       "description": "Use this skill when the user wants to analyze e-commerce performance, review funnel conversion, investigate AOV or repeat-purchase trends, build an ecom report, check sales velocity, understand customer cohorts and retention, or answer questions about their store's sales data. Triggers include 'how is my store performing', 'what's my conversion rate', 'cart abandonment', 'AOV trend', 'repeat purchase rate', 'why did revenue drop', 'cohort retention', 'top products', 'new vs returning customer revenue', 'lifetime value', 'pull my Shopify numbers', 'ecom report'."
     },
     {
+      "name": "gorgias-support-tickets-per-order",
+      "path": "ecommerce/gorgias/gorgias-support-tickets-per-order",
+      "category": "ecommerce",
+      "sources": [
+        "Gorgias",
+        "Shopify"
+      ],
+      "title": "Gorgias Support Tickets per Order",
+      "short_description": "Shows how many support tickets your store gets per order, what customers contact you about, and which cause to fix first.",
+      "description": "Use for \"how many support tickets per order do we get\", \"why is our Gorgias volume up\", \"what are customers contacting us about\", \"how much of our support is where-is-my-order\", \"is our contact rate getting better\", \"which channel brings the most Gorgias tickets\", or \"what should we fix to cut support tickets for our store\" — even when the user never says \"contact rate\". Use when the decision is which cause of support volume to fix first. Needs Gorgias and the store's Shopify orders."
+    },
+    {
+      "name": "klaviyo-email-deliverability-check",
+      "path": "ecommerce/klaviyo/klaviyo-email-deliverability-check",
+      "category": "ecommerce",
+      "sources": [
+        "Klaviyo"
+      ],
+      "title": "Klaviyo Email Deliverability Check",
+      "short_description": "Checks spam complaints, bounces and unsubscribes on every Klaviyo send against Klaviyo's own limits, and finds the sends causing them.",
+      "description": "Use for \"is our Klaviyo sending healthy\", \"are our emails going to spam\", \"why is our Klaviyo bounce rate up\", \"which campaign got spam complaints\", \"are we at risk with Gmail\", \"too many unsubscribes from Klaviyo\", \"should we sunset unengaged subscribers\", or \"check our email list health\" — even when the user never says \"deliverability\". Use when the decision is whether sending is safe and which campaigns, flows or segments to stop or narrow. Klaviyo email only."
+    },
+    {
+      "name": "klaviyo-flow-performance-vs-benchmarks",
+      "path": "ecommerce/klaviyo/klaviyo-flow-performance-vs-benchmarks",
+      "category": "ecommerce",
+      "sources": [
+        "Klaviyo"
+      ],
+      "title": "Klaviyo Flow Performance vs Benchmarks",
+      "short_description": "Shows how each Klaviyo flow earns per recipient against its own history and published benchmarks, and which flows you are missing.",
+      "description": "Use for \"how are our Klaviyo flows doing\", \"is our abandoned cart flow good\", \"which Klaviyo flow underperforms\", \"how does our welcome series compare\", \"what should our flow revenue per recipient be\", \"which flows are we missing in Klaviyo\", or \"is our winback flow worth keeping\" — even when the user never says \"benchmark\". Use when the decision is which automated flow to fix, build or leave alone. Klaviyo only."
+    },
+    {
+      "name": "klaviyo-revenue-share-of-shopify-sales",
+      "path": "ecommerce/klaviyo/klaviyo-revenue-share-of-shopify-sales",
+      "category": "ecommerce",
+      "sources": [
+        "Klaviyo",
+        "Shopify"
+      ],
+      "title": "Klaviyo Revenue Share of Shopify Sales",
+      "short_description": "Shows how much of your store revenue Klaviyo credits to email and SMS, split by flows and campaigns, and how that share is moving.",
+      "description": "Use for \"how much of our store revenue comes from Klaviyo\", \"what share of Shopify sales is email and SMS\", \"is our Klaviyo pulling its weight\", \"flows vs campaigns revenue for our store\", \"what percent of store revenue is retention marketing\", or \"is email revenue going up as a share of the store\" — even when the user never says \"contribution\". Use when the decision is whether email and SMS earn their place and whether effort goes to flows or campaigns. Needs Klaviyo and the store's Shopify data."
+    },
+    {
       "name": "shopify-customer-retention-and-ltv",
       "path": "ecommerce/shopify/shopify-customer-retention-and-ltv",
       "category": "ecommerce",
@@ -83,6 +140,17 @@
       "title": "Shopify Customer Retention and LTV",
       "short_description": "Shows which campaigns, first products and first-order discounts bring Shopify customers who come back and buy again.",
       "description": "Use for \"what's our repeat rate\", \"do customers come back\", \"which campaign brings customers who buy again\", \"what's our customer lifetime value\", \"how long until the second order\", \"do discounted customers stick around\", \"are our cohorts getting worse\", or \"how much revenue comes from repeat customers\" — even when the user never says \"retention\" or \"cohort\". Use when the decision is where acquisition money goes, or when retention email timing needs a number. Shopify only."
+    },
+    {
+      "name": "shopify-discount-code-performance",
+      "path": "ecommerce/shopify/shopify-discount-code-performance",
+      "category": "ecommerce",
+      "sources": [
+        "Shopify"
+      ],
+      "title": "Shopify Discount Code Performance",
+      "short_description": "Shows what each discount code and automatic discount costs your store, who uses it, and how deep a discount your margin can carry.",
+      "description": "Use for \"are our store discounts worth it\", \"which discount codes work in our shop\", \"how much are we giving away in Shopify discounts\", \"is the welcome code bringing new customers\", \"how deep are our promo discounts\", \"do discounted orders have a bigger basket\", \"what discount can our store afford\", or \"did the sale make money\" — even when the user never says \"discount\". Use when the decision is which codes and automatic discounts to keep, cut or resize, and what depth the store's margin can carry. Shopify only."
     },
     {
       "name": "shopify-inventory-report-and-stockout-forecast",
@@ -105,6 +173,28 @@
       "title": "Shopify Product and Variant Performance",
       "short_description": "Shows which products and variants in your store sell, which make money, and which to reorder, drop or mark down.",
       "description": "Use for \"which products are selling\", \"what are my best sellers\", \"which variants should I drop\", \"what's my margin by product\", \"which size sells\", \"how did the launch do\", \"what's my revenue concentration\", or \"sales by vendor\" — even when the user never says \"variant\". Use when the decision is what to reorder, drop, promote or mark down, or when a store-level move needs tracing to the products behind it. Shopify only."
+    },
+    {
+      "name": "shopify-refunds-and-returns-report",
+      "path": "ecommerce/shopify/shopify-refunds-and-returns-report",
+      "category": "ecommerce",
+      "sources": [
+        "Shopify"
+      ],
+      "title": "Shopify Refunds and Returns Report",
+      "short_description": "Shows which products and sizes your store gets back, how much of it goes back on the shelf, and what refunds cost you.",
+      "description": "Use for \"what's our store's return rate\", \"which products get returned most in the shop\", \"which size gets sent back\", \"how much are refunds costing the store\", \"are returned items going back on the shelf\", \"why are our Shopify refunds up\", \"refunds vs returns for our store\", or \"how much stock do we write off from returns\" — even when the user never says \"returns\". Use when the decision is which products, variants or policies to fix because of what comes back, and whether returned goods are recovered or lost. Shopify only."
+    },
+    {
+      "name": "shopify-sales-by-country-and-market",
+      "path": "ecommerce/shopify/shopify-sales-by-country-and-market",
+      "category": "ecommerce",
+      "sources": [
+        "Shopify"
+      ],
+      "title": "Shopify Sales by Country and Market",
+      "short_description": "Shows which countries and regions your store sells to, how each one is growing, and which ones lose money to returns or discounts.",
+      "description": "Use for \"which countries buy from our store\", \"sales by country in Shopify\", \"how is our UK store market doing\", \"which states order most from the shop\", \"is international worth it for our store\", \"do customers in Germany return more\", \"how many orders are paid in local currency\", or \"should we localise the shop for a new market\" — even when the user never says \"geo\" or \"market\". Use when the decision is which markets to invest in, localise, fix or stop serving. Shopify only."
     },
     {
       "name": "shopify-sales-report",

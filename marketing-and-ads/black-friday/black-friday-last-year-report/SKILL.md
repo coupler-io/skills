@@ -217,7 +217,7 @@ writing, in the closing block. **One closing ask.**
 | A campaign's tracking needs a full diagnosis | `google-ads-conversion-tracking-audit`, `facebook-ads-conversion-tracking-and-pixel-audit`, `tiktok-ads-conversion-tracking-and-pixel-audit` |
 | Whether last year's top products are stocked for this year | `shopify-inventory-report-and-stockout-forecast` |
 | Whether last year's Black Friday buyers came back | `shopify-customer-retention-and-ltv` |
-| Which of last year's codes made money | `shopify-discount-performance` |
+| Which of last year's codes made money | `shopify-discount-code-performance` |
 
 ## Next Question (REQUIRED)
 

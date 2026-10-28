@@ -354,8 +354,8 @@ closing ask, not two.**
 | The question is the period's new-versus-returning revenue split | `shopify-sales-report` |
 | The question is which products or variants sell, or margin | `shopify-product-and-variant-performance` |
 | The question is whether stock is available to sell | `shopify-inventory-report-and-stockout-forecast` |
-| Discount depth and promo economics are the subject, not who they acquired | `shopify-discount-performance` *(queued)* |
-| Retention differs by country or market | `shopify-geo-and-market-performance` *(queued)* |
+| Discount depth and promo economics are the subject, not who they acquired | `shopify-discount-code-performance` |
+| Retention differs by country or market | `shopify-sales-by-country-and-market` |
 | The question is the Black Friday sale itself — spend, return and what to change next year | `black-friday-ads-and-sales-report` |
 | Acquisition cost per campaign is needed to judge a retention difference | `ppc-analytics` |
 | The finding is becoming a lifecycle email flow | `email-sequence` |

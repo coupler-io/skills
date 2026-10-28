@@ -223,7 +223,7 @@ Five sale-season skills in `marketing-and-ads/black-friday/`, one per stage of a
 
 #### Shopify deep dives
 
-Four Shopify-only skills in `ecommerce/shopify/`. Same shape as the ads packs — each owns a single question and routes to its siblings rather than duplicating them, with `ecom-analytics` still the cross-platform store view. They share their definitions deliberately: store performance is the baseline the others read against, and sell-through, inventory value and dead-stock cash live in one skill only.
+Seven Shopify-only skills in `ecommerce/shopify/`. Same shape as the ads packs — each owns a single question and routes to its siblings rather than duplicating them, with `ecom-analytics` still the cross-platform store view. They share their definitions deliberately: store performance is the baseline the others read against, and sell-through, inventory value and dead-stock cash live in one skill only.
 
 | Skill | What it does |
 | --- | --- |
@@ -231,6 +231,21 @@ Four Shopify-only skills in `ecommerce/shopify/`. Same shape as the ads packs �
 | [**shopify-product-and-variant-performance**](ecommerce/shopify/shopify-product-and-variant-performance/SKILL.md) | Which products and variants earn their place — ranked by money and by margin on the right cost basis, with stock-out distortion flagged instead of buried. |
 | [**shopify-inventory-report-and-stockout-forecast**](ecommerce/shopify/shopify-inventory-report-and-stockout-forecast/SKILL.md) | What runs out, when, what it costs, and the date you must order by — plus inventory value split four ways and the cash parked in dead stock. |
 | [**shopify-customer-retention-and-ltv**](ecommerce/shopify/shopify-customer-retention-and-ltv/SKILL.md) | Which campaign and which first offer bought customers who came back — cohorts cut by UTM and discount status, with open cohorts excluded from every comparison. |
+| [**shopify-discount-code-performance**](ecommerce/shopify/shopify-discount-code-performance/SKILL.md) | What each discount code and automatic discount costs, who uses it, and how deep a discount the store's margin can carry, with markdowns kept apart from discounts. |
+| [**shopify-refunds-and-returns-report**](ecommerce/shopify/shopify-refunds-and-returns-report/SKILL.md) | Which products and sizes come back, how much goes back on the shelf, and what refunds cost, with confirmed returns kept apart from refunds where nothing came back. |
+| [**shopify-sales-by-country-and-market**](ecommerce/shopify/shopify-sales-by-country-and-market/SKILL.md) | Which countries the store sells to, how each is growing, and which lose money to refunds or discounts, compared on a like-for-like tax basis. |
+
+#### Klaviyo, Gorgias and Cin7 deep dives
+
+Store-side skills for the tools around the shop, in `ecommerce/klaviyo/`, `ecommerce/gorgias/` and `ecommerce/cin7/`. Same shape as the Shopify pack, and they route to it where the question is about store sales.
+
+| Skill | What it does |
+| --- | --- |
+| [**klaviyo-flow-performance-vs-benchmarks**](ecommerce/klaviyo/klaviyo-flow-performance-vs-benchmarks/SKILL.md) | How each Klaviyo flow earns per recipient against its own history and Klaviyo's published benchmarks, per channel, and which flows are missing. |
+| [**klaviyo-email-deliverability-check**](ecommerce/klaviyo/klaviyo-email-deliverability-check/SKILL.md) | Spam complaints, bounces and unsubscribes on every send against Klaviyo's limits, and which campaigns, flows or segments are causing them. |
+| [**klaviyo-revenue-share-of-shopify-sales**](ecommerce/klaviyo/klaviyo-revenue-share-of-shopify-sales/SKILL.md) | How much of the store's revenue Klaviyo credits to email and SMS, split by flows and campaigns, on a stated attribution basis. Needs Klaviyo and Shopify. |
+| [**gorgias-support-tickets-per-order**](ecommerce/gorgias/gorgias-support-tickets-per-order/SKILL.md) | Support tickets per order, what customers contact the store about, and which cause to fix first. Needs Gorgias and Shopify. |
+| [**cin7-reorder-point-and-stock-cover**](ecommerce/cin7/cin7-reorder-point-and-stock-cover/SKILL.md) | Which SKUs to reorder and by when, per location, from the real sales rate and supplier lead times, with safety stock at a chosen service level. Cin7 Core. |
 
 ### Capabilities
 
@@ -309,7 +324,7 @@ Each business function is its own plugin, so you install only what you need. Ava
 | --- | --- |
 | `coupler-finance` | finance-analytics |
 | `coupler-sales` | sales-analytics |
-| `coupler-ecommerce` | ecom-analytics |
+| `coupler-ecommerce` | ecom-analytics, + the 7 Shopify, 3 Klaviyo, 1 Gorgias and 1 Cin7 deep dives |
 | `coupler-marketing-ads` | marketing-analytics, ppc-analytics, + the 8 Google Ads, 11 Meta / Facebook Ads, 11 TikTok Ads, 11 Microsoft Ads, 10 LinkedIn Ads and 10 Amazon Ads deep dives, + the 7 SEO skills, 1 GEO skill and 5 Black Friday skills |
 | `coupler-capability` | get-started, create-dataflow, google-ads-custom-gaql, generate-data-set-context, refine-prompt, report-generation |
 | `coupler-utilities` | coupler-io-live-dashboard |

@@ -303,7 +303,7 @@ of three, and on a sale day that is the difference that matters.
 | Which products carried last year's sale | `black-friday-last-year-report` |
 | Weeks before the sale — is the account ready | `black-friday-ads-readiness-check` |
 | After the sale — what was kept, what to change | `black-friday-ads-and-sales-report` |
-| Whether a discount code made money or bought orders you had | `shopify-discount-performance` |
+| Whether a discount code made money or bought orders you had | `shopify-discount-code-performance` |
 | Which products sell, by margin | `shopify-product-and-variant-performance` |
 | Product-level performance inside Performance Max | `google-ads-performance-max-analysis` |
 

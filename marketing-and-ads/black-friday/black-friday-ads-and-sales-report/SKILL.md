@@ -211,7 +211,7 @@ before writing, in the closing block. **One closing ask.**
 | Next year's prep | `black-friday-ads-readiness-check` |
 | The sale is still running | `black-friday-daily-ad-spend-decisions` |
 | Did Black Friday customers buy again | `shopify-customer-retention-and-ltv` |
-| Which discount codes made money | `shopify-discount-performance` |
+| Which discount codes made money | `shopify-discount-code-performance` |
 | Return rate against refund rate, by product | `shopify-refunds-and-returns` |
 | A normal month's store read | `shopify-sales-report` |
 
