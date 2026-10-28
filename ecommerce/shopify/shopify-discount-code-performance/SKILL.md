@@ -64,9 +64,11 @@ codes used, the discount applications behind each order (code, automatic or manu
 applied to), the discount allocated to each line, each line's original unit price at sale, the
 variant's **current** price and compare-at price, and the customer order index.
 
-For margin, the Orders with activities data (Shopify's sales ladder) carries **cost of goods at
-the time of sale** (COGS). That is the right cost for a past period. Today's unit cost is not: it
-reprices history. It carries no discount codes, so per-code margin needs an order or line item id
+For margin, the Orders with activities data (Shopify's sales ladder) carries a cost column, and
+it is the variant's **current unit cost**: Shopify overwrites it whenever the merchant updates the
+item's cost and stores no cost at the time of sale. There is only one cost, so for a past period
+say the margin uses today's cost, and if costs have changed, ask the user for the historical
+figure. That data carries no discount codes, so per-code margin needs an order or line item id
 present in both datasets. Without a common id, per-code margin is not checkable; give store-level
 break-even only.
 
@@ -83,7 +85,7 @@ order.
 | Discount applications (type and target) | Code vs automatic vs manual, and **shipping discounts split out** | Shipping discounts may sit inside the total. Say so |
 | Compare-at price | Markdowns, separately | Markdowns invisible. Say discount load understates total price cuts. Offer to add the Compare at price column |
 | Customer order index | New-customer share per code | Can't say who a code reached. Offer to add the Customer order index column |
-| Cost of goods at time of sale | Margin per order, break-even depth | Offer to add the Orders with activities entity (COGS). Otherwise ask the user for a gross margin, or skip break-even |
+| Current unit cost | Margin per order, break-even depth | Offer to add the Orders with activities entity (current unit cost). Otherwise ask the user for a gross margin, or skip break-even |
 
 Say **"not checkable from this data"** for anything that didn't run.
 
@@ -128,7 +130,8 @@ lifetime order count: it labels a customer's own first purchase as returning.
 cost) ÷ gross sales, never net of discounts) and depth d on the same base, the discount pays for
 itself only if volume rises by at least **d ÷ (m − d)**. At 50% margin, a 20% discount needs 67%
 more orders; at 25% it needs 400%. **If d is at or above m, no volume makes it break even.** State
-the margin used and where it came from (cost of goods at sale, or the user's figure).
+the margin used and where it came from (current unit cost, labelled "at current cost", or the
+user's figure).
 
 ## F. What it points to
 
@@ -207,7 +210,8 @@ flagged this run. Confirm before writing. One closing block with the Next Questi
   them separately; never add them into discount load silently.
 - **Shipping discounts are not product discounts.**
 - **Usage is not impact.** No control group exists in store data.
-- **Cost at sale for past periods.** Today's unit cost reprices history.
+- **The only cost is today's.** The unit cost in the data is current, not cost at sale. For a past
+  period, label margin "at current cost" and ask for the historical figure if costs have changed.
 - **Returns of discounted orders** belong in `shopify-refunds-and-returns-report`; don't net them here.
 - **Multi-currency.** Use shop currency.
 - **Judge against the store's own history.** A benchmark discount rate is never a target.

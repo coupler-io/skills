@@ -63,10 +63,11 @@ If Coupler.io isn't connected, stop and point the user at Coupler.io's connectio
 **Say which dataset you picked.** Prefer the plain orders dataset: **one row per order**, so order
 money can be summed directly.
 
-**A default Shopify Orders source is thin.** It carries the Current… totals (after returns) and
-Billing address: Country only. Shipping address Country, Country code and Province, Presentment
-currency code, Total refunded amount, Order subtotal amount, Order total amount, Discounts amount,
-Taxes included, Cancelled at and Is test order? are all in the same Orders entity's column list.
+**A default Shopify Orders source is thin.** It carries the Current… totals (after returns),
+Billing address: Country, Cancelled at, Discount codes and Customer order index. Shipping address
+Country, Country code and Province, Presentment currency code, Total refunded amount, Order subtotal
+amount, Order total amount, Discounts amount, Taxes included and Is test order? are all in the same
+Orders entity's column list.
 Name the ones missing and offer to add them to the source.
 
 **A market is a country**, or a group of countries the user names. The orders carry no Shopify
@@ -92,7 +93,7 @@ sale) get their own row, never dropped.
 | Province or state | Regional split | Country only |
 | Total refunded | Refund rate by market | Offer to add it |
 | Discounts | Discount load by market | Offer to add it |
-| Customer order index | New-customer share by market | Not checkable |
+| Customer order index | New-customer share by market | Offer to add the Customer order index column to the source. If it's already fetched but hidden in the dataset, ask the user to unhide it in the dataset step |
 | Presentment currency | Local-currency share | Offer to add it |
 | Cancelled at, test flag | Cancelled and test orders excluded | Say they may be included, offer to add |
 | Shop currency column | One comparable total | Confirm the dataflow covers one store |

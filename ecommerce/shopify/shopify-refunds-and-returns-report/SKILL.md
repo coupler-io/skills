@@ -89,7 +89,7 @@ refund. Line-level amounts sum across rows.
 | Order-level total refunded + refunded shipping | Refunds with no items, shipping refunds | Item refunds only. Goodwill money is invisible. Offer to add the Orders entity |
 | Units sold by product and variant, same order dates | Rates | Counts only. Don't call them rates. Offer to add the Orders with line items entity |
 | Refund note | A rough reason read, **only where it's usually filled in** | No reason read. Don't guess one |
-| Unit cost | Value of stock lost to non-restocked units | Units only, no cost. Offer to add the Orders with activities entity (COGS) |
+| Current unit cost | Value of stock lost to non-restocked units | Units only, no cost. Offer to add the Orders with activities entity (current unit cost) |
 | Test-order flag | Test orders excluded | Say they may be included. Offer to add the Is test order? column |
 
 **There is no return reason in this data.** Shopify's return reasons live in its returns workflow,
@@ -135,11 +135,13 @@ returned".
 | Refund rate | Money refunded on returned and no-restock units ÷ gross sales |
 | Cancellation rate | Cancelled units ÷ units sold. Reported separately |
 | Recovery rate | Restocked units ÷ (confirmed returned + no-restock units on fulfilled orders) |
-| Lost stock value | No-restock units on fulfilled orders × unit cost. **Name the cost basis** |
+| Lost stock value | No-restock units on fulfilled orders × current unit cost. **Label it "at current cost"** |
 | Refunds with no items | Order total refunded − refund line amounts − line tax − refunded shipping, once per order |
 
-**Cost basis.** COGS from the Orders with activities data is cost at sale: use it. The inventory
-data's unit cost is today's: use it only as a fallback, labelled "at current cost".
+**Cost basis.** The cost in the Orders with activities data and the inventory data's unit cost are
+the same figure: the variant's **current unit cost**. Shopify stores no cost at the time of sale, so
+there is nothing to prefer. Label lost stock value "at current cost", and if costs have changed since
+the returned orders were placed, ask the user for the historical figure.
 
 **Order refunded totals come from the Orders entity, once per order.** It holds every order. The
 refunded-items data may leave out a refund with no line items, so take only line amounts from it.
@@ -180,7 +182,7 @@ in E against the prior period · Context = restock mix, cancellations, refunds w
 orders excluded · Next Questions = one, from I.
 
 Phase 1 must state: datasets, order-date range, return window used, open orders excluded, currency,
-volume floor, cost basis for lost stock, and that no return reason exists in this data.
+volume floor, that lost stock is valued at current unit cost, and that no return reason exists in this data.
 
 ### Inline visuals (REQUIRED where the shape qualifies)
 
@@ -236,7 +238,8 @@ writing; it's shared state. One closing block with the Next Question.
   will show low refund rates and normal return volumes elsewhere. Say this when refund rate is far
   below what the user expects.
 - **No return reason exists in this data.** Never infer one from the product type.
-- **Current cost is not cost at sale.** Prefer COGS at sale; label today's unit cost when used.
+- **The only cost is today's.** No cost-at-sale column exists. Label lost stock value "at current
+  cost".
 - **Multi-currency.** Use shop currency. Presentment currency is what the customer paid.
 - **Judge against the store's own history first.** A published return-rate benchmark is never a
   target and never fills a gap.

@@ -20,14 +20,14 @@ metadata:
 Shows which products and variants in your store sell, which make money, and which to reorder, drop or mark down. Shopify Product and Variant Performance is a Coupler.io AI agent skill that works with live data from Shopify.
 
 **Tells you which products and variants earn their place in the catalogue — ranked by money, with
-margin on the right cost basis, and with the stock-out distortion called out instead of buried.**
+margin on a named cost basis, and with the stock-out distortion called out instead of buried.**
 
 A best-seller list ranked by units rewards whatever is cheapest, and one ranked by revenue rewards
 whatever is dearest; neither tells you what to reorder. Variant-level truth is worse: product titles
 are stored as they were at the time of each sale, so a renamed product splits into two rows; the same
 SKU can appear on more than one variant; and an item that was unavailable for three weeks reports as a
-poor seller. Then margin arrives from two different cost fields that mean different things, and using
-the wrong one restates last quarter at today's cost.
+poor seller. Then margin runs on the item's current cost, not what it cost when it sold, so unless
+that is said, last quarter gets restated at today's cost.
 
 **What you get back**
 
@@ -85,8 +85,8 @@ early is cheaper than a query that returns one column.
 
 **Prefer the orders dataset that carries Shopify's sales ladder alongside line item and variant
 detail** — the accounting spine. It gives net sales and net items sold per line already netted of
-reversals, plus vendor and product type, and **it is the only entity that carries a per-sale cost
-column.**
+reversals, plus vendor and product type, and **it is the only sales entity that carries a cost
+column** — the variant's current unit cost, not cost at the time of sale.
 
 Two other datasets are separate inputs, each earning its own query:
 
@@ -110,8 +110,8 @@ Map columns to sections and **tell the user what this dataset can and cannot ans
 | Line item title or variant id + a quantity + a line value | The ranking | Nothing runs. Say so and stop |
 | Variant title, variant id, variant SKU | Variant-level truth | Product level only. Say the size or colour question can't be answered |
 | Net items sold, quantity returned | Units net of reversals | Units are gross. A high-return product will rank above its real contribution — say so |
-| **A per-sale cost column, on the orders spine** | Margin by product, on the correct historical basis | Margin is dead, or forward-looking only — see F |
-| **Current unit cost, on the inventory side** | Forward margin and reorder economics | Forward margin is dead. Note the catalogue does **not** carry cost — only price |
+| **Current unit cost, on the orders spine** | Margin by product, at current cost | Margin needs the inventory side's cost, or is dead — see F |
+| **Current unit cost, on the inventory side** | The same figure, for unsold items and reorder economics | Fine if the orders spine has cost. Note the catalogue does **not** carry cost — only price |
 | Vendor, product type | Roll-ups above the SKU | Ranking stays flat at item level |
 | A date at daily grain | Velocity, mix shift, launch curves | Totals only. Don't infer a daily rate |
 | Current stock, by variant | Stock-out distortion flagged | **Flag zero-sale days as suspected stock-outs and mark the item unranked** — never rank it low |
@@ -150,7 +150,7 @@ stock-out flags are in scope, that is the second query.
 | Share of revenue | Item net sales ÷ total net sales |
 | Velocity | Units ÷ days in the period |
 | Contribution to delta | Item net sales this period − item net sales prior period |
-| Cost of goods | Sum of the per-sale cost column over the same lines |
+| Cost of goods | Sum of the cost column over the same lines, at current unit cost |
 | **Gross margin in currency** | Net sales − cost of goods |
 | Gross margin percent | (Net sales − cost of goods) ÷ net sales |
 
@@ -185,17 +185,14 @@ connector returns a current snapshot, not a series. So:
 A false negative here gets a good product discontinued, which is the most expensive mistake this skill
 can cause. Never present an uncorrected velocity ranking as a reorder list.
 
-**The two cost fields are not interchangeable, and this is the trap.**
-
-| Cost basis | What it is | Use it for | Never use it for |
-|---|---|---|---|
-| Per-sale cost, on the orders spine | What the unit cost when it sold | Realised margin on any past period | — |
-| Current unit cost, on the inventory record | What the unit costs today | Forward margin, reorder decisions | Restating a past period |
+**There is only one cost, and it is today's — this is the trap.** The orders spine and the inventory
+record carry the same figure: the variant's current unit cost, which Shopify overwrites whenever the
+merchant updates it. Shopify stores no cost at the time of sale.
 
 Using current cost for last quarter's margin silently reprices history — every supplier increase since
 then lands retroactively on months that were more profitable than the report claims. **Name the basis
-in the output.** Where only current cost exists, say the margin figures are indicative and
-forward-looking, not historical.
+in the output: "at current cost".** For a past period, say the margin figures use today's cost, and if
+costs have changed, ask the user for the historical figure.
 
 **Margin percent ranks badly on its own.** A 70%-margin item selling four units contributes less than
 a 25%-margin item selling four hundred. Rank by **gross margin in currency**; show the percent beside
@@ -307,9 +304,9 @@ it unasked; never delay the answer to make it.
 
 ## I. Save what you learned
 
-Write business context back to the dataset: the **cost basis available and which one you used**, the
-datasets and their grain, whether units are net or gross of reversals, whether a repeated inventory
-snapshot exists, the units floor, how the store names vendors and product types, SKU duplication if
+Write business context back to the dataset: the **cost basis used (current unit cost) and any
+historical cost the user gave**, the datasets and their grain, whether units are net or gross of
+reversals, whether a repeated inventory snapshot exists, the units floor, how the store names vendors and product types, SKU duplication if
 found, product renames the user confirms, the concentration figure, and the promote or discontinue
 calls made this run so the next one can report whether they were acted on. Confirm before writing —
 it's shared state — in the same closing block.
