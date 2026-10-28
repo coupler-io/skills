@@ -84,7 +84,7 @@ Say which datasets you picked for each side.
 |---|---|---|
 | Saved results from the last-year review | Pillar 1: inflation, day shape, build-up start | Say pillar 1 is missing and offer `black-friday-last-year-report`; pillars 2–5 still run. **No industry inflation figure substitutes** |
 | Conversions with action or event name | Pillar 2: tracking trust | Can't tell one purchase event from two; say so |
-| Days-to-conversion or conversion-date data | Measured lag per platform | Lag is asked for, not assumed |
+| Conversions by days to conversion | Measured lag per platform | Google: not a dead end — its conversion-lag segment is one Custom GAQL source away; load `google-ads-custom-gaql` to add it. Meta and TikTok: lag is asked for, not assumed |
 | Budgets with level and type | Pillar 3: spend ceilings, capped campaigns | Ceilings not checkable |
 | Ad-level data with status and creation date | Pillar 4: creative depth | Creative count not checkable |
 | Store orders | Independent revenue, store vs platform gap | Every return figure is the platform's own claim |
@@ -129,22 +129,23 @@ diagnosis to the platform's tracking audit skill; here the question is only "saf
 
 - **Sum budgets at the level they are set** — campaign level under a campaign budget, ad set or ad
   group otherwise. Lifetime budgets convert to remaining ÷ remaining days.
-- **Google's daily budget is an average, not a cap.** Report two ceilings: what Google may spend on
-  one day, and across the window. A plain sum of daily budgets understates the first and overstates
-  the second. Overdelivery rules changed in 2026 — state the rule used and the date it was checked on
-  Google's help pages; if it can't be checked, say "not verified" and give no ceiling.
+- **Google's daily budget is an average, not a cap.** A campaign may spend up to **2× its average
+  daily budget on one day**, and **no more than 30.4× it in a calendar month**. Report two ceilings
+  per campaign: one day = 2 × daily budget; the window = for each calendar month the window touches,
+  the lower of 2 × daily budget × window days in that month and 30.4 × daily budget − spend so far
+  that month. A plain sum of daily budgets understates both. Black Friday to Cyber Monday
+  crosses from November into December, so compute the two months separately.
 - **Campaigns already capped by budget now**, with efficiency at or better than target — the cheapest
   place for peak budget to go.
 - **The ramp: about 20% per step, 3–4 days apart**, from current daily spend to the peak level, dated
   backwards from the window start. If the start date has passed, say so and show the compressed
   version beside it with its cost: bigger or faster jumps re-trigger learning.
 
-**Seasonality adjustments are not the default lever.** Google scopes them to roughly 1–7 day events
-and says they degrade past about 14 days, and large-scale Black Friday evidence is that accounts that
-applied them did worse than accounts that left Smart Bidding alone. Recommend one only for a short,
-sharp event, sized from this account's measured conversion-rate lift — never last year's full lift
-entered as-is. **"Change nothing" is a valid finding.** If the user asks about Google's newer peak
-tools, check what is live in the account before recommending them.
+**Seasonality adjustments are not the default lever.** Google says Smart Bidding already manages
+seasonal events, that adjustments are for major expected conversion-rate changes over 1–7 days, and
+that they may not work as well past 14 days. Recommend one only for a short, sharp event, sized from
+this account's measured conversion-rate lift — never last year's full lift entered as-is. **"Change
+nothing" is a valid finding.**
 
 **Pillar 4 — creative and approvals.** Active ads per ad set or campaign, how many are already
 fatigued (frequency rising, CTR falling against their own history), and the lead time to get new ones
@@ -170,8 +171,10 @@ two Google ceilings, lag per platform, and anything not checkable. Batch every o
 | Status | Test |
 |---|---|
 | **Blocking** | Lead time to fix ≥ days until the window starts. Say what to do instead |
-| **Fix now** | Lead time to fix < days left, and spend at risk is material |
-| **Monitor** | Low spend at risk, or nothing to do until the window |
+| **Fix now** | Lead time to fix < days left, and spend at risk is at least 5% of the window budget |
+| **Monitor** | Spend at risk under 5% of the window budget, or nothing to do until the window |
+
+The 5% line is a default; use the user's own threshold if they give one, and state which applied.
 
 Rank by spend at risk, not by how bad the defect sounds. A double-counted purchase event on the
 platform carrying half the budget outranks every settings toggle in the account.
@@ -186,7 +189,7 @@ do this week · Key Metrics = days to window, spend at risk, ramp start date, ce
 · Context = the five pillars · Recommendations = the fix-first list with status and lead time.
 
 Phase 1 states: datasets, where last year's figures came from (review or report, and its date), the baseline dates, the budget
-and target given, the Google overdelivery rule and its check date, and coverage gaps.
+and target given, Google's month-to-date spend behind each window ceiling, and coverage gaps.
 
 ### Inline visuals (REQUIRED where the shape qualifies)
 
@@ -229,7 +232,8 @@ writing, in the closing block. **One closing ask, not two.**
 - **Never sum conversions across platforms.** Spend adds; claimed purchases don't.
 - **Rebuild every rate from summed totals.** Check currency and magnitude before quoting.
 - **Date-shift last year.** Sale day to sale day.
-- **One baseline definition** across all three Black Friday skills. Change it in all three or none.
+- **One baseline definition** across the four Black Friday skills that use one (last-year report,
+  readiness check, daily decisions, sales report). Change it in all four or none.
 - **A target change is an edit too.** It resets learning like a budget jump; same step rule.
 - Saved context can be stale; where it disagrees with the data, the data wins.
 - This skill cannot modify itself — route skill feedback to the maintainer.

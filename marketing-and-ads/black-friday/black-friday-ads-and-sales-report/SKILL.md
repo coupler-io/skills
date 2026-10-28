@@ -64,9 +64,12 @@ If Coupler.io isn't connected, stop and point the user at Coupler.io's connectio
 
 - **Each ad platform**, daily, campaign level, from the start of the baseline through the tail —
   and last year's sale, date-shifted.
-- **Store orders** — Shopify orders, net sales, discounts, returns and cost of goods at the time of
-  sale, over the same dates. Returns attributed to **the order's date, not the refund's**: a refund in
-  January belongs to the Black Friday order it reverses.
+- **Store orders** — Shopify orders with line items, net sales, discounts and returns, over the same
+  dates. Returns attributed to **the order's date, not the refund's**: a refund in January belongs to
+  the Black Friday order it reverses.
+- **Unit cost** — from the Shopify inventory data, joined on variant id. It is the variant's
+  **current** unit cost: Shopify keeps no cost at the time of sale and overwrites it whenever the
+  merchant updates it. Label every cost and contribution figure "at current cost".
 - **Saved context** from the readiness run (window, baseline, target, margin floor, returns window,
   lag per platform) and the daily skill's decision log.
 
@@ -78,7 +81,7 @@ If Coupler.io isn't connected, stop and point the user at Coupler.io's connectio
 | Last year's sale in the data | Date-shifted comparison | Not checkable; no industry figure substitutes |
 | Store orders and net sales | Incremental orders, blended cost per order | Every figure is the platform's own claim |
 | Returns by order date | Kept revenue | Revenue is gross; say every margin figure is too high |
-| Cost of goods at time of sale | Contribution after ads | ROAS only, labelled as the gross figure it is |
+| Unit cost on the inventory side | Contribution after ads, at current cost | ROAS only, labelled as the gross figure it is |
 | Discount amounts | Discount cost in the margin | Net sales assumed to already carry it; say so |
 | The decision log | Scoring the calls | Not checkable; say the daily skill wasn't run or saved nothing |
 
@@ -106,7 +109,7 @@ platform's window once its settled cut-off has passed**, or mark it provisional.
 | **Incremental ad spend** | Window spend − baseline spend per day × window days |
 | **Incremental CPA** | Incremental ad spend ÷ incremental orders |
 | Kept net sales | Net sales − returns attributed to window orders |
-| Cost of goods | Cost at time of sale, **net of units returned to stock** |
+| Cost of goods | Units sold × current unit cost, **net of units returned to stock** |
 | **Contribution after ads** | Kept net sales − cost of goods − ad spend |
 | **Net incremental contribution** | Incremental contribution before ads − incremental ad spend |
 
@@ -150,7 +153,8 @@ vs budget · Context = four periods, last year, platforms, decision log · Recom
 change.
 
 Phase 1 states: period dates, baseline definition, settled cut-off per platform, returns basis and
-the final-verdict date, cost basis, and that conversions were not summed.
+the final-verdict date, the cost basis (current unit cost, not cost at the time of sale), and that
+conversions were not summed.
 
 ### Inline visuals (REQUIRED where the shape qualifies)
 
@@ -197,7 +201,7 @@ before writing, in the closing block. **One closing ask.**
 - **Returns by order date, cost net of returned units.**
 - **Never sum conversions across platforms.**
 - **Date-shift last year.** Sale day to sale day.
-- **One baseline definition** across all three Black Friday skills.
+- **One baseline definition** across the four Black Friday skills that use one.
 - **Don't call it final before the returns window closes.**
 - No industry Black Friday averages as comparison or target.
 - Saved context can be stale; where it disagrees with the data, the data wins.
@@ -212,7 +216,7 @@ before writing, in the closing block. **One closing ask.**
 | The sale is still running | `black-friday-daily-ad-spend-decisions` |
 | Did Black Friday customers buy again | `shopify-customer-retention-and-ltv` |
 | Which discount codes made money | `shopify-discount-code-performance` |
-| Return rate against refund rate, by product | `shopify-refunds-and-returns` |
+| Return rate against refund rate, by product | `shopify-refunds-and-returns-report` |
 | A normal month's store read | `shopify-sales-report` |
 
 ## Next Question (REQUIRED)

@@ -75,16 +75,17 @@ Say which datasets you picked for each side.
   campaign tags of the visit that led to the order where the store records them.
 - **Refunds** on those orders, where available.
 
-**The data has to reach back that far.** Most data flows are set up with a recent date range. If the
-datasets start after last year's sale, nothing here runs — say so, and that the fix is to extend the
-data flow's start date to before last year's build-up. The ad platforms and Shopify both keep this
-history; it only needs pulling.
+**The data has to reach back that far.** Google Ads and Meta sources default to the last 60 days. If a dataset starts
+after last year's build-up, that side is one change away, not dead: offer to move that source's start
+date to before last year's build-up and then refresh the data flow. Make the change and run the
+refresh only once the user agrees. If the refreshed data still starts late, the platform returned no
+older rows — report how far back it goes.
 
 ## C. Coverage verdict — say this out loud before querying
 
 | Present | Live | Absent means |
 |---|---|---|
-| Ad data covering last year's sale and 8 weeks before | Window, inflation per platform | Nothing on the ad side runs. Say how far back the data goes |
+| Ad data covering last year's sale and 8 weeks before | Window, inflation per platform | Nothing on the ad side runs yet. Say how far back the data goes and offer the start-date fix in B |
 | Store orders over the same dates | Orders by day and hour, products, buyers | Everything is the platforms' own claim |
 | Campaign tags on store orders | Store orders per campaign | **The claimed-vs-store comparison is not checkable.** Say so plainly — it's the most useful part |
 | Line items with product and variant | What carried the sale | Product read not checkable |

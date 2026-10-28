@@ -107,13 +107,17 @@ variant read — which size is gone — then isn't checkable.
 
 Say **"not checkable from this data"** — never imply a check ran clean when it didn't run.
 
-**Freshness decides whether this run is worth doing.** If stock last refreshed more than a few hours
-ago on a sale day, say it before anything else: the countdown is counting from a stock level that has
+**Freshness decides whether this run is worth doing.** If stock last refreshed more than 2 hours ago
+on a sale day, say it before anything else: the countdown is counting from a stock level that has
 already moved. The dataflow can be scheduled as often as every 15 minutes; on a sale day the stock and
-order sources are the two worth refreshing fastest.
+order sources are the two worth refreshing fastest. Offer to change the schedule; don't change it
+unasked. A schedule finer than daily runs on weekdays within business hours unless told otherwise —
+when you set it, cover all seven days and the hours the sale runs, in the store's timezone.
 
 **Early exit.** Stock with no product-level ad data and no landing pages: this is a stock-out list, not
-an ad decision. Route to `shopify-inventory-report-and-stockout-forecast` and stop.
+an ad decision. Load `shopify-inventory-report-and-stockout-forecast` for the reorder read and stop. It
+ships in the e-commerce plugin; if it isn't installed, give the sell-out countdown from the rows already
+read, say the ad side wasn't checkable, and stop.
 
 ## D. Set the window and the horizon
 

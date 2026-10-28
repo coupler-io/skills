@@ -73,14 +73,17 @@ If Coupler.io isn't connected, stop and point the user at Coupler.io's connectio
 - **The store** — Shopify orders by day, for blended cost per order from a source no platform can
   inflate.
 
-On a sale day the data flow is worth refreshing more often than usual — it can run as often as every
-15 minutes. Say how fresh each source is.
+Say how fresh each source is. On a sale day the data flow is worth refreshing more often than usual —
+it can run as often as every 15 minutes. Offer to change the schedule; don't change it unasked. A
+schedule finer than daily runs on weekdays within business hours unless told otherwise, which leaves
+the sale weekend and its evening peak unrefreshed — when you set it, cover all seven days and the
+hours the sale runs, in the store's timezone.
 
 ## C. Coverage verdict — say this out loud before querying
 
 | Present | Live | Absent means |
 |---|---|---|
-| Saved lag per platform from the readiness run | The maturity rule | Ask for it, or measure from days-to-conversion data. **Without it, nothing is cut** |
+| Saved lag per platform from the readiness run | The maturity rule | Google: measure it from the conversion-lag segment through `google-ads-custom-gaql`. Meta and TikTok: ask. **Without it, nothing on that platform is cut** |
 | Budgets with level and type | Pacing, cap check | Pacing against the total only |
 | Today's partial spend | Intra-day cap check | Capped campaigns found a day late |
 | Frequency, CTR by day | Fatigue read | Not checkable |
@@ -113,7 +116,7 @@ measured lag. Days after it are still filling.
 
 | Class | Test | Allowed calls |
 |---|---|---|
-| **Decidable** | Enough settled days, and at or above the conversion floor | Scale, cut |
+| **Decidable** | At least one full window day on or before the settled cut-off, and at or above the conversion floor | Scale, cut |
 | **Not yet** | Its recent days are inside the lag | Hold, with the wait in days |
 | **Under the floor** | Fewer than 10 conversions in the settled period | Hold; named, never silently cut |
 
@@ -208,7 +211,7 @@ log with no reasons can't be scored. Confirm before writing, in the closing bloc
 - **Never sum conversions across platforms.**
 - **Rebuild every rate from summed totals.** Check currency and magnitude before quoting.
 - **Today is partial.** Only the cap check uses it.
-- **One baseline definition** across all three Black Friday skills.
+- **One baseline definition** across the four Black Friday skills that use one.
 - Saved context can be stale; where it disagrees with the data, the data wins.
 - This skill cannot modify itself — route skill feedback to the maintainer.
 
