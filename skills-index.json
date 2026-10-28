@@ -862,6 +862,17 @@
       "description": "Finds pages that are quietly losing organic traffic over time, from live Google Search Console data in your Coupler.io workspace — which pages are down on clicks, whether it's a ranking slip or fewer people searching, and which are worth updating first. Use for \"which of my pages are losing search traffic\", \"what content is decaying\", \"which blog posts should I refresh\", \"why is my organic search traffic sliding\", \"which pages dropped in Google since last quarter\", \"find pages that need updating for SEO\" — even when the user never says \"decay\". This is the losing-ground view: pages that used to do better and why. For pages that never ranked well in the first place use google-search-console-keyword-opportunities. A sudden site-wide drop isn't decay — this skill flags it rather than diagnosing it. Google Search Console only."
     },
     {
+      "name": "content-refresh-impact",
+      "path": "marketing-and-ads/seo/content-refresh-impact",
+      "category": "marketing-and-ads",
+      "sources": [
+        "Google Search Console"
+      ],
+      "title": "Content Refresh Impact",
+      "short_description": "Shows whether the pages you updated won back Google search traffic, measured against how the rest of your site moved.",
+      "description": "Checks whether the pages you updated actually won back search traffic, from live Google Search Console data in your Coupler.io workspace with the refresh dates you give it — clicks, impressions and position before and after each update, measured against how the rest of the site moved over the same weeks, so a site-wide lift isn't credited to the refresh. Use for \"did our content refresh work\", \"did updating those blog posts help\", \"which page updates recovered traffic\", \"is refreshing old content worth it\", \"what happened after we rewrote these pages\", \"should we keep updating old posts\" — even when the user never says \"refresh\". This is the did-it-work view after an update. For which pages need refreshing in the first place use content-decay-analysis. Google Search Console only."
+    },
+    {
       "name": "google-search-console-country-and-device-performance",
       "path": "marketing-and-ads/seo/google-search-console-country-and-device-performance",
       "category": "marketing-and-ads",
@@ -892,7 +903,43 @@
       ],
       "title": "New Page Indexing Tracker",
       "short_description": "Tracks how long your new pages take to show up in Google and get their first clicks, and flags the ones Google is ignoring.",
-      "description": "Tracks how long new pages take to get picked up by Google and start earning traffic, from live Google Search Console data in your Coupler.io workspace — days from publish to first impression, to first click, to a settled ranking, and which pages have gone nowhere. Use for \"are my new pages getting indexed by Google\", \"how long until new content ranks in search\", \"which of my pages is Google ignoring\", \"did my new posts get picked up in search\", \"why isn't my new page showing up in Google\", \"how fast does my content start ranking\" — even when the user never says \"indexation\". This is the did-it-get-seen view: whether the publishing pipeline is reaching Google and how quickly. For pages that once ranked and are slipping use content-decay-analysis. Google Search Console only."
+      "description": "Tracks how long new pages take to get picked up by Google and start earning traffic, from live Google Search Console data in your Coupler.io workspace — days from publish to first impression, to first click, to a settled ranking, and which pages have gone nowhere. Use for \"are my new pages getting indexed by Google\", \"how long until new content ranks in search\", \"which of my pages is Google ignoring\", \"did my new posts get picked up in search\", \"why isn't my new page showing up in Google\", \"how fast does my content start ranking\" — even when the user never says \"indexation\". This is the did-it-get-seen view: whether the publishing pipeline is reaching Google and how quickly — and, for pages that went nowhere, Google's own index status for each. For pages that once ranked and are slipping use content-decay-analysis. Google Search Console only."
+    },
+    {
+      "name": "organic-traffic-drop-diagnosis",
+      "path": "marketing-and-ads/seo/organic-traffic-drop-diagnosis",
+      "category": "marketing-and-ads",
+      "sources": [
+        "Google Search Console",
+        "Google Analytics 4 (GA4)"
+      ],
+      "title": "Organic Traffic Drop Diagnosis",
+      "short_description": "Finds the day your Google search traffic dropped and the most likely reason, so you check the right cause first.",
+      "description": "Works out why organic search traffic dropped suddenly, from live Google Search Console data (and GA4 when connected) in your Coupler.io workspace — finds the date it broke, then splits the lost clicks by section, page, country, device and brand to name the most likely cause: tracking, migration, a site-wide ranking fall, one section, lost demand or seasonality. Use for \"why did my organic traffic drop\", \"our SEO traffic fell off a cliff\", \"did we get hit by a Google update\", \"traffic dropped after the redesign\", \"search clicks halved last week\", \"is it the site or is it tracking\" — even when the user never says \"diagnosis\". This is the sudden-break view: one date, one cause to check first. For a slow slide on individual pages use content-decay-analysis. Needs Google Search Console; GA4 optional."
+    },
+    {
+      "name": "paid-vs-organic-search-overlap",
+      "path": "marketing-and-ads/seo/paid-vs-organic-search-overlap",
+      "category": "marketing-and-ads",
+      "sources": [
+        "Google Ads",
+        "Google Search Console"
+      ],
+      "title": "Paid vs Organic Search Overlap",
+      "short_description": "Shows where your Google Ads pay for searches you already rank for, where ads cover gaps, and how to test cutting the overlap.",
+      "description": "Lines up Google Ads search terms against your Google Search Console queries, from live data in your Coupler.io workspace, to show where you pay for clicks on searches you already rank well for, where paid covers searches you don't rank for, and which brand terms carry most of the overlap — with the spend on each and a holdout test plan instead of a guess. Use for \"are we paying for clicks we'd get for free\", \"should we stop bidding on our brand\", \"paid and organic overlap\", \"do our ads cannibalise SEO\", \"which keywords can we cut because we rank\", \"where does SEO need paid support\" — even when the user never says \"overlap\". This is the paid-meets-organic decision: where search spend duplicates rankings. For wasted spend inside Google Ads alone use google-ads-wasted-spend-and-scaling; for brand vs non-brand organic only use branded-vs-non-branded-search-traffic. Needs Google Ads and Google Search Console."
+    },
+    {
+      "name": "seo-client-report",
+      "path": "marketing-and-ads/seo/seo-client-report",
+      "category": "marketing-and-ads",
+      "sources": [
+        "Google Search Console",
+        "Google Analytics 4 (GA4)"
+      ],
+      "title": "SEO Client Report",
+      "short_description": "Writes your monthly SEO report for a client, measured against targets, with brand and non-brand growth kept apart.",
+      "description": "Builds the monthly SEO report a client reads, from live Google Search Console data (and GA4 when connected) in your Coupler.io workspace — every KPI scored against target and against last month and last year, non-brand growth separated from brand, wins with numbers, a misses section that names the problem first, and recommendations someone can be held to. Use when someone asks for a monthly SEO report for a client, wants the organic section of a client deck, needs last month's search performance written up, asks \"what do I tell the client about SEO\", or asks how to present an SEO target they missed — even when they never say the word \"report\". For agencies and in-house teams reporting upward. For the operator's own read use google-search-console-keyword-opportunities or content-decay-analysis. Needs Google Search Console; GA4 optional."
     },
     {
       "name": "seo-landing-page-performance",
@@ -905,6 +952,17 @@
       "title": "SEO Landing Page Performance (Search Console + GA4)",
       "short_description": "Shows which landing pages bring Google search traffic and whether that traffic converts once it lands.",
       "description": "Joins Google Search Console and GA4 to show which landing pages bring organic traffic and what that traffic does once it lands, from live data in your Coupler.io workspace — search clicks and rankings next to engagement, key events and revenue, per page. Use for \"does my organic search traffic convert\", \"which landing pages actually make money from SEO\", \"which SEO pages are worth the effort\", \"my rankings are up but sales aren't\", \"which pages get search clicks but no conversions\", \"landing page SEO report\" — even when the user never says \"landing page\". This is the search-to-outcome view: the page ranks, gets clicked, then what. For search-side only use google-search-console-keyword-opportunities; for AI-referral traffic use ai-traffic-vs-organic-search-report. Needs GA4 and Search Console."
+    },
+    {
+      "name": "topic-cluster-performance",
+      "path": "marketing-and-ads/seo/topic-cluster-performance",
+      "category": "marketing-and-ads",
+      "sources": [
+        "Google Search Console"
+      ],
+      "title": "Topic Cluster Performance",
+      "short_description": "Groups your Google search traffic by topic, and shows which topics pay back the content put into them and which hang on one page.",
+      "description": "Groups your search traffic by topic instead of by page, from live Google Search Console data in your Coupler.io workspace — each topic's clicks, impressions, CTR and position, its share of clicks against its share of pages, its trend, and how much rests on one page — so you can see which topics earn their place and which take effort without paying back. Topics come from a saved rule, the site's URL folders, or patterns you give it. Use for \"which topics perform best in search\", \"how is our blog doing by category\", \"which content clusters drive organic traffic\", \"what topics should we write more about\", \"which sections of the site are growing in Google\", \"topic cluster report\" — even when the user never says \"cluster\". This is the topic-level view. For page-level quick wins use google-search-console-keyword-opportunities. Google Search Console only."
     },
     {
       "name": "tiktok-ads-account-structure-and-learning-phase-review",
