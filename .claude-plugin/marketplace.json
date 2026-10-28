@@ -5,7 +5,7 @@
   },
   "metadata": {
     "description": "Coupler.io-authored Claude Code skills and plugins for business analytics by function (finance, sales, ecommerce, marketing & ads) plus shared capability skills and utilities",
-    "version": "1.8.0"
+    "version": "1.9.0"
   },
   "plugins": [
     {
@@ -132,7 +132,12 @@
         "./marketing-and-ads/seo/topic-cluster-performance",
         "./marketing-and-ads/seo/paid-vs-organic-search-overlap",
         "./marketing-and-ads/seo/seo-client-report",
-        "./marketing-and-ads/geo/ai-search-citations-to-revenue"
+        "./marketing-and-ads/geo/ai-search-citations-to-revenue",
+        "./marketing-and-ads/black-friday/black-friday-last-year-report",
+        "./marketing-and-ads/black-friday/black-friday-ads-readiness-check",
+        "./marketing-and-ads/black-friday/black-friday-daily-ad-spend-decisions",
+        "./marketing-and-ads/black-friday/black-friday-ad-spend-on-low-stock-products",
+        "./marketing-and-ads/black-friday/black-friday-ads-and-sales-report"
       ]
     },
     {
