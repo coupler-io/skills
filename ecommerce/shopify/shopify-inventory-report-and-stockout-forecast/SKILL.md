@@ -399,8 +399,8 @@ contain and the one that gates the whole skill. **One closing ask, not two.**
 | The question is which products sell, margin by product, or mix shift | `shopify-product-and-variant-performance` |
 | The question is whether the store's revenue moved at all | `shopify-sales-report` |
 | The question is who buys, repeat rate or cohort value | `shopify-customer-retention-and-ltv` |
-| Returns are driving the stock movement — restock versus write-off | `shopify-refunds-and-returns` *(queued)* |
-| Stock or sales by country or market is the subject | `shopify-geo-and-market-performance` *(queued)* |
+| Returns are driving the stock movement — restock versus write-off | `shopify-refunds-and-returns-report` |
+| Stock or sales by country or market is the subject | `shopify-sales-by-country-and-market` |
 | A broad multi-source ecommerce read is wanted rather than this decision | `ecom-analytics` |
 | Ad spend is running behind an item that is about to run out | `ppc-analytics` |
 
