@@ -131,13 +131,18 @@ with the ceiling stated per line. **Cut** when decidable and worse than target.
 
 **Budget and target changes, per platform** (as of October 2026):
 
-- **TikTok** (TikTok's "About budgets" help page): up to 30% per budget change once out of learning,
-  40% while in it, no more often than every two days.
-- **Google** (Google's target-based bid strategies FAQ): budget and target changes take effect right
-  away on steady campaigns. Don't hold back the step size; judge a change after 1–2 conversion
-  cycles.
-- **Meta**: about 20% per step, a few days apart. This is a working rule, not a figure Meta
-  publishes; say so when you use it.
+- **TikTok** (TikTok's "About budgets" help page): raise a budget by no more than 30% at a time once
+  out of learning, 40% while in it, and no more often than every two days.
+- **Google**: Smart Bidding reacts to target changes "in real time, whether they're large or small";
+  judge a change after 1–2 conversion cycles (Google's target-based bid strategies FAQ). A Google
+  product manager said on Google's Ads Decoded podcast (15 Oct 2026) that target and budget edits on
+  a steady campaign start no learning period. Don't hold back the step size on an established
+  campaign. Two exceptions: a new campaign still learns, so launch a sale campaign a couple of days
+  before the sale; and switching bid strategy can still show a "Learning" status.
+- **Meta** (Meta's "About the learning phase" help page): frequent budget changes can put an ad set
+  back into learning, which usually ends after about 50 results in the week after the last
+  significant edit. Meta publishes no percentage; about 20% per step, a few days apart, is a working
+  rule — say so when you use it.
 
 If you can browse the web, check the platform's page; if it says something different, use the page
 and say the skill's figure is out of date. If you can't, use these figures and give the date.
