@@ -2,7 +2,7 @@
 name: skill-review
 description: "Use this skill when reviewing a Coupler.io skill before merge, auditing an existing one, or checking a pack of skills for accuracy. Triggers include: 'review this skill', 'check this SKILL.md', 'is this skill accurate', 'review PR #N in the skills repo', 'audit the <platform> pack', or any request to check what a skill claims about a Coupler.io connector or an ad platform. Checks factual accuracy against live tools and repo conventions; it does not judge domain expertise."
 metadata:
-  version: 1.1.0
+  version: 1.2.0
   category: utilities
   sources: []
 ---
@@ -28,6 +28,7 @@ You review Coupler.io skills for claims that are wrong, unactionable, or contrad
 | Column names for a connector with no `transformations/` folder | The importer's field lists in `coupler-io-serverless/functions/<lang>/source-<slug>/` — columns arrive under raw API names |
 | Can this user add the connector at all? | `access.level` and `feature_flag` in the connector's config |
 | Platform behaviour (budgets, attribution, metric definitions) | The platform's own docs, fetched and read. Never memory |
+| Has this platform rule been checked before, and what value do other skills use? | `.agents/skills/platform-rules/registry.md`. Start here, then check the source if the row is older than the change you suspect |
 
 When two sources disagree, the live tool wins over config, config wins over the knowledge base, and the knowledge base wins over the skill under review. Record the disagreement — a KB page that contradicts the product is its own bug worth reporting.
 
@@ -84,6 +85,14 @@ Grep each file against itself for the claims you are checking. Where two passage
 Ad platforms change faster than skills do. Two from real reviews: a reviewer nearly "corrected" a correct 75% Meta daily-budget figure to the legacy 25%, and a metric assumed dead was confirmed alive only by querying live data.
 
 Treat every platform number — attribution windows, budget flexibility, learning thresholds, metric availability — as unverified until sourced. **Verify or delete.** Do not soften into a hedge; a hedged wrong fact is still wrong.
+
+**Record what you verify.** Platform rules live in the registry at `.agents/skills/platform-rules/registry.md`; its `SKILL.md` defines what counts as one. For every platform rule the skill under review states:
+
+- **Already in the registry:** the skill must carry the registry's value. A different value is a contradiction between packs; one of them is wrong, so check the source before choosing. Add the skill to the row's `Used in`.
+- **Not in the registry:** verify it against the platform's page and add a row in the same PR, or add it as `Unverifiable` or `Secondhand` if the page can't be read.
+- **Inline:** the value carries its source and the date it was checked, plus the instruction to check the page when the agent can browse. A platform rule with no source or date is a finding.
+
+#41 shows why: one "about 20% per step" rule was written for Google, Meta and TikTok, and the three platforms' own pages say three different things.
 
 ### 7. Column names and meanings carried over from a sibling pack
 
@@ -145,7 +154,8 @@ Before proposing an addition, ask what output changes if it is absent. If the an
 3. **Source each one** against the table above. Live tools first.
 4. **Walk the thirteen defects** against the file.
 5. **Check conventions and wiring** — items 10, 11 and 12.
-6. **Report.** Tag each finding Fact, Inference or Assumption, and say which claims you could not verify and what would settle them. A finding you cannot source is reported as unsourced, not as wrong.
+6. **Update the registry.** Add new platform rules, or the skill's name to existing rows, as part of the review (item 6).
+7. **Report.** Tag each finding Fact, Inference or Assumption, and say which claims you could not verify and what would settle them. A finding you cannot source is reported as unsourced, not as wrong.
 
 ## Reporting
 
