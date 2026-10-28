@@ -83,13 +83,19 @@ Say which datasets you picked for each side.
 | Present | Live | Absent means |
 |---|---|---|
 | Saved results from the last-year review | Pillar 1: inflation, day shape, build-up start | Say pillar 1 is missing and offer `black-friday-last-year-report`; pillars 2–5 still run. **No industry inflation figure substitutes** |
-| Conversions with action or event name | Pillar 2: tracking trust | Can't tell one purchase event from two; say so |
+| Conversions with action or event name | Pillar 2: tracking trust | One report away, not a dead end. Google: offer to add the Campaign performance with conversion actions name report as another source in the same dataflow. Meta: offer to add the `action_type` breakdown. TikTok: see the note below |
 | Conversions by days to conversion | Measured lag per platform | Google: not a dead end — its conversion-lag segment is one Custom GAQL source away; load `google-ads-custom-gaql` to add it. Meta and TikTok: lag is asked for, not assumed |
-| Budgets with level and type | Pillar 3: spend ceilings, capped campaigns | Ceilings not checkable |
-| Ad-level data with status and creation date | Pillar 4: creative depth | Creative count not checkable |
+| Budgets with level and type | Pillar 3: spend ceilings, capped campaigns | One report away. Google: offer to add the Campaign budgets report, or budget columns on campaign performance. Meta: offer to add the List of Campaigns or List of Ad sets entity, which carry budget. TikTok: the campaign budget field; see the note below |
+| Ad-level data with status and creation date | Pillar 4: creative depth | One report away. Google: Ad status on the ad performance report. Meta: Created time on the List of Ads entity. TikTok: see the note below |
 | Store orders | Independent revenue, store vs platform gap | Every return figure is the platform's own claim |
 
-Say **"not checkable from this data"** — never imply a check ran clean when it didn't run.
+"Offer to add" means: add the report as another source in the same dataflow once the user agrees,
+then refresh. **TikTok is the exception** — its metrics and dimensions can't be changed from here, so
+give the user the exact change to make in the source's settings in Coupler.io instead of offering to
+make it.
+
+Say **"not checkable from this data"** only once the data is truly unavailable — never imply a check
+ran clean when it didn't run.
 
 ## D. Set the window, the budget and the target (HARD GATE)
 
@@ -137,9 +143,23 @@ diagnosis to the platform's tracking audit skill; here the question is only "saf
   crosses from November into December, so compute the two months separately.
 - **Campaigns already capped by budget now**, with efficiency at or better than target — the cheapest
   place for peak budget to go.
-- **The ramp: about 20% per step, 3–4 days apart**, from current daily spend to the peak level, dated
-  backwards from the window start. If the start date has passed, say so and show the compressed
-  version beside it with its cost: bigger or faster jumps re-trigger learning.
+- **The ramp, per platform**, from current daily spend to the peak level, dated backwards from the
+  window start, using the step rule below. If the start date has passed, say so and show the
+  compressed version beside it with its cost on the platforms where bigger or faster jumps restart
+  learning (Meta, TikTok).
+
+**Budget and target changes, per platform** (as of October 2026):
+
+- **TikTok** (TikTok's "About budgets" help page): up to 30% per budget change once out of learning,
+  40% while in it, no more often than every two days.
+- **Google** (Google's target-based bid strategies FAQ): budget and target changes take effect right
+  away on steady campaigns; Smart Bidding reacts to target changes in real time. Don't hold back the
+  step size; judge a change after 1–2 conversion cycles.
+- **Meta**: about 20% per step, a few days apart. This is a working rule, not a figure Meta
+  publishes; say so when you use it.
+
+If you can browse the web, check the platform's page; if it says something different, use the page
+and say the skill's figure is out of date. If you can't, use these figures and give the date.
 
 **Seasonality adjustments are not the default lever.** Google says Smart Bidding already manages
 seasonal events, that adjustments are for major expected conversion-rate changes over 1–7 days, and
@@ -234,7 +254,8 @@ writing, in the closing block. **One closing ask, not two.**
 - **Date-shift last year.** Sale day to sale day.
 - **One baseline definition** across the four Black Friday skills that use one (last-year report,
   readiness check, daily decisions, sales report). Change it in all four or none.
-- **A target change is an edit too.** It resets learning like a budget jump; same step rule.
+- **Step sizes are per platform** (pillar 3), never one rule for all three. Each figure carries its
+  source and date.
 - Saved context can be stale; where it disagrees with the data, the data wins.
 - This skill cannot modify itself — route skill feedback to the maintainer.
 
@@ -256,5 +277,5 @@ Exactly one, drawn from what this run found. Never a menu.
 
 - "Meta is counting some purchases twice, and it carries $9,600 of the window budget. Want me to run
   the Meta tracking audit to find which event is doubling?"
-- "To reach your peak budget in 20% steps you need to start raising Google on 3 November. Want the
+- "To reach your peak budget in 20% steps you need to start raising Meta on 3 November. Want the
   dated ramp as a table you can hand to whoever changes the budgets?"

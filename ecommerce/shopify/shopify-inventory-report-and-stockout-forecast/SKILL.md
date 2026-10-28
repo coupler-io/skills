@@ -402,7 +402,11 @@ contain and the one that gates the whole skill. **One closing ask, not two.**
 | Returns are driving the stock movement — restock versus write-off | `shopify-refunds-and-returns-report` |
 | Stock or sales by country or market is the subject | `shopify-sales-by-country-and-market` |
 | A broad multi-source ecommerce read is wanted rather than this decision | `ecom-analytics` |
-| Ad spend is running behind an item that is about to run out, during a sale | `black-friday-ad-spend-on-low-stock-products` |
+| Ad spend is running behind an item that is about to run out | `ppc-analytics` |
+| The same, during a sale (Black Friday, Cyber Monday, a store sale) | `black-friday-ad-spend-on-low-stock-products` |
+
+Both ad-side skills ship in the `coupler-marketing-ads` plugin. If the one you need isn't available,
+give the stock read and say the ad side wasn't checked.
 
 ## Next Question (REQUIRED)
 

@@ -87,13 +87,14 @@ older rows — report how far back it goes.
 |---|---|---|
 | Ad data covering last year's sale and 8 weeks before | Window, inflation per platform | Nothing on the ad side runs yet. Say how far back the data goes and offer the start-date fix in B |
 | Store orders over the same dates | Orders by day and hour, products, buyers | Everything is the platforms' own claim |
-| Campaign tags on store orders | Store orders per campaign | **The claimed-vs-store comparison is not checkable.** Say so plainly — it's the most useful part |
-| Line items with product and variant | What carried the sale | Product read not checkable |
-| Customer's order number | New vs returning | Not checkable |
-| Discount codes | Discount share | Not checkable |
+| Campaign tags on store orders | Store orders per campaign | Not a dead end: Shopify orders carry first- and last-visit UTM campaign, source, medium and landing page, though not as default columns. Offer to add them to the source; if they're already fetched but hidden in the dataset, ask the user to unhide them. This is the most useful part — only call it not checkable if the columns can't be added |
+| Line items with product and variant | What carried the sale | Offer to add the Orders with line items entity as another source in the same dataflow |
+| Customer's order number | New vs returning | Customer order index is a default Orders column. If missing, offer to add it to the source, or ask the user to unhide it |
+| Discount codes | Discount share | A default Orders column. If missing, offer to add it to the source, or ask the user to unhide it |
 | Refunds by order | Returned share of sale orders | Revenue is gross; say so |
 
-Say **"not checkable from this data"** — never imply a check ran clean when it didn't run.
+Make a change to the source and refresh only once the user agrees. Say **"not checkable from this
+data"** only once the data is truly unavailable — never imply a check ran clean when it didn't run.
 
 ## D. Confirm last year's sale
 
@@ -132,7 +133,9 @@ this run saves for this year's plan is keyed to "Black Friday −n days", not to
 **Store orders per campaign is a floor, not attribution.** Tags only catch the last tagged visit;
 untagged orders exist. Use it to find campaigns with a gap that's too big to explain — a campaign
 claiming 480 purchases with 95 tagged store orders — not to re-score every campaign. Report the share
-of window orders that carried any tag.
+of window orders that carried any tag **per platform**, not just overall: Google traffic that relies
+only on auto-tagging may carry no UTM campaign, so a platform with no tags must not be read as a
+platform with no orders.
 
 **Never sum conversions across platforms.** Spend adds; claims don't. Blended cost per order uses
 store orders only.
@@ -161,7 +164,7 @@ drop · Key Metrics = window dates, CPM change per platform, peak multiple, stor
 · Context = periods, campaigns, products, day and hour shape, buyers · Recommendations = the plan table.
 
 Phase 1 states: datasets, how far back they reach, the periods and the build-up rule, the store
-timezone, the tagged share of orders, and that conversions were not summed.
+timezone, the tagged share of orders per platform, and that conversions were not summed.
 
 ### Inline visuals (REQUIRED where the shape qualifies)
 
@@ -193,7 +196,7 @@ Stay silent otherwise. Offer one thing, named by what it contains.
 The readiness check reads this first. Write: last year's window, build-up start and tail end, keyed
 as days from Black Friday; the baseline dates; CPM, CPC and conversion-rate change per platform; peak
 multiple; day and hour shape; the top products; campaigns with a large claim-to-store gap; new vs
-returning, discount and returned shares; the tagged share; and anything not checkable. Confirm before
+returning, discount and returned shares; the tagged share per platform; and anything not checkable. Confirm before
 writing, in the closing block. **One closing ask.**
 
 ## Rules & Edge Cases

@@ -107,8 +107,11 @@ spend = remaining ÷ days left. Flag any platform running more than 20% over or 
 Google's daily budget is an average, not a cap — read the readiness run's two ceilings rather than
 summing daily budgets.
 
-**2. Intra-day cap check.** Campaigns whose spend today has already reached their daily budget, with
-efficiency at or better than target. Everything else in this skill reads complete days; this is the
+**2. Intra-day cap check.** Meta and TikTok: spend today at or near the daily budget. Google: spend
+today at or near **2×** the average daily budget (the one-day ceiling from the readiness run) — a
+Google campaign at 1× still has room, so don't flag it. Only those with efficiency at or better than
+target count. A Google campaign running well above 1× for several days will hit its monthly limit
+early; that's pacing (step 1), not a cap. Everything else in this skill reads complete days; this is the
 one check that can't wait for one.
 
 **3. Maturity.** Each platform has a settled cut-off: the last complete day minus that platform's
@@ -123,9 +126,21 @@ measured lag. Days after it are still filling.
 One shared cut-off for all platforms either cuts the fast one early or the slow one late. Never use one.
 
 **4. Efficiency on settled days.** CPA and ROAS rebuilt from summed spend and conversions, against
-target. **Scale** when better than target and capped or with headroom: up to about 20% per step,
-3–4 days apart, with the ceiling stated per line. **Cut** when decidable and worse than target. A
-target change counts as an edit and follows the same step rule.
+target. **Scale** when better than target and capped or with headroom, by the platform's step rule below,
+with the ceiling stated per line. **Cut** when decidable and worse than target.
+
+**Budget and target changes, per platform** (as of October 2026):
+
+- **TikTok** (TikTok's "About budgets" help page): up to 30% per budget change once out of learning,
+  40% while in it, no more often than every two days.
+- **Google** (Google's target-based bid strategies FAQ): budget and target changes take effect right
+  away on steady campaigns. Don't hold back the step size; judge a change after 1–2 conversion
+  cycles.
+- **Meta**: about 20% per step, a few days apart. This is a working rule, not a figure Meta
+  publishes; say so when you use it.
+
+If you can browse the web, check the platform's page; if it says something different, use the page
+and say the skill's figure is out of date. If you can't, use these figures and give the date.
 
 **5. Why CPA moved.** Split the change into cost per click and conversion rate.
 
@@ -230,7 +245,7 @@ log with no reasons can't be scored. Confirm before writing, in the closing bloc
 
 Exactly one, drawn from what this run found. Never a menu.
 
-- "Two Google campaigns ran out of budget before 2pm today, both under target CPA. Want me to size a
-  20% step for each against what's left in the Google budget?"
+- "Two Meta ad sets hit their daily budget before 2pm today, both under target CPA. Want me to size a
+  20% step for each against what's left in the Meta budget?"
 - "Meta's CPA looks 40% over target, but its last two days are still filling. Want me to re-run this
   Monday morning when they've settled?"
