@@ -253,6 +253,75 @@
       "description": "Use for \"where am I wasting money on Amazon Ads\", \"find me negative keywords for Amazon\", \"Amazon search term report analysis\", \"which Amazon search terms should I harvest\", \"which Amazon campaigns should I scale\", \"clean up my Amazon PPC\", \"which Amazon keywords should I pause\", or \"what do I cut on Amazon and where does the money go\" — even without the words \"waste\" or \"scale\". Also use when someone wants a budget-neutral reallocation for the Amazon Ads account. Amazon Ads only."
     },
     {
+      "name": "black-friday-ad-spend-on-low-stock-products",
+      "path": "marketing-and-ads/black-friday/black-friday-ad-spend-on-low-stock-products",
+      "category": "marketing-and-ads",
+      "sources": [
+        "Shopify",
+        "Google Ads",
+        "Facebook Ads (Meta Ads)"
+      ],
+      "title": "Black Friday Ad Spend on Low-Stock Products",
+      "short_description": "Finds the products you're still advertising that will sell out within hours, and how much ad spend to move off them before they do.",
+      "description": "Use for \"are we advertising products about to sell out in our store\", \"which product ads should we pause for low stock\", \"move ad budget off low-stock products\", \"we're paying for clicks on sold-out sizes\", or a Cyber Monday stock check against the ads. Use during Black Friday, BFCM, Prime Day or any store sale, when the decision is which product ads to pause or swap before the item runs out. Shopify plus Google Ads Shopping or Performance Max, or Meta catalog ads."
+    },
+    {
+      "name": "black-friday-ads-and-sales-report",
+      "path": "marketing-and-ads/black-friday/black-friday-ads-and-sales-report",
+      "category": "marketing-and-ads",
+      "sources": [
+        "Google Ads",
+        "Facebook Ads (Meta Ads)",
+        "TikTok Ads",
+        "Shopify"
+      ],
+      "title": "Black Friday Ads and Sales Report",
+      "short_description": "Writes your Black Friday wrap-up: spend against budget, what you kept after returns, and what to change next year.",
+      "description": "Use for \"how did our Black Friday go\", \"Black Friday sales report\", \"BFCM post-mortem\", \"did our Black Friday ads make money after returns\", \"compare this Black Friday to last year\", or \"what do we change for next year's sale\" — even when the user never says \"post-mortem\". Use after a Black Friday, Cyber Monday, Prime Day or store sale, when the decision is what to keep and change next time. Google Ads, Facebook Ads, TikTok Ads and Shopify."
+    },
+    {
+      "name": "black-friday-ads-readiness-check",
+      "path": "marketing-and-ads/black-friday/black-friday-ads-readiness-check",
+      "category": "marketing-and-ads",
+      "sources": [
+        "Google Ads",
+        "Facebook Ads (Meta Ads)",
+        "TikTok Ads",
+        "Shopify"
+      ],
+      "title": "Black Friday Ads Readiness Check",
+      "short_description": "Checks your Google, Meta and TikTok ad accounts before Black Friday and lists what to fix while there's still time.",
+      "description": "Use for \"are our ads ready for Black Friday\", \"what should we fix in the ad accounts before Black Friday\", \"how should we ramp the Black Friday ad budget\", \"will our tracking hold up on Cyber Monday\", or a BFCM or Prime Day prep check 4–6 weeks out. Use when the decision is what to fix and how to ramp budget before the sale. Google Ads, Facebook Ads and TikTok Ads, with Shopify where connected."
+    },
+    {
+      "name": "black-friday-daily-ad-spend-decisions",
+      "path": "marketing-and-ads/black-friday/black-friday-daily-ad-spend-decisions",
+      "category": "marketing-and-ads",
+      "sources": [
+        "Google Ads",
+        "Facebook Ads (Meta Ads)",
+        "TikTok Ads",
+        "Shopify"
+      ],
+      "title": "Black Friday Daily Ad Spend Decisions",
+      "short_description": "Shows which campaigns to scale, cut or leave alone each day of your Black Friday sale, without acting on numbers still arriving.",
+      "description": "Use for \"which campaigns should we scale today on Black Friday\", \"what should we cut during the sale\", \"are we on track to spend the Black Friday ad budget\", \"why did our CPA jump on Cyber Monday\", or a daily check inside a BFCM or Prime Day sale. Use when the decision is today's scale, cut or hold, with the wait stated for conversions still arriving. Google Ads, Facebook Ads and TikTok Ads, with Shopify where connected."
+    },
+    {
+      "name": "black-friday-last-year-report",
+      "path": "marketing-and-ads/black-friday/black-friday-last-year-report",
+      "category": "marketing-and-ads",
+      "sources": [
+        "Google Ads",
+        "Facebook Ads (Meta Ads)",
+        "TikTok Ads",
+        "Shopify"
+      ],
+      "title": "Black Friday Last Year Report",
+      "short_description": "Shows what really drove last year's Black Friday in your store and ads, so this year's plan starts from your own numbers.",
+      "description": "Use for \"how did our ads do last Black Friday\", \"which campaigns actually drove store sales last BFCM\", \"which products carried last year's Black Friday\", \"when did our Black Friday orders peak last year\", or \"how much did CPMs rise last Black Friday\". Use weeks before a Black Friday, Cyber Monday or Prime Day sale, when the decision is what to repeat and what to drop. Google Ads, Facebook Ads, TikTok Ads and Shopify."
+    },
+    {
       "name": "facebook-ads-account-settings-audit",
       "path": "marketing-and-ads/facebook-ads/facebook-ads-account-settings-audit",
       "category": "marketing-and-ads",

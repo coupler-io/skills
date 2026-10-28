@@ -9,7 +9,7 @@ description: >
 metadata:
   title: "Shopify Inventory Report and Stockout Forecast"
   short_description: "Shows what in your Shopify store will sell out, when you need to reorder, and how much cash is sitting in dead stock."
-  version: 1.0.0
+  version: 1.0.1
   category: ecommerce
   sources:
     - Shopify
@@ -402,7 +402,7 @@ contain and the one that gates the whole skill. **One closing ask, not two.**
 | Returns are driving the stock movement — restock versus write-off | `shopify-refunds-and-returns` *(queued)* |
 | Stock or sales by country or market is the subject | `shopify-geo-and-market-performance` *(queued)* |
 | A broad multi-source ecommerce read is wanted rather than this decision | `ecom-analytics` |
-| Ad spend is running behind an item that is about to run out | `ppc-analytics` |
+| Ad spend is running behind an item that is about to run out, during a sale | `black-friday-ad-spend-on-low-stock-products` |
 
 ## Next Question (REQUIRED)
 

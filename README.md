@@ -191,6 +191,18 @@ Generative engine optimization skills in `marketing-and-ads/geo/`, built on AI-v
 | --- | --- |
 | [**ai-search-citations-to-revenue**](marketing-and-ads/geo/ai-search-citations-to-revenue/SKILL.md) | Follows the pages ChatGPT, Perplexity and Gemini cite to AI-referred, organic, referral and direct sessions, Search Console clicks, GA4 key events and the orders, deals or payments behind them — and names the stage where the chain breaks. |
 
+#### Black Friday deep dives
+
+Five sale-season skills in `marketing-and-ads/black-friday/`, one per stage of a Black Friday, Cyber Monday, Prime Day or store sale. They read Google Ads, Meta / Facebook Ads and TikTok Ads together with Shopify, and hand off to the per-platform and Shopify skills for anything outside the sale.
+
+| Skill | What it does |
+| --- | --- |
+| [**black-friday-last-year-report**](marketing-and-ads/black-friday/black-friday-last-year-report/SKILL.md) | Weeks before the sale — which campaigns and products really drove last year's Black Friday, when orders peaked and how much CPMs rose, so this year's plan starts from your own numbers. |
+| [**black-friday-ads-readiness-check**](marketing-and-ads/black-friday/black-friday-ads-readiness-check/SKILL.md) | 4–6 weeks out — what to fix in the Google, Meta and TikTok accounts and tracking while there's still time, and how to ramp the budget. |
+| [**black-friday-daily-ad-spend-decisions**](marketing-and-ads/black-friday/black-friday-daily-ad-spend-decisions/SKILL.md) | During the sale — which campaigns to scale, cut or leave alone today, with the wait stated for conversions still arriving. |
+| [**black-friday-ad-spend-on-low-stock-products**](marketing-and-ads/black-friday/black-friday-ad-spend-on-low-stock-products/SKILL.md) | During the sale — product ads still running on items about to sell out in Shopify, and how much spend to move off them before they do. |
+| [**black-friday-ads-and-sales-report**](marketing-and-ads/black-friday/black-friday-ads-and-sales-report/SKILL.md) | After the sale — spend against budget, what you kept after returns, and what to change next year. |
+
 ### Sales
 
 | Skill | What it does |
@@ -298,14 +310,14 @@ Each business function is its own plugin, so you install only what you need. Ava
 | `coupler-finance` | finance-analytics |
 | `coupler-sales` | sales-analytics |
 | `coupler-ecommerce` | ecom-analytics |
-| `coupler-marketing-ads` | marketing-analytics, ppc-analytics, + the 8 Google Ads, 11 Meta / Facebook Ads, 11 TikTok Ads, 11 Microsoft Ads, 10 LinkedIn Ads and 10 Amazon Ads deep dives, + the 7 SEO skills and 1 GEO skill |
+| `coupler-marketing-ads` | marketing-analytics, ppc-analytics, + the 8 Google Ads, 11 Meta / Facebook Ads, 11 TikTok Ads, 11 Microsoft Ads, 10 LinkedIn Ads and 10 Amazon Ads deep dives, + the 7 SEO skills, 1 GEO skill and 5 Black Friday skills |
 | `coupler-capability` | get-started, create-dataflow, google-ads-custom-gaql, generate-data-set-context, refine-prompt, report-generation |
 | `coupler-utilities` | coupler-io-live-dashboard |
 | `humanizer` | humanizer-remove-ai-writing-patterns (+ `/humanize` command) |
 
 Plugin skills are namespaced by their plugin, so they can be invoked explicitly as `/coupler-finance:finance-analytics`. Most of them are model-invoked too — Claude reaches for them when the request matches their description. If the install summary says `Run /reload-plugins to activate.`, run that.
 
-**Install only the plugin you need.** Every skill's description stays in context for the whole session, so a plugin's cost scales with how many skills it carries. `coupler-marketing-ads` bundles 71 and adds roughly 13k tokens to every session; the single-skill plugins add a few hundred. Check any plugin before installing it:
+**Install only the plugin you need.** Every skill's description stays in context for the whole session, so a plugin's cost scales with how many skills it carries. `coupler-marketing-ads` bundles 76 and adds roughly 14k tokens to every session; the single-skill plugins add a few hundred. Check any plugin before installing it:
 
 ```
 claude plugin details coupler-marketing-ads@coupler-io-skills
