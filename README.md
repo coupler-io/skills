@@ -13,7 +13,7 @@ Four skills for Black Friday and Cyber Monday. They read your Shopify store toge
 - [**black-friday-ad-spend-on-low-stock-products**](marketing-and-ads/black-friday/black-friday-ad-spend-on-low-stock-products/SKILL.md): products you're still advertising that will sell out within hours, and how much spend to move off them.
 - [**black-friday-ads-and-sales-report**](marketing-and-ads/black-friday/black-friday-ads-and-sales-report/SKILL.md): your wrap-up, with spend against budget, what you kept after returns, and what to change next year.
 
-They ship in the `coupler-marketing-ads` plugin. See [Black Friday deep dives](#black-friday-deep-dives) for the full set.
+See [Black Friday deep dives](#black-friday-deep-dives) for the full set.
 
 ## Contents
 
