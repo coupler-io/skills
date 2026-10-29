@@ -2,6 +2,19 @@
 
 Ready-to-use AI agent skills for marketing, PPC, sales, finance, ecommerce, and business reporting. Coupler.io skills give AI assistants repeatable analytics workflows backed by live data from your Coupler.io workspace through the Coupler.io MCP server. Use them to analyze campaign performance, sales pipelines, financial metrics, ecommerce data, generate reports, investigate anomalies, and turn business data into actionable insights.
 
+## New: Black Friday skills
+
+![Black Friday analytics, handled: Claude skills for your BFCM analytics, running on your live Shopify and ad data](.github/assets/black-friday-skills.png)
+
+Four skills for Black Friday and Cyber Monday. They read your Shopify store together with Google Ads, Meta / Facebook Ads and TikTok Ads:
+
+- [**black-friday-last-year-report**](marketing-and-ads/black-friday/black-friday-last-year-report/SKILL.md): what really drove last year's Black Friday, so this year's plan starts from your own numbers.
+- [**black-friday-daily-ad-spend-decisions**](marketing-and-ads/black-friday/black-friday-daily-ad-spend-decisions/SKILL.md): which campaigns to scale, cut or leave alone on each day of the sale.
+- [**black-friday-ad-spend-on-low-stock-products**](marketing-and-ads/black-friday/black-friday-ad-spend-on-low-stock-products/SKILL.md): products you're still advertising that will sell out within hours, and how much spend to move off them.
+- [**black-friday-ads-and-sales-report**](marketing-and-ads/black-friday/black-friday-ads-and-sales-report/SKILL.md): your wrap-up, with spend against budget, what you kept after returns, and what to change next year.
+
+They ship in the `coupler-marketing-ads` plugin. See [Black Friday deep dives](#black-friday-deep-dives) for the full set.
+
 ## Contents
 
 - [What can you do](#what-can-you-do-with-couplerio-skills)
