@@ -14,7 +14,7 @@ metadata:
   title: "Google Search Console Keyword Opportunities"
   short_description: "Finds search queries sitting just off page one and pages that get seen but not clicked, so you know what to optimise next."
   version: 1.0.0
-  category: marketing-and-ads
+  category: seo-and-geo
   sources:
     - Google Search Console
 ---

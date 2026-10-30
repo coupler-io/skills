@@ -14,7 +14,7 @@ metadata:
   title: "SEO Landing Page Performance (Search Console + GA4)"
   short_description: "Shows which landing pages bring Google search traffic and whether that traffic converts once it lands."
   version: 1.0.0
-  category: marketing-and-ads
+  category: seo-and-geo
   sources:
     - Google Search Console
     - Google Analytics 4 (GA4)

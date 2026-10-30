@@ -15,7 +15,7 @@ metadata:
   title: "Paid vs Organic Search Overlap"
   short_description: "Shows where your Google Ads pay for searches you already rank for, where ads cover gaps, and how to test cutting the overlap."
   version: 1.0.0
-  category: marketing-and-ads
+  category: seo-and-geo
   sources:
     - Google Ads
     - Google Search Console

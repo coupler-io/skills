@@ -14,7 +14,7 @@ metadata:
   title: "AI Traffic vs Organic Search Report"
   short_description: "Shows how much traffic ChatGPT, Perplexity and Gemini send your site and how it compares with Google organic search."
   version: 1.0.0
-  category: marketing-and-ads
+  category: seo-and-geo
   sources:
     - Google Analytics 4 (GA4)
 ---

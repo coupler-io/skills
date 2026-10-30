@@ -4,8 +4,8 @@
     "name": "Coupler.io"
   },
   "metadata": {
-    "description": "Coupler.io-authored Claude Code skills and plugins for business analytics by function (finance, sales, ecommerce, marketing & ads) plus shared capability skills and utilities",
-    "version": "1.9.0"
+    "description": "Coupler.io-authored Claude Code skills and plugins for business analytics by function (finance, sales, ecommerce, marketing & ads, SEO & GEO) plus shared capability skills and utilities",
+    "version": "1.10.0"
   },
   "plugins": [
     {
@@ -120,24 +120,33 @@
         "./marketing-and-ads/amazon-ads/amazon-ads-attribution-and-metrics-audit",
         "./marketing-and-ads/amazon-ads/amazon-ads-account-settings-and-structure-audit",
         "./marketing-and-ads/amazon-ads/amazon-ads-client-report",
-        "./marketing-and-ads/seo/google-search-console-keyword-opportunities",
-        "./marketing-and-ads/seo/content-decay-analysis",
-        "./marketing-and-ads/seo/seo-landing-page-performance",
-        "./marketing-and-ads/seo/google-search-console-country-and-device-performance",
-        "./marketing-and-ads/seo/branded-vs-non-branded-search-traffic",
-        "./marketing-and-ads/seo/new-page-indexing-tracker",
-        "./marketing-and-ads/seo/ai-traffic-vs-organic-search-report",
-        "./marketing-and-ads/seo/organic-traffic-drop-diagnosis",
-        "./marketing-and-ads/seo/content-refresh-impact",
-        "./marketing-and-ads/seo/topic-cluster-performance",
-        "./marketing-and-ads/seo/paid-vs-organic-search-overlap",
-        "./marketing-and-ads/seo/seo-client-report",
-        "./marketing-and-ads/geo/ai-search-citations-to-revenue",
         "./marketing-and-ads/black-friday/black-friday-last-year-report",
         "./marketing-and-ads/black-friday/black-friday-ads-readiness-check",
         "./marketing-and-ads/black-friday/black-friday-daily-ad-spend-decisions",
         "./marketing-and-ads/black-friday/black-friday-ad-spend-on-low-stock-products",
         "./marketing-and-ads/black-friday/black-friday-ads-and-sales-report"
+      ]
+    },
+    {
+      "name": "coupler-seo-and-geo",
+      "source": "./",
+      "strict": false,
+      "description": "SEO / organic-search and GEO / AI-search analytics over your Coupler.io data.",
+      "category": "seo-and-geo",
+      "skills": [
+        "./seo-and-geo/google-search-console-keyword-opportunities",
+        "./seo-and-geo/content-decay-analysis",
+        "./seo-and-geo/seo-landing-page-performance",
+        "./seo-and-geo/google-search-console-country-and-device-performance",
+        "./seo-and-geo/branded-vs-non-branded-search-traffic",
+        "./seo-and-geo/new-page-indexing-tracker",
+        "./seo-and-geo/ai-traffic-vs-organic-search-report",
+        "./seo-and-geo/organic-traffic-drop-diagnosis",
+        "./seo-and-geo/content-refresh-impact",
+        "./seo-and-geo/topic-cluster-performance",
+        "./seo-and-geo/paid-vs-organic-search-overlap",
+        "./seo-and-geo/seo-client-report",
+        "./seo-and-geo/ai-search-citations-to-revenue"
       ]
     },
     {

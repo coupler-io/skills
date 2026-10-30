@@ -14,7 +14,7 @@ metadata:
   title: "Google Search Console Country and Device Performance"
   short_description: "Shows how your Google search clicks and rankings differ by country and device, and which markets fall behind."
   version: 1.0.0
-  category: marketing-and-ads
+  category: seo-and-geo
   sources:
     - Google Search Console
 ---

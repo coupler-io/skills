@@ -14,7 +14,7 @@ metadata:
   title: "Branded vs Non-Branded Search Traffic"
   short_description: "Splits your Google search traffic into people searching your brand and people finding you for the first time, and shows which is growing."
   version: 1.0.0
-  category: marketing-and-ads
+  category: seo-and-geo
   sources:
     - Google Search Console
 ---

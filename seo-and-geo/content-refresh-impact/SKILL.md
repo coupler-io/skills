@@ -14,7 +14,7 @@ metadata:
   title: "Content Refresh Impact"
   short_description: "Shows whether the pages you updated won back Google search traffic, measured against how the rest of your site moved."
   version: 1.0.0
-  category: marketing-and-ads
+  category: seo-and-geo
   sources:
     - Google Search Console
 ---
