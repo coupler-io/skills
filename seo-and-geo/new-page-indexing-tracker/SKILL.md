@@ -14,7 +14,7 @@ metadata:
   title: "New Page Indexing Tracker"
   short_description: "Tracks how long your new pages take to show up in Google and get their first clicks, and flags the ones Google is ignoring."
   version: 1.1.0
-  category: marketing-and-ads
+  category: seo-and-geo
   sources:
     - Google Search Console
 ---

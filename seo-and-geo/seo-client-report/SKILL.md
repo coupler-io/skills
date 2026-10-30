@@ -14,7 +14,7 @@ metadata:
   title: "SEO Client Report"
   short_description: "Writes your monthly SEO report for a client, measured against targets, with brand and non-brand growth kept apart."
   version: 1.0.0
-  category: marketing-and-ads
+  category: seo-and-geo
   sources:
     - Google Search Console
     - Google Analytics 4 (GA4)

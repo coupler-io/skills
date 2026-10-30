@@ -14,7 +14,7 @@ metadata:
   title: "Organic Traffic Drop Diagnosis"
   short_description: "Finds the day your Google search traffic dropped and the most likely reason, so you check the right cause first."
   version: 1.0.0
-  category: marketing-and-ads
+  category: seo-and-geo
   sources:
     - Google Search Console
     - Google Analytics 4 (GA4)

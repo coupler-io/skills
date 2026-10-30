@@ -14,7 +14,7 @@ metadata:
   title: "Content Decay Analysis"
   short_description: "Finds pages that are losing Google traffic, tells you whether rankings or demand dropped, and which pages to refresh first."
   version: 1.0.0
-  category: marketing-and-ads
+  category: seo-and-geo
   sources:
     - Google Search Console
 ---

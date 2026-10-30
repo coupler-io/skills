@@ -14,7 +14,7 @@ metadata:
   title: "Topic Cluster Performance"
   short_description: "Groups your Google search traffic by topic, and shows which topics pay back the content put into them and which hang on one page."
   version: 1.0.0
-  category: marketing-and-ads
+  category: seo-and-geo
   sources:
     - Google Search Console
 ---

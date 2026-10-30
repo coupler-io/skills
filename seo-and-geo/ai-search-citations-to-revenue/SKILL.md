@@ -18,7 +18,7 @@ compatibility: >
 metadata:
   title: "AI Search Citations to Revenue"
   version: "1.0.0"
-  category: marketing-and-ads
+  category: seo-and-geo
   short_description: "Follows the pages AI assistants cite through to traffic, signups and sales, and shows where the chain breaks."
   sources:
     - Peec AI
