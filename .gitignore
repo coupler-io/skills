@@ -1,4 +1,4 @@
-# Allowlist: ICP-first structure — finance/sales/ecommerce/marketing-and-ads + capability + utilities, the manifest, and repo docs
+# Allowlist: ICP-first structure — finance/sales/ecommerce/marketing-and-ads/seo-and-geo + capability + utilities, the manifest, and repo docs
 /*
 !/.gitignore
 !/.gitattributes
@@ -12,6 +12,7 @@
 !/sales/
 !/ecommerce/
 !/marketing-and-ads/
+!/seo-and-geo/
 !/capability/
 !/utilities/
 !/.agents/
