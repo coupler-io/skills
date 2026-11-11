@@ -92,12 +92,18 @@ checked 2026-11-02). So:
   withheld in August alone.
 - **The default range on a new source is the last 60 days**, which straddles three calendar months.
   Prefer sources set to whole months.
+- **Date macros keep the periods rolling.** Last month is `{{lastmonthstart}}` →
+  `{{lastmonthend}}`; the month before is `{{2monthsago.startof(month).format(YYYY-MM-DD)}}` →
+  `{{2monthsago.endof(month).format(YYYY-MM-DD)}}`. Both move forward on every refresh and always
+  cover one month each, so the comparison stays like for like. Use fixed dates only for a period the
+  user names.
 
 **Only one period available, or two of different lengths?** Run the single-period read, and offer to
 add a keywords source for the comparison period, set to whole calendar months and as many months as
-the period it's compared with, then run it. If the user would rather set it
-up themselves, say which report type and which months to pick. **No keywords dataset at all, but the
-account is connected?** Offer to add one for the last complete month.
+the period it's compared with — with the macros above for last month against the month before — then
+run it. If the user would rather set it up themselves, say which report type and which months to
+pick. **No keywords dataset at all, but the account is connected?** Offer to add one set to
+`{{lastmonthstart}}` → `{{lastmonthend}}`.
 
 A dataset that can't be queried still shows its schema — it isn't shared with this chat yet. Offer to
 share it by adding a destination for this chat that shares that dataset; don't switch which dataset an
@@ -111,7 +117,7 @@ ships them; read them from the schema each run.
 | Columns | Light up | Absent means |
 |---|---|---|
 | `Dimension: Searched keyword` + `Performance: Number of searches` | The term list | Nothing to report |
-| `Performance: Threshold` | The withheld-term count | Under-15 terms can't be told from missing ones |
+| `Performance: Threshold` | The withheld-term count | Terms under the line can't be told from missing ones |
 | `Location: Title` | Per-location lists | One location |
 | A second keywords dataset for an earlier period | New, lost and growing terms | One period only — no trend claims |
 
