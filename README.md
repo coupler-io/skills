@@ -198,7 +198,7 @@ Five sale-season skills in `marketing-and-ads/black-friday/`, one per stage of a
 
 ### SEO & GEO
 
-Thirteen organic- and AI-search skills in `seo-and-geo/`, installed as their own `coupler-seo-and-geo` plugin.
+Seventeen organic-, local- and AI-search skills in `seo-and-geo/`, installed as their own `coupler-seo-and-geo` plugin.
 
 #### SEO
 
@@ -218,6 +218,17 @@ Twelve organic-search skills built on Google Search Console, with GA4 and Google
 | [**topic-cluster-performance**](seo-and-geo/topic-cluster-performance/SKILL.md) | Search traffic by topic instead of page — share of clicks against share of pages, trend, and how much each topic rests on one URL. Topics from a saved rule, URL folders or your patterns. |
 | [**paid-vs-organic-search-overlap**](seo-and-geo/paid-vs-organic-search-overlap/SKILL.md) | Google Ads search terms against Search Console queries — spend on searches you already rank for, paid covering gaps, brand on its own line, and a holdout test plan. Needs Google Ads and GSC. |
 | [**seo-client-report**](seo-and-geo/seo-client-report/SKILL.md) | The monthly SEO report a client reads — KPIs against target, last month and last year, non-brand separated from brand, wins, misses and recommendations. GA4 optional. |
+
+#### Local listings
+
+Four skills on the Google Business Profile listing itself — views on Search and Maps, the calls and direction requests they turn into, reviews and replies, and what people searched to find it. Built on Coupler.io's Google Business Profile source, one report type per skill.
+
+| Skill | What it does |
+| --- | --- |
+| [**google-business-profile-performance-report**](seo-and-geo/google-business-profile-performance-report/SKILL.md) | Views on Search and Maps by phone and desktop, and the calls, website clicks, direction requests and bookings they turn into — per location, against last period and last year. |
+| [**google-business-profile-search-keywords**](seo-and-geo/google-business-profile-search-keywords/SKILL.md) | What people searched before the listing appeared — the business name against what it does, top terms, new and lost terms, with Google's withheld terms counted as a range. |
+| [**google-business-profile-reviews-and-replies**](seo-and-geo/google-business-profile-reviews-and-replies/SKILL.md) | The rating being earned now against the one shown, review volume, low ratings still waiting for a reply, time to reply and recurring themes. |
+| [**google-business-profile-client-report**](seo-and-geo/google-business-profile-client-report/SKILL.md) | The monthly listing report a client reads — calls, directions and reviews against target, last month and last year, with misses and recommendations. |
 
 #### GEO
 
@@ -350,7 +361,7 @@ Each business function is its own plugin, so you install only what you need. Ava
 | `coupler-sales` | sales-analytics |
 | `coupler-ecommerce` | ecom-analytics, + the 7 Shopify, 3 Klaviyo, 1 Gorgias and 1 Cin7 deep dives |
 | `coupler-marketing-ads` | marketing-analytics, ppc-analytics, + the 8 Google Ads, 11 Meta / Facebook Ads, 11 TikTok Ads, 11 Microsoft Ads, 10 LinkedIn Ads and 10 Amazon Ads deep dives, + the 5 Black Friday skills |
-| `coupler-seo-and-geo` | the 12 SEO skills and 1 GEO skill |
+| `coupler-seo-and-geo` | the 12 SEO skills, 4 Google Business Profile skills and 1 GEO skill |
 | `coupler-capability` | get-started, create-dataflow, google-ads-custom-gaql, generate-data-set-context, refine-prompt, report-generation |
 | `coupler-utilities` | coupler-io-live-dashboard |
 | `humanizer` | humanizer-remove-ai-writing-patterns (+ `/humanize` command) |

@@ -5,7 +5,7 @@
   },
   "metadata": {
     "description": "Coupler.io-authored Claude Code skills and plugins for business analytics by function (finance, sales, ecommerce, marketing & ads, SEO & GEO) plus shared capability skills and utilities",
-    "version": "1.10.0"
+    "version": "1.11.0"
   },
   "plugins": [
     {
@@ -146,7 +146,11 @@
         "./seo-and-geo/topic-cluster-performance",
         "./seo-and-geo/paid-vs-organic-search-overlap",
         "./seo-and-geo/seo-client-report",
-        "./seo-and-geo/ai-search-citations-to-revenue"
+        "./seo-and-geo/ai-search-citations-to-revenue",
+        "./seo-and-geo/google-business-profile-performance-report",
+        "./seo-and-geo/google-business-profile-search-keywords",
+        "./seo-and-geo/google-business-profile-reviews-and-replies",
+        "./seo-and-geo/google-business-profile-client-report"
       ]
     },
     {
