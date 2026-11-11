@@ -170,9 +170,6 @@ context. Return labelled blocks in a single query:
 - **Weekly block** — views and actions by ISO week across the last 13 complete weeks, to find a break
   date.
 
-Treat a missing number in an action column as zero only when the whole column is empty for that
-location; otherwise say the column is partly empty.
-
 ## F. What to conclude
 
 **Separate attention from response.** Views falling with actions per 100 views holding means fewer
@@ -261,8 +258,10 @@ the next run skips discovery. Confirm before writing, in the same closing block.
 - **Never sum across locations without saying so**, and never rank a location below the median views.
 - **Retired metrics are not reported** — conversations and food orders read zero because Google
   stopped supplying them, not because nobody used them.
-- **Organic only.** The listing's numbers don't include Google Ads location ads; never add ad
-  results to them.
+- **Ads are inside these numbers.** Google says the listing's views and actions include Google Ads
+  as well as organic results, and they can't be split. If the business runs Google Ads with location
+  assets or local campaigns, say so beside any lift, and check the Ads account's local actions before
+  crediting the listing.
 - Saved context can be stale and applies only to the dataset it was read from. Where context and data
   disagree, the data wins.
 - This skill cannot modify itself — route skill feedback to the maintainer.
