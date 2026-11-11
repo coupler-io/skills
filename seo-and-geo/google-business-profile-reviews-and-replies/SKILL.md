@@ -39,7 +39,8 @@ shows reviews one at a time. Lined up, they show the trend the average hides.
 - **Review volume over time** — a listing that stops getting reviews loses ground even at five stars.
 - **The low-rating share** — one- to three-star reviews as a share of each period.
 - **Reply rate and time to reply** — overall and for low ratings, where it matters most.
-- **The unanswered list** — low ratings with no reply, oldest first, each with its link.
+- **The unanswered list** — low ratings with no reply, oldest first, each with its date, stars,
+  opening words and the listing's Maps link.
 - **Themes from the written reviews** — what comes up again and again, good and bad, with counts.
 - **A location ranking** when the dataset holds more than one listing.
 
@@ -99,7 +100,7 @@ ships them; read them from the schema each run.
 | `Review: Reply comment` + `Review: Reply updated date` | Reply rate and time to reply | No reply columns → reply analysis not checkable |
 | `Review: Average rating` + `Review: Reviews count` | The rating and count Google shows on the listing | Rebuild them from the rows instead and say so |
 | `Location: Title` | Per-location view | One location — no ranking |
-| `Review: Link` | A link per unanswered review | List them without links |
+| `Location: Metadata` | The listing's Maps link (`mapsUri` in the JSON), one per location | List unanswered reviews by location, date and stars only |
 
 Things the user should hear:
 
@@ -117,6 +118,9 @@ Things the user should hear:
   edited, not first posted. An edited reply looks slower than it was.
 - **Edited reviews.** Where `Review: Updated at` is later than `Review: Created at`, the reviewer
   changed it — the star rating you see is the latest one.
+- **`Review: Link` is not a link.** It holds Google's internal path for the review
+  (`accounts/…/locations/…/reviews/…`), which opens nothing in a browser, and Google gives no
+  per-review URL. Never present it as a link; point people at the listing's Maps link instead.
 
 Say **"not checkable from this data"** — never "clean".
 
@@ -152,7 +156,8 @@ Aggregate on Coupler's backend. Return labelled blocks in a single query:
   days to reply, reply rate on low ratings, and the count replied within the target.
 - **Monthly block** — reviews and average stars per month over the last 24 months.
 - **Unanswered block** — every low rating with no reply: location, stars, created date, days waiting,
-  the first 200 characters of the comment, and the link. Oldest first.
+  the first 200 characters of the comment, and the location's Maps link (`mapsUri` read from
+  `Location: Metadata`). Oldest first.
 
 Use the median for time to reply; a single reply a year late distorts a mean.
 
@@ -208,7 +213,7 @@ offline, and never repeat the reviewer's personal details. The user posts it; th
 
 | Found | Worth making | Why |
 |---|---|---|
-| A list of unanswered low ratings | A reply worklist with links and suggested wording | Someone has to work through it |
+| A list of unanswered low ratings | A reply worklist — each review's date, stars and opening words, the listing's Maps link, and suggested wording | Someone has to work through it |
 | A rating slide over months | A monthly average line with the review count beside it | The slide is a shape |
 | Themes worth acting on | A short brief for the team that owns the problem | It leaves the chat |
 
