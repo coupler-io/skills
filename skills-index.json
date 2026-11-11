@@ -1078,6 +1078,50 @@
       "description": "Checks whether the pages you updated actually won back search traffic, from live Google Search Console data in your Coupler.io workspace with the refresh dates you give it — clicks, impressions and position before and after each update, measured against how the rest of the site moved over the same weeks, so a site-wide lift isn't credited to the refresh. Use for \"did our content refresh work\", \"did updating those blog posts help\", \"which page updates recovered traffic\", \"is refreshing old content worth it\", \"what happened after we rewrote these pages\", \"should we keep updating old posts\" — even when the user never says \"refresh\". This is the did-it-work view after an update. For which pages need refreshing in the first place use content-decay-analysis. Google Search Console only."
     },
     {
+      "name": "google-business-profile-client-report",
+      "path": "seo-and-geo/google-business-profile-client-report",
+      "category": "seo-and-geo",
+      "sources": [
+        "Google Business Profile"
+      ],
+      "title": "Google Business Profile Client Report",
+      "short_description": "Writes your monthly Google Business Profile report for a client, with calls, directions and reviews measured against targets.",
+      "description": "Builds the monthly Google Business Profile report a client reads, from live Google Business Profile data in your Coupler.io workspace — views on Search and Maps, calls, website clicks and direction requests scored against target, last month and last year, the rating and reviews with the reply record, what people searched to find the listing, a misses section that names problems first, and recommendations someone can be held to. Use when someone asks for a monthly local SEO or Google Business Profile report for a client, wants the local section of a client deck, asks \"what do I tell the client about their Google listing\", or needs several locations written up for one client — even when they never say \"report\". For agencies and in-house teams reporting upward. For the operator's own read use google-business-profile-performance-report. Google Business Profile only."
+    },
+    {
+      "name": "google-business-profile-performance-report",
+      "path": "seo-and-geo/google-business-profile-performance-report",
+      "category": "seo-and-geo",
+      "sources": [
+        "Google Business Profile"
+      ],
+      "title": "Google Business Profile Performance Report",
+      "short_description": "Shows how many people saw your Google listing on Search and Maps, and how many called, clicked or asked for directions.",
+      "description": "Shows how a Google Business Profile listing is doing, from live Google Business Profile data in your Coupler.io workspace — views on Google Search and Maps by phone and desktop, the calls, website clicks, direction requests and bookings those views turned into, actions per 100 views, and how each location moved against the period before and the same period last year. Use for \"how is my Google Business Profile doing\", \"are we getting more calls from Google Maps\", \"how many people found us on Google this month\", \"which of our locations is underperforming on Google\", \"did our local listing views drop\", \"GBP performance report\", \"Google My Business insights\" — even when the user never says \"performance\". This is the operator's read of the listing itself. For what people typed to find it use google-business-profile-search-keywords; for ratings and replies use google-business-profile-reviews-and-replies; for the write-up a client reads use google-business-profile-client-report. Google Business Profile only."
+    },
+    {
+      "name": "google-business-profile-reviews-and-replies",
+      "path": "seo-and-geo/google-business-profile-reviews-and-replies",
+      "category": "seo-and-geo",
+      "sources": [
+        "Google Business Profile"
+      ],
+      "title": "Google Business Profile Reviews and Replies",
+      "short_description": "Shows how your Google ratings are moving, which reviews still need a reply, and what customers keep mentioning.",
+      "description": "Reads the reviews on a Google Business Profile listing, from live Google Business Profile data in your Coupler.io workspace — rating and review volume over time, the share of one- to three-star reviews, how many reviews got a reply and how fast, which low ratings are still unanswered, and what the written reviews keep complaining about or praising, per location. Use for \"how are our Google reviews\", \"are our ratings going down\", \"which reviews haven't we replied to\", \"how fast do we reply to reviews\", \"what are customers complaining about on Google\", \"compare ratings across our locations\", \"Google review report\" — even when the user never says \"reviews\". This is the reputation read. For views, calls and direction requests use google-business-profile-performance-report; for the client write-up use google-business-profile-client-report. Google Business Profile only."
+    },
+    {
+      "name": "google-business-profile-search-keywords",
+      "path": "seo-and-geo/google-business-profile-search-keywords",
+      "category": "seo-and-geo",
+      "sources": [
+        "Google Business Profile"
+      ],
+      "title": "Google Business Profile Search Keywords",
+      "short_description": "Shows what people searched on Google before your listing appeared, and whether they searched your name or what you do.",
+      "description": "Shows what people typed into Google Search and Maps before your Google Business Profile listing appeared, from live Google Business Profile data in your Coupler.io workspace — searches for your name against searches for what you do, the terms bringing the most people, terms new this month and terms that disappeared, with the terms Google withholds counted honestly instead of as zero. Use for \"what do people search to find us on Google Maps\", \"which keywords show our Google listing\", \"are people finding us by name or by category\", \"GBP search terms\", \"Google My Business search queries\", \"are we showing up for [service] near me\" — even when the user never says \"keywords\". This is the how-they-found-you view. For views, calls and directions use google-business-profile-performance-report; for what people search before visiting the website use branded-vs-non-branded-search-traffic. Google Business Profile only."
+    },
+    {
       "name": "google-search-console-country-and-device-performance",
       "path": "seo-and-geo/google-search-console-country-and-device-performance",
       "category": "seo-and-geo",
