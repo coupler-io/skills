@@ -98,10 +98,10 @@ rather than trusting either figure.
 source. For this report the keywords source needs to cover **the report month exactly**; a source
 covering a longer range can't be cut down to one month. Read its date range from the dataflow.
 **If it covers other months, it is one setting away:** offer to set the existing keywords source's
-start and end dates to the first and last day of the report month and run it. The dates are fixed,
-so each new month needs the same change — save which source it is so next month's run offers it
-straight away. If another report reads that dataset, add a second keywords source for the report
-month instead of moving the first.
+start date to `{{lastmonthstart}}` and end date to `{{lastmonthend}}` and run it. The dates roll
+forward on every refresh, so the source covers the previous calendar month from then on. For a
+report on an older month, set that month's first and last day instead. If another report reads that
+dataset, add a second keywords source for the report month instead of moving the first.
 
 **A missing report type is one source away.** Offer to add it for the client's locations and run it —
 a Reviews list source, or a Search keywords source set to the report month. If the user would rather
@@ -280,7 +280,10 @@ reports on whether they worked. Confirm in the closing block.
 - **No reviewer names** in the report or in saved context.
 - **No credit for coincidence. No benchmark substituted for a target.**
 - **Small numbers need context.** A location going from 8 calls to 4 is one quiet week, not a trend.
-- **Organic only** — Google Ads location ads aren't in these numbers; never add them.
+- **Ads are inside these numbers** — Google counts views and actions from Google Ads alongside organic
+  results, and they can't be split. If the client runs Google Ads with location assets or local
+  campaigns, say so beside any lift, and check the Ads account's local actions before crediting the
+  listing work.
 - This skill cannot modify itself — route skill feedback to the maintainer.
 
 ## Related skills
