@@ -9,7 +9,7 @@ description: >
 metadata:
   title: "Shopify Inventory Report and Stockout Forecast"
   short_description: "Shows what in your Shopify store will sell out, when you need to reorder, and how much cash is sitting in dead stock."
-  version: 1.0.0
+  version: 1.0.1
   category: ecommerce
   sources:
     - Shopify
@@ -399,10 +399,14 @@ contain and the one that gates the whole skill. **One closing ask, not two.**
 | The question is which products sell, margin by product, or mix shift | `shopify-product-and-variant-performance` |
 | The question is whether the store's revenue moved at all | `shopify-sales-report` |
 | The question is who buys, repeat rate or cohort value | `shopify-customer-retention-and-ltv` |
-| Returns are driving the stock movement — restock versus write-off | `shopify-refunds-and-returns` *(queued)* |
-| Stock or sales by country or market is the subject | `shopify-geo-and-market-performance` *(queued)* |
+| Returns are driving the stock movement — restock versus write-off | `shopify-refunds-and-returns-report` |
+| Stock or sales by country or market is the subject | `shopify-sales-by-country-and-market` |
 | A broad multi-source ecommerce read is wanted rather than this decision | `ecom-analytics` |
 | Ad spend is running behind an item that is about to run out | `ppc-analytics` |
+| The same, during a sale (Black Friday, Cyber Monday, a store sale) | `black-friday-ad-spend-on-low-stock-products` |
+
+Both ad-side skills ship in the `coupler-marketing-ads` plugin. If the one you need isn't available,
+give the stock read and say the ad side wasn't checked.
 
 ## Next Question (REQUIRED)
 

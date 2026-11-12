@@ -2,12 +2,26 @@
 
 Ready-to-use AI agent skills for marketing, PPC, sales, finance, ecommerce, and business reporting. Coupler.io skills give AI assistants repeatable analytics workflows backed by live data from your Coupler.io workspace through the Coupler.io MCP server. Use them to analyze campaign performance, sales pipelines, financial metrics, ecommerce data, generate reports, investigate anomalies, and turn business data into actionable insights.
 
+## New: Black Friday skills
+
+![Black Friday analytics, handled: Claude skills for your BFCM analytics, running on your live Shopify and ad data](.github/assets/black-friday-skills.png)
+
+Four skills for Black Friday and Cyber Monday. They read your Shopify store together with Google Ads, Meta / Facebook Ads and TikTok Ads:
+
+- [**black-friday-last-year-report**](marketing-and-ads/black-friday/black-friday-last-year-report/SKILL.md): what really drove last year's Black Friday, so this year's plan starts from your own numbers.
+- [**black-friday-daily-ad-spend-decisions**](marketing-and-ads/black-friday/black-friday-daily-ad-spend-decisions/SKILL.md): which campaigns to scale, cut or leave alone on each day of the sale.
+- [**black-friday-ad-spend-on-low-stock-products**](marketing-and-ads/black-friday/black-friday-ad-spend-on-low-stock-products/SKILL.md): products you're still advertising that will sell out within hours, and how much spend to move off them.
+- [**black-friday-ads-and-sales-report**](marketing-and-ads/black-friday/black-friday-ads-and-sales-report/SKILL.md): your wrap-up, with spend against budget, what you kept after returns, and what to change next year.
+
+See [Black Friday deep dives](#black-friday-deep-dives) for the full set.
+
 ## Contents
 
 - [What can you do](#what-can-you-do-with-couplerio-skills)
 - [Quick start](#quick-start)
 - [Skills library](#skills-library)
   - [Marketing & PPC](#marketing--ppc)
+  - [SEO & GEO](#seo--geo)
   - [Sales](#sales)
   - [Finance](#finance)
   - [Ecommerce](#ecommerce)
@@ -46,6 +60,7 @@ Then install the skill set you need:
 
 ```
 /plugin install coupler-marketing-ads@coupler-io-skills
+/plugin install coupler-seo-and-geo@coupler-io-skills
 /plugin install coupler-finance@coupler-io-skills
 /plugin install coupler-sales@coupler-io-skills
 /plugin install coupler-ecommerce@coupler-io-skills
@@ -57,7 +72,7 @@ You also need a [Coupler.io](https://coupler.io) account with the MCP server con
 
 ## Skills library
 
-Skills are organized by business function - Finance, Sales, Ecommerce, and Marketing & Ads - with additional shared capabilities and utilities.
+Skills are organized by business function - Finance, Sales, Ecommerce, Marketing & Ads, and SEO & GEO - with additional shared capabilities and utilities.
 
 ### Marketing & PPC
 
@@ -169,27 +184,59 @@ Ten Amazon-only skills in `marketing-and-ads/amazon-ads/`, built on the standard
 | [**amazon-ads-account-settings-and-structure-audit**](marketing-and-ads/amazon-ads/amazon-ads-account-settings-and-structure-audit/SKILL.md) | Prices every Amazon Ads setting and structural choice costing money — effective top-of-search bids, self-competition, brand mixing, crowded ad groups. |
 | [**amazon-ads-client-report**](marketing-and-ads/amazon-ads/amazon-ads-client-report/SKILL.md) | The monthly Amazon Ads report a client can read — scored against agreed targets, misses explained honestly, next month's plan attached. |
 
-#### SEO deep dives
+#### Black Friday deep dives
 
-Seven organic-search skills in `marketing-and-ads/seo/`, built on Google Search Console and GA4. Same shape as the ad packs — each owns a single question and routes to its siblings rather than duplicating them.
-
-| Skill | What it does |
-| --- | --- |
-| [**google-search-console-keyword-opportunities**](marketing-and-ads/seo/google-search-console-keyword-opportunities/SKILL.md) | The earning view — queries ranking just off page one, pages seen but not clicked, and pages cannibalising each other for the same query, each with the action. |
-| [**content-decay-analysis**](marketing-and-ads/seo/content-decay-analysis/SKILL.md) | Pages quietly losing organic traffic — whether it's a ranking slip or fewer people searching, and which are worth refreshing first. |
-| [**seo-landing-page-performance**](marketing-and-ads/seo/seo-landing-page-performance/SKILL.md) | Search to outcome — search clicks and rankings next to engagement, conversions and revenue per landing page. Needs GSC and GA4. |
-| [**google-search-console-country-and-device-performance**](marketing-and-ads/seo/google-search-console-country-and-device-performance/SKILL.md) | Where and on what — clicks, CTR and position by market and by device, against the site's own average. |
-| [**branded-vs-non-branded-search-traffic**](marketing-and-ads/seo/branded-vs-non-branded-search-traffic/SKILL.md) | Whether search growth is new reach or just people who already know you — brand vs non-brand share, trend, and new non-brand queries. |
-| [**new-page-indexing-tracker**](marketing-and-ads/seo/new-page-indexing-tracker/SKILL.md) | Whether new pages get seen — days from publish to first impression, first click and a settled ranking, and which pages went nowhere. |
-| [**ai-traffic-vs-organic-search-report**](marketing-and-ads/seo/ai-traffic-vs-organic-search-report/SKILL.md) | Traffic from ChatGPT, Perplexity, Gemini and Claude against organic search — sessions, engagement, conversions, revenue. Measures referrals, not citations. GA4 only. |
-
-#### GEO deep dives
-
-Generative engine optimization skills in `marketing-and-ads/geo/`, built on AI-visibility exports (Peec AI and similar) joined to GA4, Search Console and your business data.
+Five sale-season skills in `marketing-and-ads/black-friday/`, one per stage of a Black Friday, Cyber Monday, Prime Day or store sale. They read Google Ads, Meta / Facebook Ads and TikTok Ads together with Shopify, and hand off to the per-platform and Shopify skills for anything outside the sale.
 
 | Skill | What it does |
 | --- | --- |
-| [**ai-search-citations-to-revenue**](marketing-and-ads/geo/ai-search-citations-to-revenue/SKILL.md) | Follows the pages ChatGPT, Perplexity and Gemini cite to AI-referred, organic, referral and direct sessions, Search Console clicks, GA4 key events and the orders, deals or payments behind them — and names the stage where the chain breaks. |
+| [**black-friday-last-year-report**](marketing-and-ads/black-friday/black-friday-last-year-report/SKILL.md) | Weeks before the sale — which campaigns and products really drove last year's Black Friday, when orders peaked and how much CPMs rose, so this year's plan starts from your own numbers. |
+| [**black-friday-ads-readiness-check**](marketing-and-ads/black-friday/black-friday-ads-readiness-check/SKILL.md) | 4–6 weeks out — what to fix in the Google, Meta and TikTok accounts and tracking while there's still time, and how to ramp the budget. |
+| [**black-friday-daily-ad-spend-decisions**](marketing-and-ads/black-friday/black-friday-daily-ad-spend-decisions/SKILL.md) | During the sale — which campaigns to scale, cut or leave alone today, with the wait stated for conversions still arriving. |
+| [**black-friday-ad-spend-on-low-stock-products**](marketing-and-ads/black-friday/black-friday-ad-spend-on-low-stock-products/SKILL.md) | During the sale — product ads still running on items about to sell out in Shopify, and how much spend to move off them before they do. |
+| [**black-friday-ads-and-sales-report**](marketing-and-ads/black-friday/black-friday-ads-and-sales-report/SKILL.md) | After the sale — spend against budget, what you kept after returns, and what to change next year. |
+
+### SEO & GEO
+
+Seventeen organic-, local- and AI-search skills in `seo-and-geo/`, installed as their own `coupler-seo-and-geo` plugin.
+
+#### SEO
+
+Twelve organic-search skills built on Google Search Console, with GA4 and Google Ads where a question needs them. Same shape as the ad packs — each owns a single question and routes to its siblings rather than duplicating them.
+
+| Skill | What it does |
+| --- | --- |
+| [**google-search-console-keyword-opportunities**](seo-and-geo/google-search-console-keyword-opportunities/SKILL.md) | The earning view — queries ranking just off page one, pages seen but not clicked, and pages cannibalising each other for the same query, each with the action. |
+| [**content-decay-analysis**](seo-and-geo/content-decay-analysis/SKILL.md) | Pages quietly losing organic traffic — whether it's a ranking slip or fewer people searching, and which are worth refreshing first. |
+| [**seo-landing-page-performance**](seo-and-geo/seo-landing-page-performance/SKILL.md) | Search to outcome — search clicks and rankings next to engagement, conversions and revenue per landing page. Needs GSC and GA4. |
+| [**google-search-console-country-and-device-performance**](seo-and-geo/google-search-console-country-and-device-performance/SKILL.md) | Where and on what — clicks, CTR and position by market and by device, against the site's own average. |
+| [**branded-vs-non-branded-search-traffic**](seo-and-geo/branded-vs-non-branded-search-traffic/SKILL.md) | Whether search growth is new reach or just people who already know you — brand vs non-brand share, trend, and new non-brand queries. |
+| [**new-page-indexing-tracker**](seo-and-geo/new-page-indexing-tracker/SKILL.md) | Whether new pages get seen — days from publish to first impression, first click and a settled ranking, and which pages went nowhere. |
+| [**ai-traffic-vs-organic-search-report**](seo-and-geo/ai-traffic-vs-organic-search-report/SKILL.md) | Traffic from ChatGPT, Perplexity, Gemini and Claude against organic search — sessions, engagement, conversions, revenue. Measures referrals, not citations. GA4 only. |
+| [**organic-traffic-drop-diagnosis**](seo-and-geo/organic-traffic-drop-diagnosis/SKILL.md) | Why organic traffic dropped suddenly — the break date, the lost clicks split by section, page, country, device and brand, and the most likely cause with the one check to run first. GA4 optional. |
+| [**content-refresh-impact**](seo-and-geo/content-refresh-impact/SKILL.md) | Whether updated pages won back search traffic — before and after each refresh, net of how the rest of the site moved, with a verdict per page. Refresh dates from you. |
+| [**topic-cluster-performance**](seo-and-geo/topic-cluster-performance/SKILL.md) | Search traffic by topic instead of page — share of clicks against share of pages, trend, and how much each topic rests on one URL. Topics from a saved rule, URL folders or your patterns. |
+| [**paid-vs-organic-search-overlap**](seo-and-geo/paid-vs-organic-search-overlap/SKILL.md) | Google Ads search terms against Search Console queries — spend on searches you already rank for, paid covering gaps, brand on its own line, and a holdout test plan. Needs Google Ads and GSC. |
+| [**seo-client-report**](seo-and-geo/seo-client-report/SKILL.md) | The monthly SEO report a client reads — KPIs against target, last month and last year, non-brand separated from brand, wins, misses and recommendations. GA4 optional. |
+
+#### Local listings
+
+Four skills on the Google Business Profile listing itself — views on Search and Maps, the calls and direction requests they turn into, reviews and replies, and what people searched to find it. Built on Coupler.io's Google Business Profile source, one report type per skill.
+
+| Skill | What it does |
+| --- | --- |
+| [**google-business-profile-performance-report**](seo-and-geo/google-business-profile-performance-report/SKILL.md) | Views on Search and Maps by phone and desktop, and the calls, website clicks, direction requests and bookings they turn into — per location, against last period and last year. |
+| [**google-business-profile-search-keywords**](seo-and-geo/google-business-profile-search-keywords/SKILL.md) | What people searched before the listing appeared — the business name against what it does, top terms, new and lost terms, with Google's withheld terms counted as a range. |
+| [**google-business-profile-reviews-and-replies**](seo-and-geo/google-business-profile-reviews-and-replies/SKILL.md) | The rating being earned now against the one shown, review volume, low ratings still waiting for a reply, time to reply and recurring themes. |
+| [**google-business-profile-client-report**](seo-and-geo/google-business-profile-client-report/SKILL.md) | The monthly listing report a client reads — calls, directions and reviews against target, last month and last year, with misses and recommendations. |
+
+#### GEO
+
+Generative engine optimization skills, also in `seo-and-geo/`, built on AI-visibility exports (Peec AI and similar) joined to GA4, Search Console and your business data.
+
+| Skill | What it does |
+| --- | --- |
+| [**ai-search-citations-to-revenue**](seo-and-geo/ai-search-citations-to-revenue/SKILL.md) | Follows the pages ChatGPT, Perplexity and Gemini cite to AI-referred, organic, referral and direct sessions, Search Console clicks, GA4 key events and the orders, deals or payments behind them — and names the stage where the chain breaks. |
 
 ### Sales
 
@@ -211,7 +258,7 @@ Generative engine optimization skills in `marketing-and-ads/geo/`, built on AI-v
 
 #### Shopify deep dives
 
-Four Shopify-only skills in `ecommerce/shopify/`. Same shape as the ads packs — each owns a single question and routes to its siblings rather than duplicating them, with `ecom-analytics` still the cross-platform store view. They share their definitions deliberately: store performance is the baseline the others read against, and sell-through, inventory value and dead-stock cash live in one skill only.
+Seven Shopify-only skills in `ecommerce/shopify/`. Same shape as the ads packs — each owns a single question and routes to its siblings rather than duplicating them, with `ecom-analytics` still the cross-platform store view. They share their definitions deliberately: store performance is the baseline the others read against, and sell-through, inventory value and dead-stock cash live in one skill only.
 
 | Skill | What it does |
 | --- | --- |
@@ -219,6 +266,21 @@ Four Shopify-only skills in `ecommerce/shopify/`. Same shape as the ads packs �
 | [**shopify-product-and-variant-performance**](ecommerce/shopify/shopify-product-and-variant-performance/SKILL.md) | Which products and variants earn their place — ranked by money and by margin on the right cost basis, with stock-out distortion flagged instead of buried. |
 | [**shopify-inventory-report-and-stockout-forecast**](ecommerce/shopify/shopify-inventory-report-and-stockout-forecast/SKILL.md) | What runs out, when, what it costs, and the date you must order by — plus inventory value split four ways and the cash parked in dead stock. |
 | [**shopify-customer-retention-and-ltv**](ecommerce/shopify/shopify-customer-retention-and-ltv/SKILL.md) | Which campaign and which first offer bought customers who came back — cohorts cut by UTM and discount status, with open cohorts excluded from every comparison. |
+| [**shopify-discount-code-performance**](ecommerce/shopify/shopify-discount-code-performance/SKILL.md) | What each discount code and automatic discount costs, who uses it, and how deep a discount the store's margin can carry, with markdowns kept apart from discounts. |
+| [**shopify-refunds-and-returns-report**](ecommerce/shopify/shopify-refunds-and-returns-report/SKILL.md) | Which products and sizes come back, how much goes back on the shelf, and what refunds cost, with confirmed returns kept apart from refunds where nothing came back. |
+| [**shopify-sales-by-country-and-market**](ecommerce/shopify/shopify-sales-by-country-and-market/SKILL.md) | Which countries the store sells to, how each is growing, and which lose money to refunds or discounts, compared on a like-for-like tax basis. |
+
+#### Klaviyo, Gorgias and Cin7 deep dives
+
+Store-side skills for the tools around the shop, in `ecommerce/klaviyo/`, `ecommerce/gorgias/` and `ecommerce/cin7/`. Same shape as the Shopify pack, and they route to it where the question is about store sales.
+
+| Skill | What it does |
+| --- | --- |
+| [**klaviyo-flow-performance-vs-benchmarks**](ecommerce/klaviyo/klaviyo-flow-performance-vs-benchmarks/SKILL.md) | How each Klaviyo flow earns per recipient against its own history and Klaviyo's published benchmarks, per channel, and which flows are missing. |
+| [**klaviyo-email-deliverability-check**](ecommerce/klaviyo/klaviyo-email-deliverability-check/SKILL.md) | Spam complaints, bounces and unsubscribes on every send against Klaviyo's limits, and which campaigns, flows or segments are causing them. |
+| [**klaviyo-revenue-share-of-shopify-sales**](ecommerce/klaviyo/klaviyo-revenue-share-of-shopify-sales/SKILL.md) | How much of the store's revenue Klaviyo credits to email and SMS, split by flows and campaigns, on a stated attribution basis. Needs Klaviyo and Shopify. |
+| [**gorgias-support-tickets-per-order**](ecommerce/gorgias/gorgias-support-tickets-per-order/SKILL.md) | Support tickets per order, what customers contact the store about, and which cause to fix first. Needs Gorgias and Shopify. |
+| [**cin7-reorder-point-and-stock-cover**](ecommerce/cin7/cin7-reorder-point-and-stock-cover/SKILL.md) | Which SKUs to reorder and by when, per location, from the real sales rate and supplier lead times, with safety stock at a chosen service level. Cin7 Core. |
 
 ### Capabilities
 
@@ -297,15 +359,16 @@ Each business function is its own plugin, so you install only what you need. Ava
 | --- | --- |
 | `coupler-finance` | finance-analytics |
 | `coupler-sales` | sales-analytics |
-| `coupler-ecommerce` | ecom-analytics |
-| `coupler-marketing-ads` | marketing-analytics, ppc-analytics, + the 8 Google Ads, 11 Meta / Facebook Ads, 11 TikTok Ads, 11 Microsoft Ads, 10 LinkedIn Ads and 10 Amazon Ads deep dives, + the 7 SEO skills and 1 GEO skill |
+| `coupler-ecommerce` | ecom-analytics, + the 7 Shopify, 3 Klaviyo, 1 Gorgias and 1 Cin7 deep dives |
+| `coupler-marketing-ads` | marketing-analytics, ppc-analytics, + the 8 Google Ads, 11 Meta / Facebook Ads, 11 TikTok Ads, 11 Microsoft Ads, 10 LinkedIn Ads and 10 Amazon Ads deep dives, + the 5 Black Friday skills |
+| `coupler-seo-and-geo` | the 12 SEO skills, 4 Google Business Profile skills and 1 GEO skill |
 | `coupler-capability` | get-started, create-dataflow, google-ads-custom-gaql, generate-data-set-context, refine-prompt, report-generation |
 | `coupler-utilities` | coupler-io-live-dashboard |
 | `humanizer` | humanizer-remove-ai-writing-patterns (+ `/humanize` command) |
 
 Plugin skills are namespaced by their plugin, so they can be invoked explicitly as `/coupler-finance:finance-analytics`. Most of them are model-invoked too — Claude reaches for them when the request matches their description. If the install summary says `Run /reload-plugins to activate.`, run that.
 
-**Install only the plugin you need.** Every skill's description stays in context for the whole session, so a plugin's cost scales with how many skills it carries. `coupler-marketing-ads` bundles 71 and adds roughly 13k tokens to every session; the single-skill plugins add a few hundred. Check any plugin before installing it:
+**Install only the plugin you need.** Every skill's description stays in context for the whole session, so a plugin's cost scales with how many skills it carries. `coupler-marketing-ads` bundles 68 and adds roughly 13k tokens to every session; the single-skill plugins add a few hundred. Check any plugin before installing it:
 
 ```
 claude plugin details coupler-marketing-ads@coupler-io-skills

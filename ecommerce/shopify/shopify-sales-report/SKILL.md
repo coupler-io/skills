@@ -145,8 +145,8 @@ of three things, and naming the wrong one sends the team in the wrong direction.
 |---|---|---|
 | Orders down, AOV flat | Demand — fewer people bought | Traffic work; this connector can't see sessions |
 | Orders flat, AOV down | Order size — cheaper mix, deeper discounts, fewer items | `shopify-product-and-variant-performance` |
-| Orders and AOV flat, net sales down | Reversals | `shopify-refunds-and-returns` *(queued)* |
-| Orders up, net sales flat | Growth bought with discount | `shopify-discount-performance` *(queued)* |
+| Orders and AOV flat, net sales down | Reversals | `shopify-refunds-and-returns-report` |
+| Orders up, net sales flat | Growth bought with discount | `shopify-discount-code-performance` |
 | AOV up, items per order flat | Price or mix moved up | Product mix |
 | AOV up, items per order up | Basket got bigger | Bundling or a threshold working |
 
@@ -248,9 +248,9 @@ the same closing block. **One closing ask, not two.**
 | The question is which products drove it | `shopify-product-and-variant-performance` |
 | Stock, reorder timing or what stock is worth | `shopify-inventory-report-and-stockout-forecast` |
 | Repeat rate, cohorts or customer value | `shopify-customer-retention-and-ltv` |
-| Returns, restock-vs-writeoff or return reasons | `shopify-refunds-and-returns` *(queued)* |
-| Discount depth or break-even discount | `shopify-discount-performance` *(queued)* |
-| Sales by country or market | `shopify-geo-and-market-performance` *(queued)* |
+| Returns, restock-vs-writeoff or return reasons | `shopify-refunds-and-returns-report` |
+| Discount depth or break-even discount | `shopify-discount-code-performance` |
+| Sales by country or market | `shopify-sales-by-country-and-market` |
 | Conversion rate, sessions or traffic alongside orders | `ecommerce-trading-report` *(queued)* |
 | A broad multi-source ecommerce read | `ecom-analytics` |
 | Ad spend, ROAS or CPA | `ppc-analytics` |

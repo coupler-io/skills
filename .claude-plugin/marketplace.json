@@ -4,8 +4,8 @@
     "name": "Coupler.io"
   },
   "metadata": {
-    "description": "Coupler.io-authored Claude Code skills and plugins for business analytics by function (finance, sales, ecommerce, marketing & ads) plus shared capability skills and utilities",
-    "version": "1.7.0"
+    "description": "Coupler.io-authored Claude Code skills and plugins for business analytics by function (finance, sales, ecommerce, marketing & ads, SEO & GEO) plus shared capability skills and utilities",
+    "version": "1.11.0"
   },
   "plugins": [
     {
@@ -39,7 +39,15 @@
         "./ecommerce/shopify/shopify-sales-report",
         "./ecommerce/shopify/shopify-product-and-variant-performance",
         "./ecommerce/shopify/shopify-inventory-report-and-stockout-forecast",
-        "./ecommerce/shopify/shopify-customer-retention-and-ltv"
+        "./ecommerce/shopify/shopify-customer-retention-and-ltv",
+        "./ecommerce/shopify/shopify-discount-code-performance",
+        "./ecommerce/shopify/shopify-refunds-and-returns-report",
+        "./ecommerce/shopify/shopify-sales-by-country-and-market",
+        "./ecommerce/klaviyo/klaviyo-flow-performance-vs-benchmarks",
+        "./ecommerce/klaviyo/klaviyo-email-deliverability-check",
+        "./ecommerce/klaviyo/klaviyo-revenue-share-of-shopify-sales",
+        "./ecommerce/gorgias/gorgias-support-tickets-per-order",
+        "./ecommerce/cin7/cin7-reorder-point-and-stock-cover"
       ]
     },
     {
@@ -112,14 +120,37 @@
         "./marketing-and-ads/amazon-ads/amazon-ads-attribution-and-metrics-audit",
         "./marketing-and-ads/amazon-ads/amazon-ads-account-settings-and-structure-audit",
         "./marketing-and-ads/amazon-ads/amazon-ads-client-report",
-        "./marketing-and-ads/seo/google-search-console-keyword-opportunities",
-        "./marketing-and-ads/seo/content-decay-analysis",
-        "./marketing-and-ads/seo/seo-landing-page-performance",
-        "./marketing-and-ads/seo/google-search-console-country-and-device-performance",
-        "./marketing-and-ads/seo/branded-vs-non-branded-search-traffic",
-        "./marketing-and-ads/seo/new-page-indexing-tracker",
-        "./marketing-and-ads/seo/ai-traffic-vs-organic-search-report",
-        "./marketing-and-ads/geo/ai-search-citations-to-revenue"
+        "./marketing-and-ads/black-friday/black-friday-last-year-report",
+        "./marketing-and-ads/black-friday/black-friday-ads-readiness-check",
+        "./marketing-and-ads/black-friday/black-friday-daily-ad-spend-decisions",
+        "./marketing-and-ads/black-friday/black-friday-ad-spend-on-low-stock-products",
+        "./marketing-and-ads/black-friday/black-friday-ads-and-sales-report"
+      ]
+    },
+    {
+      "name": "coupler-seo-and-geo",
+      "source": "./",
+      "strict": false,
+      "description": "SEO / organic-search and GEO / AI-search analytics over your Coupler.io data.",
+      "category": "seo-and-geo",
+      "skills": [
+        "./seo-and-geo/google-search-console-keyword-opportunities",
+        "./seo-and-geo/content-decay-analysis",
+        "./seo-and-geo/seo-landing-page-performance",
+        "./seo-and-geo/google-search-console-country-and-device-performance",
+        "./seo-and-geo/branded-vs-non-branded-search-traffic",
+        "./seo-and-geo/new-page-indexing-tracker",
+        "./seo-and-geo/ai-traffic-vs-organic-search-report",
+        "./seo-and-geo/organic-traffic-drop-diagnosis",
+        "./seo-and-geo/content-refresh-impact",
+        "./seo-and-geo/topic-cluster-performance",
+        "./seo-and-geo/paid-vs-organic-search-overlap",
+        "./seo-and-geo/seo-client-report",
+        "./seo-and-geo/ai-search-citations-to-revenue",
+        "./seo-and-geo/google-business-profile-performance-report",
+        "./seo-and-geo/google-business-profile-search-keywords",
+        "./seo-and-geo/google-business-profile-reviews-and-replies",
+        "./seo-and-geo/google-business-profile-client-report"
       ]
     },
     {
