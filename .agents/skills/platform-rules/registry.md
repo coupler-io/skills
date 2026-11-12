@@ -53,6 +53,12 @@ marks a use in an open PR that isn't on main yet.
 | gbp-reporting-lag | How long before a day's listing metrics are reported | Coupler.io's help page: daily metrics are finalised after ~2 AM PT. Unreported days arrive as zeros. Not measured: on 2026-11-02 the pull day was zero and so were the Saturday and Sunday before it, but that listing's only earlier all-zero days were weekends, so lag and quiet days can't be told apart. Re-read the test dataset after a refresh to see whether 31 Oct and 1 Nov fill in | https://docs.coupler.io/sources/category/marketing/google-business-profile.md; live Coupler.io dataset | 2026-11-02 | Secondhand | `google-business-profile-performance-report` ("finalised after about 2 AM PT"), `google-business-profile-client-report` ("about 2 AM PT") |
 | gbp-history-window | How far back daily metrics go | A request for 548 days returned all 549 days with data from the first day (2025-05-03 to 2026-11-02). Coupler.io's help page says about 90 days. Google's page states no window | Observed on a live Coupler.io dataset; https://docs.coupler.io/sources/category/marketing/google-business-profile.md | 2026-11-02 | Unverifiable | `google-business-profile-performance-report` ("18 months"), `google-business-profile-client-report` ("18 months"). Coupler's help page contradicts the live data — worth a docs fix |
 
+## Accounting
+
+| ID | Rule | Value | Source | Checked | Status | Used in |
+|---|---|---|---|---|---|---|
+| quickbooks-catch-all-accounts | Which accounts QuickBooks Online creates for items it can't match | Uncategorized Income, Uncategorized Expense and Uncategorized Asset hold transactions QuickBooks can't match to an account; they can be edited but not deactivated or merged. Reconciliation Discrepancies is created when a reconciliation doesn't match the bank statement. Names can be edited; UK spelling "Uncategorised" | https://quickbooks.intuit.com/learn-support/en-us/help-article/chart-accounts/manage-default-special-accounts-chart-accounts/L3WvLaIfa_US_en_US (read through a search summary, not fetched) | 2026-11-12 | Secondhand | `quickbooks-books-health-and-close-check` ("Uncategorized Asset", "Reconciliation Discrepancies") |
+
 ## Calendar
 
 | ID | Rule | Value | Source | Checked | Status | Used in |
