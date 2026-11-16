@@ -250,6 +250,26 @@ Generative engine optimization skills, also in `seo-and-geo/`, built on AI-visib
 | --- | --- |
 | [**finance-analytics**](finance/finance-analytics/SKILL.md) | Financial performance — P&L review, MRR/ARR bridge, cash runway, cost-center investigation. Works with QuickBooks, Xero, NetSuite, Stripe, Sage, and more. |
 
+#### QuickBooks deep dives
+
+| Skill | What it does |
+| --- | --- |
+| [**quickbooks-profit-and-loss-review**](finance/quickbooks/quickbooks-profit-and-loss-review/SKILL.md) | Shows what moved your QuickBooks profit this month, which accounts drove it, and whether a change is real or a recoding. |
+| [**quickbooks-books-health-and-close-check**](finance/quickbooks/quickbooks-books-health-and-close-check/SKILL.md) | Checks whether your QuickBooks books are clean enough to report on and which reports a ledger problem would distort. |
+| [**quickbooks-balance-sheet-and-working-capital**](finance/quickbooks/quickbooks-balance-sheet-and-working-capital/SKILL.md) | Shows your QuickBooks working capital, how many days customers and vendors take to pay, and what moved your cash. |
+| [**quickbooks-budget-vs-actual-variance**](finance/quickbooks/quickbooks-budget-vs-actual-variance/SKILL.md) | Shows which lines are over or under your QuickBooks budget, by how much, and where the full year is heading. |
+| [**quickbooks-multi-entity-consolidation**](finance/quickbooks/quickbooks-multi-entity-consolidation/SKILL.md) | Combines several QuickBooks companies into one group P&L and balance sheet in one currency, with intercompany removed. |
+
+#### Xero deep dives
+
+| Skill | What it does |
+| --- | --- |
+| [**xero-profit-and-loss-review**](finance/xero/xero-profit-and-loss-review/SKILL.md) | Shows what moved your Xero profit this month, which accounts drove it, and whether a change is real or a recoding. |
+| [**xero-books-health-and-close-check**](finance/xero/xero-books-health-and-close-check/SKILL.md) | Checks whether your Xero books are clean enough to report on and which reports a ledger problem would distort. |
+| [**xero-balance-sheet-and-working-capital**](finance/xero/xero-balance-sheet-and-working-capital/SKILL.md) | Shows your Xero working capital, how many days customers and suppliers take to pay, and what moved your cash. |
+| [**xero-budget-vs-actual-variance**](finance/xero/xero-budget-vs-actual-variance/SKILL.md) | Shows which lines are over or under your Xero budget, by how much, and where the full year is heading. |
+| [**xero-multi-entity-consolidation**](finance/xero/xero-multi-entity-consolidation/SKILL.md) | Combines several Xero organisations into one group P&L and balance sheet in one currency, with intercompany removed. |
+
 ### Ecommerce
 
 | Skill | What it does |
@@ -357,7 +377,7 @@ Each business function is its own plugin, so you install only what you need. Ava
 
 | Plugin | Skills it installs |
 | --- | --- |
-| `coupler-finance` | finance-analytics |
+| `coupler-finance` | finance-analytics, + the 5 QuickBooks and 5 Xero deep dives |
 | `coupler-sales` | sales-analytics |
 | `coupler-ecommerce` | ecom-analytics, + the 7 Shopify, 3 Klaviyo, 1 Gorgias and 1 Cin7 deep dives |
 | `coupler-marketing-ads` | marketing-analytics, ppc-analytics, + the 8 Google Ads, 11 Meta / Facebook Ads, 11 TikTok Ads, 11 Microsoft Ads, 10 LinkedIn Ads and 10 Amazon Ads deep dives, + the 5 Black Friday skills |

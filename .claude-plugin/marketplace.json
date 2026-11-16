@@ -5,17 +5,27 @@
   },
   "metadata": {
     "description": "Coupler.io-authored Claude Code skills and plugins for business analytics by function (finance, sales, ecommerce, marketing & ads, SEO & GEO) plus shared capability skills and utilities",
-    "version": "1.11.0"
+    "version": "1.12.0"
   },
   "plugins": [
     {
       "name": "coupler-finance",
       "source": "./",
       "strict": false,
-      "description": "Finance analytics over your Coupler.io data.",
+      "description": "Finance analytics over your Coupler.io data, plus QuickBooks and Xero deep dives.",
       "category": "finance",
       "skills": [
-        "./finance/finance-analytics"
+        "./finance/finance-analytics",
+        "./finance/quickbooks/quickbooks-profit-and-loss-review",
+        "./finance/quickbooks/quickbooks-books-health-and-close-check",
+        "./finance/quickbooks/quickbooks-balance-sheet-and-working-capital",
+        "./finance/quickbooks/quickbooks-budget-vs-actual-variance",
+        "./finance/quickbooks/quickbooks-multi-entity-consolidation",
+        "./finance/xero/xero-profit-and-loss-review",
+        "./finance/xero/xero-books-health-and-close-check",
+        "./finance/xero/xero-balance-sheet-and-working-capital",
+        "./finance/xero/xero-budget-vs-actual-variance",
+        "./finance/xero/xero-multi-entity-consolidation"
       ]
     },
     {
