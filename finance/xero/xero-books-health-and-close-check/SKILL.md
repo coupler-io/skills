@@ -79,7 +79,7 @@ A rebuilt figure that disagrees with Xero's is a second problem, not an answer.
 several, run the check per organisation and never blend them into one verdict.
 
 **Read the schema before naming a column.** Column labels on these entities are not fixed across
-dataflows; check what each one holds before using it. The report carries total rows (Total Income, Gross Profit, Net Profit and the like) beside the account rows; find what marks a total row, then sum account rows or read the totals, never both.
+dataflows; check what each one holds before using it. The report carries total rows (Total Assets, Total Liabilities, Total Equity and the like) beside the account rows; find what marks a total row, then sum account rows or read the totals, never both.
 
 A missing report type is one source away, not a dead end. Offer to add it to the dataflow, or tell
 the user which report type to add.

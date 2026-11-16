@@ -95,8 +95,14 @@ with money in suspense is partly a coding problem.
 
 **No budget, no variance analysis.** A dataflow with no Budget Summary dataset is a missing source,
 not a missing budget: offer to add a Xero Reports source with Budget Summary, Date-by-row format,
-Period Month, covering the same months as the P&L. If the Budget Summary returns no rows or all zeros for the
-period, stop. Don't compare against last year, a trailing average or an industry figure and call
+Period Month, covering the same months as the P&L.
+
+Budget Summary runs forward: its date is the **first** month and its periods the total number of
+months (up to 12). Set the date to the start of the financial year and periods to 12. The P&L runs
+backward: set it to end on the last complete month, with comparison periods back to the start of
+the financial year (up to 11). Check the dates on both before reading an empty budget as no budget.
+
+If the Budget Summary, set this way, returns no rows or all zeros for the period, stop. Don't compare against last year, a trailing average or an industry figure and call
 it a budget. Say there's no budget in Xero for the period and offer the P&L review instead.
 
 **Variance threshold.** What counts as worth acting on depends on the business. If none is saved,

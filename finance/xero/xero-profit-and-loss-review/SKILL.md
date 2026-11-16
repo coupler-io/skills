@@ -68,8 +68,10 @@ Xero's own account classification, so the totals match what the accountant sees.
   prior year. Offer to add it rather than dropping the comparison silently.
 - **Tracking categories** split the P&L by department, region or whatever the organisation tracks.
   A Profit And Loss source takes up to two, set by ID (Tracking category ID and ID-2). Read the IDs
-  from the Xero connector's Tracking categories entity, then offer to set them on the source where
-  the user asks "by department".
+  from the Xero connector's Tracking categories entity. **A source with a tracking category returns
+  one period only, with no comparison periods**, so never set one on the monthly source. For a
+  split, offer to add a separate Profit And Loss source per period you need to compare (usually the
+  anchor month and the month before), each with the tracking category set.
 - **Journals and Manual journals** from the Xero connector, only when a line needs explaining.
 
 **One Xero organisation per review.** For several organisations combined, route to
@@ -86,7 +88,7 @@ chart of accounts. The report carries total rows (Total Income, Gross Profit, Ne
 | 4+ months | Trailing three-month average | Compare to last month only |
 | Same month last year | Year-on-year, seasonality | Say the comparison may be seasonal |
 | Account sections (income, cost of sales, expenses) | Gross profit and gross margin | Report net profit only, and say why |
-| Tracking category | P&L by department or region | Whole-organisation only |
+| Tracking category on a separate single-period source | P&L by department or region for that period | Whole-organisation only |
 | Journals or manual journals | Recoding and one-off checks name the transaction | Flag the pattern, can't name the entry |
 | A saved close check result for this period | Status line from the close check | Say the books haven't been checked this period |
 
@@ -114,20 +116,22 @@ is not comparable to a closed one.
 | Operating expenses ratio | Operating expenses ÷ revenue |
 | Operating profit | Gross profit − operating expenses |
 | Net profit | As Xero reports it, including other income and expenses |
-| Line contribution | That line's change ÷ the change in net profit, with sign |
+| Line effect on profit | That line's change in money, signed by its effect on profit |
 
 **Rebuild margins from summed totals**, never by averaging monthly margins.
 
-**Rank lines by their change in money, not percentage.** A 300% rise on a $200 line is noise; a 6%
-rise on payroll may be the whole story. Show the top lines that together explain at least 80% of
-the change in net profit.
+**Report the lines that matter.** Rank by the size of each line's effect on profit, not
+percentage. A 300% rise on a $200 line is noise; a 6% rise on payroll may be the whole story. Show
+every line whose effect exceeds the materiality threshold, largest first, plus any line a section F
+check flagged, whatever its size. Group the rest as `Other (n)`.
 
 **Sign convention.** Income lines and expense lines move profit in opposite directions. State each
 line's effect on profit ("−$4,200 to profit"), not its raw movement.
 
 ## F. Is the move real?
 
-Check each top line before calling it a result.
+**Check every line.** Run these checks on every account, not only the largest movers — a recoding
+or missing bill often sits on lines that net to nothing, or on a drop too small to rank.
 
 | Pattern | Likely cause | Say |
 |---|---|---|
@@ -141,8 +145,9 @@ Check each top line before calling it a result.
 **Check the calendar before diagnosing.** Months differ in length and working days; payroll months
 with three pay runs happen. Name it where it explains the move.
 
-**A change in net profit within the saved materiality threshold is flat.** Say so and don't build
-a story on noise. If no threshold is saved, use the one from the close check, or suggest 0.5% of the
+**A change in net profit within the saved materiality threshold is flat**, unless lines moving in
+opposite directions each exceed it; then the offset is the finding. Otherwise say it's flat and
+don't build a story on noise. If no threshold is saved, use the one from the close check, or suggest 0.5% of the
 month's revenue and confirm it with the coverage verdict.
 
 ## G. Deliver (MANDATORY)

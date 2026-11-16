@@ -77,26 +77,29 @@ take the month-end row.
 `quickbooks-multi-entity-consolidation`.
 
 **Read the schema before naming a column.** Section labels come from the company's chart of
-accounts; check which section each account sits in. The report carries total rows (Total Income, Gross Profit, Net Income and the like) beside the account rows; find what marks a total row, then sum account rows or read the totals, never both.
+accounts; check which section each account sits in. The report carries total rows (Total Assets, Total Liabilities, Total Equity and the like) beside the account rows; find what marks a total row, then sum account rows or read the totals, never both.
 
-**Report settings are the user's to change.** On a QuickBooks Reports source, the report, period,
-structure, columns and "Display columns by" are set in the source's settings in Coupler.io, not by
-you. Where a fix below needs one, name the setting and the value, ask the user to change it, and
-read the schema again once they say it's done.
+**Most report settings you can change; query parameters you can't.** On a QuickBooks Reports
+source, propose any change to the report, period, structure, columns or "Display columns by", say
+what it fixes, and make it once the user agrees. Query parameters are entered in the wizard only:
+name the key and value, ask the user to add it, and read the schema again once they say it's done.
 
 ## C. Coverage verdict — say this out loud before querying
 
 | Present | Live | Absent means |
 |---|---|---|
-| Balance Sheet at the month end | Working capital, current and quick ratio | Nothing runs. Ask the user to add a QuickBooks Reports source: Balance Sheet, Values-by-row format, columns by Month, a Custom period ending on the month end |
+| Balance Sheet at the month end | Working capital, current and quick ratio | Nothing runs. Offer to add a QuickBooks Reports source: Balance Sheet, Values-by-row format, columns by Month, a Custom period ending on the month end |
 | Balance Sheet at 2+ month ends | What changed, cash absorbed or released | Snapshot only |
-| P&L for the same months | DSO, DPO, profit against cash | Day measures dead. Ask the user to add a Profit and Loss Summary source for the same months, columns by Month |
+| P&L for the same months | DSO, DPO, profit against cash | Day measures dead. Offer to add a Profit and Loss Summary source for the same months, columns by Month |
 | An inventory account with a balance | Inventory days, full cash conversion cycle | Cycle is DSO − DPO; say there's no stock |
 | Cost of sales on the P&L | DPO on cost of sales | DPO on total costs; say so (see E) |
 | A saved close check result for this month | Status line | Say the books haven't been checked this month |
 
-**Basis.** The connector has no accrual/cash setting; reports run on the company's default reporting
-basis. Use the basis saved by the close check, or ask. On a cash basis receivables and payables
+**Basis.** A QuickBooks Reports source runs on the company's default reporting basis unless the
+user has set `accounting_method` (`Cash` or `Accrual`) in its query parameters, which only the user
+can do. Use the basis saved by the close check, or ask, and name the basis on every figure. Where
+the Balance Sheet and P&L sources don't match, say so, mention that the `accounting_method` query
+parameter sets the basis per source, and let the user decide how to handle it. On a cash basis receivables and payables
 don't reflect unpaid invoices and bills, so DSO and DPO can't be computed; say so and stop the day
 measures.
 

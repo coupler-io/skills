@@ -68,6 +68,11 @@ Say which datasets you picked.
 **QuickBooks' own Budget vs Actuals report is not in this connector**, so the comparison is built
 from the budget entity and the P&L. Say so in the output.
 
+**Split the budget lines into rows.** On the QuickBooks Budget source, set "Split by" to the
+budget's line array (offer to set it), so each budget line — account, month, amount — is its own
+row. Without it, lines arrive as numbered columns on one row per budget, and there's nothing to
+join on.
+
 **A company can hold several budgets.** The budget data carries every one. Pick one by name and
 financial year, confirm it with the user, and save the choice. Never add two budgets together.
 
@@ -86,10 +91,10 @@ Read the schema to see which they carry. The report carries total rows (Total In
 
 **One QuickBooks company per read.**
 
-**Report settings are the user's to change.** On a QuickBooks Reports source, the report, period,
-structure, columns and "Display columns by" are set in the source's settings in Coupler.io, not by
-you. Where a fix below needs one, name the setting and the value, ask the user to change it, and
-read the schema again once they say it's done.
+**Most report settings you can change; query parameters you can't.** On a QuickBooks Reports
+source, propose any change to the report, period, structure, columns or "Display columns by", say
+what it fixes, and make it once the user agrees. Query parameters are entered in the wizard only:
+name the key and value, ask the user to add it, and read the schema again once they say it's done.
 
 ## C. Coverage verdict — say this out loud before querying
 
@@ -100,9 +105,13 @@ read the schema again once they say it's done.
 | Account ids on both | Clean join | Join on name; list any that didn't match |
 | A saved close check result for the latest month | Status line | Say the books haven't been checked this month |
 
-**Basis.** The P&L runs on the company's default reporting basis; the connector has no setting for
-it. Use the basis saved by the close check, or ask. A budget is usually built on an accrual view;
-comparing cash actuals to it misstates every timing line. Name the basis and flag the mismatch.
+**Basis.** A QuickBooks Reports source runs on the company's default reporting basis unless the
+user has set `accounting_method` (`Cash` or `Accrual`) in its query parameters, which only the user
+can do. Use the basis saved by the close check, or ask, and name the basis on every figure. A
+budget is usually built on an accrual view; comparing cash actuals to it misstates every timing
+line. Where they don't match, say so, mention that the `accounting_method` query parameter sets the
+basis on the P&L source, and let the user decide how to handle it. Never compare a cash figure to
+an accrual one.
 
 **If the saved close check said "don't report yet"**, say so in the first line. A variance on books
 with money in Uncategorized Expense is partly a coding problem.

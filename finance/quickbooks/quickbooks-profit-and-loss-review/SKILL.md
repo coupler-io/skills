@@ -77,25 +77,28 @@ it applies QuickBooks' own account classification, so the totals match what the 
 **Read the schema before naming a column.** Section and account labels come from the company's
 chart of accounts. The report carries total rows (Total Income, Gross Profit, Net Income and the like) beside the account rows; find what marks a total row, then sum account rows or read the totals, never both.
 
-**Report settings are the user's to change.** On a QuickBooks Reports source, the report, period,
-structure, columns and "Display columns by" are set in the source's settings in Coupler.io, not by
-you. Where a fix below needs one, name the setting and the value, ask the user to change it, and
-read the schema again once they say it's done.
+**Most report settings you can change; query parameters you can't.** On a QuickBooks Reports
+source, propose any change to the report, period, structure, columns or "Display columns by", say
+what it fixes, and make it once the user agrees. Query parameters are entered in the wizard only:
+name the key and value, ask the user to add it, and read the schema again once they say it's done.
 
 ## C. Coverage verdict — say this out loud before querying
 
 | Present | Live | Absent means |
 |---|---|---|
-| P&L by account by month, at least 2 months | The ladder, month on month, line drivers | Nothing runs. Ask the user to add a QuickBooks Reports source: Profit and Loss Summary, Values-by-row format, columns by Month, a Custom period of 13 months |
+| P&L by account by month, at least 2 months | The ladder, month on month, line drivers | Nothing runs. Offer to add a QuickBooks Reports source: Profit and Loss Summary, Values-by-row format, columns by Month, a Custom period of 13 months |
 | 4+ months | Trailing three-month average | Compare to last month only |
 | Same month last year | Year-on-year, seasonality | Say the comparison may be seasonal |
 | Account sections (income, cost of sales, expenses) | Gross profit and gross margin | Report net profit only, and say why |
 | A class or location split | P&L by class or location | Whole-company only |
-| Profit and Loss Detail | Recoding and one-off checks name the transaction | Flag the pattern, can't name the entry. Ask the user to add a Profit and Loss Detail source for the month |
+| Profit and Loss Detail | Recoding and one-off checks name the transaction | Flag the pattern, can't name the entry. Offer to add a Profit and Loss Detail source for the month |
 | A saved close check result for this period | Status line from the close check | Say the books haven't been checked this period |
 
-**Basis.** The connector has no accrual/cash setting; the report runs on the company's default
-reporting basis. Use the basis saved by the close check, or ask. Never compare a cash month to an
+**Basis.** A QuickBooks Reports source runs on the company's default reporting basis unless the
+user has set `accounting_method` (`Cash` or `Accrual`) in its query parameters, which only the user
+can do. Use the basis saved by the close check, or ask, and name the basis on every figure. Where
+sources that must match don't, say so, mention that the `accounting_method` query parameter sets
+the basis per source, and let the user decide how to handle it. Never compare a cash month to an
 accrual month.
 
 **If the saved close check said "don't report yet"** for this period, say so in the first line, name
@@ -119,20 +122,22 @@ is not comparable to a closed one.
 | Operating expenses ratio | Operating expenses ÷ revenue |
 | Operating profit | Gross profit − operating expenses |
 | Net profit | As QuickBooks reports it, including other income and expenses |
-| Line contribution | That line's change ÷ the change in net profit, with sign |
+| Line effect on profit | That line's change in money, signed by its effect on profit |
 
 **Rebuild margins from summed totals**, never by averaging monthly margins.
 
-**Rank lines by their change in money, not percentage.** A 300% rise on a $200 line is noise; a 6%
-rise on payroll may be the whole story. Show the top lines that together explain at least 80% of
-the change in net profit.
+**Report the lines that matter.** Rank by the size of each line's effect on profit, not
+percentage. A 300% rise on a $200 line is noise; a 6% rise on payroll may be the whole story. Show
+every line whose effect exceeds the materiality threshold, largest first, plus any line a section F
+check flagged, whatever its size. Group the rest as `Other (n)`.
 
 **Sign convention.** Income lines and expense lines move profit in opposite directions. State each
 line's effect on profit ("−$4,200 to profit"), not its raw movement.
 
 ## F. Is the move real?
 
-Check each top line before calling it a result.
+**Check every line.** Run these checks on every account, not only the largest movers — a recoding
+or missing bill often sits on lines that net to nothing, or on a drop too small to rank.
 
 | Pattern | Likely cause | Say |
 |---|---|---|
@@ -147,8 +152,9 @@ Check each top line before calling it a result.
 **Check the calendar before diagnosing.** Months differ in length and working days; payroll months
 with three pay runs happen. Name it where it explains the move.
 
-**A change in net profit within the saved materiality threshold is flat.** Say so and don't build
-a story on noise. If no threshold is saved, use the one from the close check, or suggest 0.5% of the
+**A change in net profit within the saved materiality threshold is flat**, unless lines moving in
+opposite directions each exceed it; then the offset is the finding. Otherwise say it's flat and
+don't build a story on noise. If no threshold is saved, use the one from the close check, or suggest 0.5% of the
 month's revenue and confirm it with the coverage verdict.
 
 ## G. Deliver (MANDATORY)

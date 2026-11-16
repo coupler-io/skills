@@ -75,23 +75,26 @@ Each company is a separate QuickBooks connection and a separate source. A datafl
 sources; **check that every row shows which company it came from** before combining. If rows can't
 be told apart, query each company's dataset separately.
 
-**Every company must use the same period and the same reporting basis.** The connector has no
-accrual/cash setting, so each report runs on its company's default; use the basis saved by each
-company's close check, or ask. Never combine a cash company with an accrual one.
+**Every company must use the same period and the same reporting basis.** A QuickBooks Reports
+source runs on its company's default reporting basis unless the user has set `accounting_method`
+(`Cash` or `Accrual`) in its query parameters, which only the user can do. Use the basis saved by
+each company's close check, or ask, and name the basis on every figure. Where companies don't
+match, say so, mention that the `accounting_method` query parameter sets the basis per source, and
+let the user decide how to handle it. Never combine a cash company with an accrual one.
 
 **Read the schema before naming a column.** Charts of accounts differ between companies. The report carries total rows (Total Income, Gross Profit, Net Income and the like) beside the account rows; find what marks a total row, then sum account rows or read the totals, never both.
 
-**Report settings are the user's to change.** On a QuickBooks Reports source, the report, period,
-structure, columns and "Display columns by" are set in the source's settings in Coupler.io, not by
-you. Where a fix below needs one, name the setting and the value, ask the user to change it, and
-read the schema again once they say it's done.
+**Most report settings you can change; query parameters you can't.** On a QuickBooks Reports
+source, propose any change to the report, period, structure, columns or "Display columns by", say
+what it fixes, and make it once the user agrees. Query parameters are entered in the wizard only:
+name the key and value, ask the user to add it, and read the schema again once they say it's done.
 
 ## C. Coverage verdict — say this out loud before querying
 
 | Present | Live | Absent means |
 |---|---|---|
-| P&L for every company, same period | Group P&L | Nothing runs for the P&L. Say which are missing and ask the user to add a Profit and Loss Summary source for each |
-| Balance sheet for every company, same date | Group balance sheet | Balance sheet dead. Ask the user to add a Balance Sheet source for each missing company, same period end |
+| P&L for every company, same period | Group P&L | Nothing runs for the P&L. Say which are missing and offer to add a Profit and Loss Summary source for each |
+| Balance sheet for every company, same date | Group balance sheet | Balance sheet dead. Offer to add a Balance Sheet source for each missing company, same period end |
 | One reporting currency for all | No translation needed | See D for rates |
 | Intercompany accounts named in group setup | Eliminations | Say intercompany is included and the totals are overstated |
 | A saved close check result for each company | Status line per entity | Say which haven't been checked |

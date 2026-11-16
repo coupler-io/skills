@@ -81,32 +81,35 @@ raw entities. A rebuilt figure that disagrees with QuickBooks is a second proble
 several, run the check per company and never blend them into one verdict.
 
 **Read the schema before naming a column**, then query the values of any flag column before using
-it — what the cleared column holds differs by how the company reconciles. The report carries total rows (Total Income, Gross Profit, Net Income and the like) beside the account rows; find what marks a total row, then sum account rows or read the totals, never both.
+it — what the cleared column holds differs by how the company reconciles. The report carries total rows (Total Assets, Total Liabilities, Total Equity and the like) beside the account rows; find what marks a total row, then sum account rows or read the totals, never both.
 
 A missing report or column is one source setting away, not a dead end. The Transaction List report
 offers the Clr, Create Date, Last Modified Date and Posting columns; if they aren't in the dataset,
-ask the user to tick them in the source's Columns setting, and if they're fetched but hidden, to show
-them in the dataset.
+offer to add them to the source's Columns setting. Ask the user to unhide a column only when it's
+fetched but hidden in the dataset.
 
-**Report settings are the user's to change.** On a QuickBooks Reports source, the report, period,
-structure, columns and "Display columns by" are set in the source's settings in Coupler.io, not by
-you. Where a fix below needs one, name the setting and the value, ask the user to change it, and
-read the schema again once they say it's done.
+**Most report settings you can change; query parameters you can't.** On a QuickBooks Reports
+source, propose any change to the report, period, structure, columns or "Display columns by", say
+what it fixes, and make it once the user agrees. Query parameters are entered in the wizard only:
+name the key and value, ask the user to add it, and read the schema again once they say it's done.
 
 ## C. Coverage verdict — say this out loud before querying
 
 | Present | Check that runs | Absent means |
 |---|---|---|
-| Trial Balance report at the period end | Balance check, catch-all and Undeposited Funds balances | Nothing runs. Ask the user to add a QuickBooks Reports source: Trial Balance, a Custom period ending on the period end |
-| AR Aging Summary and AP Aging Summary at the same date | Receivables and payables tie-out | Tie-out not checkable. Ask the user to add AR Aging Summary and AP Aging Summary sources with a Custom report date of the period end |
-| Transaction List with a cleared column | Uncleared bank transactions | Bank rec not checkable. Ask the user to add a Transaction List source with the Clr and Posting columns |
-| Transaction List with create and last modified dates | Closed-period movement | Not checkable. Ask the user to add the Create Date and Last Modified Date columns to the Transaction List source |
+| Trial Balance report at the period end | Balance check, catch-all and Undeposited Funds balances | Nothing runs. Offer to add a QuickBooks Reports source: Trial Balance, a Custom period ending on the period end |
+| AR Aging Summary and AP Aging Summary at the same date | Receivables and payables tie-out | Tie-out not checkable. Offer to add AR Aging Summary and AP Aging Summary sources with a Custom report date of the period end |
+| Transaction List with a cleared column | Uncleared bank transactions | Bank rec not checkable. Offer to add a Transaction List source with the Clr and Posting columns |
+| Transaction List with create and last modified dates | Closed-period movement | Not checkable. Offer to add the Create Date and Last Modified Date columns to the Transaction List source |
 | The company's closing date | The cut-off for the closed-period check | Ask the user for the closing date |
 | The company's reporting basis | The basis label on every figure | Say the basis is the company default and unknown; ask |
 
-**The connector has no accrual/cash setting.** The reports run on the company's default reporting
-basis. Read it from the company preferences if present; otherwise ask, and never compare a cash
-figure to an accrual one.
+**Basis.** A QuickBooks Reports source runs on the company's default reporting basis unless the
+user has set `accounting_method` (`Cash` or `Accrual`) in its query parameters, which only the user
+can do. Read the default from the company preferences if present; otherwise ask. Name the basis on
+every figure. Where sources that must match don't, say so, mention that the `accounting_method`
+query parameter sets the basis per source, and let the user decide how to handle it. Never compare
+a cash figure to an accrual one.
 
 **All reports in one check must share one date.** An AR aging at today against a balance sheet at
 the month end is not a tie-out. Check each report's date in the dataset before comparing.

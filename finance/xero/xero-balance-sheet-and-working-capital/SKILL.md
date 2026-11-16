@@ -75,7 +75,7 @@ take the month-end row.
 `xero-multi-entity-consolidation`.
 
 **Read the schema before naming a column.** Section labels come from the organisation's chart of
-accounts; check which section each account sits in. The report carries total rows (Total Income, Gross Profit, Net Profit and the like) beside the account rows; find what marks a total row, then sum account rows or read the totals, never both.
+accounts; check which section each account sits in. The report carries total rows (Total Assets, Total Liabilities, Total Equity and the like) beside the account rows; find what marks a total row, then sum account rows or read the totals, never both.
 
 ## C. Coverage verdict — say this out loud before querying
 
