@@ -223,6 +223,124 @@
       "description": "Use this skill when the user wants to analyze financial performance, review P&L health, monitor MRR/ARR, investigate margin or cost trends, build a finance report, check cash flow or runway, or answer questions about their accounting/billing data. Triggers include 'how is revenue trending', 'gross margin', 'MRR breakdown', 'churn impact on ARR', 'why did costs go up', 'operating expenses', 'cash runway', 'P&L review', 'EBITDA', 'cost per acquisition trend', 'pull my QuickBooks numbers', 'finance report'."
     },
     {
+      "name": "quickbooks-balance-sheet-and-working-capital",
+      "path": "finance/quickbooks/quickbooks-balance-sheet-and-working-capital",
+      "category": "finance",
+      "sources": [
+        "QuickBooks Reports",
+        "QuickBooks"
+      ],
+      "title": "QuickBooks Balance Sheet and Working Capital",
+      "short_description": "Shows your QuickBooks working capital, how many days customers and vendors take to pay, and what moved your cash.",
+      "description": "Use for QuickBooks questions like \"how much working capital do we have in QuickBooks\", \"where is our cash tied up\", \"what's our current ratio\", \"how many days do customers take to pay us\", \"are we paying vendors too early\", \"what changed on the QuickBooks balance sheet this month\", or \"why is cash down when we made a profit\" — even when the user never says \"balance sheet\". Use when the decision is whether the business can meet its short-term obligations and where cash is sitting. QuickBooks only; for Xero use xero-balance-sheet-and-working-capital."
+    },
+    {
+      "name": "quickbooks-books-health-and-close-check",
+      "path": "finance/quickbooks/quickbooks-books-health-and-close-check",
+      "category": "finance",
+      "sources": [
+        "QuickBooks",
+        "QuickBooks Reports"
+      ],
+      "title": "QuickBooks Books Health and Month-End Close Check",
+      "short_description": "Checks whether your QuickBooks books are clean enough to report on and which reports a ledger problem would distort.",
+      "description": "Use for QuickBooks questions like \"are our QuickBooks books clean\", \"can I trust the numbers in QuickBooks\", \"are we ready to close the month in QuickBooks\", \"does the QuickBooks trial balance balance\", \"how much is in Uncategorized Expense\", \"what's still uncleared in QuickBooks\", \"does receivables match the AR aging\", or \"did anything change before the closing date\" — and before trusting any QuickBooks profit, cash or balance sheet figure, even when the user never says \"audit\" or \"close\". Use when the decision is whether the QuickBooks books can be reported on yet, not what they say. QuickBooks only; for Xero use xero-books-health-and-close-check."
+    },
+    {
+      "name": "quickbooks-budget-vs-actual-variance",
+      "path": "finance/quickbooks/quickbooks-budget-vs-actual-variance",
+      "category": "finance",
+      "sources": [
+        "QuickBooks",
+        "QuickBooks Reports"
+      ],
+      "title": "QuickBooks Budget vs Actual Variance",
+      "short_description": "Shows which lines are over or under your QuickBooks budget, by how much, and where the full year is heading.",
+      "description": "Use for QuickBooks questions like \"are we on budget in QuickBooks\", \"how did we do against budget last month\", \"which costs are over budget\", \"budget vs actuals in QuickBooks\", \"where are we year to date against plan\", \"will we hit the annual budget\", or a monthly variance review — even when the user never says \"variance\". Use when the decision is which lines are off plan, by how much, and whether the full year still lands. Needs a budget entered in QuickBooks. QuickBooks only; for Xero use xero-budget-vs-actual-variance."
+    },
+    {
+      "name": "quickbooks-multi-entity-consolidation",
+      "path": "finance/quickbooks/quickbooks-multi-entity-consolidation",
+      "category": "finance",
+      "sources": [
+        "QuickBooks Reports",
+        "QuickBooks"
+      ],
+      "title": "QuickBooks Multi-Entity Consolidation",
+      "short_description": "Combines several QuickBooks companies into one group P&L and balance sheet in one currency, with intercompany removed.",
+      "description": "Use for questions across several QuickBooks companies like \"combine our QuickBooks companies\", \"group P&L across all our QuickBooks entities\", \"consolidated balance sheet for the group\", \"how is the group doing across our QuickBooks companies\", \"eliminate intercompany between our QuickBooks entities\", or \"put our US and Canada QuickBooks books in one currency\" — even when the user never says \"consolidation\". Use when the decision needs one set of group numbers from two or more QuickBooks companies. QuickBooks only, wholly owned entities; for Xero use xero-multi-entity-consolidation."
+    },
+    {
+      "name": "quickbooks-profit-and-loss-review",
+      "path": "finance/quickbooks/quickbooks-profit-and-loss-review",
+      "category": "finance",
+      "sources": [
+        "QuickBooks Reports"
+      ],
+      "title": "QuickBooks Profit and Loss Review",
+      "short_description": "Shows what moved your QuickBooks profit this month, which accounts drove it, and whether a change is real or a recoding.",
+      "description": "Use for QuickBooks questions like \"how did we do last month in QuickBooks\", \"why did profit drop in QuickBooks\", \"what moved on our QuickBooks P&L\", \"why are costs up this month\", \"what's our gross margin in QuickBooks\", \"how does this month compare to last year\", or a monthly P&L read from QuickBooks — even when the user never says \"P&L\". Use when the decision is what moved profit, by how much, and whether the move is real or a coding change. QuickBooks only; for Xero use xero-profit-and-loss-review."
+    },
+    {
+      "name": "xero-balance-sheet-and-working-capital",
+      "path": "finance/xero/xero-balance-sheet-and-working-capital",
+      "category": "finance",
+      "sources": [
+        "Xero Reports",
+        "Xero"
+      ],
+      "title": "Xero Balance Sheet and Working Capital",
+      "short_description": "Shows your Xero working capital, how many days customers and suppliers take to pay, and what moved your cash.",
+      "description": "Use for Xero questions like \"how much working capital do we have in Xero\", \"where is our cash tied up\", \"what's our current ratio\", \"how many days do customers take to pay us\", \"are we paying suppliers too early\", \"what changed on the Xero balance sheet this month\", or \"why is cash down when we made a profit\" — even when the user never says \"balance sheet\". Use when the decision is whether the business can meet its short-term obligations and where cash is sitting. Xero only; for QuickBooks use quickbooks-balance-sheet-and-working-capital."
+    },
+    {
+      "name": "xero-books-health-and-close-check",
+      "path": "finance/xero/xero-books-health-and-close-check",
+      "category": "finance",
+      "sources": [
+        "Xero",
+        "Xero Reports"
+      ],
+      "title": "Xero Books Health and Month-End Close Check",
+      "short_description": "Checks whether your Xero books are clean enough to report on and which reports a ledger problem would distort.",
+      "description": "Use for Xero questions like \"are our Xero books clean\", \"can I trust the numbers in Xero\", \"are we ready to close the month in Xero\", \"does the Xero trial balance balance\", \"what's sitting in suspense in Xero\", \"what's still unreconciled in Xero\", \"does receivables in Xero match the open invoices\", or \"did anything change in a locked period\" — and before trusting any Xero profit, cash or balance sheet figure, even when the user never says \"audit\" or \"close\". Use when the decision is whether the Xero books can be reported on yet, not what they say. Xero only; for QuickBooks use quickbooks-books-health-and-close-check."
+    },
+    {
+      "name": "xero-budget-vs-actual-variance",
+      "path": "finance/xero/xero-budget-vs-actual-variance",
+      "category": "finance",
+      "sources": [
+        "Xero Reports"
+      ],
+      "title": "Xero Budget vs Actual Variance",
+      "short_description": "Shows which lines are over or under your Xero budget, by how much, and where the full year is heading.",
+      "description": "Use for Xero questions like \"are we on budget in Xero\", \"how did we do against budget last month\", \"which costs are over budget\", \"budget vs actual in Xero\", \"where are we year to date against plan\", \"will we hit the annual budget\", or a monthly variance review — even when the user never says \"variance\". Use when the decision is which lines are off plan, by how much, and whether the full year still lands. Needs a budget entered in Xero. Xero only; for QuickBooks use quickbooks-budget-vs-actual-variance."
+    },
+    {
+      "name": "xero-multi-entity-consolidation",
+      "path": "finance/xero/xero-multi-entity-consolidation",
+      "category": "finance",
+      "sources": [
+        "Xero Reports",
+        "Xero"
+      ],
+      "title": "Xero Multi-Entity Consolidation",
+      "short_description": "Combines several Xero organisations into one group P&L and balance sheet in one currency, with intercompany removed.",
+      "description": "Use for questions across several Xero organisations like \"combine our Xero companies\", \"group P&L across all our Xero entities\", \"consolidated balance sheet for the group\", \"how is the group doing across our Xero organisations\", \"eliminate intercompany between our Xero entities\", or \"put our UK and US Xero books in one currency\" — even when the user never says \"consolidation\". Use when the decision needs one set of group numbers from two or more Xero organisations. Xero only, wholly owned entities; for QuickBooks use quickbooks-multi-entity-consolidation."
+    },
+    {
+      "name": "xero-profit-and-loss-review",
+      "path": "finance/xero/xero-profit-and-loss-review",
+      "category": "finance",
+      "sources": [
+        "Xero Reports",
+        "Xero"
+      ],
+      "title": "Xero Profit and Loss Review",
+      "short_description": "Shows what moved your Xero profit this month, which accounts drove it, and whether a change is real or a recoding.",
+      "description": "Use for Xero questions like \"how did we do last month in Xero\", \"why did profit drop in Xero\", \"what moved on our Xero P&L\", \"why are costs up this month\", \"what's our gross margin in Xero\", \"how does this month compare to last year\", or a monthly P&L read from Xero — even when the user never says \"P&L\". Use when the decision is what moved profit, by how much, and whether the move is real or a coding change. Xero only; for QuickBooks use quickbooks-profit-and-loss-review."
+    },
+    {
       "name": "amazon-ads-account-settings-and-structure-audit",
       "path": "marketing-and-ads/amazon-ads/amazon-ads-account-settings-and-structure-audit",
       "category": "marketing-and-ads",
