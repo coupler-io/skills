@@ -167,12 +167,13 @@
       "name": "coupler-capability",
       "source": "./",
       "strict": false,
-      "description": "Core Coupler.io MCP capabilities — create dataflows, build Custom GAQL sources, generate dataset context, refine prompts, generate reports.",
+      "description": "Core Coupler.io MCP capabilities — create dataflows, build Custom GAQL sources, manage Google Ads campaigns, generate dataset context, refine prompts, generate reports.",
       "category": "productivity",
       "skills": [
         "./capability/get-started",
         "./capability/create-dataflow",
         "./capability/google-ads-custom-gaql",
+        "./capability/google-ads-campaign-management",
         "./capability/generate-data-set-context",
         "./capability/refine-prompt",
         "./capability/report-generation"

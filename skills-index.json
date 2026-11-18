@@ -29,6 +29,17 @@
       "description": "Use this skill when the user's Coupler.io workspace is NEW or EMPTY — no datasets, no credentials — and they want their data flowing, or when any data request arrives from an account with nothing set up yet. Triggers include: \"get started\", \"set up Coupler\", \"connect my data\", \"I just signed up\", \"pull my QuickBooks/Shopify/HubSpot/ads data\", an empty list-datasets result, or a missing credential. Goal: take the user from an empty workspace to their own data rendered in this chat, in one guided pass — including the one-time browser step to authorize their source. Do NOT use for accounts that already have datasets or dataflows (work with their data directly), for platform questions (\"what sources do you support?\"), or for adding a source to an existing setup (use the create-dataflow skill instead)."
     },
     {
+      "name": "google-ads-campaign-management",
+      "path": "capability/google-ads-campaign-management",
+      "category": "capability",
+      "sources": [
+        "Google Ads"
+      ],
+      "title": "Google Ads Campaign Management",
+      "short_description": "Applies the Google Ads changes you agree on: pauses, budgets, bids, keywords and ad text, with your approval.",
+      "description": "Use this skill when the user asks how their Google Ads campaigns are doing, or wants to change them. Triggers include: 'how is my campaign doing', 'what's my Google Ads spend', 'create a search campaign', 'run a new campaign', 'pause this campaign', 'raise the budget on Brand to 80 a day', 'add these negative keywords', 'lower the target CPA', 'rewrite the headlines of this ad', 'apply the recommendations', or an analysis skill handing over cuts to execute. Uses list-credentials, list-actions, get-action and execute-action. A missing Google Ads dataset is not a reason to stop."
+    },
+    {
       "name": "google-ads-custom-gaql",
       "path": "capability/google-ads-custom-gaql",
       "category": "capability",
