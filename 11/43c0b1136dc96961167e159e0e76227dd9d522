@@ -1,0 +1,22 @@
+.github/scripts/generate_skill_index.py
+  s_b5b17c3026b2f5::t_f80881117ba530 86-94,100-101,107-108
+  s_b5b17c3026b2f5::t_9b40bbee58a7af 191
+  s_b5b17c3026b2f5::t_8f824419e77c2b 199,202-204,212
+  s_b5b17c3026b2f5::t_5a5888c0ef41a7 139-152
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.8",
+  "base_commit_sha": "1143c0b1136dc96961167e159e0e76227dd9d522",
+  "prompts": {},
+  "sessions": {
+    "s_b5b17c3026b2f5": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "7a2391e2-e47b-41c1-b198-82d90f7c4ffb",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": "Artur Hebda <arturhebda@gmail.com>"
+    }
+  }
+}

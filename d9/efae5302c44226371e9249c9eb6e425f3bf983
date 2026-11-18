@@ -1,0 +1,21 @@
+.gitignore
+  s_9cd024bf389b85::t_f3bedd6b575aaa 6
+LICENSE
+  s_9cd024bf389b85::t_4c14b07722ac22 1-21
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "d9efae5302c44226371e9249c9eb6e425f3bf983",
+  "prompts": {},
+  "sessions": {
+    "s_9cd024bf389b85": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "734f5adf-be3e-44f2-a4c8-e193c4ff15ae",
+        "model": "claude-sonnet-5-5"
+      },
+      "human_author": "Olexander Paladiy <olexander.paladiy@railsware.com>"
+    }
+  }
+}

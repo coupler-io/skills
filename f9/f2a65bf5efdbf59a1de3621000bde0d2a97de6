@@ -1,0 +1,50 @@
+.github/scripts/generate_skill_index.py
+  s_dba03c2000170c::t_57900556c2d4cb 132,136,142-145,147
+  s_dba03c2000170c::t_b739df62d84065 215,217,220-232,249-255
+  s_dba03c2000170c::t_49df111b20bc39 234-235,237,242
+  s_dba03c2000170c::t_0f5b615989d894 146,148-149
+  s_dba03c2000170c::t_96e5a2fededb27 338
+  s_dba03c2000170c::t_dd6baa81cbbc0c 133-135,137-141
+  s_dba03c2000170c::t_3b50274f85e5da 94-95,98,100,113-115
+  s_dba03c2000170c::t_ab0c00c3c53196 96-97,99,101-112
+  s_dba03c2000170c::t_c59a797ccfa3ea 73
+  s_dba03c2000170c::t_3a2535fd42a6e0 213-214,216,218-219
+  s_dba03c2000170c::t_2e9c1ce064733e 280
+  s_dba03c2000170c::t_72bd87041b8c10 293-294,296,299
+  s_dba03c2000170c::t_15c807b7820b62 297-298,307,309-314,316-320,324-329,331,336-337,340
+  s_dba03c2000170c::t_8976b55c4ff688 308,315,321-322,330,335,339
+  s_dba03c2000170c::t_6d7e985a2e3975 89-93
+  s_dba03c2000170c::t_a69527690f6905 36
+  s_dba03c2000170c::t_6777c64c3ac5cf 233,236,238-241,243-248
+  s_dba03c2000170c::t_3f683c98975a59 72
+  s_dba03c2000170c::t_a6a90d4a1eeb8f 291-292,295
+README.md
+  s_dba03c2000170c::t_d189ec348c9035 188
+  h_94b34593fe7aa3 178
+  s_dba03c2000170c::t_c7be0ddd08c83a 180-186
+  s_dba03c2000170c::t_f529783c743b62 162-177,179,189-190
+  s_dba03c2000170c::t_2961c5cd5818cf 187
+sales/sales-analytics/SKILL.md
+  s_dba03c2000170c::t_c936e71db88396 5
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.8",
+  "base_commit_sha": "f9f2a65bf5efdbf59a1de3621000bde0d2a97de6",
+  "prompts": {},
+  "humans": {
+    "h_94b34593fe7aa3": {
+      "author": "Artur Hebda <arturhebda@gmail.com>"
+    }
+  },
+  "sessions": {
+    "s_dba03c2000170c": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "f9f89f20-4ee1-4755-b84f-18e4eaf7af0e",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Artur Hebda <arturhebda@gmail.com>"
+    }
+  }
+}
