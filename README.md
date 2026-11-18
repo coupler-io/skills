@@ -311,6 +311,7 @@ Shared building blocks. Compose these with any domain skill above.
 | [**get-started**](capability/get-started/SKILL.md) | Onboard a brand-new or empty workspace from zero to the user's own data in the chat — anchor on stated intent, route template-or-scratch, script the guided credential round-trip, build + run the first dataflow, then offer a refresh schedule. |
 | [**create-dataflow**](capability/create-dataflow/SKILL.md) | Configure a Coupler.io dataflow end to end — pick an integration, attach a credential, wire source → destination, test it with a preview run, then offer the full run. |
 | [**google-ads-custom-gaql**](capability/google-ads-custom-gaql/SKILL.md) | Build a Custom GAQL source when no packaged Google Ads report type carries the field — and name the packaged type when one does. Covers resource choice, date macros, and the raw column names and micros that come back. |
+| [**google-ads-campaign-management**](capability/google-ads-campaign-management/SKILL.md) | Apply agreed Google Ads changes — status, daily budgets, bidding targets, keywords and responsive search ad text — through a propose → confirm → validate → approve loop, within the per-account approval levels and budget guardrails. |
 | [**generate-data-set-context**](capability/generate-data-set-context/SKILL.md) | Produce an AI-readable description for a dataset so future sessions inherit its schema context. |
 | [**refine-prompt**](capability/refine-prompt/SKILL.md) | Sharpen a vague or underspecified analytics request into a detailed, actionable prompt — filling in time period, metrics, data sources, and output format — before analysis. |
 | [**report-generation**](capability/report-generation/SKILL.md) | Industry-agnostic report formatter and validator. Turns analysis output into a structured TL;DR → Metrics → Context → Recommendations → Next Questions report, then runs a Phase 2 validation pass (arithmetic, units, claim-vs-data, logical gates). Compose with a domain skill for domain-flavored reports. |
@@ -382,7 +383,7 @@ Each business function is its own plugin, so you install only what you need. Ava
 | `coupler-ecommerce` | ecom-analytics, + the 7 Shopify, 3 Klaviyo, 1 Gorgias and 1 Cin7 deep dives |
 | `coupler-marketing-ads` | marketing-analytics, ppc-analytics, + the 8 Google Ads, 11 Meta / Facebook Ads, 11 TikTok Ads, 11 Microsoft Ads, 10 LinkedIn Ads and 10 Amazon Ads deep dives, + the 5 Black Friday skills |
 | `coupler-seo-and-geo` | the 12 SEO skills, 4 Google Business Profile skills and 1 GEO skill |
-| `coupler-capability` | get-started, create-dataflow, google-ads-custom-gaql, generate-data-set-context, refine-prompt, report-generation |
+| `coupler-capability` | get-started, create-dataflow, google-ads-custom-gaql, google-ads-campaign-management, generate-data-set-context, refine-prompt, report-generation |
 | `coupler-utilities` | coupler-io-live-dashboard |
 | `humanizer` | humanizer-remove-ai-writing-patterns (+ `/humanize` command) |
 
