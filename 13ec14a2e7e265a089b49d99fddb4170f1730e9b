@@ -1,0 +1,23 @@
+README.md
+  a9513fa5afa44156 5-17
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.8",
+  "base_commit_sha": "13ec14a2e7e265a089b49d99fddb4170f1730e9b",
+  "prompts": {
+    "a9513fa5afa44156": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3040c717-fe35-41a9-8bdb-60338cd3cc99",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Peter Laczko <peter.laczko@railsware.com>",
+      "messages": [],
+      "total_additions": 13,
+      "total_deletions": 0,
+      "accepted_lines": 13,
+      "overriden_lines": 0
+    }
+  }
+}

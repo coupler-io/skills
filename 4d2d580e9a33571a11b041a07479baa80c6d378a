@@ -1,0 +1,41 @@
+capability/google-ads-campaign-management/SKILL.md
+  s_e9d67f5dfa42d2::t_6d98f5f13f39d9 1-2,4-17,25-27,29-31,33,35,37,39-41,44-67,69-89,91-102,106-116,119,121-125,128,130-142
+  s_e9d67f5dfa42d2::t_5a13898496128e 90
+  s_e9d67f5dfa42d2::t_0fc944fe9e14ca 28
+  s_e9d67f5dfa42d2::t_19ba8a52b0eeb3 120
+  s_e9d67f5dfa42d2::t_4d5578f124f69f 103-105
+  s_e9d67f5dfa42d2::t_a83dc5bbefc890 68
+  s_e9d67f5dfa42d2::t_06ef63d9cc0b5c 126-127
+  s_e9d67f5dfa42d2::t_6d755d140ff05a 129
+  s_e9d67f5dfa42d2::t_628f54d9c9ac63 32,34,36,38,42-43
+  s_e9d67f5dfa42d2::t_535948d51596f8 3
+  s_e9d67f5dfa42d2::t_6b5668fc5294de 117-118
+  s_e9d67f5dfa42d2::t_837fa78cd6c5fd 18-24
+.claude-plugin/marketplace.json
+  s_e9d67f5dfa42d2::t_3a5f71624f7416 170
+  s_e9d67f5dfa42d2::t_2bf3fa1fdc7928 176
+README.md
+  s_e9d67f5dfa42d2::t_ebf29d214827ef 386
+  s_e9d67f5dfa42d2::t_445fb49ab00c2a 314
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "4d2d580e9a33571a11b041a07479baa80c6d378a",
+  "prompts": {},
+  "humans": {
+    "h_5a7459c565b0c6": {
+      "author": "Yuriy Stefanyuk <yuriy.stefanyuk@gmail.com>"
+    }
+  },
+  "sessions": {
+    "s_e9d67f5dfa42d2": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "07e72649-7d10-4669-aa8d-b90a711b6e7a",
+        "model": "grok-4.7"
+      },
+      "human_author": null
+    }
+  }
+}
