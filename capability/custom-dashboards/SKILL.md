@@ -4,15 +4,18 @@ description: "Use this skill when the user wants a dashboard, report page or set
 metadata:
   title: "Custom Dashboards"
   short_description: "Builds and edits interactive dashboards over your Coupler.io data, with KPIs, charts, tables and filters."
+  version: 1.0.0
   category: capability
   sources: []
 ---
 
 # Custom Dashboards
 
-You build and edit custom dashboards in Coupler.io: interactive pages with KPIs, charts, tables and filters over the user's datasets. A dashboard is an [Evidence](https://docs.evidence.studio) project written in Markdoc. Coupler.io renders it, runs its SQL on the datasets and applies the Coupler.io layout and theme.
+Builds and edits interactive dashboards over your Coupler.io data, with KPIs, charts, tables and filters. Custom Dashboards is a Coupler.io AI agent skill.
 
-Tools: `list-custom-dashboards`, `get-custom-dashboard`, `create-custom-dashboard`, `update-custom-dashboard`, `delete-custom-dashboard`. If they're missing, custom dashboards aren't enabled for this user yet: say so and stop.
+You build and edit custom dashboards in Coupler.io: interactive pages with KPIs, charts, tables and filters over the user's datasets. A dashboard is an [Evidence](https://docs.evidence.dev) project written in Markdoc. Coupler.io renders it, runs its SQL on the datasets and applies the Coupler.io layout and theme.
+
+Tools: `list-custom-dashboards`, `get-custom-dashboard`, `create-custom-dashboard`, `update-custom-dashboard`, `delete-custom-dashboard`. If they're missing, custom dashboards aren't available on this user's account yet: say so. If the `coupler-io-live-dashboard` skill is available, offer to build the dashboard with it instead.
 
 ## Workflow
 
@@ -22,7 +25,7 @@ Find out what the dashboard is for: the metrics, the breakdowns (by date, campai
 
 ### Step 2: Find the data
 
-1. Find the datasets with `list-datasets` or `search-datasets`. Use datasets that already exist; if the data isn't there, say so (setting up a dataflow is a separate task).
+1. Find the datasets with `list-datasets` or `search-datasets`. Use datasets that already exist. If the data isn't there, say which source it would come from and offer to set it up: load the `create-dataflow` skill (or `get-started` when the workspace is empty), then come back to the dashboard once the dataset exists.
 2. Read each dataset's columns with `get-schema`. Use each column's `columnName` in SQL, double-quoted when it has spaces or capitals (`"Campaign Name"`). Use the column descriptions for units and meaning (cents vs dollars, what `cost` covers).
 3. When a value's meaning is unclear, check a few rows with `get-data` before charting it.
 
@@ -39,11 +42,12 @@ A dashboard has two inputs:
 #### SQL rules
 
 - The dialect is DuckDB.
-- **Each SQL statement reads exactly one dataset.** No joins or unions across aliases. To compare datasets, chart them side by side; to combine them for real, the user needs a combined dataset in a Coupler.io dataflow.
+- **Each SQL statement reads exactly one dataset.** No joins or unions across aliases. To compare datasets, chart them side by side. To combine them in one chart or table, build a combined dataset with `create-dataset` (its inputs must be in the same dataflow) and add it to the dashboard under its own alias.
 - Name every SQL block (` ```sql daily `) and refer to it by that name. Names are unique in the page.
 - Prefer one shared base query (`queries/<name>.sql`) that renames and casts columns once (short names, `cast(... as date)`, `coalesce` for nulls), then small page blocks on top of it.
 - A block can reuse another block on the page with `{{<block name>}}`, which is substituted as a subquery in parentheses: `where category in (select category from {{top_categories}})`. Both blocks must read the same dataset.
 - Aggregate in the component when you can (`y="sum(cost) as cost"`); the block can stay at row level.
+- Never sum or average a ratio across rows (CTR, CPC, ROAS, conversion rate, impression share): divide the summed parts instead, `sum(cost) / nullif(sum(clicks), 0)`. Don't sum de-duplicated counts (reach, unique users) across days either, and for values repeated on every date row (balances, MRR, budgets) take the latest row per entity rather than a sum.
 
 #### Page structure
 
