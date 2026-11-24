@@ -313,6 +313,7 @@ Shared building blocks. Compose these with any domain skill above.
 | [**google-ads-custom-gaql**](capability/google-ads-custom-gaql/SKILL.md) | Build a Custom GAQL source when no packaged Google Ads report type carries the field — and name the packaged type when one does. Covers resource choice, date macros, and the raw column names and micros that come back. |
 | [**generate-data-set-context**](capability/generate-data-set-context/SKILL.md) | Produce an AI-readable description for a dataset so future sessions inherit its schema context. |
 | [**refine-prompt**](capability/refine-prompt/SKILL.md) | Sharpen a vague or underspecified analytics request into a detailed, actionable prompt — filling in time period, metrics, data sources, and output format — before analysis. |
+| [**custom-dashboards**](capability/custom-dashboards/SKILL.md) | Build and edit Coupler.io custom dashboards — interactive Evidence pages with KPIs, charts, tables and filters over the user's datasets. Covers finding the data, the SQL rules, page structure, and a reference for the 20 most-used components. |
 | [**report-generation**](capability/report-generation/SKILL.md) | Industry-agnostic report formatter and validator. Turns analysis output into a structured TL;DR → Metrics → Context → Recommendations → Next Questions report, then runs a Phase 2 validation pass (arithmetic, units, claim-vs-data, logical gates). Compose with a domain skill for domain-flavored reports. |
 
 ### Utilities

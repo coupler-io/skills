@@ -175,6 +175,7 @@
         "./capability/google-ads-custom-gaql",
         "./capability/generate-data-set-context",
         "./capability/refine-prompt",
+        "./capability/custom-dashboards",
         "./capability/report-generation"
       ]
     },
